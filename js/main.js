@@ -183,10 +183,6 @@ function collectStar (player, star) {
 
 function render() {
 
-    var zone = game.camera.deadzone;
-    zone.fillStyle = 'rgba(255,0,0,0.6)';
-    //zone.fillRect(zone.x, zone.y, zone.width, zone.height);
-
     game.debug.cameraInfo(game.camera, 32, 32);
     game.debug.spriteCoords(player, 32, 500);
 
