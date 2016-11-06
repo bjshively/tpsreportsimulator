@@ -104,8 +104,7 @@ function create() {
 
     //  The score
     scoreText = game.add.text(16, 16, 'score: 0', { fontSize: '32px', fill: '#000' });
-    fps = game.add.text(400, 400, game.time.fps, { fontSize: '32px', fill: '#000' });
-    game.camera.follow(this.player);
+    
     //  Our controls.
     cursors = game.input.keyboard.createCursorKeys();
     
@@ -134,12 +133,10 @@ function update() {
         player.body.velocity.y += 10;
     }
     //  Stand still
-            if (player.body.velocity.x == 0 && player.velocity.y == 0){
-player.animations.stop();
-
+    if (player.body.velocity.x == 0 && player.body.velocity.y == 0){
+        player.animations.stop();
         player.frame = 4;
-
-}
+    }
          
     if (cursors.left.isDown)
     {
@@ -147,15 +144,14 @@ player.animations.stop();
         if (Math.abs(player.body.velocity.x) < playerSpeedMax) {
             player.body.velocity.x -= 10;
         }
-
         player.animations.play('left');
     }
     else if (cursors.right.isDown)
     {
         //  Move to the right
         if (Math.abs(player.body.velocity.x) < playerSpeedMax) {
-        player.body.velocity.x += 10;
-}
+            player.body.velocity.x += 10;
+        }
         player.animations.play('right');
     }
 
@@ -163,15 +159,15 @@ player.animations.stop();
     {
         //  Move to the right
         if (Math.abs(player.body.velocity.y) < playerSpeedMax) {
-        player.body.velocity.y -= 10;
-}
+            player.body.velocity.y -= 10;
+        }
     }
     else if (cursors.down.isDown)
     {
         //  Move to the right
-         if (Math.abs(player.body.velocity.y) < playerSpeedMax) {
-       player.body.velocity.y += 10;
-}
+        if (Math.abs(player.body.velocity.y) < playerSpeedMax) {
+            player.body.velocity.y += 10;
+        }
     }
  
     
