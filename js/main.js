@@ -63,6 +63,8 @@ function create() {
     //  We need to enable physics on the player
     game.physics.arcade.enable(player);
     game.camera.follow(player);
+    
+    game.camera.deadzone = new Phaser.Rectangle(275, 175, 250, 250);
 
     //  Player physics properties. Give the little guy a slight bounce.
     //player.body.bounce.y = 0.2;
@@ -180,6 +182,10 @@ function collectStar (player, star) {
 }
 
 function render() {
+
+    var zone = game.camera.deadzone;
+    zone.fillStyle = 'rgba(255,0,0,0.6)';
+    //zone.fillRect(zone.x, zone.y, zone.width, zone.height);
 
     game.debug.cameraInfo(game.camera, 32, 32);
     game.debug.spriteCoords(player, 32, 500);
