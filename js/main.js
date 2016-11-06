@@ -5,7 +5,7 @@ function preload() {
     game.load.image('sky', 'assets/sky.png');
     game.load.image('ground', 'assets/platform.png');
     game.load.image('star', 'assets/star.png');
-    game.load.spritesheet('dude', 'assets/dude.png', 32, 48);
+    game.load.spritesheet('dude', 'assets/link.png', 20, 23);
     game.load.image('checker', 'assets/checker.png');
 }
 
@@ -59,6 +59,7 @@ function create() {
 
     // The player and its settings
     player = game.add.sprite(32, 150, 'dude');
+    player.scale.setTo(3, 3)
 
     //  We need to enable physics on the player
     game.physics.arcade.enable(player);
@@ -72,8 +73,10 @@ function create() {
     player.body.collideWorldBounds = true;
 
     //  Our two animations, walking left and right.
-    player.animations.add('left', [0, 1, 2, 3], 10, true);
-    player.animations.add('right', [5, 6, 7, 8], 10, true);
+    player.animations.add('left', [7, 8, 9, 10, 11, 12, 13], 10, true);
+    player.animations.add('right', [14, 15, 16, 17, 18, 19, 20], 10, true);
+    player.animations.add('down', [0, 1, 2, 3, 4, 5, 6], 10, true);
+    player.animations.add('up', [21, 22, 23, 24, 25, 26, 27], 10, true);
 
     //  Finally some stars to collect
     stars = game.add.group();
@@ -153,6 +156,7 @@ function update() {
         if (Math.abs(player.body.velocity.y) < playerSpeedMax) {
             player.body.velocity.y -= 10;
         }
+        player.animations.play('up');
     }
     else if (cursors.down.isDown)
     {
@@ -160,6 +164,7 @@ function update() {
         if (Math.abs(player.body.velocity.y) < playerSpeedMax) {
             player.body.velocity.y += 10;
         }
+        player.animations.play('down');
     }
     
     //  Allow the player to jump if they are touching the ground.
