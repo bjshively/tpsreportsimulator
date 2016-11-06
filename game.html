@@ -15,7 +15,7 @@
 
 <script type="text/javascript">
 
-var game = new Phaser.Game(800, 600, Phaser.AUTO, 'game', { preload: preload, create: create, update: update });
+var game = new Phaser.Game(800, 600, Phaser.AUTO, 'game', { preload: preload, create: create, update: update, render: render });
 
 function preload() {
 
@@ -38,6 +38,9 @@ var fps;
 var playerSpeedMax = 250;
 
 function create() {
+
+    //Make the map large
+    game.world.setBounds(0, 0, 1920, 1920);
 
     //  We're going to be using physics, so enable the Arcade Physics system
     game.physics.startSystem(Phaser.Physics.ARCADE);
@@ -73,6 +76,7 @@ function create() {
 
     //  We need to enable physics on the player
     game.physics.arcade.enable(player);
+    game.camera.follow(player);
 
     //  Player physics properties. Give the little guy a slight bounce.
     //player.body.bounce.y = 0.2;
@@ -187,6 +191,13 @@ function collectStar (player, star) {
     //  Add and update the score
     score += 10;
     scoreText.text = 'Score: ' + score;
+
+}
+
+function render() {
+
+    game.debug.cameraInfo(game.camera, 32, 32);
+    game.debug.spriteCoords(player, 32, 500);
 
 }
 
