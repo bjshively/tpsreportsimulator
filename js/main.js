@@ -20,6 +20,8 @@ var fps;
 
 var playerSpeedMax = 250;
 
+var bgtile;
+
 function create() {
 
     //Make the map large
@@ -29,7 +31,8 @@ function create() {
     game.physics.startSystem(Phaser.Physics.ARCADE);
 
     //  A simple background for our game
-    game.add.sprite(0, 0, 'checker');
+    //bgtile = game.add.tileSprite(0, 0, game.stage.bounds.width, 'checker');
+    bgtile = game.add.tileSprite(0, 0, game.world.bounds.width, game.world.height, 'checker');
 
     //  The platforms group contains the ground and the 2 ledges we can jump on
     platforms = game.add.group();
@@ -156,7 +159,6 @@ function update() {
             player.body.velocity.y += 10;
         }
     }
- 
     
     //  Allow the player to jump if they are touching the ground.
  /*   if (cursors.up.isDown && player.body.touching.down)
