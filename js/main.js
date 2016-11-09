@@ -1,5 +1,5 @@
 
-var game = new Phaser.Game(800, 600, Phaser.AUTO, 'game', { preload: preload, create: create, update: update, render: render });
+var game = new Phaser.Game(800, 600, Phaser.CANVAS, 'game', { preload: preload, create: create, update: update, render: render });
 
 function preload() {
     game.load.image('sky', 'assets/sky.png');
@@ -16,14 +16,12 @@ var cursors;
 var stars;
 var score = 0;
 var scoreText;
-var fps;
 
-var playerSpeedMax = 250;
+var gravity = 1500;
 
 var bgtile;
 
 function create() {
-
     //Make the map large
     game.world.setBounds(0, 0, 1920, 1920);
 
@@ -40,43 +38,23 @@ function create() {
     //  We will enable physics for any object that is created in this group
     platforms.enableBody = true;
 
-    // Here we create the ground.
+    // Setup the ground
     var ground = platforms.create(0, game.world.height - 64, 'ground');
-
-    //  Scale it to fit the width of the game (the original sprite is 400x32 in size)
     ground.scale.setTo(2, 2);
-
-    //  This stops it from falling away when you jump on it
     ground.body.immovable = true;
 
     //  Now let's create two ledges
     var ledge = platforms.create(400, 400, 'ground');
     ledge.scale.setTo(.5, 2);
     ledge.body.immovable = true;
-
     ledge = platforms.create(-150, 250, 'ground');
     ledge.body.immovable = true;
 
-    // The player and its settings
-    player = game.add.sprite(32, 150, 'dude');
-    player.scale.setTo(3, 3)
-
-    //  We need to enable physics on the player
-    game.physics.arcade.enable(player);
-    game.camera.follow(player);
+    // player stuff went here
+    createPlayer();
     
-    game.camera.deadzone = new Phaser.Rectangle(275, 175, 250, 250);
-
-    //  Player physics properties. Give the little guy a slight bounce.
-    //player.body.bounce.y = 0.2;
-    //player.body.gravity.y = 300;
-    player.body.collideWorldBounds = true;
-
-    //  Our two animations, walking left and right.
-    player.animations.add('left', [7, 8, 9, 10, 11, 12, 13], 10, true);
-    player.animations.add('right', [14, 15, 16, 17, 18, 19, 20], 10, true);
-    player.animations.add('down', [0, 1, 2, 3, 4, 5, 6], 10, true);
-    player.animations.add('up', [21, 22, 23, 24, 25, 26, 27], 10, true);
+    game.camera.deadzone = new Phaser.Rectangle(
+        game.width * .3, game.height * .3, game.width * .4, game.height * .4);
 
     //  Finally some stars to collect
     stars = game.add.group();
@@ -91,7 +69,7 @@ function create() {
         var star = stars.create(i * 70, 0, 'star');
 
         //  Let gravity do its thing
-        star.body.gravity.y = 300;
+        star.body.gravity.y = gravity;
 
         //  This just gives each star a slightly random bounce value
         star.body.bounce.y = 0.7 + Math.random() * 0.2;
@@ -115,64 +93,32 @@ function update() {
     game.physics.arcade.overlap(player, stars, collectStar, null, this);
 
     //  Reset the players velocity (movement)
-    if (player.body.velocity.x > 0 && !cursors.right.isDown) {
-        player.body.velocity.x -= 10;
-    }
-    if (player.body.velocity.x < 0 && !cursors.left.isDown) {
-        player.body.velocity.x += 10;
-    }
-    if (player.body.velocity.y > 0 && !cursors.down.isDown) {
-        player.body.velocity.y -= 10;        
-    }
-    if (player.body.velocity.y < 0 && !cursors.up.isDown) {
-        player.body.velocity.y += 10;
-    }
-    //  Stand still
-    if (player.body.velocity.x == 0 && player.body.velocity.y == 0){
-        player.animations.stop();
-        player.frame = 4;
-    }
-         
+    player.body.velocity.x = 0;
+    
     if (cursors.left.isDown)
     {
         //  Move to the left
-        if (Math.abs(player.body.velocity.x) < playerSpeedMax) {
-            player.body.velocity.x -= 10;
-        }
+        player.body.velocity.x = -(player.maxSpeed);
         player.animations.play('left');
     }
     else if (cursors.right.isDown)
     {
         //  Move to the right
-        if (Math.abs(player.body.velocity.x) < playerSpeedMax) {
-            player.body.velocity.x += 10;
-        }
+        player.body.velocity.x = player.maxSpeed;
         player.animations.play('right');
     }
-
-    if (cursors.up.isDown)
-    {
-        //  Move to the right
-        if (Math.abs(player.body.velocity.y) < playerSpeedMax) {
-            player.body.velocity.y -= 10;
-        }
-        player.animations.play('up');
+    //  Stand still
+    else {
+        player.animations.stop();
+        player.frame = 4;
     }
-    else if (cursors.down.isDown)
-    {
-        //  Move to the right
-        if (Math.abs(player.body.velocity.y) < playerSpeedMax) {
-            player.body.velocity.y += 10;
-        }
-        player.animations.play('down');
-    }
-    
+         
     //  Allow the player to jump if they are touching the ground.
- /*   if (cursors.up.isDown && player.body.touching.down)
+    if (cursors.up.isDown && player.body.touching.down)
     {
-        player.body.velocity.y = -350;
+        player.body.velocity.y = -500;
     }
-*/
+
 }
 
 function collectStar (player, star) {
