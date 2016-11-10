@@ -22,7 +22,7 @@ function preload() {
 
 var player;
 var platforms;
-var cursors;
+var wasd;
 
 var stars;
 var score = 0;
@@ -90,8 +90,14 @@ function create() {
     scoreText = game.add.text(16, 16, 'score: 0', { fontSize: '32px', fill: '#000' });
     
     //  Our controls.
-    cursors = game.input.keyboard.createCursorKeys();
+    wasd = {
+        up: game.input.keyboard.addKey(Phaser.Keyboard.W),
+        down: game.input.keyboard.addKey(Phaser.Keyboard.S),
+        left: game.input.keyboard.addKey(Phaser.Keyboard.A),
+        right: game.input.keyboard.addKey(Phaser.Keyboard.D),
+    };
 
+//    var wasd = game.input.keyboard.addKeys({ 'up': Phaser.Keyboard.W, 'down': Phaser.Keyboard.S, 'left': Phaser.Keyboard.A, 'right': Phaser.Keyboard.D } );
 
     //Mouse angle testing
     arm = game.add.sprite(player.x, player.y, 'arm');
@@ -114,13 +120,13 @@ function update() {
     //  Reset the players velocity (movement)
     player.body.velocity.x = 0;
     
-    if (cursors.left.isDown)
+    if (wasd.left.isDown || wasd.left.isDown)
     {
         //  Move to the left
         player.body.velocity.x = -(player.maxSpeed);
 //        player.animations.play('left');
     }
-    else if (cursors.right.isDown)
+    else if (wasd.right.isDown)
     {
         //  Move to the right
         player.body.velocity.x = player.maxSpeed;
@@ -133,7 +139,7 @@ function update() {
     }
          
     //  Allow the player to jump if they are touching the ground.
-    if (cursors.up.isDown && player.body.touching.down)
+    if (wasd.up.isDown && player.body.touching.down)
     {
         player.body.velocity.y = -500;
     }
@@ -146,7 +152,6 @@ function update() {
         arm.x = player.x;
     }
     arm.y = player.y + 10;
-
 }
 
 function collectStar (player, star) {
