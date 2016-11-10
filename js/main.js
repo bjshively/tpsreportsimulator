@@ -94,9 +94,10 @@ function create() {
 
 
     //Mouse angle testing
-    arrow = game.add.sprite(player.x, player.y, 'arrow');
-    arrow.scale.setTo(.3, .3);
-    arrow.anchor.setTo(0.5, 0.5);
+    arm = game.add.sprite(player.x, player.y, 'arm');
+    arm.scale.setTo(3, 3);
+    arm.smoothed = false;
+    arm.anchor.setTo(0.1, 0.5);
 
     
 }
@@ -138,13 +139,13 @@ function update() {
     }
 
     //Mouse angle test
-    arrow.rotation = game.physics.arcade.angleToPointer(arrow);
+    arm.rotation = game.physics.arcade.angleToPointer(arm);
     if(player.body.velocity.x >= 0) {
-        arrow.x = player.x + player.width;
+        arm.x = player.x + player.width / 2;
     } else {
-        arrow.x = player.x;
+        arm.x = player.x;
     }
-    arrow.y = player.y + player.height/2;
+    arm.y = player.y + 10;
 
 }
 
