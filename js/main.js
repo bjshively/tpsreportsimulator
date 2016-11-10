@@ -15,6 +15,9 @@ function preload() {
     game.load.image('foot', 'assets/player/foot.png');
     game.load.image('gun', 'assets/player/gun.png');
     game.load.image('bullet', 'assets/player/bullet.png');
+
+    //Mouse angle test code
+    game.load.image('arrow', 'assets/sprites/arrow.png');
 }
 
 var player;
@@ -88,6 +91,13 @@ function create() {
     
     //  Our controls.
     cursors = game.input.keyboard.createCursorKeys();
+
+
+    //Mouse angle testing
+    arrow = game.add.sprite(player.x, player.y, 'arrow');
+    arrow.scale.setTo(.3, .3);
+    arrow.anchor.setTo(0.5, 0.5);
+
     
 }
 
@@ -126,6 +136,15 @@ function update() {
     {
         player.body.velocity.y = -500;
     }
+
+    //Mouse angle test
+    arrow.rotation = game.physics.arcade.angleToPointer(arrow);
+    if(player.body.velocity.x >= 0) {
+        arrow.x = player.x + player.width;
+    } else {
+        arrow.x = player.x;
+    }
+    arrow.y = player.y + player.height/2;
 
 }
 
