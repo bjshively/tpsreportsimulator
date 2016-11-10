@@ -1,6 +1,6 @@
 function createPlayer () {
     // The player and its settings
-    player = game.add.sprite(100, 150, 'dude');
+    player = game.add.sprite(100, 150, 'torso');
     player.scale.setTo(3, 3)
     player.smoothed = false;
     player.maxSpeed = 200;

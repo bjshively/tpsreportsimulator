@@ -7,6 +7,14 @@ function preload() {
     game.load.image('star', 'assets/star.png');
     game.load.spritesheet('dude', 'assets/link.png', 20, 23);
     game.load.image('checker', 'assets/checker.png');
+    game.load.image('reticle', 'assets/player/reticle.png');
+    game.load.image('head', 'assets/player/head.png');
+    game.load.image('torso', 'assets/player/torso.png');
+    game.load.image('arm', 'assets/player/arm.png');
+    game.load.image('leg', 'assets/player/leg.png');
+    game.load.image('foot', 'assets/player/foot.png');
+    game.load.image('gun', 'assets/player/gun.png');
+    game.load.image('bullet', 'assets/player/bullet.png');
 }
 
 var player;
@@ -99,13 +107,13 @@ function update() {
     {
         //  Move to the left
         player.body.velocity.x = -(player.maxSpeed);
-        player.animations.play('left');
+//        player.animations.play('left');
     }
     else if (cursors.right.isDown)
     {
         //  Move to the right
         player.body.velocity.x = player.maxSpeed;
-        player.animations.play('right');
+//        player.animations.play('right');
     }
     //  Stand still
     else {
