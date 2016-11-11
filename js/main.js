@@ -1,5 +1,6 @@
 
-var game = new Phaser.Game(800, 600, Phaser.CANVAS, 'game', { preload: preload, create: create, update: update, render: render });
+var game = new Phaser.Game(800, 600, Phaser.CANVAS, 'game', 
+    {preload: preload, create: create, update: update, render: render });
 
 function preload() {
     game.load.image('sky', 'assets/sky.png');
@@ -14,10 +15,7 @@ function preload() {
     game.load.image('leg', 'assets/player/leg.png');
     game.load.image('foot', 'assets/player/foot.png');
     game.load.image('gun', 'assets/player/gun.png');
-    game.load.image('bullet', 'assets/player/bullet.png');
-
-    //Mouse angle test code
-    game.load.image('arrow', 'assets/sprites/arrow.png');
+    game.load.image('bullet', 'assets/player/weapon/bullet.png');
 }
 
 var player;
@@ -30,14 +28,21 @@ var scoreText;
 
 var gravity = 1500;
 
+var sprite;
+var bullets;
+var fireWait = 400;
+var nextFire = 0;
+
 var bgtile;
 
 function create() {
     //Make the map large
-    game.world.setBounds(0, 0, 1920, 1920);
+    game.world.setBounds(0, 0, 1000, 800);
 
     //  We're going to be using physics, so enable the Arcade Physics system
     game.physics.startSystem(Phaser.Physics.ARCADE);
+
+    game.input.mouse.capture = true;
 
     //  A simple background for our game
     //bgtile = game.add.tileSprite(0, 0, game.stage.bounds.width, 'checker');
@@ -64,25 +69,19 @@ function create() {
     // player stuff went here
     createPlayer();
     
-    game.camera.deadzone = new Phaser.Rectangle(
-        game.width * .3, game.height * .3, game.width * .4, game.height * .4);
+    game.camera.follow(player, Phaser.Camera.FOLLOW_LOCKON, 0.1, 0.1);
+    //game.camera.deadzone = new Phaser.Rectangle(
+    //    game.width * .35, game.height * .35, game.width * .3, game.height * .3);
 
     //  Finally some stars to collect
     stars = game.add.group();
-
-    //  We will enable physics for any star that is created in this group
     stars.enableBody = true;
 
     //  Here we'll create 12 of them evenly spaced apart
     for (var i = 0; i < 12; i++)
     {
-        //  Create a star inside of the 'stars' group
         var star = stars.create(i * 70, 0, 'star');
-
-        //  Let gravity do its thing
         star.body.gravity.y = gravity;
-
-        //  This just gives each star a slightly random bounce value
         star.body.bounce.y = 0.7 + Math.random() * 0.2;
     }
 
@@ -95,17 +94,35 @@ function create() {
         down: game.input.keyboard.addKey(Phaser.Keyboard.S),
         left: game.input.keyboard.addKey(Phaser.Keyboard.A),
         right: game.input.keyboard.addKey(Phaser.Keyboard.D),
+        space: game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR),
+        pointer: game.input.activePointer
     };
+    //  Stop the following keys from propagating up to the browser
+    game.input.keyboard.addKeyCapture(
+        [ Phaser.Keyboard.W,
+        Phaser.Keyboard.A,
+        Phaser.Keyboard.S,
+        Phaser.Keyboard.D,
+        Phaser.Keyboard.SPACEBAR]);
+
+    bullets = game.add.group();
+    bullets.enableBody = true;
+    bullets.physicsBodyType = Phaser.Physics.ARCADE;
+
+    bullets.createMultiple(50, 'bullet');
+    bullets.setAll('checkWorldBounds', true);
+    bullets.setAll('outOfBoundsKill', true);
+
+
+    //game.physics.enable(sprite, Phaser.Physics.ARCADE);
 
 //    var wasd = game.input.keyboard.addKeys({ 'up': Phaser.Keyboard.W, 'down': Phaser.Keyboard.S, 'left': Phaser.Keyboard.A, 'right': Phaser.Keyboard.D } );
 
-    //Mouse angle testing
+    // Mouse angle
     arm = game.add.sprite(player.x, player.y, 'arm');
     arm.scale.setTo(3, 3);
     arm.smoothed = false;
     arm.anchor.setTo(0.1, 0.5);
-
-    
 }
 
 function update() {
@@ -118,39 +135,53 @@ function update() {
     game.physics.arcade.overlap(player, stars, collectStar, null, this);
 
     //  Reset the players velocity (movement)
-    player.body.velocity.x = 0;
+//    player.body.velocity.x = 0;
     
-    if (wasd.left.isDown || wasd.left.isDown)
+    // Player movement
+    if (wasd.up.isDown) 
     {
-        //  Move to the left
+        player.body.velocity.y = -(player.maxSpeed);
+        player.animations.play('up');
+    }
+    if (wasd.down.isDown) 
+    {
+        player.body.velocity.y = player.maxSpeed;
+        player.animations.play('down');
+    }
+    if (wasd.left.isDown)
+    {
         player.body.velocity.x = -(player.maxSpeed);
-//        player.animations.play('left');
+        player.animations.play('left');
     }
-    else if (wasd.right.isDown)
+    if (wasd.right.isDown)
     {
-        //  Move to the right
         player.body.velocity.x = player.maxSpeed;
-//        player.animations.play('right');
+        player.animations.play('right');
     }
+    if (wasd.pointer.isDown || wasd.space.isDown)
+    {
+        fireBullet();
+    }
+
+
     //  Stand still
-    else {
+    if (!wasd.up.isDown && !wasd.down.isDown && !wasd.left.isDown && !wasd.right.isDown)
+    {
+        player.body.velocity.x = 0;
+        player.body.velocity.y = 0;
         player.animations.stop();
         player.frame = 4;
     }
-         
+
     //  Allow the player to jump if they are touching the ground.
-    if (wasd.up.isDown && player.body.touching.down)
+    /*if (wasd.up.isDown && player.body.touching.down)
     {
         player.body.velocity.y = -500;
     }
-
+*/
     //Mouse angle test
     arm.rotation = game.physics.arcade.angleToPointer(arm);
-    if(player.body.velocity.x >= 0) {
-        arm.x = player.x + player.width / 2;
-    } else {
-        arm.x = player.x;
-    }
+    arm.x = player.x + player.width / 2;
     arm.y = player.y + 10;
 }
 
@@ -163,6 +194,21 @@ function collectStar (player, star) {
     score += 10;
     scoreText.text = 'Score: ' + score;
 
+}
+
+function fireBullet () {
+    if (game.time.now > nextFire && bullets.countDead() > 0)
+    {
+        nextFire = game.time.now + fireWait;
+
+        var bullet = bullets.getFirstDead();
+
+        bullet.reset(arm.x, arm.y);
+        bullet.scale.setTo(3, 3);
+        bullet.smoothed = false;
+
+        game.physics.arcade.moveToPointer(bullet, 300);
+    }
 }
 
 function render() {
