@@ -30,6 +30,7 @@ var run_debug = false;
 var player;
 var platforms;
 var wasd;
+var reticle;
 
 var score = 0;
 var scoreText;
@@ -92,7 +93,6 @@ function create() {
 
     // player stuff went here
     createPlayer();
-
     game.camera.follow(player, Phaser.Camera.FOLLOW_LOCKON, 0.1, 0.1);
     //game.camera.deadzone = new Phaser.Rectangle(
     //game.width * .35, game.height * .35, game.width * .3, game.height * .3);
@@ -115,6 +115,7 @@ function create() {
     bullets.setAll('checkWorldBounds', true);
     bullets.setAll('outOfBoundsKill', true);
 
+    reticle = game.add.sprite(game.input.activePointer.worldX, game.input.activePointer.worldY, 'reticle');
 
     //game.physics.enable(sprite, Phaser.Physics.ARCADE);
 
@@ -122,7 +123,11 @@ function create() {
 }
 
 function update() {
-
+    
+    // Reticle cursor
+    reticle.x = game.input.activePointer.worldX;
+    reticle.y = game.input.activePointer.worldY;
+    
     updatePlayer();
 
     if(run_debug){
