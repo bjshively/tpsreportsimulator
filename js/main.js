@@ -10,7 +10,7 @@ function preload() {
     game.load.image('sky', 'assets/sky.png');
     game.load.image('ground', 'assets/platform.png');
     game.load.image('star', 'assets/star.png');
-    game.load.spritesheet('dude', 'assets/player/player.png', 16, 52);
+    game.load.spritesheet('dude', 'assets/player/player.png', 15, 30);
     game.load.image('checker', 'assets/checker.png');
     game.load.image('reticle', 'assets/player/reticle.png');
     game.load.image('head', 'assets/player/head.png');
@@ -45,13 +45,6 @@ var nextFire = 0;
 var bgtile;
 
 function init() {
-    // scale the game 2x
-    game.scale.scaleMode = Phaser.ScaleManager.USER_SCALE;
-    /*    game.scale.setUserScale(2, 2);
-        // enable crisp rendering
-        game.renderer.renderSession.roundPixels = true;
-        Phaser.Canvas.setImageRenderingCrisp(this.game.canvas);
-    */
 }
 
 function create() {
