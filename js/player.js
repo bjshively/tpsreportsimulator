@@ -14,7 +14,6 @@ function createPlayer() {
     player.animations.add('up', [5, 6, 7, 4], 5, true);
     player.animations.add('right', [9, 10, 11, 8], 5, true);
     player.animations.add('left', [13, 14, 15, 12], 5, true);
-
 }
 
 function updatePlayer() {

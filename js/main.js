@@ -10,14 +10,11 @@ function preload() {
     game.load.image('sky', 'assets/sky.png');
     game.load.image('ground', 'assets/platform.png');
     game.load.spritesheet('dude', 'assets/player/player.png', 15, 30);
+    game.load.spritesheet('enemy1', 'assets/enemies/enemy1.png', 15, 30);
     game.load.image('checker', 'assets/checker.png');
     game.load.image('reticle', 'assets/player/reticle.png');
-    game.load.image('head', 'assets/player/head.png');
-    game.load.image('torso', 'assets/player/torso.png');
     game.load.image('arm', 'assets/player/arm.png');
-    game.load.image('leg', 'assets/player/leg.png');
-    game.load.image('foot', 'assets/player/foot.png');
-    game.load.image('gun', 'assets/player/gun.png');
+    game.load.image('gun', 'assets/player/weapon/gun.png');
     game.load.image('bullet', 'assets/player/weapon/bullet.png');
 
     // Enable pixel-perfect game scaling
