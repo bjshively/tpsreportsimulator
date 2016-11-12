@@ -9,8 +9,8 @@ var game = new Phaser.Game(320, 240, Phaser.AUTO, 'game', {
 function preload() {
     game.load.image('sky', 'assets/sky.png');
     game.load.image('ground', 'assets/platform.png');
-    game.load.spritesheet('dude', 'assets/player/player.png', 15, 30);
-    game.load.spritesheet('enemy1', 'assets/enemies/enemy1.png', 15, 30);
+    game.load.spritesheet('dude', 'assets/player/player.png', 15, 31);
+    game.load.spritesheet('enemy', 'assets/enemies/enemy.png', 15, 31);
     game.load.image('checker', 'assets/checker.png');
     game.load.image('reticle', 'assets/player/reticle.png');
     game.load.image('arm', 'assets/player/arm.png');
@@ -26,14 +26,17 @@ function preload() {
 
 //Toggle debug information
 var run_debug = false;
+var timeCounter = 0;
+var currentTime = 0;
 
 var player;
+var enemies;
 var platforms;
 var wasd;
 var reticle;
 
-var score = 0;
 var scoreText;
+var healthText;
 
 var gravity = 1500;
 
@@ -84,7 +87,7 @@ function create() {
     game.input.mouse.capture = true;
 
     //  World Setup
-    game.world.setBounds(0, 0, 800, 600);
+    game.world.setBounds(0, 0, 640, 480);
     bgtile = game.add.tileSprite(0, 0, game.world.bounds.width, game.world.height, 'checker');
     game.physics.startSystem(Phaser.Physics.ARCADE);
 
@@ -106,21 +109,24 @@ function create() {
     //    ledge = platforms.create(-150, 250, 'ground');
     //    ledge.body.immovable = true;
 
-    // player stuff went here
     createPlayer();
+    createEnemies();
+
     game.camera.follow(player, Phaser.Camera.FOLLOW_LOCKON, 0.1, 0.1);
     //game.camera.deadzone = new Phaser.Rectangle(
     //game.width * .35, game.height * .35, game.width * .3, game.height * .3);
 
+    game.time.events.loop(Phaser.Timer.SECOND, updateTime, this);
+
     //  Scoreboard
-    scoreText = game.add.text(16, 16, 'score: 0', {
-        fontSize: '32px',
+    scoreText = game.add.text(16, 16, 'Score: ' + player.score, {
+        fontSize: '10px',
         fill: '#000'
     });
-
-    if (run_debug) {
-        mouseAngle = game.add.text(300, 300, game.physics.arcade.angleToPointer(player));
-    }
+    healthText = game.add.text(16, 32, 'Health: ' + player.health, {
+        fontSize: '10px',
+        fill: '#000'
+    });
 
     bullets = game.add.group();
     bullets.enableBody = true;
@@ -133,8 +139,6 @@ function create() {
     reticle = game.add.sprite(game.input.activePointer.worldX, game.input.activePointer.worldY, 'reticle');
 
     //game.physics.enable(sprite, Phaser.Physics.ARCADE);
-
-    //var wasd = game.input.keyboard.addKeys({ 'up': Phaser.Keyboard.W, 'down': Phaser.Keyboard.S, 'left': Phaser.Keyboard.A, 'right': Phaser.Keyboard.D } );
 }
 
 function update() {
@@ -144,7 +148,6 @@ function update() {
     reticle.y = game.input.activePointer.worldY;
 
     updatePlayer();
-
 
     // Weapon select
         if (wasd.pistolKey.isDown) {
@@ -161,6 +164,10 @@ function update() {
     //Collisions
     game.physics.arcade.collide(player, platforms);
     game.physics.arcade.overlap(platforms, bullets, killBullet, null, this);
+    game.physics.arcade.overlap(bullets, enemies, killEnemy, null, this);
+    //game.physics.arcade.collide(player, enemies);
+    game.physics.arcade.overlap(player, enemies, takeDamage, null, this);
+
 }
 
 //*********************************
@@ -170,6 +177,14 @@ function update() {
 function collectItem(player, item) {
 
     //Implement item interaction logic
+}
+
+function killEnemy(bullet, enemy) {
+    bullet.kill();
+    enemy.kill();
+
+    player.score += 1;
+    scoreText.text = 'Score: ' + player.score;
 }
 
 function killBullet(platform, bullet) {
@@ -190,10 +205,17 @@ function fireBullet() {
     }
 }
 
+function updateTime() {
+    timeCounter ++;
+}
+
 function render() {
     if (run_debug) {
-        game.debug.cameraInfo(game.camera, 32, 32);
-        game.debug.spriteCoords(player, 32, 500);
-    }
+        game.debug.text(player.invincible, 5, 15);
+        //game.debug.cameraInfo(game.camera, 5, 15);
+        game.debug.spriteCoords(player, 5, 90);
+        game.debug.text('Elapsed seconds: ' + this.game.time.totalElapsedSeconds(), 5, 140);
+        game.debug.text('Mouse angle: ' + game.math.radToDeg(game.physics.arcade.angleToPointer(player)), 5, 160)
 
+    }
 }

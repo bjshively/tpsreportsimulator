@@ -2,7 +2,11 @@ function createPlayer() {
     player = game.add.sprite(0, 0, 'dude');
     player.position.setTo(game.world.centerX - player.width / 2, game.world.centerY - player.height / 2);
 
+    player.health = 3;
+    player.score = 0;
     player.maxSpeed = 100;
+    player.invincible = false;
+
     game.physics.arcade.enable(player);
     game.camera.follow(player);
 
@@ -71,3 +75,20 @@ function updatePlayer() {
         player.frame = player.standingFrames[facingDirection];
     }
 }
+
+function takeDamage() {
+    if (!player.invincible) {
+        player.invincible = true;
+        player.health -= 1;
+
+        var gotHurt = this.game.time.totalElapsedSeconds();
+//        while (this.game.time.totalElapsedSeconds() < gotHurt + 3) {
+//            player.invincible = true;
+//            player.visible = !player.visible;
+//        }
+    }
+//    player.invincible = false;
+}
+
+
+
