@@ -153,7 +153,7 @@ function fireBullet() {
 
         var bullet = bullets.getFirstDead();
 
-        bullet.reset(player.x, player.y);
+        bullet.reset(player.x, player.y - 5);
         //        bullet.scale.setTo(3, 3);
         bullet.smoothed = false;
 

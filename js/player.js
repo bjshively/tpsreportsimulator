@@ -14,35 +14,50 @@ function createPlayer() {
     player.animations.add('up', [5, 6, 7, 4], 5, true);
     player.animations.add('right', [9, 10, 11, 8], 5, true);
     player.animations.add('left', [13, 14, 15, 12], 5, true);
+    
+    // Define the standing frame for each direction the player can face
+    player.standingFrames = {};
+    player.standingFrames['down'] = 0;
+    player.standingFrames['up'] = 4;
+    player.standingFrames['right'] = 8;
+    player.standingFrames['left'] = 12;
+
 }
 
 function updatePlayer() {
-    var vertical = false;
     // Player movement
     player.body.velocity.y = 0;
     player.body.velocity.x = 0;
 
+    //Divide the look direction into 4 quadrants and determine which direction the mouse is
+    facingAngle = game.math.radToDeg(game.physics.arcade.angleToPointer(player));
+    if (facingAngle >= -135 && facingAngle < -45) {
+        facingDirection = 'up';
+    } else if (facingAngle >= -45 && facingAngle < 45) {
+        facingDirection = 'right';
+    } else if (facingAngle >= 45 && facingAngle < 135) {
+        facingDirection = 'down';
+    } else {
+        facingDirection = 'left';
+    }
+
+    //Play the animation for the direction the player is looking
+    if (wasd.up.isDown || wasd.down.isDown || wasd.left.isDown || wasd.right.isDown) {
+        player.animations.play(facingDirection);
+    }
+
+    // Move the player
     if (wasd.up.isDown) {
         player.body.velocity.y = -(player.maxSpeed);
-        player.animations.play('up');
-        vertical = true;
     }
     if (wasd.down.isDown) {
         player.body.velocity.y = player.maxSpeed;
-        player.animations.play('down');
-        vertical = true;
     }
     if (wasd.left.isDown) {
         player.body.velocity.x = -(player.maxSpeed);
-        if (!vertical) {
-            player.animations.play('left');
-        }
     }
     if (wasd.right.isDown) {
         player.body.velocity.x = player.maxSpeed;
-        if (!vertical) {
-            player.animations.play('right');
-        }
     }
 
     // SHOOTEMUP
@@ -50,25 +65,9 @@ function updatePlayer() {
         fireBullet();
     }
 
-    //  Stand still
+    //  Make player face the cursor when standing still
     if (!wasd.up.isDown && !wasd.down.isDown && !wasd.left.isDown && !wasd.right.isDown) {
         player.animations.stop();
-        player.frame = 0;
+        player.frame = player.standingFrames[facingDirection];
     }
-
-    //Rotate the player sprite to face the cursor
-    //player.rotation = game.physics.arcade.angleToPointer(player);
-
-
-    //Scratch code
-        //  Reset the players velocity (movement)
-//    player.body.velocity.x = 0;
-
-
-    //  Allow the player to jump if they are touching the ground.
-    /*if (wasd.up.isDown && player.body.touching.down)
-    {
-        player.body.velocity.y = -500;
-    }
-*/
 }
