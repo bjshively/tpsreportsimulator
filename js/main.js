@@ -134,6 +134,7 @@ function update() {
 
     //  Checks to see if the player overlaps with any of the stars, if he does call the collectStar function
     game.physics.arcade.overlap(player, stars, collectStar, null, this);
+    game.physics.arcade.overlap(platforms, bullets, killBullet, null, this);
 
     //  Reset the players velocity (movement)
 //    player.body.velocity.x = 0;
@@ -194,6 +195,10 @@ function collectStar (player, star) {
     score += 10;
     scoreText.text = 'Score: ' + score;
 
+}
+
+function killBullet (platform, bullet) {
+    bullet.kill();
 }
 
 function fireBullet () {
