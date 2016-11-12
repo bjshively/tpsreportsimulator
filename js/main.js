@@ -203,7 +203,7 @@ function fireBullet () {
 
         var bullet = bullets.getFirstDead();
 
-        bullet.reset(arm.x, arm.y);
+        bullet.reset(player.x, player.y);
         bullet.scale.setTo(3, 3);
         bullet.smoothed = false;
 
