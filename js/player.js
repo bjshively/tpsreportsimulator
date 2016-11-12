@@ -19,31 +19,40 @@ function createPlayer() {
 
 
     //  Our two animations, walking left and right.
-    player.animations.add('down', [1, 2], 5, true);
-    player.animations.add('up', [4, 5], 5, true);
-    player.animations.add('right', [7, 8], 5, true);
-    player.animations.add('left', [10, 11], 5, true);
+    player.animations.add('down', [1, 2, 3, 0], 5, true);
+    player.animations.add('up', [5, 6, 7, 4], 5, true);
+    player.animations.add('right', [9, 10, 11, 8], 5, true);
+    player.animations.add('left', [13, 14, 15, 12], 5, true);
 
 }
 
 function updatePlayer() {
+    var vertical = false;
     // Player movement
     if (wasd.up.isDown) {
         player.body.velocity.y = -(player.maxSpeed);
         player.animations.play('up');
+        vertical = true;
     }
     if (wasd.down.isDown) {
         player.body.velocity.y = player.maxSpeed;
         player.animations.play('down');
+        vertical = true;
     }
     if (wasd.left.isDown) {
         player.body.velocity.x = -(player.maxSpeed);
-        player.animations.play('left');
+        if (!vertical) {
+            player.animations.play('left');
+        }
     }
     if (wasd.right.isDown) {
         player.body.velocity.x = player.maxSpeed;
-        player.animations.play('right');
+        if (!vertical) {
+            player.animations.play('right');
+        }
     }
+
+    // SHOOTEMUP
     if (wasd.pointer.isDown || wasd.space.isDown) {
         fireBullet();
     }
@@ -54,7 +63,7 @@ function updatePlayer() {
         player.body.velocity.x = 0;
         player.body.velocity.y = 0;
         player.animations.stop();
-        player.frame = 4;
+        player.frame = 0;
     }
 
     //Rotate the player sprite to face the cursor
