@@ -124,6 +124,7 @@ function create() {
 
 function update() {
 
+    updatePlayer();
 
     //DEBUG - Mouse angle
     mouseAngle.text  = game.math.radToDeg(game.physics.arcade.angleToPointer(player));
@@ -135,56 +136,11 @@ function update() {
     //  Checks to see if the player overlaps with any of the stars, if he does call the collectStar function
     game.physics.arcade.overlap(player, stars, collectStar, null, this);
     game.physics.arcade.overlap(platforms, bullets, killBullet, null, this);
-
-    //  Reset the players velocity (movement)
-//    player.body.velocity.x = 0;
-    
-    // Player movement
-    if (wasd.up.isDown) 
-    {
-        player.body.velocity.y = -(player.maxSpeed);
-        player.animations.play('up');
-    }
-    if (wasd.down.isDown) 
-    {
-        player.body.velocity.y = player.maxSpeed;
-        player.animations.play('down');
-    }
-    if (wasd.left.isDown)
-    {
-        player.body.velocity.x = -(player.maxSpeed);
-        player.animations.play('left');
-    }
-    if (wasd.right.isDown)
-    {
-        player.body.velocity.x = player.maxSpeed;
-        player.animations.play('right');
-    }
-    if (wasd.pointer.isDown || wasd.space.isDown)
-    {
-        fireBullet();
-    }
-
-
-    //  Stand still
-    if (!wasd.up.isDown && !wasd.down.isDown && !wasd.left.isDown && !wasd.right.isDown)
-    {
-        player.body.velocity.x = 0;
-        player.body.velocity.y = 0;
-        player.animations.stop();
-        player.frame = 4;
-    }
-
-    //  Allow the player to jump if they are touching the ground.
-    /*if (wasd.up.isDown && player.body.touching.down)
-    {
-        player.body.velocity.y = -500;
-    }
-*/
-
-    //Rotate the player sprite to face the cursor
-    player.rotation = game.physics.arcade.angleToPointer(player);
 }
+
+//*********************************
+//Helper Functions
+//*********************************
 
 function collectStar (player, star) {
     

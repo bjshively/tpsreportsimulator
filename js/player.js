@@ -1,4 +1,4 @@
-function createPlayer () {
+function createPlayer() {
     // The player and its settings
     player = game.add.sprite(0, 0, 'dude');
     player.scale.setTo(3, 3);
@@ -17,12 +17,59 @@ function createPlayer () {
     player.body.collideWorldBounds = true;
     player.anchor.setTo(0.5, 0.5);
 
-    
+
     //  Our two animations, walking left and right.
     player.animations.add('up', [1], 10, true);
     player.animations.add('down', [0], 10, true);
     player.animations.add('right', [2], 10, true);
     player.animations.add('left', [3], 10, true);
-    
+
 }
 
+function updatePlayer() {
+    // Player movement
+    if (wasd.up.isDown) {
+        player.body.velocity.y = -(player.maxSpeed);
+        player.animations.play('up');
+    }
+    if (wasd.down.isDown) {
+        player.body.velocity.y = player.maxSpeed;
+        player.animations.play('down');
+    }
+    if (wasd.left.isDown) {
+        player.body.velocity.x = -(player.maxSpeed);
+        player.animations.play('left');
+    }
+    if (wasd.right.isDown) {
+        player.body.velocity.x = player.maxSpeed;
+        player.animations.play('right');
+    }
+    if (wasd.pointer.isDown || wasd.space.isDown) {
+        fireBullet();
+    }
+
+
+    //  Stand still
+    if (!wasd.up.isDown && !wasd.down.isDown && !wasd.left.isDown && !wasd.right.isDown) {
+        player.body.velocity.x = 0;
+        player.body.velocity.y = 0;
+        player.animations.stop();
+        player.frame = 4;
+    }
+
+    //Rotate the player sprite to face the cursor
+    player.rotation = game.physics.arcade.angleToPointer(player);
+
+
+    //Scratch code
+        //  Reset the players velocity (movement)
+//    player.body.velocity.x = 0;
+
+
+    //  Allow the player to jump if they are touching the ground.
+    /*if (wasd.up.isDown && player.body.touching.down)
+    {
+        player.body.velocity.y = -500;
+    }
+*/
+}
