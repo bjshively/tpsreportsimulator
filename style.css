@@ -12,8 +12,8 @@ body
 
 #game
 {
-	width: 640px;
-	height: 480px;
+	width: 960px;
+	height: 720px;
  	margin: 0px auto;
  	border: 1px solid #444;
 	background: #DDD;
