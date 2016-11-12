@@ -15,6 +15,7 @@ function createPlayer () {
     //player.body.bounce.y = 0.2;
     //player.body.gravity.y = gravity;
     player.body.collideWorldBounds = true;
+    player.anchor.setTo(0.5, 0.5);
 
     
     //  Our two animations, walking left and right.

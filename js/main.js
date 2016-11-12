@@ -88,7 +88,10 @@ function create() {
     //  The score
     scoreText = game.add.text(16, 16, 'score: 0', { fontSize: '32px', fill: '#000' });
     
-    //  Our controls.
+    //DEBUG - Mouse pointer angle
+    mouseAngle = game.add.text(300, 300, game.physics.arcade.angleToPointer(player));
+
+    //Controls mapping
     wasd = {
         up: game.input.keyboard.addKey(Phaser.Keyboard.W),
         down: game.input.keyboard.addKey(Phaser.Keyboard.S),
@@ -117,15 +120,13 @@ function create() {
     //game.physics.enable(sprite, Phaser.Physics.ARCADE);
 
 //    var wasd = game.input.keyboard.addKeys({ 'up': Phaser.Keyboard.W, 'down': Phaser.Keyboard.S, 'left': Phaser.Keyboard.A, 'right': Phaser.Keyboard.D } );
-
-    // Mouse angle
-    arm = game.add.sprite(player.x, player.y, 'arm');
-    arm.scale.setTo(3, 3);
-    arm.smoothed = false;
-    arm.anchor.setTo(0.1, 0.5);
 }
 
 function update() {
+
+
+    //DEBUG - Mouse angle
+    mouseAngle.text  = game.math.radToDeg(game.physics.arcade.angleToPointer(player));
 
     //  Collide the player and the stars with the platforms
     game.physics.arcade.collide(player, platforms);
@@ -179,10 +180,9 @@ function update() {
         player.body.velocity.y = -500;
     }
 */
-    //Mouse angle test
-    arm.rotation = game.physics.arcade.angleToPointer(arm);
-    arm.x = player.x + player.width / 2;
-    arm.y = player.y + 10;
+
+    //Rotate the player sprite to face the cursor
+    player.rotation = game.physics.arcade.angleToPointer(player);
 }
 
 function collectStar (player, star) {
@@ -215,5 +215,6 @@ function render() {
 
     game.debug.cameraInfo(game.camera, 32, 32);
     game.debug.spriteCoords(player, 32, 500);
+
 
 }
