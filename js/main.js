@@ -1,12 +1,12 @@
 
-var game = new Phaser.Game(800, 600, Phaser.CANVAS, 'game', 
+var game = new Phaser.Game(800 , 600, Phaser.CANVAS, 'game', 
     {preload: preload, create: create, update: update, render: render });
 
 function preload() {
     game.load.image('sky', 'assets/sky.png');
     game.load.image('ground', 'assets/platform.png');
     game.load.image('star', 'assets/star.png');
-    game.load.spritesheet('dude', 'assets/link.png', 20, 23);
+    game.load.spritesheet('dude', 'assets/player/player.png', 16, 52);
     game.load.image('checker', 'assets/checker.png');
     game.load.image('reticle', 'assets/player/reticle.png');
     game.load.image('head', 'assets/player/head.png');

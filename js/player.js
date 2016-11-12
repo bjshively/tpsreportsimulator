@@ -19,10 +19,10 @@ function createPlayer () {
 
     
     //  Our two animations, walking left and right.
-    player.animations.add('left', [7, 8, 9, 10, 11, 12, 13], 10, true);
-    player.animations.add('right', [14, 15, 16, 17, 18, 19, 20], 10, true);
-    player.animations.add('down', [0, 1, 2, 3, 4, 5, 6], 10, true);
-    player.animations.add('up', [21, 22, 23, 24, 25, 26, 27], 10, true);
-
+    player.animations.add('up', [1], 10, true);
+    player.animations.add('down', [0], 10, true);
+    player.animations.add('right', [2], 10, true);
+    player.animations.add('left', [3], 10, true);
+    
 }
 

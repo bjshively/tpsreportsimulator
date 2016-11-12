@@ -12,9 +12,9 @@ body
 
 #game
 {
-	width: 800px;
+/*	width: 800px;
 	height: 600px;
-	margin: 0px auto;
+*/ 	margin: 0px auto;
  	border: 1px solid #444;
 	background: #DDD;
 	display: block;
