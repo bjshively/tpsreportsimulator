@@ -1,7 +1,7 @@
 function createPlayer() {
     // The player and its settings
     player = game.add.sprite(0, 0, 'dude');
-    player.scale.setTo(3, 3);
+//    player.scale.setTo(3, 3);
     player.smoothed = false;
 
     player.position.setTo(game.world.centerX - player.width / 2, game.world.centerY - player.height / 2);

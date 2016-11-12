@@ -1,6 +1,5 @@
-
-var game = new Phaser.Game(800 , 600, Phaser.CANVAS, 'game', 
-    {preload: preload, create: create, update: update, render: render });
+var game = new Phaser.Game(640 , 480, Phaser.AUTO, 'game', 
+    {preload: preload, init: init, create: create, update: update, render: render });
 
 function preload() {
     game.load.image('sky', 'assets/sky.png');
@@ -35,9 +34,20 @@ var nextFire = 0;
 
 var bgtile;
 
+function init()
+{
+    // scale the game 2x
+    game.scale.scaleMode = Phaser.ScaleManager.USER_SCALE;
+/*    game.scale.setUserScale(2, 2);
+    // enable crisp rendering
+    game.renderer.renderSession.roundPixels = true;
+    Phaser.Canvas.setImageRenderingCrisp(this.game.canvas);
+*/
+}
+
 function create() {
     //Make the map large
-    game.world.setBounds(0, 0, 1000, 800);
+    game.world.setBounds(0, 0, 800, 600);
 
     //  We're going to be using physics, so enable the Arcade Physics system
     game.physics.startSystem(Phaser.Physics.ARCADE);
@@ -55,16 +65,16 @@ function create() {
     platforms.enableBody = true;
 
     // Setup the ground
-    var ground = platforms.create(0, game.world.height - 64, 'ground');
-    ground.scale.setTo(2, 2);
+    var ground = platforms.create(0, game.world.height - 5, 'ground');
+//    ground.scale.setTo(1, 60);
     ground.body.immovable = true;
 
     //  Now let's create two ledges
-    var ledge = platforms.create(400, 400, 'ground');
-    ledge.scale.setTo(.5, 2);
-    ledge.body.immovable = true;
-    ledge = platforms.create(-150, 250, 'ground');
-    ledge.body.immovable = true;
+//    var ledge = platforms.create(400, 400, 'ground');
+//    ledge.scale.setTo(.5, 2);
+//    ledge.body.immovable = true;
+//    ledge = platforms.create(-150, 250, 'ground');
+//    ledge.body.immovable = true;
 
     // player stuff went here
     createPlayer();
@@ -165,7 +175,7 @@ function fireBullet () {
         var bullet = bullets.getFirstDead();
 
         bullet.reset(player.x, player.y);
-        bullet.scale.setTo(3, 3);
+//        bullet.scale.setTo(3, 3);
         bullet.smoothed = false;
 
         game.physics.arcade.moveToPointer(bullet, 300);
