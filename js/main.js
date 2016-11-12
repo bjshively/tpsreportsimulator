@@ -27,6 +27,9 @@ function preload() {
     Phaser.Canvas.setImageRenderingCrisp(this.game.canvas);
 }
 
+//Toggle debug information
+var run_debug = false;
+
 var player;
 var platforms;
 var wasd;
@@ -187,9 +190,9 @@ function fireBullet() {
 }
 
 function render() {
-
+    if(run_debug){
     game.debug.cameraInfo(game.camera, 32, 32);
     game.debug.spriteCoords(player, 32, 500);
-
+}
 
 }
