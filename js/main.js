@@ -9,7 +9,7 @@ var game = new Phaser.Game(320, 240, Phaser.AUTO, 'game', {
 function preload() {
     game.load.image('sky', 'assets/sky.png');
     game.load.image('ground', 'assets/platform.png');
-    game.load.spritesheet('dude', 'assets/player/player.png', 15, 31);
+    game.load.spritesheet('player', 'assets/player/player.png', 15, 31);
     game.load.spritesheet('enemy', 'assets/enemies/enemy.png', 15, 31);
     game.load.image('checker', 'assets/checker.png');
     game.load.image('reticle', 'assets/player/reticle.png');
@@ -123,10 +123,12 @@ function create() {
         fontSize: '10px',
         fill: '#000'
     });
+    scoreText.fixedToCamera = true;
     healthText = game.add.text(16, 32, 'Health: ' + player.health, {
         fontSize: '10px',
         fill: '#000'
     });
+    healthText.fixedToCamera = true;
 
     bullets = game.add.group();
     bullets.enableBody = true;
@@ -144,21 +146,17 @@ function create() {
 function update() {
 
     // Reticle cursor
-    reticle.x = game.input.activePointer.worldX;
-    reticle.y = game.input.activePointer.worldY;
+    reticle.x = game.input.activePointer.worldX - reticle.width / 2;
+    reticle.y = game.input.activePointer.worldY - reticle.height / 2;
 
     updatePlayer();
 
     // Weapon select
-        if (wasd.pistolKey.isDown) {
-             mygun = pistol;
-         }
-        if (wasd.machinegunKey.isDown) {
-            mygun = machinegun;
-        }
-
-    if (run_debug) {
-        mouseAngle.text = game.math.radToDeg(game.physics.arcade.angleToPointer(player));
+    if (wasd.pistolKey.isDown) {
+         mygun = pistol;
+     }
+    if (wasd.machinegunKey.isDown) {
+        mygun = machinegun;
     }
 
     //Collisions
@@ -168,6 +166,8 @@ function update() {
     //game.physics.arcade.collide(player, enemies);
     game.physics.arcade.overlap(player, enemies, takeDamage, null, this);
 
+    scoreText.text = 'Score: ' + player.score;
+    healthText.text = 'Health: ' + player.health;
 }
 
 //*********************************
@@ -184,7 +184,6 @@ function killEnemy(bullet, enemy) {
     enemy.kill();
 
     player.score += 1;
-    scoreText.text = 'Score: ' + player.score;
 }
 
 function killBullet(platform, bullet) {
@@ -198,11 +197,13 @@ function fireBullet() {
         var bullet = bullets.getFirstDead();
 
         bullet.reset(player.x, player.y - 5);
-        //        bullet.scale.setTo(3, 3);
-        bullet.smoothed = false;
 
         game.physics.arcade.moveToPointer(bullet, 300);
     }
+}
+
+function gameOver() {
+    game.debug.text('gamerver', game.world.width / 2, game.world.height / 2);
 }
 
 function updateTime() {
@@ -214,7 +215,7 @@ function render() {
         game.debug.text(player.invincible, 5, 15);
         //game.debug.cameraInfo(game.camera, 5, 15);
         game.debug.spriteCoords(player, 5, 90);
-        game.debug.text('Elapsed seconds: ' + this.game.time.totalElapsedSeconds(), 5, 140);
+        game.debug.text('Elapsed seconds: ' + game.time.totalElapsedSeconds(), 5, 140);
         game.debug.text('Mouse angle: ' + game.math.radToDeg(game.physics.arcade.angleToPointer(player)), 5, 160)
 
     }

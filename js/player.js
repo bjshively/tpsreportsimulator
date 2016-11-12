@@ -1,5 +1,5 @@
 function createPlayer() {
-    player = game.add.sprite(0, 0, 'dude');
+    player = game.add.sprite(0, 0, 'player');
     player.position.setTo(game.world.centerX - player.width / 2, game.world.centerY - player.height / 2);
 
     player.health = 3;
@@ -77,17 +77,22 @@ function updatePlayer() {
 }
 
 function takeDamage() {
-    if (!player.invincible) {
-        player.invincible = true;
-        player.health -= 1;
+   if (!player.invincible) {
+//        if (player.health <= 0) {
+//            player.kill();
+//            gameOver();
+//       }
 
-        var gotHurt = this.game.time.totalElapsedSeconds();
-//        while (this.game.time.totalElapsedSeconds() < gotHurt + 3) {
-//            player.invincible = true;
-//            player.visible = !player.visible;
-//        }
+        player.health -= 1;
+        player.invincible = true;
+
+        var gotHurt = game.time.now;
+        if (gotHurt < gotHurt + 3) {
+            player.visible = !player.visible;
+        } else {
+            player.invincible = false;
+        }
     }
-//    player.invincible = false;
 }
 
 
