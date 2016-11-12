@@ -38,11 +38,20 @@ var scoreText;
 var gravity = 1500;
 
 var sprite;
+
 var bullets;
+
 var fireWait = 400;
 var nextFire = 0;
 
 var bgtile;
+
+
+// Weapon stuff
+var pistol = new Weapon(400, 5);
+var machinegun = new Weapon(100, 2);
+
+var mygun = pistol;
 
 function init() {}
 
@@ -54,7 +63,9 @@ function create() {
         left: game.input.keyboard.addKey(Phaser.Keyboard.A),
         right: game.input.keyboard.addKey(Phaser.Keyboard.D),
         space: game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR),
-        pointer: game.input.activePointer
+        pointer: game.input.activePointer,
+        pistolKey: game.input.keyboard.addKey(49),
+        machinegunKey: game.input.keyboard.addKey(50),
     };
 
     //  Stop the following keys from propagating up to the browser
@@ -66,13 +77,17 @@ function create() {
             Phaser.Keyboard.SPACEBAR
         ]);
 
+    // pistolKey = game.input.keyboard.addKey(Phaser.Keyboard.1);
+
+    // machinegunKey = game.input.keyboard.addKey(Phaser.Keyboard.2);
+
     game.input.mouse.capture = true;
 
     //  World Setup
     game.world.setBounds(0, 0, 800, 600);
     bgtile = game.add.tileSprite(0, 0, game.world.bounds.width, game.world.height, 'checker');
     game.physics.startSystem(Phaser.Physics.ARCADE);
-    
+
     //  The platforms group contains the ground and the 2 ledges we can jump on
     platforms = game.add.group();
 
@@ -123,17 +138,26 @@ function create() {
 }
 
 function update() {
-    
+
     // Reticle cursor
     reticle.x = game.input.activePointer.worldX;
     reticle.y = game.input.activePointer.worldY;
-    
+
     updatePlayer();
 
-    if(run_debug){
+
+    // Weapon select
+        if (wasd.pistolKey.isDown) {
+             mygun = pistol;
+         }
+        if (wasd.machinegunKey.isDown) {
+            mygun = machinegun;
+        }
+
+    if (run_debug) {
         mouseAngle.text = game.math.radToDeg(game.physics.arcade.angleToPointer(player));
     }
-    
+
     //Collisions
     game.physics.arcade.collide(player, platforms);
     game.physics.arcade.overlap(platforms, bullets, killBullet, null, this);
@@ -154,7 +178,7 @@ function killBullet(platform, bullet) {
 
 function fireBullet() {
     if (game.time.now > nextFire && bullets.countDead() > 0) {
-        nextFire = game.time.now + fireWait;
+        nextFire = game.time.now + mygun.fireWait;
 
         var bullet = bullets.getFirstDead();
 
