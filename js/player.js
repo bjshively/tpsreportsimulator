@@ -7,7 +7,7 @@ function createPlayer() {
     player.position.setTo(game.world.centerX - player.width / 2, game.world.centerY - player.height / 2);
 
 
-    player.maxSpeed = 200;
+    player.maxSpeed = 100;
     //  We need to enable physics on the player
     game.physics.arcade.enable(player);
     game.camera.follow(player);

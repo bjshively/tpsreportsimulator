@@ -47,8 +47,7 @@ var nextFire = 0;
 
 var bgtile;
 
-function init() {
-}
+function init() {}
 
 function create() {
     //Make the map large
@@ -105,8 +104,9 @@ function create() {
         fill: '#000'
     });
 
-    //DEBUG - Mouse pointer angle
-    mouseAngle = game.add.text(300, 300, game.physics.arcade.angleToPointer(player));
+    if (run_debug) {
+        mouseAngle = game.add.text(300, 300, game.physics.arcade.angleToPointer(player));
+    }
 
     //Controls mapping
     wasd = {
@@ -144,9 +144,9 @@ function update() {
 
     updatePlayer();
 
-    //DEBUG - Mouse angle
-    mouseAngle.text = game.math.radToDeg(game.physics.arcade.angleToPointer(player));
-
+    if(run_debug){
+        mouseAngle.text = game.math.radToDeg(game.physics.arcade.angleToPointer(player));
+    }
     //  Collide the player and the stars with the platforms
     game.physics.arcade.collide(player, platforms);
     game.physics.arcade.collide(stars, platforms);
@@ -190,9 +190,9 @@ function fireBullet() {
 }
 
 function render() {
-    if(run_debug){
-    game.debug.cameraInfo(game.camera, 32, 32);
-    game.debug.spriteCoords(player, 32, 500);
-}
+    if (run_debug) {
+        game.debug.cameraInfo(game.camera, 32, 32);
+        game.debug.spriteCoords(player, 32, 500);
+    }
 
 }
