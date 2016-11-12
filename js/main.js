@@ -144,6 +144,13 @@ function create() {
 }
 
 function update() {
+    if (game.time.now > player.invincibleTime && player.alive){
+        player.invincible = false;
+        player.visible = true;
+    }
+    if (player.invincible) {
+        player.visible = !player.visible;
+    }
 
     // Reticle cursor
     reticle.x = game.input.activePointer.worldX - reticle.width / 2;

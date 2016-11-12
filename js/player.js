@@ -6,6 +6,7 @@ function createPlayer() {
     player.score = 0;
     player.maxSpeed = 100;
     player.invincible = false;
+    player.invincibleTime;
 
     game.physics.arcade.enable(player);
     game.camera.follow(player);
@@ -18,7 +19,7 @@ function createPlayer() {
     player.animations.add('up', [5, 6, 7, 4], 5, true);
     player.animations.add('right', [9, 10, 11, 8], 5, true);
     player.animations.add('left', [13, 14, 15, 12], 5, true);
-    
+
     // Define the standing frame for each direction the player can face
     player.standingFrames = {};
     player.standingFrames['down'] = 0;
@@ -77,23 +78,15 @@ function updatePlayer() {
 }
 
 function takeDamage() {
-   if (!player.invincible) {
-//        if (player.health <= 0) {
-//            player.kill();
-//            gameOver();
-//       }
-
+    if (!player.invincible) {
         player.health -= 1;
-        player.invincible = true;
-
-        var gotHurt = game.time.now;
-        if (gotHurt < gotHurt + 3) {
-            player.visible = !player.visible;
+        if (player.health <= 0) {
+            player.kill();
+            //gameOver();
         } else {
-            player.invincible = false;
+            player.invincible = true;
+            player.invincibleTime = game.time.now + 3000;
         }
     }
+
 }
-
-
-
