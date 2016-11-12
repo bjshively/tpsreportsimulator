@@ -1,7 +1,7 @@
 function createPlayer() {
     // The player and its settings
     player = game.add.sprite(0, 0, 'dude');
-//    player.scale.setTo(3, 3);
+    // player.scale.setTo(3, 3);
     player.smoothed = false;
 
     player.position.setTo(game.world.centerX - player.width / 2, game.world.centerY - player.height / 2);
@@ -29,6 +29,9 @@ function createPlayer() {
 function updatePlayer() {
     var vertical = false;
     // Player movement
+    player.body.velocity.y = 0;
+    player.body.velocity.x = 0;
+
     if (wasd.up.isDown) {
         player.body.velocity.y = -(player.maxSpeed);
         player.animations.play('up');
