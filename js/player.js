@@ -7,6 +7,8 @@ function createPlayer() {
     player.maxSpeed = 100;
     player.invincible = false;
     player.invincibleTime;
+    player.lookAngle;
+    player.lookDirection;
 
     game.physics.arcade.enable(player);
     game.camera.follow(player);
@@ -35,20 +37,20 @@ function updatePlayer() {
     player.body.velocity.x = 0;
 
     //Divide the look direction into 4 quadrants and determine which direction the mouse is
-    facingAngle = game.math.radToDeg(game.physics.arcade.angleToPointer(player));
-    if (facingAngle >= -135 && facingAngle < -45) {
-        facingDirection = 'up';
-    } else if (facingAngle >= -45 && facingAngle < 45) {
-        facingDirection = 'right';
-    } else if (facingAngle >= 45 && facingAngle < 135) {
-        facingDirection = 'down';
+    player.lookAngle = game.math.radToDeg(game.physics.arcade.angleToPointer(player));
+    if (player.lookAngle >= -135 && player.lookAngle < -45) {
+        player.lookDirection = 'up';
+    } else if (player.lookAngle >= -45 && player.lookAngle < 45) {
+        player.lookDirection = 'right';
+    } else if (player.lookAngle >= 45 && player.lookAngle < 135) {
+        player.lookDirection = 'down';
     } else {
-        facingDirection = 'left';
+        player.lookDirection = 'left';
     }
 
     //Play the animation for the direction the player is looking
     if (wasd.up.isDown || wasd.down.isDown || wasd.left.isDown || wasd.right.isDown) {
-        player.animations.play(facingDirection);
+        player.animations.play(player.lookDirection);
     }
 
     // Move the player
@@ -73,7 +75,7 @@ function updatePlayer() {
     //  Make player face the cursor when standing still
     if (!wasd.up.isDown && !wasd.down.isDown && !wasd.left.isDown && !wasd.right.isDown) {
         player.animations.stop();
-        player.frame = player.standingFrames[facingDirection];
+        player.frame = player.standingFrames[player.lookDirection];
     }
 }
 
