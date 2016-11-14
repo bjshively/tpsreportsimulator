@@ -82,9 +82,13 @@ function updatePlayer() {
 function takeDamage() {
     if (!player.invincible) {
         player.health -= 1;
+
+        // Check to see if this hit kills the player
         if (player.health <= 0) {
             player.kill();
             //gameOver();
+
+        // If not, trigger temporary invincibility
         } else {
             player.invincible = true;
             player.invincibleTime = game.time.now + 3000;

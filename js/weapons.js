@@ -1,6 +1,6 @@
 class Weapon {
-  constructor(fireWait, damage) {
-    this.fireWait = fireWait;
+  constructor(cooldown, damage) {
+    this.cooldown = cooldown;
     this.damage = damage;
   }
 }

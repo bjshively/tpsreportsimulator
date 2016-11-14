@@ -43,8 +43,6 @@ var gravity = 1500;
 var sprite;
 
 var bullets;
-
-var fireWait = 400;
 var nextFire = 0;
 
 var bgtile;
@@ -199,7 +197,7 @@ function killBullet(platform, bullet) {
 
 function fireBullet() {
     if (game.time.now > nextFire && bullets.countDead() > 0) {
-        nextFire = game.time.now + mygun.fireWait;
+        nextFire = game.time.now + mygun.cooldown;
 
         var bullet = bullets.getFirstDead();
 
