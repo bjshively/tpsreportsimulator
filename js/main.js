@@ -141,6 +141,11 @@ function create() {
 }
 
 function update() {
+    // Check to see if all enemies are dead
+    if (enemies.countLiving() == 0) {
+        // Do something when the player wins
+    }
+
     if (game.time.now > player.invincibleTime && player.alive) {
         player.invincible = false;
         player.visible = true;
