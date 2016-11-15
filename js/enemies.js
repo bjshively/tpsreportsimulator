@@ -9,7 +9,7 @@ function createEnemies() {
         enemy.speed = 1; //game.rnd.integerInRange(50, 100);
         enemy.moveCounter = game.rnd.integerInRange(50, 100);
         enemy.xSpeed = game.rnd.integerInRange(-1, 1);
-    	enemy.ySpeed = game.rnd.integerInRange(-1, 1);
+        enemy.ySpeed = game.rnd.integerInRange(-1, 1);
     }
     enemies.callAll('animations.add', 'animations', 'down', [1, 2, 3, 0], 5, true);
     enemies.callAll('animations.add', 'animations', 'up', [5, 6, 7, 4], 5, true);
@@ -26,12 +26,26 @@ function updateEnemies() {
 }
 
 function moveEnemy(enemy) {
-	// Select a random direction if moveCounter is 0
-    if(enemy.moveCounter == 0) {
-    	enemy.xSpeed = game.rnd.integerInRange(-1, 1);
-    	enemy.ySpeed = game.rnd.integerInRange(-1, 1);
-    	// enemy.direction = game.rnd.integerInRange(0, 5);
-    	enemy.moveCounter = game.rnd.integerInRange(50, 100);
+    if (enemy.ySpeed == -1) {
+        enemy.animations.play('up');
+    } else if (enemy.ySpeed == 1) {
+        enemy.animations.play('down');
+    } else if (enemy.xSpeed == -1) {
+        enemy.animations.play('left');
+    } else {
+        enemy.animations.play('right');
+    }
+    // if () {
+    //     enemy.animations.play('left');
+    // }
+    // if () {
+    //     enemy.animations.play('right');
+    // Select a random direction if moveCounter is 0
+    if (enemy.moveCounter == 0) {
+        enemy.xSpeed = game.rnd.integerInRange(-1, 1);
+        enemy.ySpeed = game.rnd.integerInRange(-1, 1);
+        // enemy.direction = game.rnd.integerInRange(0, 5);
+        enemy.moveCounter = game.rnd.integerInRange(50, 100);
     }
 
     // Move enemy based on direction value and reduce moveCounter
