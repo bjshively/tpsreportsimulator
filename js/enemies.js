@@ -8,6 +8,10 @@ function createEnemies() {
         enemy.speed = 1; //game.rnd.integerInRange(50, 100);
         enemy.moveCounter = 100;
     }
+    enemies.callAll('animations.add', 'animations', 'walk', [1, 2, 3, 0], 5, true);
+
+    //  And play them
+    enemies.callAll('animations.play', 'animations', 'walk');
 }
 
 function updateEnemies() {

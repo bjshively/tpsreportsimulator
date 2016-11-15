@@ -11,7 +11,7 @@ function preload() {
     game.load.image('ground', 'assets/platform.png');
     game.load.spritesheet('player', 'assets/player/player.png', 15, 31);
     game.load.spritesheet('enemy', 'assets/enemies/enemy.png', 15, 31);
-    game.load.image('checker', 'assets/checker.png');
+    game.load.image('background', 'assets/background.png');
     game.load.image('reticle', 'assets/player/reticle.png');
     game.load.image('arm', 'assets/player/arm.png');
     game.load.image('gun', 'assets/player/weapon/gun.png');
@@ -79,26 +79,18 @@ function create() {
     game.input.mouse.capture = true;
 
     //  World Setup
-    game.world.setBounds(0, 0, 640, 480);
-    bgtile = game.add.tileSprite(0, 0, game.world.bounds.width, game.world.height, 'checker');
+    game.world.setBounds(0, 0, 400, 300);
+    bgtile = game.add.tileSprite(0, 0, game.world.bounds.width, game.world.height, 'background');
     game.physics.startSystem(Phaser.Physics.ARCADE);
-
-    
 
     desks = game.add.group();
     desks.enableBody = true;
 
-    
-
-    //var ground = platforms.create(0, game.world.height - 5, 'ground');
-    //    ground.scale.setTo(1, 60);
-    //ground.body.immovable = true;
-
-    var desk = desks.create(Math.random() * game.world.width - 44, Math.random() * game.world.height - 39, 'desk');
+    var desk = desks.create(Math.abs(Math.random() * game.world.width - 44), Math.abs(Math.random() * game.world.height - 39), 'desk');
     var flicker = desk.animations.add('flicker');
     desk.body.immovable = true;
     desk.animations.play('flicker', 30, true);
-    desk = desks.create(Math.random() * game.world.width - 44, Math.random() * game.world.height - 39, 'desk');
+    desk = desks.create(Math.abs(Math.random() * game.world.width - 44), Math.abs(Math.random() * game.world.height - 39), 'desk');
     flicker = desk.animations.add('flicker');
     desk.body.immovable = true;
     desk.animations.play('flicker', 30, true);
@@ -114,14 +106,16 @@ function create() {
 
     //  HUD
     scoreText = game.add.text(16, 16, 'Score: ' + player.score, {
+        font: 'VT323',
         fontSize: '10px',
-        fill: '#000'
+        fill: '#FFF'
     });
     scoreText.fixedToCamera = true;
 
     healthText = game.add.text(16, 32, 'Health: ' + player.health, {
+        font: 'VT323',
         fontSize: '10px',
-        fill: '#000'
+        fill: '#FFF'
     });
     healthText.fixedToCamera = true;
 
