@@ -17,6 +17,7 @@ function preload() {
     game.load.image('gun', 'assets/player/weapon/gun.png');
     game.load.image('bullet', 'assets/player/weapon/bullet.png');
     game.load.spritesheet('desk', 'assets/workstation.png', 42, 39, 16);
+    game.load.spritesheet('stapler', 'assets/player/weapon/stapler.png', 16, 16, 10);
 
     // Enable pixel-perfect game scaling
     this.game.scale.scaleMode = Phaser.ScaleManager.USER_SCALE;
@@ -39,7 +40,7 @@ var reticle;
 var scoreText;
 var healthText;
 
-var sprite;
+var stapler;
 var bullets;
 var nextFire = 0;
 
@@ -97,6 +98,10 @@ function create() {
 
     createPlayer();
     createEnemies();
+
+    stapler = game.add.sprite(Math.abs(Math.random() * game.world.width - 44), Math.abs(Math.random() * game.world.height - 39), 'stapler');
+    stapler.animations.add('bounce');
+    stapler.animations.play('bounce', 30, true);
 
     game.camera.follow(player, Phaser.Camera.FOLLOW_LOCKON, 0.1, 0.1);
     //game.camera.deadzone = new Phaser.Rectangle(
@@ -166,6 +171,10 @@ function update() {
         }
     }
     game.physics.arcade.collide(player, desks);
+    game.physics.arcade.overlap(player, stapler, function () {
+        stapler.kill();
+        mygun = machinegun
+    }, null, this);
     game.physics.arcade.overlap(platforms, bullets, killBullet, null, this);
     game.physics.arcade.overlap(bullets, enemies, killEnemy, null, this);
     game.physics.arcade.overlap(player, enemies, takeDamage, null, this);
