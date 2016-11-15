@@ -33,6 +33,8 @@ var currentTime = 0;
 
 var player;
 var enemies;
+var items;
+
 var platforms;
 var wasd;
 var reticle;
@@ -96,18 +98,28 @@ function create() {
     desk.body.immovable = true;
     desk.animations.play('flicker', 30, true);
 
+
+    // Create an items group
+    // Each item should have a collect function that defines what happens when it is collected
+    items = game.add.group();
+    items.enableBody = true;
+    var stapler = items.create(Math.abs(Math.random() * game.world.width - 44), Math.abs(Math.random() * game.world.height - 39), 'stapler');
+    stapler.collect = function(player){
+        mygun = machinegun;
+        this.kill();
+    }
+
+
     createPlayer();
     createEnemies();
 
-    stapler = game.add.sprite(Math.abs(Math.random() * game.world.width - 44), Math.abs(Math.random() * game.world.height - 39), 'stapler');
+    // stapler = game.add.sprite(Math.abs(Math.random() * game.world.width - 44), Math.abs(Math.random() * game.world.height - 39), 'stapler');
     stapler.animations.add('bounce');
     stapler.animations.play('bounce', 30, true);
 
     game.camera.follow(player, Phaser.Camera.FOLLOW_LOCKON, 0.1, 0.1);
     //game.camera.deadzone = new Phaser.Rectangle(
     //game.width * .35, game.height * .35, game.width * .3, game.height * .3);
-
-    game.time.events.loop(Phaser.Timer.SECOND, updateTime, this);
 
     //  HUD
     scoreText = game.add.text(16, 16, 'Score: ' + player.score, {
@@ -171,10 +183,11 @@ function update() {
         }
     }
     game.physics.arcade.collide(player, desks);
-    game.physics.arcade.overlap(player, stapler, function () {
-        stapler.kill();
-        mygun = machinegun
-    }, null, this);
+    game.physics.arcade.overlap(player, items, collectItem, null, this);
+        // console.log('derp');
+        // stapler.kill();
+        // mygun = machinegun;
+        // }, null, this);
     game.physics.arcade.overlap(platforms, bullets, killBullet, null, this);
     game.physics.arcade.overlap(bullets, enemies, killEnemy, null, this);
     game.physics.arcade.overlap(player, enemies, takeDamage, null, this);
@@ -188,7 +201,7 @@ function update() {
 //*********************************
 
 function collectItem(player, item) {
-
+    item.collect();
     //Implement item interaction logic
 }
 
@@ -223,10 +236,6 @@ function gameOver() {
      gameover.x = (game.world.width / 2) - (gameover.width / 2);
      game.camera.follow(gameover);
     //game.debug.text('gamerver', game.world.width / 2, game.world.height / 2);
-}
-
-function updateTime() {
-    timeCounter++;
 }
 
 function render() {
