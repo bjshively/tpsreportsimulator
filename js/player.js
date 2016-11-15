@@ -2,6 +2,7 @@ function createPlayer() {
     player = game.add.sprite(0, 0, 'player');
     player.position.setTo(game.world.centerX - player.width / 2, game.world.centerY - player.height / 2);
 
+    player.alive = true;
     player.health = 3;
     player.score = 0;
     player.maxSpeed = 100;
@@ -85,6 +86,8 @@ function takeDamage() {
 
         // Check to see if this hit kills the player
         if (player.health <= 0) {
+            player.alive = false;
+            game.camera.unfollow();
             player.kill();
             //gameOver();
 

@@ -154,6 +154,7 @@ function update() {
     reticle.x = game.input.activePointer.worldX - reticle.width / 2;
     reticle.y = game.input.activePointer.worldY - reticle.height / 2;
 
+    if(player.alive){
     updatePlayer();
 
     // Weapon select
@@ -163,7 +164,7 @@ function update() {
     if (wasd.machinegunKey.isDown) {
         mygun = machinegun;
     }
-
+}
     //Collisions
     game.physics.arcade.collide(player, platforms);
     game.physics.arcade.overlap(platforms, bullets, killBullet, null, this);
