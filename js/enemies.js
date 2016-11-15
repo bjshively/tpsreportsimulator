@@ -52,6 +52,7 @@ function moveEnemy(enemy) {
     // if(enemy.x == 0 || enemy.x == )
     enemy.x += enemy.xSpeed;
     enemy.y += enemy.ySpeed;
+
     // if (enemy.direction == 0) {
     //     enemy.x += enemy.speed;
 

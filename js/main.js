@@ -11,11 +11,17 @@ function preload() {
     game.load.image('ground', 'assets/platform.png');
     game.load.spritesheet('player', 'assets/player/player.png', 15, 31);
     game.load.spritesheet('enemy1', 'assets/enemies/enemy1.png', 15, 31);
+    game.load.spritesheet('enemy2', 'assets/enemies/enemy2.png', 15, 31);
+    game.load.spritesheet('enemy3', 'assets/enemies/enemy3.png', 15, 31);
+    game.load.spritesheet('enemy4', 'assets/enemies/enemy4.png', 15, 31);
+    game.load.spritesheet('enemy5', 'assets/enemies/enemy5.png', 15, 31);
     game.load.image('background', 'assets/background.png');
     game.load.image('reticle', 'assets/player/reticle.png');
     game.load.image('arm', 'assets/player/arm.png');
     game.load.image('gun', 'assets/player/weapon/gun.png');
-    game.load.image('bullet', 'assets/player/weapon/bullet.png');
+    game.load.image('staple', 'assets/player/weapon/staple.png');
+    game.load.image('cdfront', 'assets/player/weapon/cdfront.png');
+    game.load.image('cdback', 'assets/player/weapon/cdback.png');
     game.load.spritesheet('desk', 'assets/workstation.png', 42, 39, 16);
     game.load.spritesheet('stapler', 'assets/player/weapon/stapler.png', 16, 16, 10);
 
@@ -120,7 +126,7 @@ function create() {
     bullets.enableBody = true;
     bullets.physicsBodyType = Phaser.Physics.ARCADE;
 
-    bullets.createMultiple(50, 'bullet');
+    bullets.createMultiple(50, 'staple');
     bullets.setAll('checkWorldBounds', true);
     bullets.setAll('outOfBoundsKill', true);
 
@@ -201,7 +207,7 @@ function fireBullet() {
         var bullet = bullets.getFirstDead();
 
         bullet.reset(player.x, player.y - 5);
-
+        bullet.rotation = game.physics.arcade.angleToPointer(bullet);
         game.physics.arcade.moveToPointer(bullet, 300);
     }
 }
