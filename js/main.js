@@ -16,6 +16,7 @@ function preload() {
     game.load.image('arm', 'assets/player/arm.png');
     game.load.image('gun', 'assets/player/weapon/gun.png');
     game.load.image('bullet', 'assets/player/weapon/bullet.png');
+    game.load.spritesheet('desk', 'assets/workstation.png', 42, 39, 16);
 
     // Enable pixel-perfect game scaling
     this.game.scale.scaleMode = Phaser.ScaleManager.USER_SCALE;
@@ -82,23 +83,25 @@ function create() {
     bgtile = game.add.tileSprite(0, 0, game.world.bounds.width, game.world.height, 'checker');
     game.physics.startSystem(Phaser.Physics.ARCADE);
 
-    //  The platforms group contains the ground and the 2 ledges we can jump on
-    platforms = game.add.group();
+    
 
-    //  We will enable physics for any object that is created in this group
-    platforms.enableBody = true;
+    desks = game.add.group();
+    desks.enableBody = true;
 
-    // Setup the ground
-    var ground = platforms.create(0, game.world.height - 5, 'ground');
+    
+
+    //var ground = platforms.create(0, game.world.height - 5, 'ground');
     //    ground.scale.setTo(1, 60);
-    ground.body.immovable = true;
+    //ground.body.immovable = true;
 
-    //  Now let's create two ledges
-    //    var ledge = platforms.create(400, 400, 'ground');
-    //    ledge.scale.setTo(.5, 2);
-    //    ledge.body.immovable = true;
-    //    ledge = platforms.create(-150, 250, 'ground');
-    //    ledge.body.immovable = true;
+    var desk = desks.create(Math.random() * game.world.width - 44, Math.random() * game.world.height - 39, 'desk');
+    var flicker = desk.animations.add('flicker');
+    desk.body.immovable = true;
+    desk.animations.play('flicker', 30, true);
+    desk = desks.create(Math.random() * game.world.width - 44, Math.random() * game.world.height - 39, 'desk');
+    flicker = desk.animations.add('flicker');
+    desk.body.immovable = true;
+    desk.animations.play('flicker', 30, true);
 
     createPlayer();
     createEnemies();
@@ -162,8 +165,7 @@ function update() {
             mygun = machinegun;
         }
     }
-    // Detect various collisions/overlaps
-    game.physics.arcade.collide(player, platforms);
+    game.physics.arcade.collide(player, desks);
     game.physics.arcade.overlap(platforms, bullets, killBullet, null, this);
     game.physics.arcade.overlap(bullets, enemies, killEnemy, null, this);
     game.physics.arcade.overlap(player, enemies, takeDamage, null, this);

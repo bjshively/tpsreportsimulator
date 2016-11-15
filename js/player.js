@@ -94,7 +94,7 @@ function takeDamage() {
         // If not, trigger temporary invincibility
         } else {
             player.invincible = true;
-            player.invincibleTime = game.time.now + 3000;
+            player.invincibleTime = game.time.now + 2500;
         }
     }
 
