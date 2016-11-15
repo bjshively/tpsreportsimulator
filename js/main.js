@@ -161,6 +161,7 @@ function update() {
     // Only perform player actions if the player is alive
     if (player.alive) {
         updatePlayer();
+        updateEnemies();
 
         // Weapon select
         if (wasd.pistolKey.isDown) {
