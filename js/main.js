@@ -10,7 +10,7 @@ function preload() {
     game.load.image('sky', 'assets/sky.png');
     game.load.image('ground', 'assets/platform.png');
     game.load.spritesheet('player', 'assets/player/player.png', 15, 31);
-    game.load.spritesheet('enemy', 'assets/enemies/enemy.png', 15, 31);
+    game.load.spritesheet('enemy1', 'assets/enemies/enemy1.png', 15, 31);
     game.load.image('background', 'assets/background.png');
     game.load.image('reticle', 'assets/player/reticle.png');
     game.load.image('arm', 'assets/player/arm.png');
@@ -58,29 +58,7 @@ var mygun = pistol;
 function init() {}
 
 function create() {
-    // INPUT SETTINGS
-    wasd = {
-        up: game.input.keyboard.addKey(Phaser.Keyboard.W),
-        down: game.input.keyboard.addKey(Phaser.Keyboard.S),
-        left: game.input.keyboard.addKey(Phaser.Keyboard.A),
-        right: game.input.keyboard.addKey(Phaser.Keyboard.D),
-        space: game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR),
-        pointer: game.input.activePointer,
-        pistolKey: game.input.keyboard.addKey(49),
-        machinegunKey: game.input.keyboard.addKey(50),
-    };
-
-    //  Stop the following keys from propagating up to the browser
-    game.input.keyboard.addKeyCapture(
-        [Phaser.Keyboard.W,
-            Phaser.Keyboard.A,
-            Phaser.Keyboard.S,
-            Phaser.Keyboard.D,
-            Phaser.Keyboard.SPACEBAR
-        ]);
-
-    game.input.mouse.capture = true;
-
+    createControls();
     //  World Setup
     game.world.setBounds(0, 0, 400, 300);
     bgtile = game.add.tileSprite(0, 0, game.world.bounds.width, game.world.height, 'background');
@@ -104,7 +82,7 @@ function create() {
     items = game.add.group();
     items.enableBody = true;
     var stapler = items.create(Math.abs(Math.random() * game.world.width - 44), Math.abs(Math.random() * game.world.height - 39), 'stapler');
-    stapler.collect = function(player){
+    stapler.collect = function(){
         mygun = machinegun;
         this.kill();
     }
