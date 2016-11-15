@@ -89,7 +89,7 @@ function takeDamage() {
             player.alive = false;
             game.camera.unfollow();
             player.kill();
-            //gameOver();
+            gameOver();
 
         // If not, trigger temporary invincibility
         } else {

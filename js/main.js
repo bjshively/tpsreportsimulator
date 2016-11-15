@@ -204,8 +204,14 @@ function fireBullet() {
     }
 }
 
+
+// Display gameover message
+// TODO: Make this suck less
 function gameOver() {
-    game.debug.text('gamerver', game.world.width / 2, game.world.height / 2);
+    var gameover = game.add.text(game.camera.x/2 , game.camera.y / 2, 'GAME OVER');
+     gameover.x = (game.world.width / 2) - (gameover.width / 2);
+     game.camera.follow(gameover);
+    //game.debug.text('gamerver', game.world.width / 2, game.world.height / 2);
 }
 
 function updateTime() {
