@@ -38,10 +38,7 @@ var reticle;
 var scoreText;
 var healthText;
 
-var gravity = 1500;
-
 var sprite;
-
 var bullets;
 var nextFire = 0;
 
@@ -78,10 +75,6 @@ function create() {
             Phaser.Keyboard.SPACEBAR
         ]);
 
-    // pistolKey = game.input.keyboard.addKey(Phaser.Keyboard.1);
-
-    // machinegunKey = game.input.keyboard.addKey(Phaser.Keyboard.2);
-
     game.input.mouse.capture = true;
 
     //  World Setup
@@ -116,18 +109,21 @@ function create() {
 
     game.time.events.loop(Phaser.Timer.SECOND, updateTime, this);
 
-    //  Scoreboard
+    //  HUD
     scoreText = game.add.text(16, 16, 'Score: ' + player.score, {
         fontSize: '10px',
         fill: '#000'
     });
     scoreText.fixedToCamera = true;
+
     healthText = game.add.text(16, 32, 'Health: ' + player.health, {
         fontSize: '10px',
         fill: '#000'
     });
     healthText.fixedToCamera = true;
 
+    // Bullets - TODO: Cleanup / roll into player or gun code
+    // TODO - Destroy bullets when they exit camera pane, i.e. cannot shoot enemies off screen
     bullets = game.add.group();
     bullets.enableBody = true;
     bullets.physicsBodyType = Phaser.Physics.ARCADE;
@@ -142,7 +138,7 @@ function create() {
 }
 
 function update() {
-    if (game.time.now > player.invincibleTime && player.alive){
+    if (game.time.now > player.invincibleTime && player.alive) {
         player.invincible = false;
         player.visible = true;
     }
@@ -150,26 +146,26 @@ function update() {
         player.visible = !player.visible;
     }
 
-    // Reticle cursor
+    // Replace cursor with reticle
     reticle.x = game.input.activePointer.worldX - reticle.width / 2;
     reticle.y = game.input.activePointer.worldY - reticle.height / 2;
 
-    if(player.alive){
-    updatePlayer();
+    // Only perform player actions if the player is alive
+    if (player.alive) {
+        updatePlayer();
 
-    // Weapon select
-    if (wasd.pistolKey.isDown) {
-         mygun = pistol;
-     }
-    if (wasd.machinegunKey.isDown) {
-        mygun = machinegun;
+        // Weapon select
+        if (wasd.pistolKey.isDown) {
+            mygun = pistol;
+        }
+        if (wasd.machinegunKey.isDown) {
+            mygun = machinegun;
+        }
     }
-}
-    //Collisions
+    // Detect various collisions/overlaps
     game.physics.arcade.collide(player, platforms);
     game.physics.arcade.overlap(platforms, bullets, killBullet, null, this);
     game.physics.arcade.overlap(bullets, enemies, killEnemy, null, this);
-    //game.physics.arcade.collide(player, enemies);
     game.physics.arcade.overlap(player, enemies, takeDamage, null, this);
 
     scoreText.text = 'Score: ' + player.score;
@@ -213,13 +209,13 @@ function gameOver() {
 }
 
 function updateTime() {
-    timeCounter ++;
+    timeCounter++;
 }
 
 function render() {
     if (run_debug) {
         game.debug.text(player.invincible, 5, 15);
-        //game.debug.cameraInfo(game.camera, 5, 15);
+        game.debug.cameraInfo(game.camera, 5, 15);
         game.debug.spriteCoords(player, 5, 90);
         game.debug.text('Elapsed seconds: ' + game.time.totalElapsedSeconds(), 5, 140);
         game.debug.text('Mouse angle: ' + game.math.radToDeg(game.physics.arcade.angleToPointer(player)), 5, 160)
