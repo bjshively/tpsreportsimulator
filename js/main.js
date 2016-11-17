@@ -209,7 +209,8 @@ function gameOver() {
     var gameover = game.add.text(0, 0, 'GAME\nERVER', {
             font: 'VT323',
             fontSize: '30px',
-            fill: '#FFF'
+            fill: '#FFF',
+            align: 'center'
         });
     gameover.position.setTo(
         (game.camera.x + (game.camera.width / 2)) - (gameover.width / 2),
