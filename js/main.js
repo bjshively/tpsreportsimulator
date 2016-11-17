@@ -6,6 +6,22 @@ var game = new Phaser.Game(320, 240, Phaser.AUTO, 'game', {
     render: render
 });
 
+WebFontConfig = {
+
+    //  'active' means all requested fonts have finished loading
+    //  We set a 1 second delay before calling 'createText'.
+    //  For some reason if we don't the browser cannot render the text the first time it's created.
+
+// emo: not sure what the fuck this line is for
+//    active: function() { game.time.events.add(Phaser.Timer.SECOND, null, this); },
+
+    //  The Google Fonts we want to load (specify as many as you like in the array)
+    google: {
+      families: ['VT323']
+    }
+
+};
+
 function preload() {
     game.load.image('sky', 'assets/sky.png');
     game.load.image('ground', 'assets/platform.png');
@@ -24,6 +40,10 @@ function preload() {
     game.load.image('cdback', 'assets/player/weapon/cdback.png');
     game.load.spritesheet('desk', 'assets/workstation.png', 42, 39, 16);
     game.load.spritesheet('stapler', 'assets/player/weapon/stapler.png', 16, 16, 10);
+    
+
+    game.load.script('webfont', '//ajax.googleapis.com/ajax/libs/webfont/1.4.7/webfont.js');
+
 
     // Enable pixel-perfect game scaling
     this.game.scale.scaleMode = Phaser.ScaleManager.USER_SCALE;
@@ -55,8 +75,8 @@ var nextFire = 0;
 var bgtile;
 
 
-// Weapon stuff
-var pistol = new Weapon(400, 5);
+// Weapon stuff (cooldown, damage)
+var pistol = new Weapon(400, 1);
 var machinegun = new Weapon(100, 2);
 
 var mygun = pistol;
@@ -70,55 +90,63 @@ function create() {
     bgtile = game.add.tileSprite(0, 0, game.world.bounds.width, game.world.height, 'background');
     game.physics.startSystem(Phaser.Physics.ARCADE);
 
+    // create some immovable desks and play animations
     desks = game.add.group();
     desks.enableBody = true;
 
-    var desk = desks.create(Math.abs(Math.random() * game.world.width - 44), Math.abs(Math.random() * game.world.height - 39), 'desk');
-    var flicker = desk.animations.add('flicker');
-    desk.body.immovable = true;
-    desk.animations.play('flicker', 30, true);
-    desk = desks.create(Math.abs(Math.random() * game.world.width - 44), Math.abs(Math.random() * game.world.height - 39), 'desk');
-    flicker = desk.animations.add('flicker');
-    desk.body.immovable = true;
-    desk.animations.play('flicker', 30, true);
+    var desk = desks.create(
+        Math.abs(Math.random() * game.world.width - 44),
+        Math.abs(Math.random() * game.world.height - 39),
+        'desk');
+    desk = desks.create(
+        Math.abs(Math.random() * game.world.width - 44),
+        Math.abs(Math.random() * game.world.height - 39),
+        'desk');
+    
+    desks.setAll('body.immovable', true);
+    desks.callAll('animations.add', 'animations', 'flicker');
+    desks.callAll('animations.play', 'animations', 'flicker', 30, true);
+
 
 
     // Create an items group
     // Each item should have a collect function that defines what happens when it is collected
     items = game.add.group();
     items.enableBody = true;
-    var stapler = items.create(Math.abs(Math.random() * game.world.width - 44), Math.abs(Math.random() * game.world.height - 39), 'stapler');
+    var stapler = items.create(
+        Math.abs(Math.random() * game.world.width - 44),
+        Math.abs(Math.random() * game.world.height - 39),
+        'stapler');
     stapler.collect = function(){
         mygun = machinegun;
         this.kill();
     }
+    stapler.animations.add('bounce');
+    stapler.animations.play('bounce', 30, true);
+
+
 
 
     createPlayer();
     createEnemies();
 
-    // stapler = game.add.sprite(Math.abs(Math.random() * game.world.width - 44), Math.abs(Math.random() * game.world.height - 39), 'stapler');
-    stapler.animations.add('bounce');
-    stapler.animations.play('bounce', 30, true);
-
     game.camera.follow(player, Phaser.Camera.FOLLOW_LOCKON, 0.1, 0.1);
-    //game.camera.deadzone = new Phaser.Rectangle(
-    //game.width * .35, game.height * .35, game.width * .3, game.height * .3);
 
     //  HUD
-    scoreText = game.add.text(16, 16, 'Score: ' + player.score, {
+    healthText = game.add.text(5, 5, 'Health: ' + player.health, {
         font: 'VT323',
-        fontSize: '10px',
+        fontSize: '14px',
+        fill: '#FFF'
+    });
+    healthText.fixedToCamera = true;
+
+    scoreText = game.add.text(healthText.width + 15, 5, 'Score: ' + player.score, {
+        font: 'VT323',
+        fontSize: '14px',
         fill: '#FFF'
     });
     scoreText.fixedToCamera = true;
 
-    healthText = game.add.text(16, 32, 'Health: ' + player.health, {
-        font: 'VT323',
-        fontSize: '10px',
-        fill: '#FFF'
-    });
-    healthText.fixedToCamera = true;
 
     // Bullets - TODO: Cleanup / roll into player or gun code
     // TODO - Destroy bullets when they exit camera pane, i.e. cannot shoot enemies off screen
@@ -130,9 +158,8 @@ function create() {
     bullets.setAll('checkWorldBounds', true);
     bullets.setAll('outOfBoundsKill', true);
 
-    reticle = game.add.sprite(game.input.activePointer.worldX, game.input.activePointer.worldY, 'reticle');
-
-    //game.physics.enable(sprite, Phaser.Physics.ARCADE);
+    reticle = game.add.sprite(
+        game.input.activePointer.worldX, game.input.activePointer.worldY, 'reticle');
 }
 
 function update() {
@@ -141,17 +168,8 @@ function update() {
         // Do something when the player wins
     }
 
-    if (game.time.now > player.invincibleTime && player.alive) {
-        player.invincible = false;
-        player.visible = true;
-    }
-    if (player.invincible) {
-        player.visible = !player.visible;
-    }
-
     // Replace cursor with reticle
-    reticle.x = game.input.activePointer.worldX - reticle.width / 2;
-    reticle.y = game.input.activePointer.worldY - reticle.height / 2;
+    updateControls();
 
     // Only perform player actions if the player is alive
     if (player.alive) {
@@ -164,16 +182,12 @@ function update() {
         }
         if (wasd.machinegunKey.isDown) {
             mygun = machinegun;
-        }
+}
     }
+
     game.physics.arcade.collide(player, desks);
     game.physics.arcade.overlap(player, items, collectItem, null, this);
-        // console.log('derp');
-        // stapler.kill();
-        // mygun = machinegun;
-        // }, null, this);
-    game.physics.arcade.overlap(platforms, bullets, killBullet, null, this);
-    game.physics.arcade.overlap(bullets, enemies, killEnemy, null, this);
+    game.physics.arcade.overlap(bullets, enemies, damageEnemy, null, this);
     game.physics.arcade.overlap(player, enemies, takeDamage, null, this);
 
     scoreText.text = 'Score: ' + player.score;
@@ -189,46 +203,27 @@ function collectItem(player, item) {
     //Implement item interaction logic
 }
 
-function killEnemy(bullet, enemy) {
-    bullet.kill();
-    enemy.kill();
-
-    player.score += 1;
-}
-
-function killBullet(platform, bullet) {
-    bullet.kill();
-}
-
-function fireBullet() {
-    if (game.time.now > nextFire && bullets.countDead() > 0) {
-        nextFire = game.time.now + mygun.cooldown;
-
-        var bullet = bullets.getFirstDead();
-
-        bullet.reset(player.x, player.y - 5);
-        bullet.rotation = game.physics.arcade.angleToPointer(bullet);
-        game.physics.arcade.moveToPointer(bullet, 300);
-    }
-}
-
-
 // Display gameover message
 // TODO: Make this suck less
 function gameOver() {
-    var gameover = game.add.text(game.camera.x/2 , game.camera.y / 2, 'GAME OVER');
-     gameover.x = (game.world.width / 2) - (gameover.width / 2);
-     game.camera.follow(gameover);
-    //game.debug.text('gamerver', game.world.width / 2, game.world.height / 2);
+    var gameover = game.add.text(0, 0, 'GAME\nERVER', {
+            font: 'VT323',
+            fontSize: '30px',
+            fill: '#FFF'
+        });
+    gameover.position.setTo(
+        (game.camera.x + (game.camera.width / 2)) - (gameover.width / 2),
+        (game.camera.y + (game.camera.height / 2)) - (gameover.height / 2)
+        );
+    //game.camera.follow(gameover);
 }
 
 function render() {
     if (run_debug) {
-        game.debug.text(player.invincible, 5, 15);
-        game.debug.cameraInfo(game.camera, 5, 15);
-        game.debug.spriteCoords(player, 5, 90);
-        game.debug.text('Elapsed seconds: ' + game.time.totalElapsedSeconds(), 5, 140);
-        game.debug.text('Mouse angle: ' + game.math.radToDeg(game.physics.arcade.angleToPointer(player)), 5, 160)
-
+       game.debug.text(player.invincible, 5, 15);
+       game.debug.cameraInfo(game.camera, 5, 15);
+       game.debug.spriteCoords(player, 5, 90);
+       game.debug.text('Seconds: ' + Math.round(game.time.totalElapsedSeconds() * 100) / 100, 5, 140);
+       game.debug.text('Mouse angle: ' + game.math.radToDeg(game.physics.arcade.angleToPointer(player)), 5, 160)
     }
 }

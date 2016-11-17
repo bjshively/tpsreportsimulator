@@ -1,8 +1,9 @@
 function createPlayer() {
     player = game.add.sprite(0, 0, 'player');
-    player.position.setTo(game.world.centerX - player.width / 2, game.world.centerY - player.height / 2);
+    player.position.setTo(
+        game.world.centerX - player.width / 2, game.world.centerY - player.height / 2
+        );
 
-    player.alive = true;
     player.health = 3;
     player.score = 0;
     player.maxSpeed = 100;
@@ -33,7 +34,17 @@ function createPlayer() {
 }
 
 function updatePlayer() {
-    // Player movement
+    // reset player invincibility
+    if (game.time.now > player.invincibleTime && player.alive) {
+        player.invincible = false;
+        player.visible = true;
+    }
+    // flash while invincible
+    if (player.invincible) {
+        player.visible = !player.visible;
+    }
+
+    // BEGIN PLAYER MOVEMENT
     player.body.velocity.y = 0;
     player.body.velocity.x = 0;
 
@@ -47,6 +58,12 @@ function updatePlayer() {
         player.lookDirection = 'down';
     } else {
         player.lookDirection = 'left';
+    }
+
+    //  Make player face the cursor when standing still
+    if (!wasd.up.isDown && !wasd.down.isDown && !wasd.left.isDown && !wasd.right.isDown) {
+        player.animations.stop();
+        player.frame = player.standingFrames[player.lookDirection];
     }
 
     //Play the animation for the direction the player is looking
@@ -67,18 +84,30 @@ function updatePlayer() {
     if (wasd.right.isDown) {
         player.body.velocity.x = player.maxSpeed;
     }
+    // END PLAYER MOVEMENT
+    ///////////////////////////////////
 
     // SHOOTEMUP
     if (wasd.pointer.isDown || wasd.space.isDown) {
         fireBullet();
     }
+}
 
-    //  Make player face the cursor when standing still
-    if (!wasd.up.isDown && !wasd.down.isDown && !wasd.left.isDown && !wasd.right.isDown) {
-        player.animations.stop();
-        player.frame = player.standingFrames[player.lookDirection];
+
+function fireBullet() {
+    if (game.time.now > nextFire && bullets.countDead() > 0) {
+        nextFire = game.time.now + mygun.cooldown;
+
+        var bullet = bullets.getFirstDead();
+
+        bullet.reset(player.x, player.y);
+        bullet.rotation = game.physics.arcade.angleToPointer(bullet);
+        bullet.damage = mygun.damage;
+        game.physics.arcade.moveToPointer(bullet, 300);
     }
 }
+
+
 
 function takeDamage() {
     if (!player.invincible) {
@@ -86,8 +115,6 @@ function takeDamage() {
 
         // Check to see if this hit kills the player
         if (player.health <= 0) {
-            player.alive = false;
-            game.camera.unfollow();
             player.kill();
             gameOver();
 
@@ -97,5 +124,4 @@ function takeDamage() {
             player.invincibleTime = game.time.now + 2500;
         }
     }
-
 }

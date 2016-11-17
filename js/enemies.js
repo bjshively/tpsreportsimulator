@@ -7,6 +7,7 @@ function createEnemies() {
         enemy.body.immovable = true;
         enemy.body.collideWorldBounds = true;
         enemy.speed = 1; //game.rnd.integerInRange(50, 100);
+        enemy.health = 2;
         enemy.moveCounter = game.rnd.integerInRange(50, 100);
         enemy.xSpeed = game.rnd.integerInRange(-1, 1);
         enemy.ySpeed = game.rnd.integerInRange(-1, 1);
@@ -66,4 +67,14 @@ function moveEnemy(enemy) {
     //     enemy.y -= enemy.speed;
     // }
     enemy.moveCounter -= 1;
+}
+
+function damageEnemy(bullet, enemy) {
+    enemy.health -= bullet.damage;
+    bullet.kill();
+
+    if (enemy.health <= 0) {
+        enemy.kill();
+        player.score += 1;
+    }
 }

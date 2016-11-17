@@ -25,12 +25,13 @@ function createControls() {
     reticle = game.add.sprite(game.input.activePointer.worldX, game.input.activePointer.worldY, 'reticle');
 }
 
-function updateControls() {    // Replace cursor with reticle
+function updateControls() {    
+	// Replace cursor with reticle
     reticle.x = game.input.activePointer.worldX - reticle.width / 2;
     reticle.y = game.input.activePointer.worldY - reticle.height / 2;
 
     // Only perform player actions if the player is alive
-    if (player.alive) {
+/*    if (player.alive) {
         updatePlayer();
         updateEnemies();
 
@@ -42,5 +43,5 @@ function updateControls() {    // Replace cursor with reticle
             mygun = machinegun;
         }
     }
-
+*/
 }
