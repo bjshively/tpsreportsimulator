@@ -35,7 +35,6 @@ function createEnemies() {
 function updateEnemies() {
     // Check to see if all enemies are dead
     if (enemies.countLiving() == 0) {
-        player.kill();
         gameOver('YOU WIN');
     } else {
         enemies.forEachAlive(moveEnemy, this, true);

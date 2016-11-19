@@ -27,10 +27,11 @@ function createControls() {
         game.input.activePointer.worldY,
         'reticle'
         );
+    reticle.anchor.setTo(0.5, 0.5);
 }
 
 function updateControls() {    
 	// Replace cursor with reticle
-    reticle.x = game.input.activePointer.worldX - reticle.width / 2;
-    reticle.y = game.input.activePointer.worldY - reticle.height / 2;
+    reticle.x = game.input.activePointer.worldX;
+    reticle.y = game.input.activePointer.worldY;
 }

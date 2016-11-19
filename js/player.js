@@ -6,6 +6,7 @@ function createPlayer() {
 
     player.health = 3;
     player.score = 0;
+    player.wave = 1;
     player.maxSpeed = 100;
     player.invincible = false;
     player.invincibleTime;
@@ -114,9 +115,6 @@ function takeDamage(player, enemy) {
 
         // Check to see if this hit kills the player
         if (player.health <= 0) {
-            player.body.velocity.x = 0;
-            player.body.velocity.y = 0;
-            player.kill();
             gameOver('GAME\nERVER');
 
             // If not, trigger temporary invincibility

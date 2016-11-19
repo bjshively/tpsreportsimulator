@@ -79,7 +79,7 @@ var reticle;
 var scoreText;
 var healthText;
 var waveText;
-var wave = 0;
+var gameOverText;
 
 var pickupStapler;
 var pickupCD;
@@ -125,28 +125,27 @@ function create() {
     //  HUD
     game.camera.follow(player, Phaser.Camera.FOLLOW_LOCKON, 0.1, 0.1);
 
-    healthText = game.add.text(5, 5, 'Health: ' + player.health, {
-        font: 'VT323',
-        fontSize: '14px',
-        fill: '#FFF'
-    });
+    healthText = game.add.text(0, 0, '', {font: '14px VT323', fill: '#FFF'});
+    healthText.anchor.setTo(0, 0);
+    healthText.position.setTo(5, 5);
     healthText.fixedToCamera = true;
 
-    scoreText = game.add.text(0, 0, 'Score: ' + player.score, {
-        font: 'VT323',
-        fontSize: '14px',
-        fill: '#FFF'
-    });
-    scoreText.position.setTo((game.camera.width / 2) - (scoreText.width / 2), 5);
+    scoreText = game.add.text(0, 0, '', {font: '14px VT323', fill: '#FFF'});
+    scoreText.anchor.setTo(0.5, 0);
+    scoreText.position.setTo(game.camera.width / 2, 5);
     scoreText.fixedToCamera = true;
 
-    waveText = game.add.text(0, 0, 'Wave: ' + player.score, {
-        font: 'VT323',
-        fontSize: '14px',
-        fill: '#FFF'
-    });
-    waveText.position.setTo(game.camera.width - waveText.width - 5, 5);
+    waveText = game.add.text(0, 0, 'Wave: ' + player.score, {font: '14px VT323', fill: '#FFF'});
+    waveText.anchor.setTo(1, 0);
+    waveText.position.setTo(game.camera.width - 5, 5);
     waveText.fixedToCamera = true;
+
+    gameOverText = game.add.text(0, 0,'', {font: '30px VT323', fill: '#fff' });
+    gameOverText.stroke = '#000';
+    gameOverText.strokeThickness = 6;
+    gameOverText.anchor.setTo(0.5, 0.5);
+    gameOverText.position.setTo(game.camera.width / 2, game.camera.height / 2);
+    gameOverText.fixedToCamera = true;
 }
 
 function update() {
@@ -168,7 +167,6 @@ function update() {
 
     game.physics.arcade.collide(player, desks);
     game.physics.arcade.overlap(player, items, collectItem);
-    //game.physics.arcade.overlap(bullets, enemies, damageEnemy, null, this);
     game.physics.arcade.overlap(player.weapon.bullets, enemies, damageEnemy);
     game.physics.arcade.collide(player, enemies, takeDamage);
     // TODO: enemies still go through desks
@@ -177,6 +175,7 @@ function update() {
     
     scoreText.text = 'Score: ' + player.score;
     healthText.text = 'Health: ' + player.health;
+    waveText.text = 'Wave: ' + player.wave;
 }
 
 //*********************************
@@ -194,17 +193,9 @@ function collectItem(player, item) {
 
 // Display gameover message
 function gameOver(message) {
-    var gameover = game.add.text(0, 0, message, {
-            font: 'VT323',
-            fontSize: '30px',
-            fill: '#FFF',
-            align: 'center'
-        });
-    gameover.position.setTo(
-        (game.camera.x + (game.camera.width / 2)) - (gameover.width / 2),
-        (game.camera.y + (game.camera.height / 2)) - (gameover.height / 2)
-        );
-//    game.camera.follow(gameover);
+    game.camera.follow(null, Phaser.Camera.FOLLOW_LOCKON, 0.1, 0.1);
+    player.kill();
+    gameOverText.text = message;
 }
 
 function render() {
