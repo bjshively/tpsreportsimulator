@@ -11,6 +11,7 @@ function createPlayer() {
     player.invincibleTime;
     player.lookAngle;
     player.lookDirection;
+    player.weapon = weaponCD;
 
     game.physics.arcade.enable(player);
     game.camera.follow(player);
@@ -95,16 +96,11 @@ function updatePlayer() {
 
 
 function fireBullet() {
-    if (game.time.now > nextFire && bullets.countDead() > 0) {
-        nextFire = game.time.now + mygun.cooldown;
-
-        var bullet = bullets.getFirstDead();
-
-        bullet.reset(player.x, player.y);
-        bullet.rotation = game.physics.arcade.angleToPointer(bullet);
-        bullet.damage = mygun.damage;
-        game.physics.arcade.moveToPointer(bullet, 300);
-    }
+    player.weapon.fire(
+        player,
+        game.input.activePointer.worldX - reticle.width / 2,
+        game.input.activePointer.worldY - reticle.height / 2
+        );
 }
 
 
@@ -115,8 +111,10 @@ function takeDamage() {
 
         // Check to see if this hit kills the player
         if (player.health <= 0) {
+            player.body.velocity.x = 0;
+            player.body.velocity.y = 0;
             player.kill();
-            gameOver();
+            gameOver('GAME\nERVER');
 
         // If not, trigger temporary invincibility
         } else {

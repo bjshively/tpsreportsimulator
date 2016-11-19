@@ -1,3 +1,8 @@
+// TODO: Add leveling (keep same logic for now)
+// TODO: more pick ups
+// TODO: show current player.weapon lower right
+
+
 var game = new Phaser.Game(320, 240, Phaser.AUTO, 'game', {
     preload: preload,
     init: init,
@@ -12,7 +17,7 @@ WebFontConfig = {
     //  We set a 1 second delay before calling 'createText'.
     //  For some reason if we don't the browser cannot render the text the first time it's created.
 
-// emo: not sure what the fuck this line is for
+// TODO: not sure what the fuck this line is for
 //    active: function() { game.time.events.add(Phaser.Timer.SECOND, null, this); },
 
     //  The Google Fonts we want to load (specify as many as you like in the array)
@@ -23,8 +28,15 @@ WebFontConfig = {
 };
 
 function preload() {
-    game.load.image('sky', 'assets/sky.png');
-    game.load.image('ground', 'assets/platform.png');
+    // load the rest of the JS
+    // TODO: make this shit work instead of having all the script tags in the html
+    /*
+    game.load.script('player', 'js/player.js');
+    game.load.script('enemies', 'js/enemies.js');
+    game.load.script('controls', 'js/controls.js');
+    game.load.script('items', 'js/items.js');
+    */
+
     game.load.spritesheet('player', 'assets/player/player.png', 15, 31);
     game.load.spritesheet('enemy1', 'assets/enemies/enemy1.png', 15, 31);
     game.load.spritesheet('enemy2', 'assets/enemies/enemy2.png', 15, 31);
@@ -35,17 +47,16 @@ function preload() {
     game.load.image('reticle', 'assets/player/reticle.png');
     game.load.image('arm', 'assets/player/arm.png');
     game.load.image('gun', 'assets/player/weapon/gun.png');
-    game.load.image('staple', 'assets/player/weapon/staple.png');
-    game.load.image('cdfront', 'assets/player/weapon/cdfront.png');
-    game.load.image('cdback', 'assets/player/weapon/cdback.png');
     game.load.spritesheet('desk', 'assets/workstation.png', 42, 39, 16);
-    game.load.spritesheet('stapler', 'assets/player/weapon/stapler.png', 16, 16, 10);
+    game.load.spritesheet('stapler', 'assets/player/weapon/staplerPickup.png', 16, 16, 10);
+    game.load.image('staple', 'assets/player/weapon/staplerAmmo.png');
+    game.load.spritesheet('cd', 'assets/player/weapon/cd.png', 11, 11, 16);
+
     
 
     game.load.script('webfont', '//ajax.googleapis.com/ajax/libs/webfont/1.4.7/webfont.js');
 
-
-    // Enable pixel-perfect game scaling
+    // Enable pixel-perfect game sscaling
     this.game.scale.scaleMode = Phaser.ScaleManager.USER_SCALE;
     this.game.scale.setUserScale(3, 3);
     this.game.renderer.renderSession.roundPixels = true;
@@ -67,28 +78,31 @@ var reticle;
 
 var scoreText;
 var healthText;
+var waveText;
+var wave = 0;
 
-var stapler;
-var bullets;
-var nextFire = 0;
+var pickupStapler;
+var pickupCD;
 
 var bgtile;
 
-
-// Weapon stuff (cooldown, damage)
-var pistol = new Weapon(400, 1);
-var machinegun = new Weapon(100, 2);
-
-var mygun = pistol;
+// Weapon stuff
+var weaponcd;
+var weaponStapler;
 
 function init() {}
 
 function create() {
-    createControls();
     //  World Setup
     game.world.setBounds(0, 0, 400, 300);
     bgtile = game.add.tileSprite(0, 0, game.world.bounds.width, game.world.height, 'background');
     game.physics.startSystem(Phaser.Physics.ARCADE);
+
+    // create all the things
+    createControls();
+    createItems();
+    createPlayer();
+    createEnemies();
 
     // create some immovable desks and play animations
     desks = game.add.group();
@@ -103,36 +117,14 @@ function create() {
         Math.abs(Math.random() * game.world.height - 39),
         'desk');
     
-    desks.setAll('body.immovable', true);
+    desks.setAll('body.mass', -100);
     desks.callAll('animations.add', 'animations', 'flicker');
     desks.callAll('animations.play', 'animations', 'flicker', 30, true);
 
-
-
-    // Create an items group
-    // Each item should have a collect function that defines what happens when it is collected
-    items = game.add.group();
-    items.enableBody = true;
-    var stapler = items.create(
-        Math.abs(Math.random() * game.world.width - 44),
-        Math.abs(Math.random() * game.world.height - 39),
-        'stapler');
-    stapler.collect = function(){
-        mygun = machinegun;
-        this.kill();
-    }
-    stapler.animations.add('bounce');
-    stapler.animations.play('bounce', 30, true);
-
-
-
-
-    createPlayer();
-    createEnemies();
-
+    ////////////////////////
+    //  HUD
     game.camera.follow(player, Phaser.Camera.FOLLOW_LOCKON, 0.1, 0.1);
 
-    //  HUD
     healthText = game.add.text(5, 5, 'Health: ' + player.health, {
         font: 'VT323',
         fontSize: '14px',
@@ -140,35 +132,24 @@ function create() {
     });
     healthText.fixedToCamera = true;
 
-    scoreText = game.add.text(healthText.width + 15, 5, 'Score: ' + player.score, {
+    scoreText = game.add.text(0, 0, 'Score: ' + player.score, {
         font: 'VT323',
         fontSize: '14px',
         fill: '#FFF'
     });
+    scoreText.position.setTo((game.camera.width / 2) - (scoreText.width / 2), 5);
     scoreText.fixedToCamera = true;
 
-
-    // Bullets - TODO: Cleanup / roll into player or gun code
-    // TODO - Destroy bullets when they exit camera pane, i.e. cannot shoot enemies off screen
-    bullets = game.add.group();
-    bullets.enableBody = true;
-    bullets.physicsBodyType = Phaser.Physics.ARCADE;
-
-    bullets.createMultiple(50, 'staple');
-    bullets.setAll('checkWorldBounds', true);
-    bullets.setAll('outOfBoundsKill', true);
-
-    reticle = game.add.sprite(
-        game.input.activePointer.worldX, game.input.activePointer.worldY, 'reticle');
+    waveText = game.add.text(0, 0, 'Wave: ' + player.score, {
+        font: 'VT323',
+        fontSize: '14px',
+        fill: '#FFF'
+    });
+    waveText.position.setTo(game.camera.width - waveText.width - 5, 5);
+    waveText.fixedToCamera = true;
 }
 
 function update() {
-    // Check to see if all enemies are dead
-    if (enemies.countLiving() == 0) {
-        // Do something when the player wins
-    }
-
-    // Replace cursor with reticle
     updateControls();
 
     // Only perform player actions if the player is alive
@@ -177,19 +158,23 @@ function update() {
         updateEnemies();
 
         // Weapon select
-        if (wasd.pistolKey.isDown) {
-            mygun = pistol;
+        if (wasd.weaponcdKey.isDown) {
+            player.weapon = weaponcd;
         }
-        if (wasd.machinegunKey.isDown) {
-            mygun = machinegun;
-}
+        if (wasd.weaponstaplerKey.isDown) {
+            player.weapon = weaponstapler;
+        }
     }
 
     game.physics.arcade.collide(player, desks);
-    game.physics.arcade.overlap(player, items, collectItem, null, this);
-    game.physics.arcade.overlap(bullets, enemies, damageEnemy, null, this);
-    game.physics.arcade.overlap(player, enemies, takeDamage, null, this);
-
+    game.physics.arcade.overlap(player, items, collectItem);
+    //game.physics.arcade.overlap(bullets, enemies, damageEnemy, null, this);
+    game.physics.arcade.overlap(player.weapon.bullets, enemies, damageEnemy);
+    game.physics.arcade.collide(player, enemies, takeDamage);
+    // TODO: enemies still go through desks
+    game.physics.arcade.collide(enemies, desks);
+    game.physics.arcade.overlap(player.weapon.bullets, desks, killBullet);
+    
     scoreText.text = 'Score: ' + player.score;
     healthText.text = 'Health: ' + player.health;
 }
@@ -197,6 +182,10 @@ function update() {
 //*********************************
 //Helper Functions
 //*********************************
+function killBullet(bullet) {
+    bullet.kill();
+}
+
 
 function collectItem(player, item) {
     item.collect();
@@ -204,9 +193,8 @@ function collectItem(player, item) {
 }
 
 // Display gameover message
-// TODO: Make this suck less
-function gameOver() {
-    var gameover = game.add.text(0, 0, 'GAME\nERVER', {
+function gameOver(message) {
+    var gameover = game.add.text(0, 0, message, {
             font: 'VT323',
             fontSize: '30px',
             fill: '#FFF',
@@ -216,7 +204,7 @@ function gameOver() {
         (game.camera.x + (game.camera.width / 2)) - (gameover.width / 2),
         (game.camera.y + (game.camera.height / 2)) - (gameover.height / 2)
         );
-    //game.camera.follow(gameover);
+//    game.camera.follow(gameover);
 }
 
 function render() {

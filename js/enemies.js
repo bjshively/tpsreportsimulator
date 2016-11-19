@@ -1,14 +1,24 @@
+// TODO: give the enemies different attriubutes
+// TODO: allow enemies to shoot
+// TODO: add enemy area of attention - invisible circle
+// TODO: number of enemies increases every 5th level, new enemy type each time
+
 function createEnemies() {
     enemies = game.add.group();
     enemies.enableBody = true;
 
     for (var i = 0; i < game.rnd.integerInRange(3, 10); i++) {
-        var enemy = enemies.create(Math.random() * game.world.width, Math.random() * game.world.height, 'enemy1');
-        enemy.body.immovable = true;
+        var enemy = enemies.create(
+            Math.random() * game.world.width,
+            Math.random() * game.world.height,
+            'enemy' + game.rnd.integerInRange(1, 5)
+            );
+        enemy.body.mass = -50;
         enemy.body.collideWorldBounds = true;
         enemy.speed = 1; //game.rnd.integerInRange(50, 100);
         enemy.health = 2;
-        enemy.moveCounter = game.rnd.integerInRange(50, 100);
+        enemy.movement = game.rnd.integerInRange(10, 40);
+        enemy.moveCounter = 0;
         enemy.xSpeed = game.rnd.integerInRange(-1, 1);
         enemy.ySpeed = game.rnd.integerInRange(-1, 1);
     }
@@ -17,13 +27,18 @@ function createEnemies() {
     enemies.callAll('animations.add', 'animations', 'right', [9, 10, 11, 8], 5, true);
     enemies.callAll('animations.add', 'animations', 'left', [13, 14, 15, 12], 5, true);
 
-
     //  And play them
     enemies.callAll('animations.play', 'animations', 'down');
 }
 
 function updateEnemies() {
-    enemies.forEachAlive(moveEnemy, this, true)
+    // Check to see if all enemies are dead
+    if (enemies.countLiving() == 0) {
+        player.kill();
+        gameOver('YOU WIN');
+    } else {
+        enemies.forEachAlive(moveEnemy, this, true);
+    }
 }
 
 function moveEnemy(enemy) {
@@ -36,41 +51,23 @@ function moveEnemy(enemy) {
     } else {
         enemy.animations.play('right');
     }
-    // if () {
-    //     enemy.animations.play('left');
-    // }
-    // if () {
-    //     enemy.animations.play('right');
+
     // Select a random direction if moveCounter is 0
     if (enemy.moveCounter == 0) {
         enemy.xSpeed = game.rnd.integerInRange(-1, 1);
         enemy.ySpeed = game.rnd.integerInRange(-1, 1);
         // enemy.direction = game.rnd.integerInRange(0, 5);
-        enemy.moveCounter = game.rnd.integerInRange(50, 100);
+        enemy.moveCounter = enemy.movement;
     }
 
     // Move enemy based on direction value and reduce moveCounter
-    // if(enemy.x == 0 || enemy.x == )
     enemy.x += enemy.xSpeed;
     enemy.y += enemy.ySpeed;
-
-    // if (enemy.direction == 0) {
-    //     enemy.x += enemy.speed;
-
-    // } else if (enemy.direction == 1) {
-    //     enemy.x -= enemy.speed;
-
-    // } else if (enemy.direction == 2) {
-    //     enemy.y += enemy.speed;
-
-    // } else {
-    //     enemy.y -= enemy.speed;
-    // }
     enemy.moveCounter -= 1;
 }
 
 function damageEnemy(bullet, enemy) {
-    enemy.health -= bullet.damage;
+    enemy.health -= player.weapon.damage;
     bullet.kill();
 
     if (enemy.health <= 0) {
