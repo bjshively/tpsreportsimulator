@@ -85,6 +85,7 @@ var bgtile;
 // Weapon stuff
 var weaponCD;
 var weaponStapler;
+var selectedWeapon;
 
 function init() {}
 
@@ -123,10 +124,11 @@ function create() {
     desks.callAll('animations.add', 'animations', 'flicker');
     desks.callAll('animations.play', 'animations', 'flicker', 30, true);
 
+    game.camera.follow(player, Phaser.Camera.FOLLOW_LOCKON, 0.1, 0.1);
+    
     ////////////////////////
     //  HUD
-    game.camera.follow(player, Phaser.Camera.FOLLOW_LOCKON, 0.1, 0.1);
-
+    ////////////////////////
     healthText = game.add.text(0, 0, '', {font: '14px VT323', fill: '#FFF'});
     healthText.anchor.setTo(0, 0);
     healthText.position.setTo(5, 5);
@@ -148,6 +150,9 @@ function create() {
     gameOverText.anchor.setTo(0.5, 0.5);
     gameOverText.position.setTo(game.camera.width / 2, game.camera.height / 2);
     gameOverText.fixedToCamera = true;
+
+    selectedWeapon = game.add.sprite(game.camera.width - 20, game.camera.height - 20, 'stapler');
+    selectedWeapon.fixedToCamera = true;
 }
 
 function update() {
@@ -161,9 +166,12 @@ function update() {
         // Weapon select
         if (wasd.weaponcdKey.isDown) {
             player.weapon = weaponCD;
+            selectWeapon('cd');
+
         }
         if (wasd.weaponstaplerKey.isDown) {
             player.weapon = weaponStapler;
+            selectWeapon('stapler');
         }
     }
 
@@ -200,6 +208,12 @@ function gameOver(message) {
     game.camera.follow(null, Phaser.Camera.FOLLOW_LOCKON, 0.1, 0.1);
     player.kill();
     gameOverText.text = message;
+}
+
+function selectWeapon(weapon) {
+    selectedWeapon.kill();
+    selectedWeapon = game.add.sprite(game.camera.width - 20, game.camera.height - 20, weapon);
+    selectedWeapon.fixedToCamera = true;
 }
 
 function render() {
