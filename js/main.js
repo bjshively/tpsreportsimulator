@@ -28,14 +28,11 @@ WebFontConfig = {
 };
 
 function preload() {
-    // load the rest of the JS
-    // TODO: make this shit work instead of having all the script tags in the html
-    /*
+    // load JS module files
     game.load.script('player', 'js/player.js');
     game.load.script('enemies', 'js/enemies.js');
     game.load.script('controls', 'js/controls.js');
     game.load.script('items', 'js/items.js');
-    */
 
     game.load.spritesheet('player', 'assets/player/player.png', 15, 31);
     game.load.spritesheet('enemy1', 'assets/enemies/enemy1.png', 15, 31);
