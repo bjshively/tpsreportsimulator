@@ -1,7 +1,5 @@
 // TODO: Add leveling (keep same logic for now)
 // TODO: more pick ups
-// TODO: show current player.weapon lower right
-
 
 var game = new Phaser.Game(320, 240, Phaser.AUTO, 'game', {
     preload: preload,
