@@ -66,7 +66,6 @@ var player;
 var enemies;
 var items;
 
-var platforms;
 var wasd;
 var reticle;
 
