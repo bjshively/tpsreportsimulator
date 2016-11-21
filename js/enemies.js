@@ -17,6 +17,7 @@ function createEnemies() {
         enemy.body.collideWorldBounds = true;
         enemy.speed = 1; //game.rnd.integerInRange(50, 100);
         enemy.health = 2;
+        enemy.hitPoints = 1;
         enemy.movement = game.rnd.integerInRange(10, 40);
         enemy.moveCounter = 0;
         enemy.xSpeed = game.rnd.integerInRange(-1, 1);

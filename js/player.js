@@ -2,7 +2,7 @@ function createPlayer() {
     player = game.add.sprite(0, 0, 'player');
     player.position.setTo(
         game.world.centerX - player.width / 2, game.world.centerY - player.height / 2
-        );
+    );
 
     player.health = 3;
     player.score = 0;
@@ -31,6 +31,9 @@ function createPlayer() {
     player.standingFrames['up'] = 4;
     player.standingFrames['right'] = 8;
     player.standingFrames['left'] = 12;
+
+    //Player is temporarily invincible upon spawning
+    makeInvincible();
 
 }
 
@@ -100,14 +103,14 @@ function fireBullet() {
         player,
         game.input.activePointer.worldX - reticle.width / 2,
         game.input.activePointer.worldY - reticle.height / 2
-        );
+    );
 }
 
 
 
-function takeDamage() {
+function takeDamage(player, enemy) {
     if (!player.invincible) {
-        player.health -= 1;
+        player.health -= enemy.hitPoints;
 
         // Check to see if this hit kills the player
         if (player.health <= 0) {
@@ -116,10 +119,14 @@ function takeDamage() {
             player.kill();
             gameOver('GAME\nERVER');
 
-        // If not, trigger temporary invincibility
+            // If not, trigger temporary invincibility
         } else {
-            player.invincible = true;
-            player.invincibleTime = game.time.now + 2500;
+            makeInvincible();
         }
     }
+}
+
+function makeInvincible() {
+    player.invincible = true;
+    player.invincibleTime = game.time.now + 2500;
 }
