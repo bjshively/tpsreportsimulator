@@ -33,7 +33,9 @@ function preload() {
     game.load.script('enemies', 'js/enemies.js');
     game.load.script('controls', 'js/controls.js');
     game.load.script('items', 'js/items.js');
+    game.load.script('webfont', '//ajax.googleapis.com/ajax/libs/webfont/1.4.7/webfont.js');
 
+    // Load sprites
     game.load.spritesheet('player', 'assets/player/player.png', 15, 31);
     game.load.spritesheet('enemy1', 'assets/enemies/enemy1.png', 15, 31);
     game.load.spritesheet('enemy2', 'assets/enemies/enemy2.png', 15, 31);
@@ -49,10 +51,6 @@ function preload() {
     game.load.spritesheet('stapler', 'assets/player/weapon/staplerPickup.png', 16, 16, 10);
     game.load.image('staple', 'assets/player/weapon/staplerAmmo.png');
     game.load.spritesheet('cd', 'assets/player/weapon/cd.png', 11, 11, 16);
-
-    
-
-    game.load.script('webfont', '//ajax.googleapis.com/ajax/libs/webfont/1.4.7/webfont.js');
 
     // Enable pixel-perfect game sscaling
     this.game.scale.scaleMode = Phaser.ScaleManager.USER_SCALE;
@@ -85,7 +83,7 @@ var pickupCD;
 var bgtile;
 
 // Weapon stuff
-var weaponcd;
+var weaponCD;
 var weaponStapler;
 
 function init() {}
@@ -162,10 +160,10 @@ function update() {
 
         // Weapon select
         if (wasd.weaponcdKey.isDown) {
-            player.weapon = weaponcd;
+            player.weapon = weaponCD;
         }
         if (wasd.weaponstaplerKey.isDown) {
-            player.weapon = weaponstapler;
+            player.weapon = weaponStapler;
         }
     }
 
