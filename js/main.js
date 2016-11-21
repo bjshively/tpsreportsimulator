@@ -47,7 +47,8 @@ function preload() {
     game.load.image('reticle', 'assets/player/reticle.png');
     game.load.image('arm', 'assets/player/arm.png');
     game.load.image('gun', 'assets/player/weapon/gun.png');
-    game.load.spritesheet('desk', 'assets/workstation.png', 42, 39, 16);
+    game.load.spritesheet('desk', 'assets/desk.png', 42, 39, 16);
+    game.load.spritesheet('deskWithPrinter', 'assets/deskWithPrinter.png', 76, 39, 16);
     game.load.spritesheet('stapler', 'assets/player/weapon/staplerPickup.png', 16, 16, 10);
     game.load.image('staple', 'assets/player/weapon/staplerAmmo.png');
     game.load.spritesheet('cd', 'assets/player/weapon/cd.png', 11, 11, 16);
@@ -116,6 +117,11 @@ function create() {
         Math.abs(Math.random() * game.world.width - 44),
         Math.abs(Math.random() * game.world.height - 39),
         'desk');
+    // add a random printer
+    desk = desks.create(
+        Math.abs(Math.random() * game.world.width - 44),
+        Math.abs(Math.random() * game.world.height - 39),
+        'deskWithPrinter');
     
     desks.setAll('body.mass', -100);
     desks.callAll('animations.add', 'animations', 'flicker');
