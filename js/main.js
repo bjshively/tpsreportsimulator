@@ -105,7 +105,7 @@ function create() {
     createPlayer();
     createEnemies();
 
-    // create some immovable desks and play animations
+    // create some movable desks and play animations
     desks = game.add.group();
     desks.enableBody = true;
 
@@ -124,6 +124,7 @@ function create() {
         'deskWithPrinter');
     
     desks.setAll('body.mass', -100);
+    desks.setAll('body.collideWorldBounds', true);
     desks.callAll('animations.add', 'animations', 'flicker');
     desks.callAll('animations.play', 'animations', 'flicker', 30, true);
 
@@ -172,6 +173,8 @@ function update() {
     }
 
     game.physics.arcade.collide(player, desks);
+    game.physics.arcade.collide(desks, desks);
+    game.physics.arcade.collide(enemies, enemies);
     game.physics.arcade.overlap(player, items, collectItem);
     game.physics.arcade.overlap(player.weapon.bullets, enemies, damageEnemy);
     game.physics.arcade.collide(player, enemies, takeDamage);
