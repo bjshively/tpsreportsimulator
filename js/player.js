@@ -35,7 +35,6 @@ function createPlayer() {
 
     //Player is temporarily invincible upon spawning
     makeInvincible();
-
 }
 
 function updatePlayer() {
@@ -117,7 +116,7 @@ function takeDamage(player, enemy) {
         if (player.health <= 0) {
             gameOver('GAME\nERVER');
 
-            // If not, trigger temporary invincibility
+        // If not, trigger temporary invincibility
         } else {
             makeInvincible();
         }
