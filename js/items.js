@@ -3,21 +3,6 @@ function Weapon () {
 }
 
 function createItems() {
-	// create some weapons
-	weaponCD = game.add.weapon(2, 'cd');
-	weaponCD.setBulletFrames(8, 8);
-	weaponCD.fireRate = 500;
-	weaponCD.bulletKillType = Phaser.Weapon.KILL_CAMERA_BOUNDS;
-	weaponCD.damage = 2;
-	weaponCD.bulletSpeed = 200;
-
-	weaponStapler = game.add.weapon(10, 'staple');
-	weaponStapler.fireRate = 200;
-	weaponStapler.bulletKillType = Phaser.Weapon.KILL_CAMERA_BOUNDS;
-	weaponStapler.damage = 1;
-	weaponStapler.bulletSpeed = 300;
-
-
 	// Create an items group
     // Each item should have a collect function that defines what happens when it is collected
     // TODO: existence is questionable?
@@ -85,15 +70,16 @@ function createItems() {
     game.physics.arcade.enable(printer);
     printer.body.setSize(39, 15, 0, 0);
     printer.body.mass = -1500;
-    printer.animations.add(
-    	'standing', Phaser.Animation.generateFrameNames('printer ', 0, 0, '.ase'), 30, false);
+    printer.body.collideWorldBounds = true;
+    // printer.animations.add(
+    // 	'standing', Phaser.Animation.generateFrameNames('printer ', 0, 0, '.ase'), 30, false);
     printer.animations.add(
     	'printing', Phaser.Animation.generateFrameNames('printer ', 1, 197, '.ase'), 30, false);
     printer.animations.add(
     	'eject', Phaser.Animation.generateFrameNames('printer ', 198, 212, '.ase'), 30, false);
     printer.animations.add(
     	'done', Phaser.Animation.generateFrameNames('printer ', 213, 213, '.ase'), 30, false);
-    printer.animations.play('standing');
+    printer.frame = 0;
     printer.print = function () {
     	printer.animations.play('printing');
     	printer.animations.currentAnim.onComplete.add(function () {
@@ -105,7 +91,38 @@ function createItems() {
     }
 }
 
+function createWeapons() {
+	// create some weapons
+	weaponCutter = game.add.weapon(1, 'cutter');
+	weaponCutter.icon = 'cutter';
+	weaponCutter.fireRate = 200;
+	// TODO: FUCK THIS FUCKING MELEE GARBAGE ASS BULLSHIT
+	// make it stop auto firing
+	weaponCutter.bulletKillType = Phaser.Weapon.KILL_DISTANCE;
+	weaponCutter.bulletKillDistance = 10;
+	weaponCutter.damage = 2;
+	weaponCutter.bulletSpeed = 500;
+	weaponCutter.trackedSprite = player;
+	weaponCutter.autofire = false;
 
+	weaponCD = game.add.weapon(2, 'cd');
+	weaponCD.icon = 'cd';
+	weaponCD.setBulletFrames(8, 8);
+	weaponCD.fireRate = 500;
+	weaponCD.bulletKillType = Phaser.Weapon.KILL_CAMERA_BOUNDS;
+	weaponCD.damage = 1;
+	weaponCD.bulletSpeed = 200;
+	weaponCD.trackedSprite = player;
+	weaponCD.autofire = false;
+
+	weaponStapler = game.add.weapon(10, 'staple');
+	weaponStapler.icon = 'stapler';
+	weaponStapler.fireRate = 200;
+	weaponStapler.bulletKillType = Phaser.Weapon.KILL_CAMERA_BOUNDS;
+	weaponStapler.damage = 1;
+	weaponStapler.bulletSpeed = 300;
+	weaponStapler.trackedSprite = player;
+}
 
 
 

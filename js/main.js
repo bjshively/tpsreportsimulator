@@ -34,24 +34,24 @@ function preload() {
     game.load.script('webfont', '//ajax.googleapis.com/ajax/libs/webfont/1.4.7/webfont.js');
 
     // Load sprites
-    game.load.spritesheet('player', 'assets/player/player.png', 15, 31);
+    game.load.image('background', 'assets/background.png');
+    game.load.spritesheet('desk', 'assets/desk.png', 42, 39);
+    game.load.spritesheet('deskWithPrinter', 'assets/deskWithPrinter.png', 33, 39);
+    game.load.atlas('printer', 'assets/printer.png', 'assets/printer.json');
+    
+    // game.load.spritesheet('player', 'assets/player/player.png', 15, 31);
+    game.load.atlasJSONArray('player', 'assets/player/player.png', 'assets/player/player.json');
+    game.load.image('reticle', 'assets/player/reticle.png');
+    game.load.spritesheet('stapler', 'assets/player/weapon/staplerPickup.png', 16, 16);
+    game.load.image('staple', 'assets/player/weapon/staplerAmmo.png');
+    game.load.spritesheet('cd', 'assets/player/weapon/cd.png', 11, 11, 16);
+    game.load.image('cutter', 'assets/player/weapon/cutter.png');
+
     game.load.spritesheet('enemy1', 'assets/enemies/enemy1.png', 15, 31);
     game.load.spritesheet('enemy2', 'assets/enemies/enemy2.png', 15, 31);
     game.load.spritesheet('enemy3', 'assets/enemies/enemy3.png', 15, 31);
     game.load.spritesheet('enemy4', 'assets/enemies/enemy4.png', 15, 31);
     game.load.spritesheet('enemy5', 'assets/enemies/enemy5.png', 15, 31);
-    game.load.image('background', 'assets/background.png');
-    game.load.image('reticle', 'assets/player/reticle.png');
-    game.load.image('arm', 'assets/player/arm.png');
-    game.load.image('gun', 'assets/player/weapon/gun.png');
-    game.load.spritesheet('desk', 'assets/desk.png', 42, 39);
-    game.load.spritesheet('deskWithPrinter', 'assets/deskWithPrinter.png', 33, 39);
-    game.load.atlas('printer', 'assets/printer.png', 'assets/printer.json');
-    game.load.spritesheet('stapler', 'assets/player/weapon/staplerPickup.png', 16, 16);
-    game.load.image('staple', 'assets/player/weapon/staplerAmmo.png');
-    game.load.spritesheet('cd', 'assets/player/weapon/cd.png', 11, 11, 16);
-
-    game.load.script('webfont', '//ajax.googleapis.com/ajax/libs/webfont/1.4.7/webfont.js');
 
     // Enable pixel-perfect game sscaling
     this.game.scale.scaleMode = Phaser.ScaleManager.USER_SCALE;
@@ -84,9 +84,10 @@ var pickupCD;
 var bgtile;
 
 // Weapon stuff
+var weaponCutter;
 var weaponCD;
 var weaponStapler;
-var selectedWeapon;
+var currentWeapon;
 
 function init() {}
 
@@ -100,7 +101,11 @@ function create() {
     createControls();
     createItems();
     createPlayer();
+    createWeapons();
     createEnemies();
+
+    // TODO: enable this to carry over from the previous wave
+    player.weapon = weaponCutter;
 
     ////////////////////////
     // HUD
@@ -148,28 +153,32 @@ function create() {
     helpText.visible = false;
 
     // show current weapon
-    selectedWeapon = game.add.sprite(game.camera.width - 20, game.camera.height - 20, 'stapler');
-    selectedWeapon.fixedToCamera = true;
+    currentWeapon = game.add.sprite(50, 50, player.weapon.icon);
+    currentWeapon.anchor.setTo(1, 1);
+    currentWeapon.position.setTo(game.camera.width - 5, game.camera.height - 5);
+    currentWeapon.fixedToCamera = true;
+
+    // TODO: WTF Y NO WORK
+    // waveText = createHUDtext('FUCK YOU', '14px', 3);
+    // // align right
+    // waveText.anchor.setTo(1, 0);
+    // waveText.position.setTo(game.camera.width - 5, 5);
+
+    // function createHUDtext (words, size, thickness) {
+    //     var element = game.add.text(0, 0, words, {font: '14px VT323', fill: '#fff' });
+    //     element.stroke = '#000';
+    //     element.strokeThickness = thickness;
+    //     element.fixedToCamera = true;
+    //     return element;
+    // }
 }
 
 function update() {
-    updateControls();
-
     // Only perform player actions if the player is alive
     if (player.alive) {
+        updateControls();
         updatePlayer();
         updateEnemies();
-
-        // Weapon select
-        if (wasd.weaponcdKey.isDown) {
-            player.weapon = weaponCD;
-            selectWeapon('cd');
-
-        }
-        if (wasd.weaponstaplerKey.isDown) {
-            player.weapon = weaponStapler;
-            selectWeapon('stapler');
-        }
     }
 
     game.physics.arcade.collide(player, desks);
@@ -182,12 +191,15 @@ function update() {
     // TODO: enemies still go through desks
     game.physics.arcade.collide(enemies, desks);
     game.physics.arcade.overlap(player.weapon.bullets, desks, killBullet);
+    // TODO: LOLOL this kills printer
+    // game.physics.arcade.overlap(player.weapon.bullets, printer, killBullet);
 
     game.physics.arcade.collide(player, printer, printer.print);
     
     scoreText.text = 'Score: ' + player.score;
     healthText.text = 'Health: ' + player.health;
     waveText.text = 'Wave: ' + player.wave;
+    currentWeapon.loadTexture(player.weapon.icon);
 }
 
 //*********************************
@@ -211,14 +223,17 @@ function collectItem(player, item) {
 function gameOver(message) {
     game.camera.follow(null, Phaser.Camera.FOLLOW_LOCKON, 0.1, 0.1);
     player.kill();
+    reticle.kill();
+    healthText.kill();
+    waveText.kill();
     gameOverText.text = message;
 }
 
-function selectWeapon(weapon) {
-    selectedWeapon.kill();
-    selectedWeapon = game.add.sprite(game.camera.width - 20, game.camera.height - 20, weapon);
-    selectedWeapon.fixedToCamera = true;
-}
+// function selectWeapon(weapon) {
+//     selectedWeapon.kill();
+//     selectedWeapon = game.add.sprite(game.camera.width - 20, game.camera.height - 20, weapon);
+//     selectedWeapon.fixedToCamera = true;
+// }
 
 function render() {
     if (run_debug) {

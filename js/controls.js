@@ -7,8 +7,9 @@ function createControls() {
         right: game.input.keyboard.addKey(Phaser.Keyboard.D),
         space: game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR),
         pointer: game.input.activePointer,
-        weaponcdKey: game.input.keyboard.addKey(49),
-        weaponstaplerKey: game.input.keyboard.addKey(50),
+        weaponCutterKey: game.input.keyboard.addKey(49),
+        weaponCDKey: game.input.keyboard.addKey(50),
+        weaponStaplerKey: game.input.keyboard.addKey(51),
     };
 
     //  Stop the following keys from propagating up to the browser
@@ -34,4 +35,21 @@ function updateControls() {
 	// Replace cursor with reticle
     reticle.x = game.input.activePointer.worldX;
     reticle.y = game.input.activePointer.worldY;
+
+        // Weapon select
+    if (wasd.weaponCutterKey.isDown) {
+        player.weapon = weaponCutter;
+        // selectWeapon('cd');
+
+    }
+    if (wasd.weaponCDKey.isDown) {
+        player.weapon = weaponCD;
+        // selectWeapon('cd');
+
+    }
+    if (wasd.weaponStaplerKey.isDown) {
+        player.weapon = weaponStapler;
+        // selectWeapon('stapler');
+    }
+
 }
