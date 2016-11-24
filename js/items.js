@@ -33,73 +33,15 @@ function createItems() {
         this.kill();
     }
 
-    // create some desks, add a collision offset
-    desks = game.add.group();
-    desks.enableBody = true;
+    obstacles = game.add.group();
+    obstacles.enableBody = true;
 
-    var desk = desks.create(
-        Math.abs(Math.random() * game.world.width - 44),
-        Math.abs(Math.random() * game.world.height - 39),
-        'desk');
-    desk.body.setSize(42, 29, 0, 3);
-    desk.complete = false;
-    desk.interact = function() {
-    	this.complete = true;
-        this.animations.play('hacking');
-        this.animations.currentAnim.onComplete.add(function() {
-            this.animations.play('done');
-        }, this);
-    }
-
-    desk = desks.create(
-        Math.abs(Math.random() * game.world.width - 44),
-        Math.abs(Math.random() * game.world.height - 39),
-        'desk');
-    desk.body.setSize(42, 29, 0, 3);
-    desk.complete = false;
-    desk.interact = function() {
-        this.complete = true;
-        this.animations.play('hacking');
-        this.animations.currentAnim.onComplete.add(function() {
-            this.animations.play('done');
-        }, this);
-    }
-    desks.callAll('animations.add', 'animations', 'flicker', Phaser.Animation.generateFrameNames('desk ', 0, 15, '.ase'), 30, false);
-    desks.callAll('animations.add', 'animations', 'hacking', Phaser.Animation.generateFrameNames('desk ', 16, 59, '.ase'), 30, false);
-    desks.callAll('animations.add', 'animations', 'done', Phaser.Animation.generateFrameNames('desk ', 60, 61, '.ase'), 30, true);
-
-
-    // add a random printer desk
-    desk = desks.create(
-        Math.abs(Math.random() * game.world.width - 44),
-        Math.abs(Math.random() * game.world.height - 39),
-        'deskWithPrinter');
-    desk.body.setSize(33, 29, 0, 3);
-    desk.complete = false;
-    desk.interact = function() {
-        if (!this.complete) {
-            this.animations.play('hacking');
-            this.animations.currentAnim.onComplete.add(function() {
-                this.animations.play('done');
-                this.complete = true;
-                printer.interact();
-            }, this);
-        }
-    }
-    desk.animations.add('flicker', Phaser.Animation.generateFrameNames('deskWithPrinter ', 0, 15, '.ase'), 30, false);
-    desk.animations.add('hacking', Phaser.Animation.generateFrameNames('deskWithPrinter ', 16, 59, '.ase'), 30, false);
-    desk.animations.add('done', Phaser.Animation.generateFrameNames('deskWithPrinter ', 60, 61, '.ase'), 30, true);
-
-
-    // make desks immovable, world bound, add some animations & play them
-    desks.setAll('body.collideWorldBounds', true);
-    // desks.setAll('body.mass', -100);
-    desks.setAll('body.immovable', true);
-    desks.callAll('animations.play', 'animations', 'flicker', 30, true);
-
+    createDesk();
+    createDesk();
+    createDesk('printer');
 
     // add a random printer
-    printer = desks.create(
+    printer = obstacles.create(
         Math.abs(Math.random() * game.world.width - 44),
         Math.abs(Math.random() * game.world.height - 39),
         'printer');
@@ -125,6 +67,57 @@ function createItems() {
             }, this);
         }, this);
     }
+}
+
+function createDesk(type) {
+    // Create desk that controls printer
+    if (type == 'printer') {
+        var desk = obstacles.create(
+            Math.abs(Math.random() * game.world.width - 44),
+            Math.abs(Math.random() * game.world.height - 39),
+            'deskWithPrinter');
+        desk.body.setSize(33, 29, 0, 3);
+        desk.complete = false;
+        desk.interact = function() {
+            if (!this.complete) {
+                this.animations.play('hacking');
+                this.animations.currentAnim.onComplete.add(function() {
+                    this.animations.play('done');
+                    this.complete = true;
+                    printer.interact();
+                }, this);
+            }
+        }
+        desk.animations.add('flicker', Phaser.Animation.generateFrameNames('deskWithPrinter ', 0, 15, '.ase'), 30, false);
+        desk.animations.add('hacking', Phaser.Animation.generateFrameNames('deskWithPrinter ', 16, 59, '.ase'), 30, false);
+        desk.animations.add('done', Phaser.Animation.generateFrameNames('deskWithPrinter ', 60, 61, '.ase'), 30, true);
+
+    } else {
+        // Create regular desks
+        var desk = obstacles.create(
+            Math.abs(Math.random() * game.world.width - 44),
+            Math.abs(Math.random() * game.world.height - 39),
+            'desk');
+        desk.body.setSize(42, 29, 0, 3);
+        desk.complete = false;
+        desk.interact = function() {
+            this.complete = true;
+            this.animations.play('hacking');
+            this.animations.currentAnim.onComplete.add(function() {
+                this.animations.play('done');
+            }, this);
+        }
+        desk.animations.add('flicker', Phaser.Animation.generateFrameNames('desk ', 0, 15, '.ase'), 30, false);
+        desk.animations.add('hacking', Phaser.Animation.generateFrameNames('desk ', 16, 59, '.ase'), 30, false);
+        desk.animations.add('done', Phaser.Animation.generateFrameNames('desk ', 60, 61, '.ase'), 30, true);
+    }
+
+    desk.animations.play('flicker', 30, true);
+
+    // Setup desk physics
+    desk.body.collideWorldBounds = true;
+    desk.body.immovable = true;
+    
 }
 
 function createWeapons() {

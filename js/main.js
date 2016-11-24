@@ -196,17 +196,17 @@ function update() {
         updateEnemies();
     }
 
-    game.physics.arcade.collide(player, desks, interactDesk);
+    game.physics.arcade.collide(player, obstacles, interactWithObstacle);
 
-    game.physics.arcade.collide(desks, desks);
+    game.physics.arcade.collide(obstacles, obstacles);
     game.physics.arcade.collide(enemies, enemies);
     game.physics.arcade.overlap(player, items, collectItem);
-    game.physics.arcade.overlap(player, desks, hackHelp);
+    game.physics.arcade.overlap(player, obstacles, hackHelp);
     game.physics.arcade.collide(player.weapon.bullets, enemies, damageEnemy);
     game.physics.arcade.collide(player, enemies, takeDamage);
-    // TODO: enemies still go through desks
-    game.physics.arcade.collide(enemies, desks);
-    game.physics.arcade.overlap(player.weapon.bullets, desks, killBullet);
+    // TODO: enemies still go through obstacles
+    game.physics.arcade.collide(enemies, obstacles);
+    game.physics.arcade.overlap(player.weapon.bullets, obstacles, killBullet);
     // TODO: LOLOL this kills printer
     // game.physics.arcade.overlap(player.weapon.bullets, printer, killBullet);
 
@@ -230,7 +230,7 @@ function hackHelp () {
     helpText.text = 'Press \'E\' to hack';
 }
 
-function interactDesk(player, desk) {
+function interactWithObstacle(player, desk) {
     if (desk.complete == false) {
         desk.interact();
     }
