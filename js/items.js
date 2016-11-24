@@ -138,11 +138,26 @@ function createWeapons() {
     weaponCD.addBulletAnimation('break', [16, 17, 18, 19], 23);
 	weaponCD.addBulletAnimation('throw', [8]);
 	weaponCD.bulletAnimation = 'throw';
+	weaponCD.setBulletBodyOffset(9, 9, 6, 6)
     weaponCD.bulletKillType = Phaser.Weapon.KILL_CAMERA_BOUNDS;
     weaponCD.fireRate = 500;
     weaponCD.damage = 1;
     weaponCD.bulletSpeed = 300;
     weaponCD.trackedSprite = player;
+    weaponCD.destroy = function(bullet) {
+    	// bullet.bulletAnimation = 'break';
+    	// bullet.animations.currentAnim.onComplete.add(function() {
+     //        bullet.kill();
+     //    }, this);
+		bullet.kill();
+    	bullet = game.add.sprite(bullet.x, bullet.y, 'cd');
+    	bullet.animations.add('break', [16, 17, 18, 19], 20);
+    	bullet.animations.play('break');
+    	bullet.animations.currentAnim.onComplete.add(function() {
+            bullet.kill();
+        }, this);
+
+    }
     
     weaponStapler = game.add.weapon(10, 'staple');
     weaponStapler.icon = 'stapler';
