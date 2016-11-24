@@ -1,10 +1,10 @@
 // TODO: allow enemies to shoot
 // TODO: add enemy area of attention - invisible circle
+// TODO: Define enemy types/stats (i.e. 1 - slow, 1 hit, 2 - medium, 2 hits, 3 - fast, many hits)
 
 // ENEMY STORY TODO
 // enemy1 has only melee, enemy2 has stapler, +
 // enemy1 has 2 health, enemy2 has 3 health, +
-// waves = levels
 // new enemies appear once every 5th wave, quantity increases with wave
 
 function createEnemies() {

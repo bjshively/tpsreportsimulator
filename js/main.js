@@ -100,22 +100,20 @@ function create() {
     bgtile = game.add.tileSprite(0, 0, game.world.bounds.width, game.world.height, 'background');
     game.physics.startSystem(Phaser.Physics.ARCADE);
 
+    // Create object groups
     enemies = game.add.group();
-    enemies.enableBody = true;
     items = game.add.group();
-    items.enableBody = true;
     obstacles = game.add.group();
+    enemies.enableBody = true;
+    items.enableBody = true;
     obstacles.enableBody = true;
 
     // create all the things
     createControls();
-    // createItems();
     createPlayer();
     createWeapons();
-    // createEnemies();
     createLevel();
 
-    // TODO: enable this to carry over from the previous wave
     player.weapon = weaponStapler;
 
     ////////////////////////

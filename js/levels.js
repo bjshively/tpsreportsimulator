@@ -1,7 +1,8 @@
 var levels = {
     1: {
         'enemies': {
-            1: 5
+            1: 5,
+            2: 3
         },
         'obstacles': {
             'desk': 3,
@@ -10,7 +11,8 @@ var levels = {
     },
     2: {
         'enemies': {
-            1: 100
+            1: 5,
+            2: 3
         },
         'obstacles': {
             'desk': 2,
