@@ -129,7 +129,7 @@ function fireBullet() {
 
 function takeDamage(player, enemy) {
     if (!player.invincible) {
-        player.health -= enemy.hitPoints;
+        player.health -= enemy.damage;
 
         // Check to see if this hit kills the player
         if (player.health <= 0) {

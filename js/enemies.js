@@ -13,29 +13,10 @@ function createEnemies() {
     enemies = game.add.group();
     enemies.enableBody = true;
 
+    // Spawn a random number of enemies
     for (var i = 0; i < game.rnd.integerInRange(3, 10); i++) {
-        var enemy = enemies.create(
-            Math.random() * game.world.width,
-            Math.random() * game.world.height,
-            'enemy' + game.rnd.integerInRange(1, 5)
-            );
-        enemy.body.mass = -50;
-        enemy.body.collideWorldBounds = true;
-        enemy.speed = 1; //game.rnd.integerInRange(50, 100);
-        enemy.health = 2;
-        enemy.hitPoints = 1;
-        enemy.movement = game.rnd.integerInRange(10, 40);
-        enemy.moveCounter = 0;
-        enemy.xSpeed = game.rnd.integerInRange(-1, 1);
-        enemy.ySpeed = game.rnd.integerInRange(-1, 1);
+        createEnemy(2, 1);
     }
-    enemies.callAll('animations.add', 'animations', 'down', [1, 2, 3, 0], 5, true);
-    enemies.callAll('animations.add', 'animations', 'up', [5, 6, 7, 4], 5, true);
-    enemies.callAll('animations.add', 'animations', 'right', [9, 10, 11, 8], 5, true);
-    enemies.callAll('animations.add', 'animations', 'left', [13, 14, 15, 12], 5, true);
-
-    //  And play them
-    enemies.callAll('animations.play', 'animations', 'down');
 }
 
 function updateEnemies() {
@@ -85,4 +66,31 @@ function damageEnemy(bullet, enemy) {
         enemy.kill();
         player.score += 1;
     }
+}
+
+// Spawn an enemy
+function createEnemy(health, damage) {
+    var enemy = enemies.create(
+        Math.random() * game.world.width,
+        Math.random() * game.world.height,
+        'enemy' + game.rnd.integerInRange(1, 5)
+    );
+    enemy.body.mass = -50;
+    enemy.body.collideWorldBounds = true;
+    enemy.speed = 1; //game.rnd.integerInRange(50, 100);
+    enemy.health = health;
+    enemy.damage = damage;
+    enemy.movement = game.rnd.integerInRange(10, 40);
+    enemy.moveCounter = 0;
+    enemy.xSpeed = game.rnd.integerInRange(-1, 1);
+    enemy.ySpeed = game.rnd.integerInRange(-1, 1);
+    enemy.animations.add('down', [1, 2, 3, 0], 5, true);
+    enemy.animations.add('up', [5, 6, 7, 4], 5, true);
+    enemy.animations.add('right', [9, 10, 11, 8], 5, true);
+    enemy.animations.add('left', [13, 14, 15, 12], 5, true);
+    enemy.animations.play('down');
+}
+
+function spawnWave(numberOfEnemies) {
+
 }
