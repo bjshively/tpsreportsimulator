@@ -103,7 +103,6 @@ function createWeapons() {
 	weaponCutter.damage = 2;
 	weaponCutter.bulletSpeed = 500;
 	weaponCutter.trackedSprite = player;
-	weaponCutter.autofire = false;
 
 	weaponCD = game.add.weapon(2, 'cd');
 	weaponCD.icon = 'cd';
@@ -111,7 +110,7 @@ function createWeapons() {
 	weaponCD.fireRate = 500;
 	weaponCD.bulletKillType = Phaser.Weapon.KILL_CAMERA_BOUNDS;
 	weaponCD.damage = 1;
-	weaponCD.bulletSpeed = 200;
+	weaponCD.bulletSpeed = 300;
 	weaponCD.trackedSprite = player;
 	weaponCD.autofire = false;
 
@@ -122,6 +121,7 @@ function createWeapons() {
 	weaponStapler.damage = 1;
 	weaponStapler.bulletSpeed = 300;
 	weaponStapler.trackedSprite = player;
+//	weaponStapler.autofire = true;
 }
 
 

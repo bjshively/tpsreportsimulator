@@ -25,41 +25,6 @@ WebFontConfig = {
 
 };
 
-function preload() {
-    // load JS module files
-    game.load.script('player', 'js/player.js');
-    game.load.script('enemies', 'js/enemies.js');
-    game.load.script('controls', 'js/controls.js');
-    game.load.script('items', 'js/items.js');
-    game.load.script('webfont', '//ajax.googleapis.com/ajax/libs/webfont/1.4.7/webfont.js');
-
-    // Load sprites
-    game.load.image('background', 'assets/background.png');
-    game.load.spritesheet('desk', 'assets/desk.png', 42, 39);
-    game.load.spritesheet('deskWithPrinter', 'assets/deskWithPrinter.png', 33, 39);
-    game.load.atlas('printer', 'assets/printer.png', 'assets/printer.json');
-    
-    // game.load.spritesheet('player', 'assets/player/player.png', 15, 31);
-    game.load.atlasJSONArray('player', 'assets/player/player.png', 'assets/player/player.json');
-    game.load.image('reticle', 'assets/player/reticle.png');
-    game.load.spritesheet('stapler', 'assets/player/weapon/staplerPickup.png', 16, 16);
-    game.load.image('staple', 'assets/player/weapon/staplerAmmo.png');
-    game.load.spritesheet('cd', 'assets/player/weapon/cd.png', 11, 11, 16);
-    game.load.image('cutter', 'assets/player/weapon/cutter.png');
-
-    game.load.spritesheet('enemy1', 'assets/enemies/enemy1.png', 15, 31);
-    game.load.spritesheet('enemy2', 'assets/enemies/enemy2.png', 15, 31);
-    game.load.spritesheet('enemy3', 'assets/enemies/enemy3.png', 15, 31);
-    game.load.spritesheet('enemy4', 'assets/enemies/enemy4.png', 15, 31);
-    game.load.spritesheet('enemy5', 'assets/enemies/enemy5.png', 15, 31);
-
-    // Enable pixel-perfect game sscaling
-    this.game.scale.scaleMode = Phaser.ScaleManager.USER_SCALE;
-    this.game.scale.setUserScale(3, 3);
-    this.game.renderer.renderSession.roundPixels = true;
-    Phaser.Canvas.setImageRenderingCrisp(this.game.canvas);
-}
-
 //Toggle debug information
 var run_debug = false;
 var timeCounter = 0;
@@ -88,6 +53,43 @@ var weaponCutter;
 var weaponCD;
 var weaponStapler;
 var currentWeapon;
+var blood;
+
+function preload() {
+    // load JS module files
+    game.load.script('player', 'js/player.js');
+    game.load.script('enemies', 'js/enemies.js');
+    game.load.script('controls', 'js/controls.js');
+    game.load.script('items', 'js/items.js');
+    game.load.script('webfont', '//ajax.googleapis.com/ajax/libs/webfont/1.4.7/webfont.js');
+
+    // Load sprites
+    game.load.image('background', 'assets/background.png');
+    game.load.spritesheet('desk', 'assets/desk.png', 42, 39);
+    game.load.spritesheet('deskWithPrinter', 'assets/deskWithPrinter.png', 33, 39);
+    game.load.atlas('printer', 'assets/printer.png', 'assets/printer.json');
+    
+    // game.load.spritesheet('player', 'assets/player/player.png', 15, 31);
+    game.load.atlasJSONArray('player', 'assets/player/player.png', 'assets/player/player.json');
+    game.load.image('reticle', 'assets/player/reticle.png');
+    game.load.spritesheet('stapler', 'assets/player/weapon/staplerPickup.png', 16, 16);
+    game.load.image('staple', 'assets/player/weapon/staplerAmmo.png');
+    game.load.spritesheet('cd', 'assets/player/weapon/cd.png', 11, 11, 16);
+    game.load.image('cutter', 'assets/player/weapon/cutter.png');
+
+    game.load.spritesheet('enemy1', 'assets/enemies/enemy1.png', 15, 31);
+    game.load.spritesheet('enemy2', 'assets/enemies/enemy2.png', 15, 31);
+    game.load.spritesheet('enemy3', 'assets/enemies/enemy3.png', 15, 31);
+    game.load.spritesheet('enemy4', 'assets/enemies/enemy4.png', 15, 31);
+    game.load.spritesheet('enemy5', 'assets/enemies/enemy5.png', 15, 31);
+    game.load.image('blood', 'assets/blood.png');
+    
+    // Enable pixel-perfect game sscaling
+    this.game.scale.scaleMode = Phaser.ScaleManager.USER_SCALE;
+    this.game.scale.setUserScale(3, 3);
+    this.game.renderer.renderSession.roundPixels = true;
+    Phaser.Canvas.setImageRenderingCrisp(this.game.canvas);
+}
 
 function init() {}
 
@@ -171,6 +173,17 @@ function create() {
     //     element.fixedToCamera = true;
     //     return element;
     // }
+
+    // setup the blood shots
+    blood = game.add.emitter(0, 0, 100);
+    blood.makeParticles('blood');
+    blood.setSize(5, 5);
+    blood.minParticleSpeed.setTo(-10, -10);
+    blood.maxParticleSpeed.setTo(10, -10);
+    blood.gravity = 10;
+    blood.duration = 3000;
+    blood.setScale(0.1, 1, 0.1, 1, 3000, Phaser.Easing.Quintic.Out);
+
 }
 
 function update() {

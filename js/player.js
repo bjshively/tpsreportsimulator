@@ -108,6 +108,7 @@ function updatePlayer() {
     ///////////////////////////////////
 
     // SHOOTEMUP
+    // game.input.onDown.add(fireBullet)
     if (wasd.pointer.isDown || wasd.space.isDown) {
         fireBullet();
     }
