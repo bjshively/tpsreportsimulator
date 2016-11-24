@@ -57,7 +57,7 @@ function damageEnemy(bullet, enemy) {
     blood.x = enemy.x;
     blood.y = enemy.y;
     // (shotgun, lifespan, null, quantity)
-    blood.start(true, blood.duration, null, game.rnd.integerInRange(5, 10));
+    blood.start(true, game.rnd.integerInRange(10, 1000), null, game.rnd.integerInRange(5, 10));
 
     enemy.health -= player.weapon.damage;
     bullet.kill();
@@ -75,6 +75,7 @@ function createEnemy(health, damage) {
         Math.random() * game.world.height,
         'enemy' + game.rnd.integerInRange(1, 5)
     );
+    enemy.anchor.setTo(0.5, 0.5);
     enemy.body.mass = -50;
     enemy.body.collideWorldBounds = true;
     enemy.speed = 1; //game.rnd.integerInRange(50, 100);

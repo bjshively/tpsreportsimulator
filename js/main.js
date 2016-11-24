@@ -181,6 +181,7 @@ function create() {
     blood.minParticleSpeed.setTo(-50, -50);
     blood.maxParticleSpeed.setTo(50, -100);
     blood.gravity = 500;
+    blood.lifespan = 0;
     blood.duration = 500;
     // minX, maxX, minY, maxY, rateOPT
     blood.setScale(1, 5, 1, 5);
