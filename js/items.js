@@ -64,6 +64,10 @@ function createItems() {
             this.animations.play('done');
         }, this);
     }
+    desks.callAll('animations.add', 'animations', 'flicker', Phaser.Animation.generateFrameNames('desk ', 0, 15, '.ase'), 30, false);
+    desks.callAll('animations.add', 'animations', 'hacking', Phaser.Animation.generateFrameNames('desk ', 16, 59, '.ase'), 30, false);
+    desks.callAll('animations.add', 'animations', 'done', Phaser.Animation.generateFrameNames('desk ', 60, 61, '.ase'), 30, true);
+
 
     // add a random printer desk
     desk = desks.create(
@@ -82,13 +86,15 @@ function createItems() {
             }, this);
         }
     }
+    desk.animations.add('flicker', Phaser.Animation.generateFrameNames('deskWithPrinter ', 0, 15, '.ase'), 30, false);
+    desk.animations.add('hacking', Phaser.Animation.generateFrameNames('deskWithPrinter ', 16, 59, '.ase'), 30, false);
+    desk.animations.add('done', Phaser.Animation.generateFrameNames('deskWithPrinter ', 60, 61, '.ase'), 30, true);
 
-    // make desks pushable, world bound, add some animations & play them
+
+    // make desks immovable, world bound, add some animations & play them
     desks.setAll('body.collideWorldBounds', true);
-    desks.setAll('body.mass', -100);
-    desks.callAll('animations.add', 'animations', 'flicker', [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15], 30, false);
-    desks.callAll('animations.add', 'animations', 'hacking', [16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37], 30, false);
-    desks.callAll('animations.add', 'animations', 'done', [38, 39], 30, true);
+    // desks.setAll('body.mass', -100);
+    desks.setAll('body.immovable', true);
     desks.callAll('animations.play', 'animations', 'flicker', 30, true);
 
 

@@ -6,7 +6,7 @@ function createPlayer() {
 
     game.physics.arcade.enable(player);
     player.body.collideWorldBounds = true;
-    player.body.setSize(player.width, player.height / 2, 0, 0);
+    player.body.setSize(player.width, player.height / 2, 0, player.height / 2);
     player.anchor.setTo(0.5, 0.5);
     game.camera.follow(player);
 

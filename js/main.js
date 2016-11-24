@@ -65,12 +65,12 @@ function preload() {
 
     // Load sprites
     game.load.image('background', 'assets/background.png');
-    game.load.spritesheet('desk', 'assets/desk.png', 42, 39);
-    game.load.spritesheet('deskWithPrinter', 'assets/deskWithPrinter.png', 33, 39);
+    game.load.atlas('desk', 'assets/desk.png', 'assets/desk.json');
+    game.load.atlas('deskWithPrinter', 'assets/deskWithPrinter.png', 'assets/deskWithPrinter.json');
     game.load.atlas('printer', 'assets/printer.png', 'assets/printer.json');
     
     // game.load.spritesheet('player', 'assets/player/player.png', 15, 31);
-    game.load.atlasJSONArray('player', 'assets/player/player.png', 'assets/player/player.json');
+    game.load.atlas('player', 'assets/player/player.png', 'assets/player/player.json');
     game.load.image('reticle', 'assets/player/reticle.png');
     game.load.spritesheet('stapler', 'assets/player/weapon/staplerPickup.png', 16, 16);
     game.load.image('staple', 'assets/player/weapon/staplerAmmo.png');
@@ -233,7 +233,6 @@ function hackHelp () {
 function interactDesk(player, desk) {
     if (desk.complete == false) {
         desk.interact();
-        console.log(desk);
     }
 }
 
