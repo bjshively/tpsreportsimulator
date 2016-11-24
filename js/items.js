@@ -63,7 +63,7 @@ function createItems() {
 
 
     // add a random printer
-    printer = game.add.sprite(
+    printer = desks.create(
     	Math.abs(Math.random() * game.world.width - 44),
         Math.abs(Math.random() * game.world.height - 39),
         'printer');
