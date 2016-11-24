@@ -4,6 +4,13 @@ function createPlayer() {
         game.world.centerX - player.width / 2, game.world.centerY - player.height / 2
     );
 
+    game.physics.arcade.enable(player);
+    player.body.collideWorldBounds = true;
+    player.body.setSize(player.width, player.height / 2, 0, 0);
+    player.anchor.setTo(0.5, 0.5);
+    game.camera.follow(player);
+
+
     player.health = 3;
     player.score = 0;
     player.level = 1;
@@ -13,12 +20,6 @@ function createPlayer() {
     player.lookAngle;
     player.lookDirection;
     player.weapon;
-
-    game.physics.arcade.enable(player);
-    game.camera.follow(player);
-
-    player.body.collideWorldBounds = true;
-    player.anchor.setTo(0.5, 0.5);
 
     //  Our two animations, walking left and right.
     player.animations.add(

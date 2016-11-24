@@ -74,7 +74,7 @@ function preload() {
     game.load.image('reticle', 'assets/player/reticle.png');
     game.load.spritesheet('stapler', 'assets/player/weapon/staplerPickup.png', 16, 16);
     game.load.image('staple', 'assets/player/weapon/staplerAmmo.png');
-    game.load.spritesheet('cd', 'assets/player/weapon/cd.png', 11, 11, 16);
+    game.load.spritesheet('cd', 'assets/player/weapon/cd.png', 11, 11);
     game.load.image('cutter', 'assets/player/weapon/cutter.png');
 
     game.load.spritesheet('enemy1', 'assets/enemies/enemy1.png', 15, 31);
@@ -196,7 +196,8 @@ function update() {
         updateEnemies();
     }
 
-    game.physics.arcade.collide(player, desks);
+    game.physics.arcade.collide(player, desks, interactDesk);
+
     game.physics.arcade.collide(desks, desks);
     game.physics.arcade.collide(enemies, enemies);
     game.physics.arcade.overlap(player, items, collectItem);
@@ -209,7 +210,7 @@ function update() {
     // TODO: LOLOL this kills printer
     // game.physics.arcade.overlap(player.weapon.bullets, printer, killBullet);
 
-    game.physics.arcade.collide(player, printer, printer.print);
+    game.physics.arcade.collide(player, printer);
     
     scoreText.text = 'Score: ' + player.score;
     healthText.text = 'Health: ' + player.health;
@@ -227,6 +228,13 @@ function killBullet(bullet) {
 function hackHelp () {
     helpText.visible = true;
     helpText.text = 'Press \'E\' to hack';
+}
+
+function interactDesk(player, desk) {
+    if (desk.complete == false) {
+        desk.interact();
+        console.log(desk);
+    }
 }
 
 function collectItem(player, item) {
