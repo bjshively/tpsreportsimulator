@@ -29,27 +29,41 @@ function updateEnemies() {
 }
 
 function moveEnemy(enemy) {
-    if (enemy.ySpeed == -1) {
-        enemy.animations.play('up');
-    } else if (enemy.ySpeed == 1) {
-        enemy.animations.play('down');
-    } else if (enemy.xSpeed == -1) {
-        enemy.animations.play('left');
+    if (Math.abs(enemy.ySpeed) > Math.abs(enemy.xSpeed)) {
+        if (enemy.ySpeed < 0) {
+            enemy.animations.play('up');
+        } else {
+            enemy.animations.play('down');
+        }
     } else {
-        enemy.animations.play('right');
+        if (enemy.xSpeed < 0) {
+            enemy.animations.play('left');
+        } else {
+            enemy.animations.play('right');
+        }
     }
+
+    // if (enemy.ySpeed < 0) {
+    //     enemy.animations.play('up');
+    // } else if (enemy.ySpeed > 0) {
+    //     enemy.animations.play('down');
+    // } else if (enemy.xSpeed < 0) {
+    //     enemy.animations.play('left');
+    // } else {
+    //     enemy.animations.play('right');
+    // }
 
     // Select a random direction if moveCounter is 0
     if (enemy.moveCounter == 0) {
-        enemy.xSpeed = game.rnd.integerInRange(-1, 1);
-        enemy.ySpeed = game.rnd.integerInRange(-1, 1);
+        enemy.xSpeed = game.rnd.integerInRange(-100, 100);
+        enemy.ySpeed = game.rnd.integerInRange(-100, 100);
         // enemy.direction = game.rnd.integerInRange(0, 5);
         enemy.moveCounter = enemy.movement;
     }
 
     // Move enemy based on direction value and reduce moveCounter
-    enemy.x += enemy.xSpeed;
-    enemy.y += enemy.ySpeed;
+    enemy.body.velocity.x = enemy.xSpeed;
+    enemy.body.velocity.y = enemy.ySpeed;
     enemy.moveCounter -= 1;
 }
 
@@ -85,15 +99,16 @@ function createEnemy(health, damage) {
     enemy.speed = 1; //game.rnd.integerInRange(50, 100);
     enemy.health = health;
     enemy.damage = damage;
-    enemy.movement = game.rnd.integerInRange(10, 40);
+    enemy.movement = game.rnd.integerInRange(100, 300);
     enemy.moveCounter = 0;
-    enemy.xSpeed = game.rnd.integerInRange(-1, 1);
-    enemy.ySpeed = game.rnd.integerInRange(-1, 1);
+    enemy.xSpeed = game.rnd.integerInRange(-100, 100);
+    enemy.ySpeed = game.rnd.integerInRange(-100, 100);
     enemy.animations.add('down', [1, 2, 3, 0], 5, true);
     enemy.animations.add('up', [5, 6, 7, 4], 5, true);
     enemy.animations.add('right', [9, 10, 11, 8], 5, true);
     enemy.animations.add('left', [13, 14, 15, 12], 5, true);
     enemy.animations.play('down');
+    game.physics.arcade.enable(enemy);
 }
 
 function spawnWave(numberOfEnemies) {
