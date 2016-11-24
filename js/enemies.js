@@ -1,7 +1,13 @@
-// TODO: give the enemies different attriubutes
 // TODO: allow enemies to shoot
 // TODO: add enemy area of attention - invisible circle
-// TODO: number of enemies increases every 5th level, new enemy type each time
+
+
+// ENEMY STORY TODO
+// enemy1 has only melee, enemy2 has stapler, +
+// enemy1 has 2 health, enemy2 has 3 health, +
+// waves = levels
+// new enemies appear once every 5th wave, quantity increases with wave
+
 
 function createEnemies() {
     enemies = game.add.group();

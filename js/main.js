@@ -182,7 +182,8 @@ function create() {
     blood.maxParticleSpeed.setTo(10, -10);
     blood.gravity = 10;
     blood.duration = 3000;
-    blood.setScale(0.1, 1, 0.1, 1, 3000, Phaser.Easing.Quintic.Out);
+
+    blood.setScale(1, 5, 1, 5, blood.duration, Phaser.Easing.Quintic.Out);
 
 }
 
