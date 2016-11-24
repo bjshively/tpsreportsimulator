@@ -57,7 +57,7 @@ function damageEnemy(bullet, enemy) {
     blood.x = enemy.x;
     blood.y = enemy.y;
     // (shotgun, lifespan, null, quantity)
-    blood.start(true, blood.duration, null, game.rnd.integerInRange(10, 20));
+    blood.start(true, blood.duration, null, game.rnd.integerInRange(5, 10));
 
     enemy.health -= player.weapon.damage;
     bullet.kill();

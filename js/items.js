@@ -10,8 +10,8 @@ function createItems() {
     items.enableBody = true;
 
     pickupStapler = items.create(
-        Math.abs(Math.random() * game.world.width / 5),
-        Math.abs(Math.random() * game.world.height / 5),
+        Math.abs(Math.random() * game.world.width - 44),
+        Math.abs(Math.random() * game.world.height - 39),
         'stapler');
     pickupStapler.animations.add('bounce');
     pickupStapler.animations.play('bounce', 30, true);
@@ -22,8 +22,8 @@ function createItems() {
     }
 
     pickupCD = items.create(
-        Math.abs(Math.random() * game.world.width / 5),
-        Math.abs(Math.random() * game.world.height / 5),
+        Math.abs(Math.random() * game.world.width - 44),
+        Math.abs(Math.random() * game.world.height - 39),
         'cd');
     pickupCD.animations.add('spin');
     pickupCD.animations.play('spin', 15, true);
@@ -38,20 +38,20 @@ function createItems() {
     desks.enableBody = true;
 
     var desk = desks.create(
-        Math.abs(Math.random() * game.world.width / 5),
-        Math.abs(Math.random() * game.world.height / 5),
+        Math.abs(Math.random() * game.world.width - 44),
+        Math.abs(Math.random() * game.world.height - 39),
         'desk');
     desk.body.setSize(42, 10, 0, 3);
     desk = desks.create(
-        Math.abs(Math.random() * game.world.width / 5),
-        Math.abs(Math.random() * game.world.height / 5),
+        Math.abs(Math.random() * game.world.width - 44),
+        Math.abs(Math.random() * game.world.height - 39),
         'desk');
     desk.body.setSize(42, 10, 0, 3);
     
     // add a random printer desk
     desk = desks.create(
-        Math.abs(Math.random() * game.world.width / 5),
-        Math.abs(Math.random() * game.world.height / 5),
+        Math.abs(Math.random() * game.world.width - 44),
+        Math.abs(Math.random() * game.world.height - 39),
         'deskWithPrinter');
     desk.body.setSize(33, 10, 0, 3);
 

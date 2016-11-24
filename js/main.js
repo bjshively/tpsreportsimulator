@@ -106,8 +106,8 @@ function create() {
     createWeapons();
     createEnemies();
 
-    // TODO: enable this to carry over from the previous level
-    player.weapon = weaponCutter;
+    // TODO: enable this to carry over from the previous wave
+    player.weapon = weaponStapler;
 
     ////////////////////////
     // HUD
@@ -178,12 +178,12 @@ function create() {
     blood = game.add.emitter(0, 0, 100);
     blood.makeParticles('blood');
     blood.setSize(5, 5);
-    blood.minParticleSpeed.setTo(-10, -10);
-    blood.maxParticleSpeed.setTo(10, -10);
-    blood.gravity = 10;
-    blood.duration = 3000;
-
-    blood.setScale(1, 5, 1, 5, blood.duration, Phaser.Easing.Quintic.Out);
+    blood.minParticleSpeed.setTo(-50, -50);
+    blood.maxParticleSpeed.setTo(50, -100);
+    blood.gravity = 500;
+    blood.duration = 500;
+    // minX, maxX, minY, maxY, rateOPT
+    blood.setScale(1, 5, 1, 5);
 
 }
 
