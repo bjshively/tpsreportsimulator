@@ -25,8 +25,8 @@ function createItems() {
         Math.abs(Math.random() * game.world.width - 44),
         Math.abs(Math.random() * game.world.height - 39),
         'cd');
-    pickupCD.animations.add('spin');
-    pickupCD.animations.play('spin', 15, true);
+    pickupCD.animations.add('spin', [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15], 15, true);
+    pickupCD.animations.play('spin');
     pickupCD.collect = function() {
         player.weapon = weaponCD;
         player.score += 10;
@@ -135,14 +135,15 @@ function createWeapons() {
 
     weaponCD = game.add.weapon(2, 'cd');
     weaponCD.icon = 'cd';
-    weaponCD.setBulletFrames(8, 8);
-    weaponCD.fireRate = 500;
+    weaponCD.addBulletAnimation('break', [16, 17, 18, 19], 23);
+	weaponCD.addBulletAnimation('throw', [8]);
+	weaponCD.bulletAnimation = 'throw';
     weaponCD.bulletKillType = Phaser.Weapon.KILL_CAMERA_BOUNDS;
+    weaponCD.fireRate = 500;
     weaponCD.damage = 1;
     weaponCD.bulletSpeed = 300;
     weaponCD.trackedSprite = player;
-    weaponCD.autofire = false;
-
+    
     weaponStapler = game.add.weapon(10, 'staple');
     weaponStapler.icon = 'stapler';
     weaponStapler.fireRate = 200;
@@ -150,5 +151,4 @@ function createWeapons() {
     weaponStapler.damage = 1;
     weaponStapler.bulletSpeed = 300;
     weaponStapler.trackedSprite = player;
-    //	weaponStapler.autofire = true;
 }

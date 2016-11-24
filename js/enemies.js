@@ -60,7 +60,15 @@ function damageEnemy(bullet, enemy) {
     blood.start(true, game.rnd.integerInRange(10, 1000), null, game.rnd.integerInRange(5, 10));
 
     enemy.health -= player.weapon.damage;
-    bullet.kill();
+    // if (player.weapon == weaponCD) {
+    //     bullet.bulletAnimation = 'break';
+    //     bullet.animations.currentAnim.onComplete.add(function() {
+    //         console.log('fsdf');
+    //         bullet.kill();
+    //     });
+    // } else {
+        bullet.kill();    
+    // }
 
     if (enemy.health <= 0) {
         enemy.kill();
