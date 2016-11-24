@@ -1,17 +1,13 @@
 // TODO: allow enemies to shoot
 // TODO: add enemy area of attention - invisible circle
 
-
 // ENEMY STORY TODO
 // enemy1 has only melee, enemy2 has stapler, +
 // enemy1 has 2 health, enemy2 has 3 health, +
 // waves = levels
 // new enemies appear once every 5th wave, quantity increases with wave
 
-
 function createEnemies() {
-    enemies = game.add.group();
-    enemies.enableBody = true;
 
     // Spawn a random number of enemies
     for (var i = 0; i < game.rnd.integerInRange(3, 10); i++) {
@@ -77,7 +73,7 @@ function damageEnemy(bullet, enemy) {
     if (player.weapon == weaponCD) {
         weaponCD.destroy(bullet);
     } else {
-        bullet.kill();    
+        bullet.kill();
     }
 
     if (enemy.health <= 0) {

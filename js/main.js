@@ -15,12 +15,12 @@ WebFontConfig = {
     //  We set a 1 second delay before calling 'createText'.
     //  For some reason if we don't the browser cannot render the text the first time it's created.
 
-// TODO: not sure what the fuck this line is for
-//    active: function() { game.time.events.add(Phaser.Timer.SECOND, null, this); },
+    // TODO: not sure what the fuck this line is for
+    //    active: function() { game.time.events.add(Phaser.Timer.SECOND, null, this); },
 
     //  The Google Fonts we want to load (specify as many as you like in the array)
     google: {
-      families: ['VT323']
+        families: ['VT323']
     }
 
 };
@@ -61,6 +61,7 @@ function preload() {
     game.load.script('enemies', 'js/enemies.js');
     game.load.script('controls', 'js/controls.js');
     game.load.script('items', 'js/items.js');
+    game.load.script('levels', 'js/levels.js');
     game.load.script('webfont', '//ajax.googleapis.com/ajax/libs/webfont/1.4.7/webfont.js');
 
     // Load sprites
@@ -68,7 +69,7 @@ function preload() {
     game.load.atlas('desk', 'assets/desk.png', 'assets/desk.json');
     game.load.atlas('deskWithPrinter', 'assets/deskWithPrinter.png', 'assets/deskWithPrinter.json');
     game.load.atlas('printer', 'assets/printer.png', 'assets/printer.json');
-    
+
     // game.load.spritesheet('player', 'assets/player/player.png', 15, 31);
     game.load.atlas('player', 'assets/player/player.png', 'assets/player/player.json');
     game.load.image('reticle', 'assets/player/reticle.png');
@@ -83,7 +84,7 @@ function preload() {
     game.load.spritesheet('enemy4', 'assets/enemies/enemy4.png', 15, 31);
     game.load.spritesheet('enemy5', 'assets/enemies/enemy5.png', 15, 31);
     game.load.image('blood', 'assets/blood.png');
-    
+
     // Enable pixel-perfect game sscaling
     this.game.scale.scaleMode = Phaser.ScaleManager.USER_SCALE;
     this.game.scale.setUserScale(3, 3);
@@ -99,12 +100,20 @@ function create() {
     bgtile = game.add.tileSprite(0, 0, game.world.bounds.width, game.world.height, 'background');
     game.physics.startSystem(Phaser.Physics.ARCADE);
 
+    enemies = game.add.group();
+    enemies.enableBody = true;
+    items = game.add.group();
+    items.enableBody = true;
+    obstacles = game.add.group();
+    obstacles.enableBody = true;
+
     // create all the things
     createControls();
-    createItems();
+    // createItems();
     createPlayer();
     createWeapons();
-    createEnemies();
+    // createEnemies();
+    createLevel();
 
     // TODO: enable this to carry over from the previous wave
     player.weapon = weaponStapler;
@@ -113,7 +122,10 @@ function create() {
     // HUD
     game.camera.follow(player, Phaser.Camera.FOLLOW_LOCKON, 0.1, 0.1);
 
-    healthText = game.add.text(0, 0, '', {font: '14px VT323', fill: '#FFF'});
+    healthText = game.add.text(0, 0, '', {
+        font: '14px VT323',
+        fill: '#FFF'
+    });
     healthText.stroke = '#000';
     healthText.strokeThickness = 3;
     // alight left
@@ -121,7 +133,10 @@ function create() {
     healthText.position.setTo(5, 5);
     healthText.fixedToCamera = true;
 
-    scoreText = game.add.text(0, 0, '', {font: '14px VT323', fill: '#FFF'});
+    scoreText = game.add.text(0, 0, '', {
+        font: '14px VT323',
+        fill: '#FFF'
+    });
     scoreText.stroke = '#000';
     scoreText.strokeThickness = 3;
     // align center
@@ -129,7 +144,10 @@ function create() {
     scoreText.position.setTo(game.camera.width / 2, 5);
     scoreText.fixedToCamera = true;
 
-    levelText = game.add.text(0, 0, '', {font: '14px VT323', fill: '#FFF'});
+    levelText = game.add.text(0, 0, '', {
+        font: '14px VT323',
+        fill: '#FFF'
+    });
     levelText.stroke = '#000';
     levelText.strokeThickness = 3;
     // align right
@@ -137,7 +155,10 @@ function create() {
     levelText.position.setTo(game.camera.width - 5, 5);
     levelText.fixedToCamera = true;
 
-    gameOverText = game.add.text(0, 0,'', {font: '30px VT323', fill: '#fff' });
+    gameOverText = game.add.text(0, 0, '', {
+        font: '30px VT323',
+        fill: '#fff'
+    });
     gameOverText.stroke = '#000';
     gameOverText.strokeThickness = 6;
     // align center
@@ -145,7 +166,10 @@ function create() {
     gameOverText.position.setTo(game.camera.width / 2, game.camera.height / 2);
     gameOverText.fixedToCamera = true;
 
-    helpText = game.add.text(0, 0,'', {font: '14px VT323', fill: '#fff' });
+    helpText = game.add.text(0, 0, '', {
+        font: '14px VT323',
+        fill: '#fff'
+    });
     helpText.stroke = '#000';
     helpText.strokeThickness = 3;
     // align center
@@ -211,7 +235,7 @@ function update() {
     // game.physics.arcade.overlap(player.weapon.bullets, printer, killBullet);
 
     game.physics.arcade.collide(player, printer);
-    
+
     scoreText.text = 'Score: ' + player.score;
     healthText.text = 'Health: ' + player.health;
     levelText.text = 'Level: ' + player.level;
@@ -225,7 +249,7 @@ function killBullet(bullet) {
     bullet.kill();
 }
 
-function hackHelp () {
+function hackHelp() {
     helpText.visible = true;
     helpText.text = 'Press \'E\' to hack';
 }
@@ -256,6 +280,22 @@ function gameOver(message) {
 //     selectedWeapon = game.add.sprite(game.camera.width - 20, game.camera.height - 20, weapon);
 //     selectedWeapon.fixedToCamera = true;
 // }
+
+function createLevel() {
+    level1 = levels[player.level];
+    l1enemies = level1['enemies'];
+    l1obstacles = level1['obstacles'];
+
+    for (var i = 0; i < l1enemies[1]; i++) {
+        createEnemy(2, 1);
+    }
+
+    for (obstacle in l1obstacles) {
+        for (var i = 0; i < l1obstacles[obstacle]; i++) {
+            createObstacle(obstacle);
+        }
+    }
+}
 
 function render() {
     if (run_debug) {
