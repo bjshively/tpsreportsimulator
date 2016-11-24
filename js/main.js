@@ -40,7 +40,7 @@ var reticle;
 
 var scoreText;
 var healthText;
-var waveText;
+var levelText;
 var gameOverText;
 var helpText;
 
@@ -106,7 +106,7 @@ function create() {
     createWeapons();
     createEnemies();
 
-    // TODO: enable this to carry over from the previous wave
+    // TODO: enable this to carry over from the previous level
     player.weapon = weaponCutter;
 
     ////////////////////////
@@ -129,13 +129,13 @@ function create() {
     scoreText.position.setTo(game.camera.width / 2, 5);
     scoreText.fixedToCamera = true;
 
-    waveText = game.add.text(0, 0, '', {font: '14px VT323', fill: '#FFF'});
-    waveText.stroke = '#000';
-    waveText.strokeThickness = 3;
+    levelText = game.add.text(0, 0, '', {font: '14px VT323', fill: '#FFF'});
+    levelText.stroke = '#000';
+    levelText.strokeThickness = 3;
     // align right
-    waveText.anchor.setTo(1, 0);
-    waveText.position.setTo(game.camera.width - 5, 5);
-    waveText.fixedToCamera = true;
+    levelText.anchor.setTo(1, 0);
+    levelText.position.setTo(game.camera.width - 5, 5);
+    levelText.fixedToCamera = true;
 
     gameOverText = game.add.text(0, 0,'', {font: '30px VT323', fill: '#fff' });
     gameOverText.stroke = '#000';
@@ -161,10 +161,10 @@ function create() {
     currentWeapon.fixedToCamera = true;
 
     // TODO: WTF Y NO WORK
-    // waveText = createHUDtext('FUCK YOU', '14px', 3);
+    // levelText = createHUDtext('FUCK YOU', '14px', 3);
     // // align right
-    // waveText.anchor.setTo(1, 0);
-    // waveText.position.setTo(game.camera.width - 5, 5);
+    // levelText.anchor.setTo(1, 0);
+    // levelText.position.setTo(game.camera.width - 5, 5);
 
     // function createHUDtext (words, size, thickness) {
     //     var element = game.add.text(0, 0, words, {font: '14px VT323', fill: '#fff' });
@@ -212,7 +212,7 @@ function update() {
     
     scoreText.text = 'Score: ' + player.score;
     healthText.text = 'Health: ' + player.health;
-    waveText.text = 'Wave: ' + player.wave;
+    levelText.text = 'Level: ' + player.level;
     currentWeapon.loadTexture(player.weapon.icon);
 }
 
@@ -239,7 +239,7 @@ function gameOver(message) {
     player.kill();
     reticle.kill();
     healthText.kill();
-    waveText.kill();
+    levelText.kill();
     gameOverText.text = message;
 }
 

@@ -6,7 +6,7 @@ function createPlayer() {
 
     player.health = 3;
     player.score = 0;
-    player.wave = 1;
+    player.level = 1;
     player.maxSpeed = 100;
     player.invincible = false;
     player.invincibleTime;
