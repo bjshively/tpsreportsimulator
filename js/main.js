@@ -70,7 +70,7 @@ function preload() {
     game.load.atlas('desk', 'assets/desk.png', 'assets/desk.json');
     game.load.atlas('deskWithPrinter', 'assets/deskWithPrinter.png', 'assets/deskWithPrinter.json');
     game.load.atlas('printer', 'assets/printer.png', 'assets/printer.json');
-    //{"frames": [{    "filename": "MyItem",    "frame": {"x":1,"y":1,"w":304,"h":113},    "rotated": false,    "trimmed": true,    "spriteSourceSize": {"x":0,"y":0,"w":304,"h":113},    "sourceSize": {"w":304,"h":113},}],"meta": {    "app": "Spritor"}}
+    game.load.atlas('walls', 'assets/walls.png', 'assets/walls.json');
 
     game.load.atlas('player', 'assets/player/player.png', 'assets/player/player.json');
     game.load.image('reticle', 'assets/player/reticle.png');
@@ -98,9 +98,30 @@ function init() {}
 function create() {
     //  World Setup
     game.world.setBounds(0, 0, 400, 300);
-    bgtile = game.add.tileSprite(0, 0, game.world.bounds.width, game.world.height, 'background');
     game.physics.startSystem(Phaser.Physics.ARCADE);
-
+    bgtile = game.add.tileSprite(0, 0, game.world.bounds.width, game.world.height, 'background');
+    
+    bgtile = game.add.sprite(0,0, 'walls');
+    bgtile.frame = 2;
+    bgtile = game.add.sprite(32,0, 'walls');
+    bgtile.frame = 0;
+    bgtile = game.add.sprite(64,0, 'walls');
+    bgtile.frame = 6;
+    bgtile = game.add.sprite(96,0, 'walls');
+    bgtile.frame = 6;
+    bgtile = game.add.sprite(128,0, 'walls');
+    bgtile.frame = 0;
+    bgtile = game.add.sprite(160,0, 'walls');
+    bgtile.frame = 0;
+    bgtile = game.add.sprite(192,0, 'walls');
+    bgtile.frame = 6;
+    bgtile = game.add.sprite(224,0, 'walls');
+    bgtile.frame = 6;
+    bgtile = game.add.sprite(256,0, 'walls');
+    bgtile.frame = 0;
+    bgtile = game.add.sprite(288,0, 'walls');
+    bgtile.frame = 3;
+    
     // Create object groups
     enemies = game.add.group();
     items = game.add.group();

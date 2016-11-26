@@ -38,13 +38,13 @@ function createPlayer() {
     player.standingFrames['left'] = 15;
     
     player.animations.add(
-        'attackup', [4], 5, false);
+        'attackup', [4, 0], 7, false);
     player.animations.add(
-        'attackright', [9], 5, false);
+        'attackright', [9, 5], 7, false);
     player.animations.add(
-        'attackdown', [14], 5, false);
+        'attackdown', [14, 10], 7, false);
     player.animations.add(
-        'attackleft', [19], 5, false);
+        'attackleft', [19, 15], 7, false);
 
     //Player is temporarily invincible upon spawning
     makeInvincible();
@@ -113,7 +113,7 @@ function updatePlayer() {
 
 
 function fireBullet() {
-    // TODO: make this animation play only once
+    // TODO: make this animation work
     player.animations.play('attack' + player.lookDirection);
     player.weapon.fire(
         null,
@@ -121,8 +121,6 @@ function fireBullet() {
         game.input.activePointer.worldY - reticle.height / 2
     );
 }
-
-
 
 function takeDamage(player, enemy) {
     if (!player.invincible) {

@@ -7,7 +7,7 @@
 // enemy1 has 2 health, enemy2 has 3 health, +
 // new enemies appear once every 5th wave, quantity increases with wave
 
-function createEnemies() {
+function createEnemies(level) {
 
     // Spawn a random number of enemies
     for (var i = 0; i < game.rnd.integerInRange(3, 10); i++) {
