@@ -29,6 +29,7 @@ WebFontConfig = {
 var run_debug = false;
 var timeCounter = 0;
 var currentTime = 0;
+var graphics;
 
 var player;
 var enemies;
@@ -207,6 +208,8 @@ function create() {
     blood.duration = 500;
     // minX, maxX, minY, maxY, rateOPT
     blood.setScale(1, 5, 1, 5);
+
+    graphics = game.add.graphics(100, 100);
 
 }
 

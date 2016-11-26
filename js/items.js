@@ -5,7 +5,8 @@ function Weapon() {
 function createItems() {
     // Create an items group
     // Each item should have a collect function that defines what happens when it is collected
-    // TODO: existence is questionable?
+    items = game.add.group();
+    items.enableBody = true;
 
     pickupStapler = items.create(
         Math.abs(Math.random() * game.world.width - 44),

@@ -30,25 +30,21 @@ function createPlayer() {
         'down', Phaser.Animation.generateFrameNames('player ', 10, 13, '.ase'), 7, true);
     player.animations.add(
         'left', Phaser.Animation.generateFrameNames('player ', 15, 18, '.ase'), 7, true);
-    // player.animations.add('down', [1, 2, 3, 0], 5, true);
-    // player.animations.add('up', [5, 6, 7, 4], 5, true);
-    // player.animations.add('right', [9, 10, 11, 8], 5, true);
-    // player.animations.add('left', [13, 14, 15, 12], 5, true);
-
     // Define the standing frame for each direction the player can face
     player.standingFrames = {};
     player.standingFrames['up'] = 0;
     player.standingFrames['right'] = 5;
     player.standingFrames['down'] = 10;
     player.standingFrames['left'] = 15;
-    // player.animations.add(
-    //     'attackup', [4], 5, false);
-    // player.animations.add(
-    //     'attackright', [9], 5, false);
-    // player.animations.add(
-    //     'attackdown', [14], 5, false);
-    // player.animations.add(
-    //     'attackleft', [19], 5, false);
+    
+    player.animations.add(
+        'attackup', [4], 5, false);
+    player.animations.add(
+        'attackright', [9], 5, false);
+    player.animations.add(
+        'attackdown', [14], 5, false);
+    player.animations.add(
+        'attackleft', [19], 5, false);
 
     //Player is temporarily invincible upon spawning
     makeInvincible();
@@ -118,7 +114,7 @@ function updatePlayer() {
 
 function fireBullet() {
     // TODO: make this animation play only once
-    // player.animations.play('attack' + player.lookDirection);
+    player.animations.play('attack' + player.lookDirection);
     player.weapon.fire(
         null,
         game.input.activePointer.worldX - reticle.width / 2,
