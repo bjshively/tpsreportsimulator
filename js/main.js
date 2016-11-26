@@ -70,8 +70,8 @@ function preload() {
     game.load.atlas('desk', 'assets/desk.png', 'assets/desk.json');
     game.load.atlas('deskWithPrinter', 'assets/deskWithPrinter.png', 'assets/deskWithPrinter.json');
     game.load.atlas('printer', 'assets/printer.png', 'assets/printer.json');
+    //{"frames": [{    "filename": "MyItem",    "frame": {"x":1,"y":1,"w":304,"h":113},    "rotated": false,    "trimmed": true,    "spriteSourceSize": {"x":0,"y":0,"w":304,"h":113},    "sourceSize": {"w":304,"h":113},}],"meta": {    "app": "Spritor"}}
 
-    // game.load.spritesheet('player', 'assets/player/player.png', 15, 31);
     game.load.atlas('player', 'assets/player/player.png', 'assets/player/player.json');
     game.load.image('reticle', 'assets/player/reticle.png');
     game.load.spritesheet('stapler', 'assets/player/weapon/staplerPickup.png', 16, 16);
@@ -113,7 +113,7 @@ function create() {
     createControls();
     createPlayer();
     createWeapons();
-    createLevel();
+    createLevel(player.level);
 
     player.weapon = weaponStapler;
 
@@ -200,15 +200,16 @@ function create() {
     // setup the blood shots
     blood = game.add.emitter(0, 0, 100);
     blood.makeParticles('blood');
+    blood.minRotation = 0;
+    blood.maxRotation = 0;
+    blood.smoothed = false;
     blood.setSize(5, 5);
-    blood.minParticleSpeed.setTo(-50, -50);
-    blood.maxParticleSpeed.setTo(50, -100);
     blood.gravity = 500;
-    blood.lifespan = 0;
-    blood.duration = 500;
-    // minX, maxX, minY, maxY, rateOPT
-    blood.setScale(1, 5, 1, 5);
-
+    // set the velocities in X, Y
+    // don't mess with these numbers they're kinda confusing
+    blood.minParticleSpeed.setTo(-75, -150);
+    blood.maxParticleSpeed.setTo(75, 1);
+    
     graphics = game.add.graphics(100, 100);
 
 }
@@ -266,6 +267,17 @@ function collectItem(player, item) {
     //Implement item interaction logic
 }
 
+function bloodSplatter(where) {
+    for (var i = 0; i < game.rnd.integerInRange(10, 20); i++) {
+        blood.x = where.x;
+        blood.y = where.y;
+        var maxSize = game.rnd.integerInRange(1, 5);
+        var lifespan = game.rnd.integerInRange(100, 500);
+        blood.setScale(1, maxSize, 1, maxSize, lifespan);
+        blood.start(true, lifespan, null, 1);
+    }
+}
+
 // Display gameover message
 function gameOver(message) {
     game.camera.follow(null, Phaser.Camera.FOLLOW_LOCKON, 0.1, 0.1);
@@ -282,7 +294,7 @@ function gameOver(message) {
 //     selectedWeapon.fixedToCamera = true;
 // }
 
-function createLevel() {
+function createLevel(level) {
     level1 = levels[player.level];
     l1enemies = level1['enemies'];
     l1obstacles = level1['obstacles'];
