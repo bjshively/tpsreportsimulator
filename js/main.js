@@ -1,9 +1,6 @@
 // TODO: Add leveling (keep same logic for now)
 // TODO: more pick ups
 
-/* TODO: 
- 
- */
 var game = new Phaser.Game(320, 240, Phaser.AUTO, 'game', {
     preload: preload,
     init: init,
@@ -106,71 +103,9 @@ function create() {
     game.add.graphics(0, 0);
     game.world.setBounds(0, 0, 384, 304);
     game.physics.startSystem(Phaser.Physics.ARCADE);
-    bgtile = game.add.tileSprite(0, 0, game.world.bounds.width, game.world.height, 'background');
 
-    bgtile = game.add.sprite(0, 0, 'walls');
-    bgtile.frame = 2;
-    bgtile = game.add.sprite(32, 0, 'walls');
-    bgtile.frame = 0;
-    bgtile = game.add.sprite(64, 0, 'walls');
-    bgtile.frame = 6;
-    bgtile = game.add.sprite(96, 0, 'walls');
-    bgtile.frame = 0;
-    bgtile = game.add.sprite(128, 0, 'walls');
-    bgtile.frame = 6;
-    bgtile = game.add.sprite(160, 0, 'walls');
-    bgtile.frame = 1;
-    bgtile = game.add.sprite(192, 0, 'walls');
-    bgtile.frame = 1;
-    bgtile = game.add.sprite(224, 0, 'walls');
-    bgtile.frame = 6;
-    bgtile = game.add.sprite(256, 0, 'walls');
-    bgtile.frame = 0;
-    bgtile = game.add.sprite(288, 0, 'walls');
-    bgtile.frame = 6;
-    bgtile = game.add.sprite(320, 0, 'walls');
-    bgtile.frame = 0;
-    bgtile = game.add.sprite(352, 0, 'walls');
-    bgtile.frame = 3;
-
-    bgtile = game.add.sprite(0, 32, 'walls');
-    bgtile.frame = 4;
-    bgtile = game.add.sprite(0, 64, 'walls');
-    bgtile.frame = 4;
-    bgtile = game.add.sprite(0, 96, 'walls');
-    bgtile.frame = 4;
-    bgtile = game.add.sprite(0, 128, 'walls');
-    bgtile.frame = 4;
-    bgtile = game.add.sprite(0, 160, 'walls');
-    bgtile.frame = 4;
-    bgtile = game.add.sprite(0, 192, 'walls');
-    bgtile.frame = 4;
-    bgtile = game.add.sprite(0, 224, 'walls');
-    bgtile.frame = 4;
-    bgtile = game.add.sprite(0, 256, 'walls');
-    bgtile.frame = 4;
-    bgtile = game.add.sprite(0, 288, 'walls');
-    bgtile.frame = 4;
-
-    bgtile = game.add.sprite(352, 32, 'walls');
-    bgtile.frame = 5;
-    bgtile = game.add.sprite(352, 64, 'walls');
-    bgtile.frame = 5;
-    bgtile = game.add.sprite(352, 96, 'walls');
-    bgtile.frame = 5;
-    bgtile = game.add.sprite(352, 128, 'walls');
-    bgtile.frame = 5;
-    bgtile = game.add.sprite(352, 160, 'walls');
-    bgtile.frame = 5;
-    bgtile = game.add.sprite(352, 192, 'walls');
-    bgtile.frame = 5;
-    bgtile = game.add.sprite(352, 224, 'walls');
-    bgtile.frame = 5;
-    bgtile = game.add.sprite(352, 256, 'walls');
-    bgtile.frame = 5;
-    bgtile = game.add.sprite(352, 288, 'walls');
-    bgtile.frame = 5;
-
+    drawWalls();
+    
     lastLevel = Object.keys(levels).length;
 
 
@@ -292,8 +227,8 @@ function update() {
         updateControls();
         updatePlayer();
         updateEnemies();
-  //      console.log(obstacles);
-//        console.log(obstacles.checkAll('complete', 'true'));
+        //      console.log(obstacles);
+        //        console.log(obstacles.checkAll('complete', 'true'));
     }
 
     // This is a quick way to test any function by mapping it to the hack key
