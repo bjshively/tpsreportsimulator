@@ -80,9 +80,9 @@ function createObstacle(type) {
             this.animations.play('printing');
             this.animations.currentAnim.onComplete.add(function() {
                 this.animations.play('eject');
-                this.complete = true;
                 this.animations.currentAnim.onComplete.add(function() {
                     this.animations.play('done');
+                    this.complete = true;
                 }, this);
             }, this);
         }
@@ -96,7 +96,6 @@ function createObstacle(type) {
         desk.complete = false;
         desk.interact = function() {
             if (wasd.hackKey.isDown) {
-                this.complete = true;
                 this.animations.play('hacking');
                 this.animations.currentAnim.onComplete.add(function() {
                     this.animations.play('done');
