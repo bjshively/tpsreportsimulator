@@ -84,6 +84,7 @@ function createObstacle(type) {
                 }, this);
             }, this);
         }
+        printer.body.immovable = true;
 
     } else {
         // Create regular desks

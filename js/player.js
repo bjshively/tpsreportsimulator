@@ -46,6 +46,33 @@ function createPlayer() {
     player.animations.add(
         'attackleft', [19, 15], 7, false);
 
+    player.attack = function attack() {
+        // TODO: make this animation work
+        player.animations.play('attack' + player.lookDirection);
+        player.weapon.fire(
+            null,
+            game.input.activePointer.worldX - reticle.width / 2,
+            game.input.activePointer.worldY - reticle.height / 2
+        );
+    }
+
+
+    player.takeDamage = function (player, danger) {
+        if (!player.invincible) {
+            player.health -= danger.damage;
+
+            // Check to see if this hit kills the player
+            if (player.health <= 0) {
+                gameOver('GAME ERVER');
+
+            // If not, trigger temporary invincibility
+            } else {
+                makeInvincible();
+            }
+        }
+    }
+
+
     //Player is temporarily invincible upon spawning
     makeInvincible();
 }
@@ -107,35 +134,11 @@ function updatePlayer() {
     // SHOOTEMUP
     // game.input.onDown.add(fireBullet)
     if (wasd.pointer.isDown || wasd.space.isDown) {
-        fireBullet();
+        player.attack();
     }
 }
 
 
-function fireBullet() {
-    // TODO: make this animation work
-    player.animations.play('attack' + player.lookDirection);
-    player.weapon.fire(
-        null,
-        game.input.activePointer.worldX - reticle.width / 2,
-        game.input.activePointer.worldY - reticle.height / 2
-    );
-}
-
-function takeDamage(player, enemy) {
-    if (!player.invincible) {
-        player.health -= enemy.damage;
-
-        // Check to see if this hit kills the player
-        if (player.health <= 0) {
-            gameOver('GAME\nERVER');
-
-        // If not, trigger temporary invincibility
-        } else {
-            makeInvincible();
-        }
-    }
-}
 
 function makeInvincible() {
     player.invincible = true;

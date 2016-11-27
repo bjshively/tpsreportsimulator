@@ -103,7 +103,7 @@ function init() {}
 
 function create() {
     //  World Setup
-    game.world.setBounds(0, 0, 400, 300);
+    game.world.setBounds(0, 0, 384, 304);
     game.physics.startSystem(Phaser.Physics.ARCADE);
     bgtile = game.add.tileSprite(0, 0, game.world.bounds.width, game.world.height, 'background');
 
@@ -118,17 +118,60 @@ function create() {
     bgtile = game.add.sprite(128, 0, 'walls');
     bgtile.frame = 0;
     bgtile = game.add.sprite(160, 0, 'walls');
-    bgtile.frame = 0;
+    bgtile.frame = 6;
     bgtile = game.add.sprite(192, 0, 'walls');
     bgtile.frame = 6;
     bgtile = game.add.sprite(224, 0, 'walls');
-    bgtile.frame = 6;
-    bgtile = game.add.sprite(256, 0, 'walls');
     bgtile.frame = 0;
+    bgtile = game.add.sprite(256, 0, 'walls');
+    bgtile.frame = 6;
     bgtile = game.add.sprite(288, 0, 'walls');
+    bgtile.frame = 6;
+    bgtile = game.add.sprite(320, 0, 'walls');
+    bgtile.frame = 0;
+    bgtile = game.add.sprite(352, 0, 'walls');
     bgtile.frame = 3;
 
+    bgtile = game.add.sprite(0, 32, 'walls');
+    bgtile.frame = 4;
+    bgtile = game.add.sprite(0, 64, 'walls');
+    bgtile.frame = 4;
+    bgtile = game.add.sprite(0, 96, 'walls');
+    bgtile.frame = 4;
+    bgtile = game.add.sprite(0, 128, 'walls');
+    bgtile.frame = 4;
+    bgtile = game.add.sprite(0, 160, 'walls');
+    bgtile.frame = 4;
+    bgtile = game.add.sprite(0, 192, 'walls');
+    bgtile.frame = 4;
+    bgtile = game.add.sprite(0, 224, 'walls');
+    bgtile.frame = 4;
+    bgtile = game.add.sprite(0, 256, 'walls');
+    bgtile.frame = 4;
+    bgtile = game.add.sprite(0, 288, 'walls');
+    bgtile.frame = 4;
+
+    bgtile = game.add.sprite(352, 32, 'walls');
+    bgtile.frame = 5;
+    bgtile = game.add.sprite(352, 64, 'walls');
+    bgtile.frame = 5;
+    bgtile = game.add.sprite(352, 96, 'walls');
+    bgtile.frame = 5;
+    bgtile = game.add.sprite(352, 128, 'walls');
+    bgtile.frame = 5;
+    bgtile = game.add.sprite(352, 160, 'walls');
+    bgtile.frame = 5;
+    bgtile = game.add.sprite(352, 192, 'walls');
+    bgtile.frame = 5;
+    bgtile = game.add.sprite(352, 224, 'walls');
+    bgtile.frame = 5;
+    bgtile = game.add.sprite(352, 256, 'walls');
+    bgtile.frame = 5;
+    bgtile = game.add.sprite(352, 288, 'walls');
+    bgtile.frame = 5;
+
     lastLevel = Object.keys(levels).length;
+
 
     // Create object groups
     enemies = game.add.group();
@@ -254,15 +297,16 @@ function update() {
     // if (wasd.hackKey.isDown) {
     //     clearLevel();
     // }
+    updateHUD();
 
     game.physics.arcade.collide(player, obstacles, interactWithObstacle);
 
     game.physics.arcade.collide(obstacles, obstacles);
     game.physics.arcade.collide(enemies, enemies);
     game.physics.arcade.overlap(player, items, collectItem);
-    game.physics.arcade.overlap(player, obstacles, hackHelp);
+    game.physics.arcade.collide(player, obstacles, showHelpText);
     game.physics.arcade.collide(player.weapon.bullets, enemies, damageEnemy);
-    game.physics.arcade.collide(player, enemies, takeDamage);
+    game.physics.arcade.collide(player, enemies, player.takeDamage);
     // TODO: enemies still go through obstacles
     game.physics.arcade.collide(enemies, obstacles);
     game.physics.arcade.overlap(player.weapon.bullets, obstacles, killBullet);
@@ -271,10 +315,6 @@ function update() {
 
     game.physics.arcade.collide(player, printer);
 
-    scoreText.text = 'Score: ' + player.score;
-    healthText.text = 'Health: ' + player.health;
-    levelText.text = 'Level: ' + player.level;
-    currentWeapon.loadTexture(player.weapon.icon);
 }
 
 //*********************************
@@ -282,11 +322,6 @@ function update() {
 //*********************************
 function killBullet(bullet) {
     bullet.kill();
-}
-
-function hackHelp() {
-    helpText.visible = true;
-    helpText.text = 'Press \'E\' to hack';
 }
 
 function interactWithObstacle(player, desk) {
@@ -355,6 +390,20 @@ function createLevel(level) {
             }
         }
     }
+}
+
+function updateHUD() {
+    scoreText.text = 'Score: ' + player.score;
+    healthText.text = 'Health: ' + player.health;
+    levelText.text = 'Level: ' + player.level;
+    currentWeapon.loadTexture(player.weapon.icon);
+
+}
+
+function showHelpText(message, duration) {
+    console.log(1);
+    helpText.visible = true;
+    helpText.text = message;
 }
 
 function render() {
