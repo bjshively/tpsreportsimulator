@@ -41,7 +41,7 @@ var levels = {
             1: 4
         },
         'obstacles': {
-            'desk': 4,
+            'desk': 4
         }
     },
     5: {
@@ -60,7 +60,7 @@ var levels = {
             2: 1
         },
         'obstacles': {
-            'desk': 3,
+            'desk': 3
         }
     }
 }
@@ -96,7 +96,7 @@ function drawLevel() {
         for (var j = 0; j < wallsArray[i].length; j++) {
             x = j * 32;
             if (wallsArray[i][j] == t) {
-                var element = game.rnd.integerInRange(1, 5);
+                // var element = game.rnd.integerInRange(1, 5);
                 // switch (element) {
                 //     case 1: createObstacle('desk', x, y); break;
                 //     case 2:
@@ -165,5 +165,13 @@ function drawLevel() {
             }, this);
         }
     }
+
+    elevator.close = function() {
+        if (player.level > 1) {
+            this.frame = 16;
+        }
+        this.animations.play('close');
+    }
+
     walls.setAll('body.immovable', true);
 }

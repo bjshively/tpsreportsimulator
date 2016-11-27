@@ -355,7 +355,16 @@ function createLevel(level) {
             createEnemy('1', 2, 1);
         }
         for (var i = 0; i < currentLevelEnemies[2]; i++) {
-            createEnemy('1', 2, 1);
+            createEnemy('2', 3, 1);
+        }
+        for (var i = 0; i < currentLevelEnemies[3]; i++) {
+            createEnemy('3', 4, 2);
+        }
+        for (var i = 0; i < currentLevelEnemies[4]; i++) {
+            createEnemy('4', 5, 3);
+        }
+        for (var i = 0; i < currentLevelEnemies[5]; i++) {
+            createEnemy('5', 6, 4);
         }
 
         for (obstacle in currentLevelObstacles) {
