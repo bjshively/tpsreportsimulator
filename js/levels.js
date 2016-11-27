@@ -11,8 +11,8 @@ var levels = {
     },
     2: {
         'enemies': {
-            1: 5,
-            2: 3
+            1: 7,
+            2: 10
         },
         'obstacles': {
             'desk': 2,

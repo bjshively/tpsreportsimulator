@@ -1,6 +1,9 @@
 // TODO: Add leveling (keep same logic for now)
 // TODO: more pick ups
 
+/* TODO: 
+ 
+ */
 var game = new Phaser.Game(320, 240, Phaser.AUTO, 'game', {
     preload: preload,
     init: init,
@@ -27,6 +30,7 @@ WebFontConfig = {
 
 //Toggle debug information
 var run_debug = false;
+
 var timeCounter = 0;
 var currentTime = 0;
 var graphics;
@@ -38,6 +42,8 @@ var items;
 var printer;
 var wasd;
 var reticle;
+
+var lastLevel;
 
 var scoreText;
 var healthText;
@@ -100,28 +106,30 @@ function create() {
     game.world.setBounds(0, 0, 400, 300);
     game.physics.startSystem(Phaser.Physics.ARCADE);
     bgtile = game.add.tileSprite(0, 0, game.world.bounds.width, game.world.height, 'background');
-    
-    bgtile = game.add.sprite(0,0, 'walls');
+
+    bgtile = game.add.sprite(0, 0, 'walls');
     bgtile.frame = 2;
-    bgtile = game.add.sprite(32,0, 'walls');
+    bgtile = game.add.sprite(32, 0, 'walls');
     bgtile.frame = 0;
-    bgtile = game.add.sprite(64,0, 'walls');
+    bgtile = game.add.sprite(64, 0, 'walls');
     bgtile.frame = 6;
-    bgtile = game.add.sprite(96,0, 'walls');
+    bgtile = game.add.sprite(96, 0, 'walls');
     bgtile.frame = 6;
-    bgtile = game.add.sprite(128,0, 'walls');
+    bgtile = game.add.sprite(128, 0, 'walls');
     bgtile.frame = 0;
-    bgtile = game.add.sprite(160,0, 'walls');
+    bgtile = game.add.sprite(160, 0, 'walls');
     bgtile.frame = 0;
-    bgtile = game.add.sprite(192,0, 'walls');
+    bgtile = game.add.sprite(192, 0, 'walls');
     bgtile.frame = 6;
-    bgtile = game.add.sprite(224,0, 'walls');
+    bgtile = game.add.sprite(224, 0, 'walls');
     bgtile.frame = 6;
-    bgtile = game.add.sprite(256,0, 'walls');
+    bgtile = game.add.sprite(256, 0, 'walls');
     bgtile.frame = 0;
-    bgtile = game.add.sprite(288,0, 'walls');
+    bgtile = game.add.sprite(288, 0, 'walls');
     bgtile.frame = 3;
-    
+
+    lastLevel = Object.keys(levels).length;
+
     // Create object groups
     enemies = game.add.group();
     items = game.add.group();
@@ -230,7 +238,7 @@ function create() {
     // don't mess with these numbers they're kinda confusing
     blood.minParticleSpeed.setTo(-75, -150);
     blood.maxParticleSpeed.setTo(75, 1);
-    
+
     graphics = game.add.graphics(100, 100);
 
 }
@@ -242,6 +250,10 @@ function update() {
         updatePlayer();
         updateEnemies();
     }
+
+    // if (wasd.hackKey.isDown) {
+    //     clearLevel();
+    // }
 
     game.physics.arcade.collide(player, obstacles, interactWithObstacle);
 
@@ -315,18 +327,32 @@ function gameOver(message) {
 //     selectedWeapon.fixedToCamera = true;
 // }
 
+function clearLevel() {
+    // Clear obstacles and items
+    obstacles.removeAll();
+    items.removeAll();
+}
+
 function createLevel(level) {
-    level1 = levels[player.level];
-    l1enemies = level1['enemies'];
-    l1obstacles = level1['obstacles'];
+    clearLevel();
+    console.log(lastLevel);
+    console.log(player.level);
+    if (player.level > lastLevel) {
+        gameOver('YOU WIN');
+    } else {
 
-    for (var i = 0; i < l1enemies[1]; i++) {
-        createEnemy(2, 1);
-    }
+        var currentLevel = levels[player.level];
+        var currentLevelEnemies = currentLevel['enemies'];
+        var currentLevelObstacles = currentLevel['obstacles'];
 
-    for (obstacle in l1obstacles) {
-        for (var i = 0; i < l1obstacles[obstacle]; i++) {
-            createObstacle(obstacle);
+        for (var i = 0; i < currentLevelEnemies[1]; i++) {
+            createEnemy(2, 1);
+        }
+
+        for (obstacle in currentLevelObstacles) {
+            for (var i = 0; i < currentLevelObstacles[obstacle]; i++) {
+                createObstacle(obstacle);
+            }
         }
     }
 }

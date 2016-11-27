@@ -17,9 +17,19 @@ function createEnemies(level) {
 
 function updateEnemies() {
     // Check to see if all enemies are dead
+
+    // TODO: This code should really live somewhere else.
+    // Still need to create a GameManager.js or something similar.
+
     if (enemies.countLiving() == 0) {
+        // TODO: Need to write a function to see if all things have been hacked
+        // As that is also level-complete criteria
+
+        // If all the enemies are dead, advance to the next level
         player.level += 1;
-        gameOver('YOU WIN');
+        createLevel();
+
+        //gameOver('YOU WIN');
     } else {
         enemies.forEachAlive(moveEnemy, this, true);
     }
