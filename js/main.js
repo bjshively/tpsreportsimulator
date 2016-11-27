@@ -102,12 +102,13 @@ function init() {}
 function create() {
     //  World Setup
     game.add.graphics(0, 0);
+    // Try to keep in multiples of 32 for permiter sprites
     game.world.setBounds(0, 0, 352, 304);
     game.physics.startSystem(Phaser.Physics.ARCADE);
 
     drawWalls();
 
-    
+
     lastLevel = Object.keys(levels).length;
 
 
@@ -250,6 +251,7 @@ function update() {
     game.physics.arcade.collide(player, enemies, player.takeDamage);
     // TODO: enemies still go through obstacles
     game.physics.arcade.collide(enemies, obstacles);
+    game.physics.arcade.collide(enemies, walls);
     game.physics.arcade.overlap(player.weapon.bullets, obstacles, killBullet);
     // TODO: LOLOL this kills printer
     // game.physics.arcade.overlap(player.weapon.bullets, printer, killBullet);
