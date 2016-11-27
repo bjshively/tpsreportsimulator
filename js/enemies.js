@@ -1,6 +1,6 @@
 // TODO: allow enemies to shoot
-// TODO: add enemy area of attention - invisible circle
 // TODO: Define enemy types/stats (i.e. 1 - slow, 1 hit, 2 - medium, 2 hits, 3 - fast, many hits)
+// TODO: Consider making enemy follow distance vary (i.e. harder enemies follow from further away?)
 
 // ENEMY STORY TODO
 // enemy1 has only melee, enemy2 has stapler, +
@@ -22,14 +22,11 @@ function updateEnemies() {
     // Still need to create a GameManager.js or something similar.
 
     if (enemies.countLiving() == 0 && obstacles.checkAll('complete', true)) {
-        // TODO: Need to write a function to see if all things have been hacked
-        // As that is also level-complete criteria
 
-        // If all the enemies are dead, advance to the next level
+        // If all enemies are dead and obstacles are hacked, advance to the next level
         player.level += 1;
         createLevel();
-
-        //gameOver('YOU WIN');
+        
     } else {
         enemies.forEachAlive(moveEnemy, this, true);
     }
@@ -72,7 +69,7 @@ function moveEnemy(enemy) {
 
     if (!enemy.following) {
         moveRandomly(enemy);
-        
+
         // Animations
         if (Math.abs(enemy.ySpeed) > Math.abs(enemy.xSpeed)) {
             if (enemy.ySpeed < 0) {
