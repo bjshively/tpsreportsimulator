@@ -36,7 +36,7 @@ function createPlayer() {
     player.standingFrames['right'] = 5;
     player.standingFrames['down'] = 10;
     player.standingFrames['left'] = 15;
-    
+
     player.animations.add(
         'attackup', [4, 0], 7, false);
     player.animations.add(
@@ -57,7 +57,7 @@ function createPlayer() {
     }
 
 
-    player.takeDamage = function (player, danger) {
+    player.takeDamage = function(player, danger) {
         if (!player.invincible) {
             player.health -= danger.damage;
 
@@ -65,16 +65,20 @@ function createPlayer() {
             if (player.health <= 0) {
                 gameOver('GAME ERVER');
 
-            // If not, trigger temporary invincibility
+                // If not, trigger temporary invincibility
             } else {
-                makeInvincible();
+                player.makeInvincible();
             }
         }
     }
 
-
+    player.makeInvincible = function() {
+            player.invincible = true;
+            player.invincibleTime = game.time.now + 2500;
+        }
+    
     //Player is temporarily invincible upon spawning
-    makeInvincible();
+    player.makeInvincible();
 }
 
 function updatePlayer() {
@@ -136,11 +140,4 @@ function updatePlayer() {
     if (wasd.pointer.isDown || wasd.space.isDown) {
         player.attack();
     }
-}
-
-
-
-function makeInvincible() {
-    player.invincible = true;
-    player.invincibleTime = game.time.now + 2500;
 }

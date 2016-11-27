@@ -343,6 +343,7 @@ function createLevel(level) {
         var currentLevel = levels[player.level];
         var currentLevelEnemies = currentLevel['enemies'];
         var currentLevelObstacles = currentLevel['obstacles'];
+        player.makeInvincible();
 
         for (var i = 0; i < currentLevelEnemies[1]; i++) {
             createEnemy(2, 1);
@@ -365,7 +366,6 @@ function updateHUD() {
 }
 
 function showHelpText(message, duration) {
-    console.log(1);
     helpText.visible = true;
     helpText.text = message;
 }
