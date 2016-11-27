@@ -10,7 +10,7 @@ Click to shoot.
 
 ## Objective
 
-Kill the evil corporate opressors. Hack the computers. Don't die.
+Kill the evil corporate oppressors. Hack the computers. Don't die.
 
 ## Credits
 
