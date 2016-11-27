@@ -28,6 +28,7 @@ WebFontConfig = {
 //Toggle debug information
 var run_debug = false;
 
+var gameStarted = false;
 var timeCounter = 0;
 var currentTime = 0;
 var graphics;
@@ -177,7 +178,8 @@ function create() {
 
     helpText = game.add.text(0, 0, '', {
         font: '14px VT323',
-        fill: '#fff'
+        fill: '#fff',
+        align: 'center'
     });
     helpText.stroke = '#000';
     helpText.strokeThickness = 3;
@@ -225,39 +227,61 @@ function create() {
 }
 
 function update() {
-    // Only perform player actions if the player is alive
-    if (player.alive) {
-        updateControls();
-        updatePlayer();
-        updateEnemies();
-        //      console.log(obstacles);
-        //        console.log(obstacles.checkAll('complete', 'true'));
+
+    // Start menu
+    if (!gameStarted) {
+        enemies.visible = false;
+        obstacles.visible = false;
+        reticle.visible = false;
+        player.visible = false;
+        showHelpText('Kill the enemies.\nPress \'E\' to hack terminals.\nDon\'t die.\nPress SPACE to start.\n\n',100000)
+        // Display menu/instructions
+
+        //Start game
+        if (wasd.space.isDown) {
+            gameStarted = true;
+            enemies.visible = true;
+            obstacles.visible = true;
+            reticle.visible = true;
+            player.visible = true;
+            helpText.visible = false;
+        }
+    } else {
+
+        // Only perform player actions if the player is alive
+        if (player.alive) {
+            updateControls();
+            updatePlayer();
+            updateEnemies();
+            //      console.log(obstacles);
+            //        console.log(obstacles.checkAll('complete', 'true'));
+        }
+
+        // This is a quick way to test any function by mapping it to the hack key
+        // if (wasd.hackKey.isDown) {
+        //     clearLevel();
+        // }
+        updateHUD();
+
+        game.physics.arcade.collide(player, obstacles, interactWithObstacle);
+        game.physics.arcade.collide(player, walls);
+
+        game.physics.arcade.collide(obstacles, obstacles);
+        game.physics.arcade.collide(enemies, enemies);
+        game.physics.arcade.overlap(player, items, collectItem);
+        //game.physics.arcade.collide(player, obstacles, showHelpText);
+        game.physics.arcade.collide(player.weapon.bullets, enemies, damageEnemy);
+        game.physics.arcade.collide(player, enemies, player.takeDamage);
+        // TODO: enemies still go through obstacles
+        game.physics.arcade.collide(enemies, obstacles);
+        game.physics.arcade.collide(enemies, walls);
+        game.physics.arcade.overlap(player.weapon.bullets, obstacles, killBullet);
+        // TODO: LOLOL this kills printer
+        // game.physics.arcade.overlap(player.weapon.bullets, printer, killBullet);
+
+        game.physics.arcade.collide(player, printer);
+
     }
-
-    // This is a quick way to test any function by mapping it to the hack key
-    // if (wasd.hackKey.isDown) {
-    //     clearLevel();
-    // }
-    updateHUD();
-
-    game.physics.arcade.collide(player, obstacles, interactWithObstacle);
-    game.physics.arcade.collide(player, walls);
-
-    game.physics.arcade.collide(obstacles, obstacles);
-    game.physics.arcade.collide(enemies, enemies);
-    game.physics.arcade.overlap(player, items, collectItem);
-    //game.physics.arcade.collide(player, obstacles, showHelpText);
-    game.physics.arcade.collide(player.weapon.bullets, enemies, damageEnemy);
-    game.physics.arcade.collide(player, enemies, player.takeDamage);
-    // TODO: enemies still go through obstacles
-    game.physics.arcade.collide(enemies, obstacles);
-    game.physics.arcade.collide(enemies, walls);
-    game.physics.arcade.overlap(player.weapon.bullets, obstacles, killBullet);
-    // TODO: LOLOL this kills printer
-    // game.physics.arcade.overlap(player.weapon.bullets, printer, killBullet);
-
-    game.physics.arcade.collide(player, printer);
-
 }
 
 //*********************************
