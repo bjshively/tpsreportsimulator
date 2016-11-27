@@ -1,14 +1,12 @@
 function createPlayer() {
     player = game.add.sprite(0, 0, 'player');
-    player.position.setTo(
-        game.world.centerX - player.width / 2, game.world.centerY - player.height / 2
-    );
+    player.anchor.setTo(0.5, 0.5);
+    player.position.setTo(game.world.centerX, game.world.centerY);
 
     game.physics.arcade.enable(player);
     player.body.collideWorldBounds = true;
     // set collider box to waist down
     player.body.setSize(player.width, player.height / 2, 0, player.height / 2);
-    player.anchor.setTo(0.5, 0.5);
     game.camera.follow(player);
 
 

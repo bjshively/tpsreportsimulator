@@ -107,11 +107,9 @@ function create() {
     game.world.setBounds(0, 0, 352, 288);
     game.physics.startSystem(Phaser.Physics.ARCADE);
 
-    drawWalls();
-
-
     lastLevel = Object.keys(levels).length;
 
+    bgtile = game.add.tileSprite(0, 0, game.world.bounds.width, game.world.height, 'background');
 
     // Create object groups
     enemies = game.add.group();
@@ -122,6 +120,9 @@ function create() {
     items.enableBody = true;
     obstacles.enableBody = true;
     walls.enableBody = true;
+    enemies.sort();
+    obstacles.sort();
+    
 
     // create all the things
     createControls();
@@ -282,7 +283,8 @@ function update() {
         // game.physics.arcade.overlap(player.weapon.bullets, printer, killBullet);
 
         game.physics.arcade.collide(player, printer);
-
+        obstacles.sort('y', Phaser.Group.SORT_ASCENDING);
+        enemies.sort('y', Phaser.Group.SORT_ASCENDING);
     }
 }
 
@@ -335,6 +337,7 @@ function clearLevel() {
     // Clear obstacles and items
     obstacles.removeAll();
     items.removeAll();
+    walls.removeAll();
 }
 
 function createLevel(level) {
@@ -342,6 +345,7 @@ function createLevel(level) {
     if (player.level > lastLevel) {
         gameOver('YOU WIN');
     } else {
+        drawLevel();
         var currentLevel = levels[player.level];
         var currentLevelEnemies = currentLevel['enemies'];
         var currentLevelObstacles = currentLevel['obstacles'];
@@ -353,10 +357,17 @@ function createLevel(level) {
 
         for (obstacle in currentLevelObstacles) {
             for (var i = 0; i < currentLevelObstacles[obstacle]; i++) {
-                createObstacle(obstacle);
+                createObstacle(
+                    obstacle,
+                    game.rnd.integerInRange(32, 288),
+                    game.rnd.integerInRange(32, 200)
+                );
             }
         }
     }
+
+
+
 }
 
 function updateHUD() {

@@ -6,6 +6,7 @@ var levels = {
         },
         'obstacles': {
             'desk': 3,
+            'deskWithPrinter': 1,
             'printer': 1
         }
     },
@@ -16,6 +17,7 @@ var levels = {
         },
         'obstacles': {
             'desk': 2,
+            'deskWithPrinter': 1,
             'printer': 1
         }
     }
@@ -23,33 +25,54 @@ var levels = {
 
 var elevator;
 
-function drawWalls() {
-    bgtile = game.add.tileSprite(0, 0, game.world.bounds.width, game.world.height, 'background');
+function drawLevel() {
+    // bgtile = game.add.tileSprite(0, 0, game.world.bounds.width, game.world.height, 'background');
 
     walls = game.add.group();
     walls.enableBody = true;
 
     var o = null;
+    var t = 'taken';
     var wallsArray = [
         [0, 4, 9, 9, 5, o, 5, 9, 9, 4, 1],
         [6, o, o, o, o, o, o, o, o, o, 7],
+        [6, o, t, t, t, o, t, t, t, o, 7],
         [6, o, o, o, o, o, o, o, o, o, 7],
+        [6, o, t, t, t, o, t, t, t, o, 7],
         [6, o, o, o, o, o, o, o, o, o, 7],
-        [6, o, o, o, o, o, o, o, o, o, 7],
-        [6, o, o, o, o, o, o, o, o, o, 7],
-        [6, o, o, o, o, o, o, o, o, o, 7],
+        [6, o, t, t, t, o, t, t, t, o, 7],
         [6, o, o, o, o, o, o, o, o, o, 7],
         [2, 8, 8, 8, 8, 8, 8, 8, 8, 8, 3],
     ]
 
     var x = 0;
     var y = 0;
+    var printerExists = false;
     for (var i = 0; i < wallsArray.length; i++) {
         y = i * 32;
 
         for (var j = 0; j < wallsArray[i].length; j++) {
             x = j * 32;
-            if (wallsArray[i][j] != null) {
+            if (wallsArray[i][j] == t) {
+            //     var element = game.rnd.integerInRange(1, 5);
+            //     switch (element) {
+            //         case 1: createObstacle('desk', x, y); break;
+            //         case 2:
+            //             if (!printerExists) {
+            //                 createObstacle('printer', x, y); 
+            //                 printerExists = true;
+            //                 break;
+            //             }
+            //         case 3: 
+            //             if (!printerExists) {
+            //                 createObstacle('deskWithPrinter', x, y);
+            //                 break;
+            //             }
+            //         case 4: createEnemy(2, 1); break;
+            //         case 6, 7, 8, 9, 10: break; // leave space empty
+                    
+            //     }
+            } else if (wallsArray[i][j] != null) {
                 bgtile = walls.create(x, y, 'walls');
                 bgtile.frame = wallsArray[i][j];
 
@@ -70,6 +93,8 @@ function drawWalls() {
         'ready', Phaser.Animation.generateFrameNames('walls ', 11, 11, '.ase'), 1, false);
     elevator.animations.add(
         'open', Phaser.Animation.generateFrameNames('walls ', 12, 16, '.ase'), 5, false);
+    elevator.animations.add(
+        'close', Phaser.Animation.generateFrameNames('walls ', 10, 16, '.ase').reverse(), 5, false);
     elevator.open = function () {
         if (!elevator.ready) {
             elevator.ready = true;
@@ -80,6 +105,8 @@ function drawWalls() {
             }, this);
         }
     }
+    walls.setAll('body.immovable', true);
+
 
 
     // bgtile = walls.create(0, 0, 'walls');
@@ -143,5 +170,4 @@ function drawWalls() {
     // bgtile = walls.create(320, 288, 'walls');
     // bgtile.frame = 5;
 
-    walls.setAll('body.immovable', true);
 }

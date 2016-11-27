@@ -39,7 +39,7 @@ function updateEnemies() {
 function moveEnemy(enemy) {
 
     // Enemies will follow the player if he gets too close
-    if (game.physics.arcade.distanceToXY(enemy, player.x, player.y) < 100) {
+    if (game.physics.arcade.distanceToXY(enemy, player.x, player.y) < enemy.detection) {
         enemy.following = true;
     } else {
         // If the enemy was previously following the player,
@@ -130,11 +130,13 @@ function createEnemy(health, damage) {
     game.physics.arcade.enable(enemy);
     enemy.body.mass = -50;
     enemy.body.collideWorldBounds = true;
+    // enemy.body.setSize(enemy.width, enemy.height / 2, 0, enemy.height / 2);
     enemy.anchor.setTo(0.5, 0.5);
     enemy.speed = 1; //game.rnd.integerInRange(50, 100);
     enemy.health = health;
     enemy.damage = damage;
     enemy.maxSpeed = 50;
+    enemy.detection = 10;
     //enemy.movement = game.rnd.integerInRange(100, 300);
     enemy.moveCounter = 0;
     enemy.xSpeed = game.rnd.integerInRange(-100, 100);
