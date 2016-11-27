@@ -73,7 +73,7 @@
    },
    {
     "filename": "desk 8.ase",
-    "frame": { "x": 256, "y": 0, "w": 32, "h": 39 },
+    "frame": { "x": 0, "y": 39, "w": 32, "h": 39 },
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 39 },
@@ -82,7 +82,7 @@
    },
    {
     "filename": "desk 9.ase",
-    "frame": { "x": 288, "y": 0, "w": 32, "h": 39 },
+    "frame": { "x": 32, "y": 39, "w": 32, "h": 39 },
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 39 },
@@ -91,7 +91,7 @@
    },
    {
     "filename": "desk 10.ase",
-    "frame": { "x": 320, "y": 0, "w": 32, "h": 39 },
+    "frame": { "x": 64, "y": 39, "w": 32, "h": 39 },
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 39 },
@@ -100,7 +100,7 @@
    },
    {
     "filename": "desk 11.ase",
-    "frame": { "x": 352, "y": 0, "w": 32, "h": 39 },
+    "frame": { "x": 96, "y": 39, "w": 32, "h": 39 },
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 39 },
@@ -109,7 +109,7 @@
    },
    {
     "filename": "desk 12.ase",
-    "frame": { "x": 384, "y": 0, "w": 32, "h": 39 },
+    "frame": { "x": 128, "y": 39, "w": 32, "h": 39 },
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 39 },
@@ -118,7 +118,7 @@
    },
    {
     "filename": "desk 13.ase",
-    "frame": { "x": 416, "y": 0, "w": 32, "h": 39 },
+    "frame": { "x": 160, "y": 39, "w": 32, "h": 39 },
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 39 },
@@ -127,7 +127,7 @@
    },
    {
     "filename": "desk 14.ase",
-    "frame": { "x": 448, "y": 0, "w": 32, "h": 39 },
+    "frame": { "x": 192, "y": 39, "w": 32, "h": 39 },
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 39 },
@@ -136,7 +136,7 @@
    },
    {
     "filename": "desk 15.ase",
-    "frame": { "x": 480, "y": 0, "w": 32, "h": 39 },
+    "frame": { "x": 224, "y": 39, "w": 32, "h": 39 },
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 39 },
@@ -145,7 +145,7 @@
    },
    {
     "filename": "desk 16.ase",
-    "frame": { "x": 512, "y": 0, "w": 32, "h": 39 },
+    "frame": { "x": 0, "y": 78, "w": 32, "h": 39 },
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 39 },
@@ -154,7 +154,7 @@
    },
    {
     "filename": "desk 17.ase",
-    "frame": { "x": 544, "y": 0, "w": 32, "h": 39 },
+    "frame": { "x": 32, "y": 78, "w": 32, "h": 39 },
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 39 },
@@ -163,7 +163,7 @@
    },
    {
     "filename": "desk 18.ase",
-    "frame": { "x": 576, "y": 0, "w": 32, "h": 39 },
+    "frame": { "x": 64, "y": 78, "w": 32, "h": 39 },
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 39 },
@@ -172,7 +172,7 @@
    },
    {
     "filename": "desk 19.ase",
-    "frame": { "x": 608, "y": 0, "w": 32, "h": 39 },
+    "frame": { "x": 96, "y": 78, "w": 32, "h": 39 },
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 39 },
@@ -181,7 +181,7 @@
    },
    {
     "filename": "desk 20.ase",
-    "frame": { "x": 640, "y": 0, "w": 32, "h": 39 },
+    "frame": { "x": 128, "y": 78, "w": 32, "h": 39 },
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 39 },
@@ -190,7 +190,7 @@
    },
    {
     "filename": "desk 21.ase",
-    "frame": { "x": 672, "y": 0, "w": 32, "h": 39 },
+    "frame": { "x": 160, "y": 78, "w": 32, "h": 39 },
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 39 },
@@ -199,7 +199,7 @@
    },
    {
     "filename": "desk 22.ase",
-    "frame": { "x": 704, "y": 0, "w": 32, "h": 39 },
+    "frame": { "x": 192, "y": 78, "w": 32, "h": 39 },
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 39 },
@@ -208,7 +208,7 @@
    },
    {
     "filename": "desk 23.ase",
-    "frame": { "x": 736, "y": 0, "w": 32, "h": 39 },
+    "frame": { "x": 224, "y": 78, "w": 32, "h": 39 },
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 39 },
@@ -217,7 +217,7 @@
    },
    {
     "filename": "desk 24.ase",
-    "frame": { "x": 768, "y": 0, "w": 32, "h": 39 },
+    "frame": { "x": 0, "y": 117, "w": 32, "h": 39 },
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 39 },
@@ -226,7 +226,7 @@
    },
    {
     "filename": "desk 25.ase",
-    "frame": { "x": 800, "y": 0, "w": 32, "h": 39 },
+    "frame": { "x": 32, "y": 117, "w": 32, "h": 39 },
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 39 },
@@ -235,7 +235,7 @@
    },
    {
     "filename": "desk 26.ase",
-    "frame": { "x": 832, "y": 0, "w": 32, "h": 39 },
+    "frame": { "x": 64, "y": 117, "w": 32, "h": 39 },
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 39 },
@@ -244,7 +244,7 @@
    },
    {
     "filename": "desk 27.ase",
-    "frame": { "x": 864, "y": 0, "w": 32, "h": 39 },
+    "frame": { "x": 96, "y": 117, "w": 32, "h": 39 },
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 39 },
@@ -253,7 +253,7 @@
    },
    {
     "filename": "desk 28.ase",
-    "frame": { "x": 896, "y": 0, "w": 32, "h": 39 },
+    "frame": { "x": 128, "y": 117, "w": 32, "h": 39 },
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 39 },
@@ -262,7 +262,7 @@
    },
    {
     "filename": "desk 29.ase",
-    "frame": { "x": 928, "y": 0, "w": 32, "h": 39 },
+    "frame": { "x": 160, "y": 117, "w": 32, "h": 39 },
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 39 },
@@ -271,7 +271,7 @@
    },
    {
     "filename": "desk 30.ase",
-    "frame": { "x": 960, "y": 0, "w": 32, "h": 39 },
+    "frame": { "x": 192, "y": 117, "w": 32, "h": 39 },
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 39 },
@@ -280,7 +280,7 @@
    },
    {
     "filename": "desk 31.ase",
-    "frame": { "x": 992, "y": 0, "w": 32, "h": 39 },
+    "frame": { "x": 224, "y": 117, "w": 32, "h": 39 },
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 39 },
@@ -289,7 +289,7 @@
    },
    {
     "filename": "desk 32.ase",
-    "frame": { "x": 1024, "y": 0, "w": 32, "h": 39 },
+    "frame": { "x": 0, "y": 156, "w": 32, "h": 39 },
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 39 },
@@ -298,7 +298,7 @@
    },
    {
     "filename": "desk 33.ase",
-    "frame": { "x": 1056, "y": 0, "w": 32, "h": 39 },
+    "frame": { "x": 32, "y": 156, "w": 32, "h": 39 },
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 39 },
@@ -307,7 +307,7 @@
    },
    {
     "filename": "desk 34.ase",
-    "frame": { "x": 1088, "y": 0, "w": 32, "h": 39 },
+    "frame": { "x": 64, "y": 156, "w": 32, "h": 39 },
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 39 },
@@ -316,7 +316,7 @@
    },
    {
     "filename": "desk 35.ase",
-    "frame": { "x": 1120, "y": 0, "w": 32, "h": 39 },
+    "frame": { "x": 96, "y": 156, "w": 32, "h": 39 },
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 39 },
@@ -325,7 +325,7 @@
    },
    {
     "filename": "desk 36.ase",
-    "frame": { "x": 1152, "y": 0, "w": 32, "h": 39 },
+    "frame": { "x": 128, "y": 156, "w": 32, "h": 39 },
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 39 },
@@ -334,7 +334,7 @@
    },
    {
     "filename": "desk 37.ase",
-    "frame": { "x": 1184, "y": 0, "w": 32, "h": 39 },
+    "frame": { "x": 160, "y": 156, "w": 32, "h": 39 },
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 39 },
@@ -343,7 +343,7 @@
    },
    {
     "filename": "desk 38.ase",
-    "frame": { "x": 1216, "y": 0, "w": 32, "h": 39 },
+    "frame": { "x": 192, "y": 156, "w": 32, "h": 39 },
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 39 },
@@ -352,7 +352,7 @@
    },
    {
     "filename": "desk 39.ase",
-    "frame": { "x": 1248, "y": 0, "w": 32, "h": 39 },
+    "frame": { "x": 224, "y": 156, "w": 32, "h": 39 },
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 39 },
@@ -361,7 +361,7 @@
    },
    {
     "filename": "desk 40.ase",
-    "frame": { "x": 1280, "y": 0, "w": 32, "h": 39 },
+    "frame": { "x": 0, "y": 195, "w": 32, "h": 39 },
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 39 },
@@ -370,7 +370,7 @@
    },
    {
     "filename": "desk 41.ase",
-    "frame": { "x": 1312, "y": 0, "w": 32, "h": 39 },
+    "frame": { "x": 32, "y": 195, "w": 32, "h": 39 },
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 39 },
@@ -379,7 +379,7 @@
    },
    {
     "filename": "desk 42.ase",
-    "frame": { "x": 1344, "y": 0, "w": 32, "h": 39 },
+    "frame": { "x": 64, "y": 195, "w": 32, "h": 39 },
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 39 },
@@ -388,7 +388,7 @@
    },
    {
     "filename": "desk 43.ase",
-    "frame": { "x": 1376, "y": 0, "w": 32, "h": 39 },
+    "frame": { "x": 96, "y": 195, "w": 32, "h": 39 },
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 39 },
@@ -397,7 +397,7 @@
    },
    {
     "filename": "desk 44.ase",
-    "frame": { "x": 1408, "y": 0, "w": 32, "h": 39 },
+    "frame": { "x": 128, "y": 195, "w": 32, "h": 39 },
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 39 },
@@ -406,7 +406,7 @@
    },
    {
     "filename": "desk 45.ase",
-    "frame": { "x": 1440, "y": 0, "w": 32, "h": 39 },
+    "frame": { "x": 160, "y": 195, "w": 32, "h": 39 },
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 39 },
@@ -415,7 +415,7 @@
    },
    {
     "filename": "desk 46.ase",
-    "frame": { "x": 1472, "y": 0, "w": 32, "h": 39 },
+    "frame": { "x": 192, "y": 195, "w": 32, "h": 39 },
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 39 },
@@ -424,7 +424,7 @@
    },
    {
     "filename": "desk 47.ase",
-    "frame": { "x": 1504, "y": 0, "w": 32, "h": 39 },
+    "frame": { "x": 224, "y": 195, "w": 32, "h": 39 },
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 39 },
@@ -433,7 +433,7 @@
    },
    {
     "filename": "desk 48.ase",
-    "frame": { "x": 1536, "y": 0, "w": 32, "h": 39 },
+    "frame": { "x": 0, "y": 234, "w": 32, "h": 39 },
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 39 },
@@ -442,7 +442,7 @@
    },
    {
     "filename": "desk 49.ase",
-    "frame": { "x": 1568, "y": 0, "w": 32, "h": 39 },
+    "frame": { "x": 32, "y": 234, "w": 32, "h": 39 },
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 39 },
@@ -451,7 +451,7 @@
    },
    {
     "filename": "desk 50.ase",
-    "frame": { "x": 1600, "y": 0, "w": 32, "h": 39 },
+    "frame": { "x": 64, "y": 234, "w": 32, "h": 39 },
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 39 },
@@ -460,7 +460,7 @@
    },
    {
     "filename": "desk 51.ase",
-    "frame": { "x": 1632, "y": 0, "w": 32, "h": 39 },
+    "frame": { "x": 96, "y": 234, "w": 32, "h": 39 },
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 39 },
@@ -469,7 +469,7 @@
    },
    {
     "filename": "desk 52.ase",
-    "frame": { "x": 1664, "y": 0, "w": 32, "h": 39 },
+    "frame": { "x": 128, "y": 234, "w": 32, "h": 39 },
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 39 },
@@ -478,7 +478,7 @@
    },
    {
     "filename": "desk 53.ase",
-    "frame": { "x": 1696, "y": 0, "w": 32, "h": 39 },
+    "frame": { "x": 160, "y": 234, "w": 32, "h": 39 },
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 39 },
@@ -487,7 +487,7 @@
    },
    {
     "filename": "desk 54.ase",
-    "frame": { "x": 1728, "y": 0, "w": 32, "h": 39 },
+    "frame": { "x": 192, "y": 234, "w": 32, "h": 39 },
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 39 },
@@ -496,7 +496,7 @@
    },
    {
     "filename": "desk 55.ase",
-    "frame": { "x": 1760, "y": 0, "w": 32, "h": 39 },
+    "frame": { "x": 224, "y": 234, "w": 32, "h": 39 },
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 39 },
@@ -505,7 +505,7 @@
    },
    {
     "filename": "desk 56.ase",
-    "frame": { "x": 1792, "y": 0, "w": 32, "h": 39 },
+    "frame": { "x": 0, "y": 273, "w": 32, "h": 39 },
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 39 },
@@ -514,7 +514,7 @@
    },
    {
     "filename": "desk 57.ase",
-    "frame": { "x": 1824, "y": 0, "w": 32, "h": 39 },
+    "frame": { "x": 32, "y": 273, "w": 32, "h": 39 },
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 39 },
@@ -523,7 +523,7 @@
    },
    {
     "filename": "desk 58.ase",
-    "frame": { "x": 1856, "y": 0, "w": 32, "h": 39 },
+    "frame": { "x": 64, "y": 273, "w": 32, "h": 39 },
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 39 },
@@ -532,7 +532,7 @@
    },
    {
     "filename": "desk 59.ase",
-    "frame": { "x": 1888, "y": 0, "w": 32, "h": 39 },
+    "frame": { "x": 96, "y": 273, "w": 32, "h": 39 },
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 39 },
@@ -541,7 +541,7 @@
    },
    {
     "filename": "desk 60.ase",
-    "frame": { "x": 1920, "y": 0, "w": 32, "h": 39 },
+    "frame": { "x": 128, "y": 273, "w": 32, "h": 39 },
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 39 },
@@ -550,7 +550,7 @@
    },
    {
     "filename": "desk 61.ase",
-    "frame": { "x": 1952, "y": 0, "w": 32, "h": 39 },
+    "frame": { "x": 160, "y": 273, "w": 32, "h": 39 },
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 39 },
@@ -563,7 +563,7 @@
   "version": "1.1.9",
   "image": "/Users/eric/Google Drive/GameShiz/mamp-serve/game-off-2016/assets/desk.png",
   "format": "RGBA8888",
-  "size": { "w": 1984, "h": 39 },
+  "size": { "w": 256, "h": 312 },
   "scale": "1",
   "frameTags": [
   ]

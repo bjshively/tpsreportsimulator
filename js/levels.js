@@ -1,24 +1,66 @@
+// LEVEL LAYOUT
+// base levels are x1 - 3
+// all base levels have at least 3 computers
+// levels x4 and x5 have 4 and 5 computers
+// a random computer in each level is a desk with/and printer
+// levels have enemies starting with 1
+// new enemies are introduced every 5 levels
+// levels 1 - 3 have 2 enemies
+// base levels have 3 level 1 enemies
+// 4 and 5 have 3 and 4 enemies, plus leveled enemies from previous levels
+
 var levels = {
     1: {
         'enemies': {
-            1: 5,
-            2: 3
+            1: 2
         },
         'obstacles': {
-            'desk': 3,
-            'deskWithPrinter': 1,
-            'printer': 1
+            'desk': 3
         }
     },
     2: {
         'enemies': {
-            1: 7,
-            2: 10
+            1: 2
+        },
+        'obstacles': {
+            'desk': 3
+        }
+    },
+    3: {
+        'enemies': {
+            1: 3
         },
         'obstacles': {
             'desk': 2,
             'deskWithPrinter': 1,
             'printer': 1
+        }
+    },
+    4: {
+        'enemies': {
+            1: 4
+        },
+        'obstacles': {
+            'desk': 4,
+        }
+    },
+    5: {
+        'enemies': {
+            1: 5
+        },
+        'obstacles': {
+            'desk': 4,
+            'deskWithPrinter': 1,
+            'printer': 1
+        }
+    },
+    6: {
+        'enemies': {
+            1: 3,
+            2: 1
+        },
+        'obstacles': {
+            'desk': 3,
         }
     }
 }
@@ -28,8 +70,8 @@ var elevator;
 function drawLevel() {
     // bgtile = game.add.tileSprite(0, 0, game.world.bounds.width, game.world.height, 'background');
 
-    walls = game.add.group();
-    walls.enableBody = true;
+    // walls = game.add.group();
+    // walls.enableBody = true;
 
     var o = null;
     var t = 'taken';
@@ -54,33 +96,51 @@ function drawLevel() {
         for (var j = 0; j < wallsArray[i].length; j++) {
             x = j * 32;
             if (wallsArray[i][j] == t) {
-            //     var element = game.rnd.integerInRange(1, 5);
-            //     switch (element) {
-            //         case 1: createObstacle('desk', x, y); break;
-            //         case 2:
-            //             if (!printerExists) {
-            //                 createObstacle('printer', x, y); 
-            //                 printerExists = true;
-            //                 break;
-            //             }
-            //         case 3: 
-            //             if (!printerExists) {
-            //                 createObstacle('deskWithPrinter', x, y);
-            //                 break;
-            //             }
-            //         case 4: createEnemy(2, 1); break;
-            //         case 6, 7, 8, 9, 10: break; // leave space empty
+                var element = game.rnd.integerInRange(1, 5);
+                // switch (element) {
+                //     case 1: createObstacle('desk', x, y); break;
+                //     case 2:
+                //         if (!printerExists) {
+                //             createObstacle('printer', x, y); 
+                //             printerExists = true;
+                //             break;
+                //         }
+                //     case 3: 
+                //         if (!printerExists) {
+                //             createObstacle('deskWithPrinter', x, y);
+                //             break;
+                //         }
+                //     case 4: createEnemy(2, 1); break;
+                //     case 6, 7, 8, 9, 10: break; // leave space empty
                     
-            //     }
+                // }
             } else if (wallsArray[i][j] != null) {
                 bgtile = walls.create(x, y, 'walls');
                 bgtile.frame = wallsArray[i][j];
 
-                if (wallsArray[i][j] == 4) {
+                // accommodate for corners
+                if (wallsArray[i][j] == 2) {
+                    bgtile.body.setSize(11, 32, 0, 0);
+                    bgtile = walls.create(x, y, 'walls');
+                    bgtile.frame = wallsArray[i][j];
+                    bgtile.body.setSize(32, 11, 0, 21);
+                }
+                if (wallsArray[i][j] == 3) {
+                    bgtile.body.setSize(32, 11, 21, 0);
+                    bgtile = walls.create(x, y, 'walls');
+                    bgtile.frame = wallsArray[i][j];
+                    bgtile.body.setSize(11, 32, 0, 21);
+                }
+
+                // accommodate for side and bottom
+                if (wallsArray[i][j] == 6) {
                     bgtile.body.setSize(11, 32, 0, 0);
                 }
-                if (wallsArray[i][j] == 5) {
+                if (wallsArray[i][j] == 7) {
                     bgtile.body.setSize(11, 32, 21, 0);
+                }
+                if (wallsArray[i][j] == 8) {
+                    bgtile.body.setSize(32, 11, 0, 21);
                 }
             }
         }
@@ -92,9 +152,9 @@ function drawLevel() {
     elevator.animations.add(
         'ready', Phaser.Animation.generateFrameNames('walls ', 11, 11, '.ase'), 1, false);
     elevator.animations.add(
-        'open', Phaser.Animation.generateFrameNames('walls ', 12, 16, '.ase'), 5, false);
+        'open', Phaser.Animation.generateFrameNames('walls ', 12, 16, '.ase'), 7, false);
     elevator.animations.add(
-        'close', Phaser.Animation.generateFrameNames('walls ', 10, 16, '.ase').reverse(), 5, false);
+        'close', Phaser.Animation.generateFrameNames('walls ', 10, 16, '.ase').reverse(), 7, false);
     elevator.open = function () {
         if (!elevator.ready) {
             elevator.ready = true;
@@ -106,68 +166,4 @@ function drawLevel() {
         }
     }
     walls.setAll('body.immovable', true);
-
-
-
-    // bgtile = walls.create(0, 0, 'walls');
-    // bgtile.frame = 2;
-    // bgtile = walls.create(32, 0, 'walls');
-    // bgtile.frame = 0;
-    // bgtile = walls.create(64, 0, 'walls');
-    // bgtile.frame = 6;
-    // bgtile = walls.create(96, 0, 'walls');
-    // bgtile.frame = 6;
-    // bgtile = walls.create(128, 0, 'walls');
-    // bgtile.frame = 1;
-    // bgtile = walls.create(160, 0, 'walls');
-    // bgtile.frame = 7;
-    // bgtile = walls.create(192, 0, 'walls');
-    // bgtile.frame = 1;
-    // bgtile = walls.create(224, 0, 'walls');
-    // bgtile.frame = 6;
-    // bgtile = walls.create(256, 0, 'walls');
-    // bgtile.frame = 6;
-    // bgtile = walls.create(288, 0, 'walls');
-    // bgtile.frame = 0;
-    // bgtile = walls.create(320, 0, 'walls');
-    // bgtile.frame = 3;
-    
-    // bgtile = walls.create(0, 32, 'walls');
-    // bgtile.frame = 4;
-    // bgtile = walls.create(0, 64, 'walls');
-    // bgtile.frame = 4;
-    // bgtile = walls.create(0, 96, 'walls');
-    // bgtile.frame = 4;
-    // bgtile = walls.create(0, 128, 'walls');
-    // bgtile.frame = 4;
-    // bgtile = walls.create(0, 160, 'walls');
-    // bgtile.frame = 4;
-    // bgtile = walls.create(0, 192, 'walls');
-    // bgtile.frame = 4;
-    // bgtile = walls.create(0, 224, 'walls');
-    // bgtile.frame = 4;
-    // bgtile = walls.create(0, 256, 'walls');
-    // bgtile.frame = 4;
-    // bgtile = walls.create(0, 288, 'walls');
-    // bgtile.frame = 4;
-
-    // bgtile = walls.create(320, 32, 'walls');
-    // bgtile.frame = 5;
-    // bgtile = walls.create(320, 64, 'walls');
-    // bgtile.frame = 5;
-    // bgtile = walls.create(320, 96, 'walls');
-    // bgtile.frame = 5;
-    // bgtile = walls.create(320, 128, 'walls');
-    // bgtile.frame = 5;
-    // bgtile = walls.create(320, 160, 'walls');
-    // bgtile.frame = 5;
-    // bgtile = walls.create(320, 192, 'walls');
-    // bgtile.frame = 5;
-    // bgtile = walls.create(320, 224, 'walls');
-    // bgtile.frame = 5;
-    // bgtile = walls.create(320, 256, 'walls');
-    // bgtile.frame = 5;
-    // bgtile = walls.create(320, 288, 'walls');
-    // bgtile.frame = 5;
-
 }

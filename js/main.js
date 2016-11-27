@@ -153,8 +153,8 @@ function create() {
     levelText.stroke = '#000';
     levelText.strokeThickness = 3;
     // align right
-    levelText.anchor.setTo(1, 0);
-    levelText.position.setTo(game.camera.width - 5, 5);
+    levelText.anchor.setTo(0, 1);
+    levelText.position.setTo(5, game.camera.height - 5);
     levelText.fixedToCamera = true;
 
     scoreText = game.add.text(0, 0, '', {
@@ -164,8 +164,8 @@ function create() {
     scoreText.stroke = '#000';
     scoreText.strokeThickness = 3;
     // align center
-    scoreText.anchor.setTo(0, 1);
-    scoreText.position.setTo(5, game.camera.height - 5);
+    scoreText.anchor.setTo(1, 0);
+    scoreText.position.setTo(game.camera.width - 5, 5);
     scoreText.fixedToCamera = true;
 
     gameOverText = game.add.text(0, 0, '', {
@@ -352,7 +352,10 @@ function createLevel(level) {
         player.makeInvincible();
 
         for (var i = 0; i < currentLevelEnemies[1]; i++) {
-            createEnemy(2, 1);
+            createEnemy('1', 2, 1);
+        }
+        for (var i = 0; i < currentLevelEnemies[2]; i++) {
+            createEnemy('1', 2, 1);
         }
 
         for (obstacle in currentLevelObstacles) {

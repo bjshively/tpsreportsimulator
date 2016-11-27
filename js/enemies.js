@@ -121,11 +121,11 @@ function moveRandomly(enemy) {
 }
 
 // Spawn an enemy
-function createEnemy(health, damage) {
+function createEnemy(enemyClass, health, damage) {
     var enemy = enemies.create(
-        Math.random() * game.world.width,
-        Math.random() * game.world.height,
-        'enemy' + game.rnd.integerInRange(1, 5)
+        game.rnd.integerInRange(32, 300),
+        game.rnd.integerInRange(32, 250),
+        'enemy' + enemyClass
     );
     game.physics.arcade.enable(enemy);
     enemy.body.mass = -50;
