@@ -188,7 +188,6 @@ function create() {
     createLevel(player.level);
 
     player.weapon = weaponStapler;
-
     ////////////////////////
     // HUD
     game.camera.follow(player, Phaser.Camera.FOLLOW_LOCKON, 0.1, 0.1);
@@ -292,15 +291,17 @@ function update() {
         updateControls();
         updatePlayer();
         updateEnemies();
+  //      console.log(obstacles);
+//        console.log(obstacles.checkAll('complete', 'true'));
     }
 
+    // This is a quick way to test any function by mapping it to the hack key
     // if (wasd.hackKey.isDown) {
     //     clearLevel();
     // }
     updateHUD();
 
     game.physics.arcade.collide(player, obstacles, interactWithObstacle);
-
     game.physics.arcade.collide(obstacles, obstacles);
     game.physics.arcade.collide(enemies, enemies);
     game.physics.arcade.overlap(player, items, collectItem);
@@ -370,12 +371,9 @@ function clearLevel() {
 
 function createLevel(level) {
     clearLevel();
-    console.log(lastLevel);
-    console.log(player.level);
     if (player.level > lastLevel) {
         gameOver('YOU WIN');
     } else {
-
         var currentLevel = levels[player.level];
         var currentLevelEnemies = currentLevel['enemies'];
         var currentLevelObstacles = currentLevel['obstacles'];

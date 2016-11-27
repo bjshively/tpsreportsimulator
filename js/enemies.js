@@ -21,7 +21,7 @@ function updateEnemies() {
     // TODO: This code should really live somewhere else.
     // Still need to create a GameManager.js or something similar.
 
-    if (enemies.countLiving() == 0) {
+    if (enemies.countLiving() == 0 && obstacles.checkAll('complete', true)) {
         // TODO: Need to write a function to see if all things have been hacked
         // As that is also level-complete criteria
 
