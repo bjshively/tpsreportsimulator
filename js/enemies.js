@@ -36,32 +36,58 @@ function updateEnemies() {
 }
 
 function moveEnemy(enemy) {
-    if (Math.abs(enemy.ySpeed) > Math.abs(enemy.xSpeed)) {
-        if (enemy.ySpeed < 0) {
-            enemy.animations.play('up');
-        } else {
-            enemy.animations.play('down');
-        }
+
+    // Enemies will follow the player if he gets too close
+    if (game.physics.arcade.distanceToXY(enemy, player.x, player.y) < 100) {
+        enemy.following = true;
     } else {
-        if (enemy.xSpeed < 0) {
-            enemy.animations.play('left');
+        // If the enemy was previously following the player,
+        // give the enemy new movement instructions
+        if (enemy.following == true) {
+
+        }
+        enemy.following = false;
+    }
+
+    // If player is within 100px, follow the player
+    // And play the appropriate facing animation
+    if (enemy.following) {
+        game.physics.arcade.moveToObject(enemy, player, enemy.maxSpeed);
+        var xDiff = player.x - enemy.x;
+        var yDiff = player.y - enemy.y;
+        if (Math.abs(xDiff) > Math.abs(yDiff)) {
+            if (xDiff >= 0) {
+                enemy.animations.play('right');
+            } else {
+                enemy.animations.play('left');
+            }
         } else {
-            enemy.animations.play('right');
+            if (yDiff >= 0) {
+                enemy.animations.play('down');
+            } else {
+                enemy.animations.play('up');
+            }
         }
     }
 
-    // Select a random direction if moveCounter is 0
-    if (enemy.moveCounter == 0) {
-        enemy.xSpeed = game.rnd.integerInRange(-1, 1) * enemy.maxSpeed;
-        enemy.ySpeed = game.rnd.integerInRange(-1, 1) * enemy.maxSpeed;
-        // enemy.direction = game.rnd.integerInRange(0, 5);
-        enemy.moveCounter = game.rnd.integerInRange(100, 300);
+    if (!enemy.following) {
+        moveRandomly(enemy);
+        
+        // Animations
+        if (Math.abs(enemy.ySpeed) > Math.abs(enemy.xSpeed)) {
+            if (enemy.ySpeed < 0) {
+                enemy.animations.play('up');
+            } else {
+                enemy.animations.play('down');
+            }
+        } else {
+            if (enemy.xSpeed < 0) {
+                enemy.animations.play('left');
+            } else {
+                enemy.animations.play('right');
+            }
+        }
     }
-
-    // Move enemy based on direction value and reduce moveCounter
-    enemy.body.velocity.x = enemy.xSpeed;
-    enemy.body.velocity.y = enemy.ySpeed;
-    enemy.moveCounter -= 1;
 }
 
 function damageEnemy(bullet, enemy) {
@@ -78,6 +104,19 @@ function damageEnemy(bullet, enemy) {
         enemy.kill();
         player.score += 1;
     }
+}
+
+function moveRandomly(enemy) {
+    if (enemy.moveCounter == 0) {
+        enemy.xSpeed = game.rnd.integerInRange(-1, 1) * enemy.maxSpeed;
+        enemy.ySpeed = game.rnd.integerInRange(-1, 1) * enemy.maxSpeed;
+        enemy.moveCounter = game.rnd.integerInRange(100, 300);
+    }
+
+    // Move enemy based on direction value and reduce moveCounter
+    enemy.body.velocity.x = enemy.xSpeed;
+    enemy.body.velocity.y = enemy.ySpeed;
+    enemy.moveCounter -= 1;
 }
 
 // Spawn an enemy

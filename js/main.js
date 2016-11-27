@@ -103,6 +103,7 @@ function init() {}
 
 function create() {
     //  World Setup
+    game.add.graphics(0, 0);
     game.world.setBounds(0, 0, 384, 304);
     game.physics.startSystem(Phaser.Physics.ARCADE);
     bgtile = game.add.tileSprite(0, 0, game.world.bounds.width, game.world.height, 'background');
