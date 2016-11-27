@@ -44,12 +44,14 @@ function createObstacle(type) {
         desk.complete = false;
         desk.interact = function() {
             if (!this.complete) {
-                this.animations.play('hacking');
-                this.animations.currentAnim.onComplete.add(function() {
-                    this.animations.play('done');
-                    this.complete = true;
-                    printer.interact();
-                }, this);
+                if (wasd.hackKey.isDown) {
+                    this.animations.play('hacking');
+                    this.animations.currentAnim.onComplete.add(function() {
+                        this.animations.play('done');
+                        this.complete = true;
+                        printer.interact();
+                    }, this);
+                }
             }
         }
         desk.animations.add('flicker', Phaser.Animation.generateFrameNames('deskWithPrinter ', 0, 15, '.ase'), 30, false);
@@ -92,11 +94,13 @@ function createObstacle(type) {
         desk.body.setSize(42, 29, 0, 3);
         desk.complete = false;
         desk.interact = function() {
-            this.complete = true;
-            this.animations.play('hacking');
-            this.animations.currentAnim.onComplete.add(function() {
-                this.animations.play('done');
-            }, this);
+            if (wasd.hackKey.isDown) {
+                this.complete = true;
+                this.animations.play('hacking');
+                this.animations.currentAnim.onComplete.add(function() {
+                    this.animations.play('done');
+                }, this);
+            }
         }
         desk.animations.add('flicker', Phaser.Animation.generateFrameNames('desk ', 0, 15, '.ase'), 30, false);
         desk.animations.add('hacking', Phaser.Animation.generateFrameNames('desk ', 16, 59, '.ase'), 30, false);
