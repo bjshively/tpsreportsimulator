@@ -104,7 +104,7 @@ function create() {
     //  World Setup
     game.add.graphics(0, 0);
     // Try to keep in multiples of 32 for permiter sprites
-    game.world.setBounds(0, 0, 352, 304);
+    game.world.setBounds(0, 0, 352, 288);
     game.physics.startSystem(Phaser.Physics.ARCADE);
 
     drawWalls();
@@ -117,9 +117,11 @@ function create() {
     enemies = game.add.group();
     items = game.add.group();
     obstacles = game.add.group();
+    walls = game.add.group();
     enemies.enableBody = true;
     items.enableBody = true;
     obstacles.enableBody = true;
+    walls.enableBody = true;
 
     // create all the things
     createControls();

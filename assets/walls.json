@@ -19,7 +19,7 @@
    },
    {
     "filename": "walls 2.ase",
-    "frame": { "x": 0, "y": 32, "w": 32, "h": 32 },
+    "frame": { "x": 64, "y": 0, "w": 32, "h": 32 },
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 32 },
@@ -28,7 +28,7 @@
    },
    {
     "filename": "walls 3.ase",
-    "frame": { "x": 32, "y": 32, "w": 32, "h": 32 },
+    "frame": { "x": 96, "y": 0, "w": 32, "h": 32 },
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 32 },
@@ -37,7 +37,7 @@
    },
    {
     "filename": "walls 4.ase",
-    "frame": { "x": 0, "y": 64, "w": 32, "h": 32 },
+    "frame": { "x": 0, "y": 32, "w": 32, "h": 32 },
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 32 },
@@ -46,7 +46,7 @@
    },
    {
     "filename": "walls 5.ase",
-    "frame": { "x": 32, "y": 64, "w": 32, "h": 32 },
+    "frame": { "x": 32, "y": 32, "w": 32, "h": 32 },
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 32 },
@@ -55,7 +55,7 @@
    },
    {
     "filename": "walls 6.ase",
-    "frame": { "x": 0, "y": 96, "w": 32, "h": 32 },
+    "frame": { "x": 64, "y": 32, "w": 32, "h": 32 },
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 32 },
@@ -64,7 +64,7 @@
    },
    {
     "filename": "walls 7.ase",
-    "frame": { "x": 32, "y": 96, "w": 32, "h": 32 },
+    "frame": { "x": 96, "y": 32, "w": 32, "h": 32 },
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 32 },
@@ -73,7 +73,7 @@
    },
    {
     "filename": "walls 8.ase",
-    "frame": { "x": 0, "y": 128, "w": 32, "h": 32 },
+    "frame": { "x": 0, "y": 64, "w": 32, "h": 32 },
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 32 },
@@ -82,7 +82,7 @@
    },
    {
     "filename": "walls 9.ase",
-    "frame": { "x": 32, "y": 128, "w": 32, "h": 32 },
+    "frame": { "x": 32, "y": 64, "w": 32, "h": 32 },
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 32 },
@@ -91,7 +91,7 @@
    },
    {
     "filename": "walls 10.ase",
-    "frame": { "x": 0, "y": 160, "w": 32, "h": 32 },
+    "frame": { "x": 64, "y": 64, "w": 32, "h": 32 },
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 32 },
@@ -100,7 +100,7 @@
    },
    {
     "filename": "walls 11.ase",
-    "frame": { "x": 32, "y": 160, "w": 32, "h": 32 },
+    "frame": { "x": 96, "y": 64, "w": 32, "h": 32 },
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 32 },
@@ -109,7 +109,7 @@
    },
    {
     "filename": "walls 12.ase",
-    "frame": { "x": 0, "y": 192, "w": 32, "h": 32 },
+    "frame": { "x": 0, "y": 96, "w": 32, "h": 32 },
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 32 },
@@ -118,7 +118,34 @@
    },
    {
     "filename": "walls 13.ase",
-    "frame": { "x": 32, "y": 192, "w": 32, "h": 32 },
+    "frame": { "x": 32, "y": 96, "w": 32, "h": 32 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 32 },
+    "sourceSize": { "w": 32, "h": 32 },
+    "duration": 100
+   },
+   {
+    "filename": "walls 14.ase",
+    "frame": { "x": 64, "y": 96, "w": 32, "h": 32 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 32 },
+    "sourceSize": { "w": 32, "h": 32 },
+    "duration": 100
+   },
+   {
+    "filename": "walls 15.ase",
+    "frame": { "x": 96, "y": 96, "w": 32, "h": 32 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 32 },
+    "sourceSize": { "w": 32, "h": 32 },
+    "duration": 100
+   },
+   {
+    "filename": "walls 16.ase",
+    "frame": { "x": 0, "y": 128, "w": 32, "h": 32 },
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 32 },
@@ -131,7 +158,7 @@
   "version": "1.1.9",
   "image": "/Users/eric/Google Drive/GameShiz/mamp-serve/game-off-2016/assets/walls.png",
   "format": "RGBA8888",
-  "size": { "w": 64, "h": 224 },
+  "size": { "w": 128, "h": 160 },
   "scale": "1",
   "frameTags": [
   ]

@@ -31,16 +31,15 @@ function drawWalls() {
 
     var o = null;
     var wallsArray = [
-        [2, 0, 6, 6, 1, o, 1, 6, 6, 0, 3],
-        [4, o, o, o, o, o, o, o, o, o, 5],
-        [4, o, o, o, o, o, o, o, o, o, 5],
-        [4, o, o, o, o, o, o, o, o, o, 5],
-        [4, o, o, o, o, o, o, o, o, o, 5],
-        [4, o, o, o, o, o, o, o, o, o, 5],
-        [4, o, o, o, o, o, o, o, o, o, 5],
-        [4, o, o, o, o, o, o, o, o, o, 5],
-        [4, o, o, o, o, o, o, o, o, o, 5],
-        [4, o, o, o, o, o, o, o, o, o, 5],
+        [0, 4, 9, 9, 5, o, 5, 9, 9, 4, 1],
+        [6, o, o, o, o, o, o, o, o, o, 7],
+        [6, o, o, o, o, o, o, o, o, o, 7],
+        [6, o, o, o, o, o, o, o, o, o, 7],
+        [6, o, o, o, o, o, o, o, o, o, 7],
+        [6, o, o, o, o, o, o, o, o, o, 7],
+        [6, o, o, o, o, o, o, o, o, o, 7],
+        [6, o, o, o, o, o, o, o, o, o, 7],
+        [2, 8, 8, 8, 8, 8, 8, 8, 8, 8, 3],
     ]
 
     var x = 0;
@@ -65,17 +64,21 @@ function drawWalls() {
     }
 
     elevator = walls.create(160, 0, 'walls');
-    elevator.frame = 7;
+    elevator.frame = 10;
+    elevator.ready = false;
     elevator.animations.add(
-        'ready', Phaser.Animation.generateFrameNames('walls ', 8, 8, '.ase'), 1, false);
+        'ready', Phaser.Animation.generateFrameNames('walls ', 11, 11, '.ase'), 1, false);
     elevator.animations.add(
-        'open', Phaser.Animation.generateFrameNames('walls ', 9, 13, '.ase'), 5, false);
+        'open', Phaser.Animation.generateFrameNames('walls ', 12, 16, '.ase'), 5, false);
     elevator.open = function () {
-        this.animations.play('ready');
-        this.animations.currentAnim.onComplete.add(function() {
-            this.animations.play('open');
-            this.body.setSize(32, 12, 0, 0);
-        }, this);
+        if (!elevator.ready) {
+            elevator.ready = true;
+            this.animations.play('ready');
+            this.animations.currentAnim.onComplete.add(function() {
+                this.animations.play('open');
+                this.body.setSize(32, 12, 0, 0);
+            }, this);
+        }
     }
 
 
