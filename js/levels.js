@@ -21,6 +21,8 @@ var levels = {
     }
 }
 
+var elevator;
+
 function drawWalls() {
     bgtile = game.add.tileSprite(0, 0, game.world.bounds.width, game.world.height, 'background');
 
@@ -29,7 +31,7 @@ function drawWalls() {
 
     var o = null;
     var wallsArray = [
-        [2, 0, 6, 6, 1, 7, 1, 6, 6, 0, 3],
+        [2, 0, 6, 6, 1, o, 1, 6, 6, 0, 3],
         [4, o, o, o, o, o, o, o, o, o, 5],
         [4, o, o, o, o, o, o, o, o, o, 5],
         [4, o, o, o, o, o, o, o, o, o, 5],
@@ -61,6 +63,21 @@ function drawWalls() {
             }
         }
     }
+
+    elevator = walls.create(160, 0, 'walls');
+    elevator.frame = 7;
+    elevator.animations.add(
+        'ready', Phaser.Animation.generateFrameNames('walls ', 7, 7, '.ase'), 1, false);
+    elevator.animations.add(
+        'open', Phaser.Animation.generateFrameNames('walls ', 7, 7, '.ase'), 5, false);
+    elevator.open = function () {
+        this.animations.play('ready');
+        this.animations.currentAnim.onComplete.add(function() {
+            this.animations.play('open');
+            this.body.setSize(32, 12, 0, 0);
+        }, this);
+    }
+
 
     // bgtile = walls.create(0, 0, 'walls');
     // bgtile.frame = 2;

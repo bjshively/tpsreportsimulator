@@ -23,9 +23,13 @@ function updateEnemies() {
 
     if (enemies.countLiving() == 0 && obstacles.checkAll('complete', true)) {
 
-        // If all enemies are dead and obstacles are hacked, advance to the next level
-        player.level += 1;
-        createLevel();
+        // If all enemies are dead and obstacles are hacked, open the elevator
+        elevator.open();
+        game.physics.arcade.collide(player, elevator, function() {
+            player.level += 1;
+            createLevel();            
+        });
+
         
     } else {
         enemies.forEachAlive(moveEnemy, this, true);
