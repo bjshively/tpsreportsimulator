@@ -64,8 +64,9 @@ function createObstacle(type) {
             'printer');
         game.physics.arcade.enable(printer);
         printer.body.setSize(39, 17, 0, 0);
-        printer.body.mass = -1500;
+        // printer.body.mass = -1500;
         printer.body.collideWorldBounds = true;
+        printer.body.immovable = true;
         printer.animations.add(
             'standing', Phaser.Animation.generateFrameNames('printer ', 0, 0, '.ase'), 30, false);
         printer.animations.add(
@@ -85,8 +86,6 @@ function createObstacle(type) {
                 }, this);
             }, this);
         }
-        printer.body.immovable = true;
-
     } else {
         // Create regular desks
         var desk = obstacles.create(

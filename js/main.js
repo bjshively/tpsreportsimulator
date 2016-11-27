@@ -35,6 +35,7 @@ var graphics;
 var player;
 var enemies;
 var items;
+var walls;
 
 var printer;
 var wasd;
@@ -101,10 +102,11 @@ function init() {}
 function create() {
     //  World Setup
     game.add.graphics(0, 0);
-    game.world.setBounds(0, 0, 384, 304);
+    game.world.setBounds(0, 0, 352, 304);
     game.physics.startSystem(Phaser.Physics.ARCADE);
 
     drawWalls();
+
     
     lastLevel = Object.keys(levels).length;
 
@@ -139,17 +141,6 @@ function create() {
     healthText.position.setTo(5, 5);
     healthText.fixedToCamera = true;
 
-    scoreText = game.add.text(0, 0, '', {
-        font: '14px VT323',
-        fill: '#FFF'
-    });
-    scoreText.stroke = '#000';
-    scoreText.strokeThickness = 3;
-    // align center
-    scoreText.anchor.setTo(0.5, 0);
-    scoreText.position.setTo(game.camera.width / 2, 5);
-    scoreText.fixedToCamera = true;
-
     levelText = game.add.text(0, 0, '', {
         font: '14px VT323',
         fill: '#FFF'
@@ -160,6 +151,17 @@ function create() {
     levelText.anchor.setTo(1, 0);
     levelText.position.setTo(game.camera.width - 5, 5);
     levelText.fixedToCamera = true;
+
+    scoreText = game.add.text(0, 0, '', {
+        font: '14px VT323',
+        fill: '#FFF'
+    });
+    scoreText.stroke = '#000';
+    scoreText.strokeThickness = 3;
+    // align center
+    scoreText.anchor.setTo(0, 1);
+    scoreText.position.setTo(5, game.camera.height - 5);
+    scoreText.fixedToCamera = true;
 
     gameOverText = game.add.text(0, 0, '', {
         font: '30px VT323',
@@ -238,10 +240,12 @@ function update() {
     updateHUD();
 
     game.physics.arcade.collide(player, obstacles, interactWithObstacle);
+    game.physics.arcade.collide(player, walls);
+
     game.physics.arcade.collide(obstacles, obstacles);
     game.physics.arcade.collide(enemies, enemies);
     game.physics.arcade.overlap(player, items, collectItem);
-    game.physics.arcade.collide(player, obstacles, showHelpText);
+    //game.physics.arcade.collide(player, obstacles, showHelpText);
     game.physics.arcade.collide(player.weapon.bullets, enemies, damageEnemy);
     game.physics.arcade.collide(player, enemies, player.takeDamage);
     // TODO: enemies still go through obstacles
@@ -327,9 +331,9 @@ function createLevel(level) {
 }
 
 function updateHUD() {
-    scoreText.text = 'Score: ' + player.score;
     healthText.text = 'Health: ' + player.health;
     levelText.text = 'Level: ' + player.level;
+    scoreText.text = 'Score: ' + player.score;
     currentWeapon.loadTexture(player.weapon.icon);
 
 }
