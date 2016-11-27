@@ -226,7 +226,11 @@ function create() {
     blood.maxParticleSpeed.setTo(75, 1);
 
     graphics = game.add.graphics(100, 100);
-
+    // draw a rectangle
+    // graphics.drawRect(0, 0, game.world.bounds.x, game.world.bounds.y);
+    // graphics.beginFill(0x00000, 1);
+    
+    game.camera.flash('#000000');
 }
 
 function update() {
@@ -267,6 +271,7 @@ function update() {
         updateHUD();
 
         game.physics.arcade.collide(player, obstacles, interactWithObstacle);
+        game.physics.arcade.collide(player, elevator, completeLevel);
         game.physics.arcade.collide(player, walls);
 
         game.physics.arcade.collide(obstacles, obstacles);
@@ -283,6 +288,9 @@ function update() {
         // game.physics.arcade.overlap(player.weapon.bullets, printer, killBullet);
 
         game.physics.arcade.collide(player, printer);
+
+
+        
         obstacles.sort('y', Phaser.Group.SORT_ASCENDING);
         enemies.sort('y', Phaser.Group.SORT_ASCENDING);
     }
@@ -295,9 +303,9 @@ function killBullet(bullet) {
     bullet.kill();
 }
 
-function interactWithObstacle(player, desk) {
-    if (desk.complete == false) {
-        desk.interact();
+function interactWithObstacle(player, obstacle) {
+    if (obstacle.complete == false) {
+        obstacle.interact();
     }
 }
 
@@ -340,16 +348,39 @@ function clearLevel() {
     walls.removeAll();
 }
 
+function completeLevel() {
+    if (elevator.canProceed) {
+        elevator.canProceed = false;
+        player.canMove = false;
+        game.camera.fade('#000000');
+        game.camera.onFadeComplete.add(function () {
+                player.level += 1;
+                createLevel(player.level);
+        });
+    }   
+    
+    
+    
+    // fadeComplete: function () {
+    //     this.state.start('Game'); 
+    // }
+}
+
 function createLevel(level) {
     clearLevel();
     if (player.level > lastLevel) {
         gameOver('YOU WIN');
     } else {
         drawLevel();
+        game.camera.flash('#000000');
+        game.camera.onFlashComplete.add(function () {
+            player.canMove = true;
+        });
         var currentLevel = levels[player.level];
         var currentLevelEnemies = currentLevel['enemies'];
         var currentLevelObstacles = currentLevel['obstacles'];
         player.makeInvincible();
+        
 
         for (var i = 0; i < currentLevelEnemies[1]; i++) {
             createEnemy('1', 2, 1);
@@ -371,8 +402,8 @@ function createLevel(level) {
             for (var i = 0; i < currentLevelObstacles[obstacle]; i++) {
                 createObstacle(
                     obstacle,
-                    game.rnd.integerInRange(32, 288),
-                    game.rnd.integerInRange(32, 200)
+                    game.rnd.integerInRange(64, 288),
+                    game.rnd.integerInRange(64, 200)
                 );
             }
         }

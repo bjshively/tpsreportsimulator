@@ -7,13 +7,13 @@
 // enemy1 has 2 health, enemy2 has 3 health, +
 // new enemies appear once every 5th wave, quantity increases with wave
 
-function createEnemies(level) {
+// function createEnemies(level) {
 
-    // Spawn a random number of enemies
-    for (var i = 0; i < game.rnd.integerInRange(3, 10); i++) {
-        createEnemy(2, 1);
-    }
-}
+//     // Spawn a random number of enemies
+//     for (var i = 0; i < game.rnd.integerInRange(3, 10); i++) {
+//         createEnemy(2, 1);
+//     }
+// }
 
 function updateEnemies() {
     // Check to see if all enemies are dead
@@ -22,14 +22,8 @@ function updateEnemies() {
     // Still need to create a GameManager.js or something similar.
 
     if (enemies.countLiving() == 0 && obstacles.checkAll('complete', true)) {
-
-        // If all enemies are dead and obstacles are hacked, open the elevator
+        // If all enemies are dead and obstacles are hacked, complete the level
         elevator.open();
-        game.physics.arcade.collide(player, elevator, function() {
-            player.level += 1;
-            createLevel();            
-        });
-
         
     } else {
         enemies.forEachAlive(moveEnemy, this, true);
@@ -146,6 +140,35 @@ function createEnemy(enemyClass, health, damage) {
     enemy.animations.add('right', [9, 10, 11, 8], 5, true);
     enemy.animations.add('left', [13, 14, 15, 12], 5, true);
     enemy.animations.play('down');
+}
+
+var enemy = {
+    // create each class
+    1: {
+        'health': 2,
+        'damage': 1,
+        'sprite': 1
+    },
+    2: {
+        'health': 3,
+        'damage': 1,
+        'sprite': 2
+    },
+    3: {
+        'health': 4,
+        'damage': 2,
+        'sprite': 3
+    },
+    4: {
+        'health': 5,
+        'damage': 3,
+        'sprite': 4
+    },
+    5: {
+        'health': 6,
+        'damage': 4,
+        'sprite': 5
+    }
 }
 
 function spawnWave(numberOfEnemies) {

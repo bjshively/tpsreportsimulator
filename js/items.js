@@ -36,7 +36,7 @@ function createItems() {
 function createObstacle(type, whereX, whereY) {
     // Create desk that controls printer
     if (type == 'deskWithPrinter') {
-        var desk = obstacles.create(whereX, whereY, 'deskWithPrinter');
+        var desk = obstacles.create(whereX, whereY, type);
         desk.body.setSize(33, 29, 0, 3);
         desk.complete = false;
         desk.interact = function() {
@@ -66,7 +66,7 @@ function createObstacle(type, whereX, whereY) {
 
     // create printer
     if (type == 'printer') {
-        printer = obstacles.create(whereX, whereY, 'printer');
+        printer = obstacles.create(whereX, whereY, type);
         game.physics.arcade.enable(printer);
         printer.body.setSize(39, 17, 0, 12);
         // printer.body.mass = -1500;
@@ -96,7 +96,7 @@ function createObstacle(type, whereX, whereY) {
     // create regular desk
     if (type == 'desk') {
         // Create regular desks
-        var desk = obstacles.create(whereX, whereY, 'desk');
+        var desk = obstacles.create(whereX, whereY, type);
         desk.body.setSize(32, 18, 0, 12);
         desk.complete = false;
         desk.interact = function() {
