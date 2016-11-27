@@ -6,6 +6,7 @@ function createPlayer() {
 
     game.physics.arcade.enable(player);
     player.body.collideWorldBounds = true;
+    // set collider box to waist down
     player.body.setSize(player.width, player.height / 2, 0, player.height / 2);
     player.anchor.setTo(0.5, 0.5);
     game.camera.follow(player);
@@ -37,6 +38,7 @@ function createPlayer() {
     player.standingFrames['down'] = 10;
     player.standingFrames['left'] = 15;
 
+    // add the attack animations
     player.animations.add(
         'attackup', [4, 0], 7, false);
     player.animations.add(
@@ -46,8 +48,8 @@ function createPlayer() {
     player.animations.add(
         'attackleft', [19, 15], 7, false);
 
-    player.attack = function attack() {
-        // TODO: make this animation work
+    player.attack = function () {
+        // TODO: animation is stuck on mouse down
         player.animations.play('attack' + player.lookDirection);
         player.weapon.fire(
             null,
@@ -92,6 +94,7 @@ function updatePlayer() {
         player.visible = !player.visible;
     }
 
+    ///////////////////////////////////
     // BEGIN PLAYER MOVEMENT
     player.body.velocity.y = 0;
     player.body.velocity.x = 0;
