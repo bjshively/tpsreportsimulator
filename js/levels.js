@@ -67,9 +67,9 @@ function drawWalls() {
     elevator = walls.create(160, 0, 'walls');
     elevator.frame = 7;
     elevator.animations.add(
-        'ready', Phaser.Animation.generateFrameNames('walls ', 7, 7, '.ase'), 1, false);
+        'ready', Phaser.Animation.generateFrameNames('walls ', 8, 8, '.ase'), 1, false);
     elevator.animations.add(
-        'open', Phaser.Animation.generateFrameNames('walls ', 7, 7, '.ase'), 5, false);
+        'open', Phaser.Animation.generateFrameNames('walls ', 9, 13, '.ase'), 5, false);
     elevator.open = function () {
         this.animations.play('ready');
         this.animations.currentAnim.onComplete.add(function() {
