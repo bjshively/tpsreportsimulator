@@ -69,23 +69,23 @@ function drawWalls() {
     bgtile = walls.create(0, 288, 'walls');
     bgtile.frame = 4;
 
-    bgtile = walls.create(352, 32, 'walls');
+    bgtile = walls.create(320, 32, 'walls');
     bgtile.frame = 5;
-    bgtile = walls.create(352, 64, 'walls');
+    bgtile = walls.create(320, 64, 'walls');
     bgtile.frame = 5;
-    bgtile = walls.create(352, 96, 'walls');
+    bgtile = walls.create(320, 96, 'walls');
     bgtile.frame = 5;
-    bgtile = walls.create(352, 128, 'walls');
+    bgtile = walls.create(320, 128, 'walls');
     bgtile.frame = 5;
-    bgtile = walls.create(352, 160, 'walls');
+    bgtile = walls.create(320, 160, 'walls');
     bgtile.frame = 5;
-    bgtile = walls.create(352, 192, 'walls');
+    bgtile = walls.create(320, 192, 'walls');
     bgtile.frame = 5;
-    bgtile = walls.create(352, 224, 'walls');
+    bgtile = walls.create(320, 224, 'walls');
     bgtile.frame = 5;
-    bgtile = walls.create(352, 256, 'walls');
+    bgtile = walls.create(320, 256, 'walls');
     bgtile.frame = 5;
-    bgtile = walls.create(352, 288, 'walls');
+    bgtile = walls.create(320, 288, 'walls');
     bgtile.frame = 5;
 
     walls.setAll('body.immovable', true);
