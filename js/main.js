@@ -346,7 +346,8 @@ function clearLevel() {
     // Clear obstacles and items
     obstacles.removeAll();
     items.removeAll();
-    walls.removeAll();
+    // walls.removeAll();
+    game.camera.onFadeComplete.removeAll();
 }
 
 function completeLevel() {
