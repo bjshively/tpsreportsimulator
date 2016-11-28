@@ -351,8 +351,11 @@ function clearLevel() {
 
 function completeLevel() {
     if (elevator.isOpen && elevator.canProceed) {
+        // lock out the elevator so you can just hold up and keep advancing levels
         elevator.canProceed = false;
         player.canMove = false;
+
+        // fade to black then advance the level
         game.camera.fade('#000000');
         player.level += 1;
         console.log(player.level);

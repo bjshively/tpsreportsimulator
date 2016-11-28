@@ -91,6 +91,9 @@ function createObstacle(type, whereX, whereY) {
                 }, this);
             }, this);
         }
+
+        printer.body.collideWorldBounds = true;
+        printer.body.immovable = true;
     } 
 
     // create regular desk
