@@ -201,7 +201,6 @@ function drawLevel(inclusions) {
         elevator.isOpen = false;
         elevator.starting = false;
         elevator.body.setSize(32, 32, 0, 0);
-        console.log('closed')
         this.animations.play('close');
     }
 

@@ -354,8 +354,9 @@ function completeLevel() {
         elevator.canProceed = false;
         player.canMove = false;
         game.camera.fade('#000000');
+        player.level += 1;
+        console.log(player.level);
         game.camera.onFadeComplete.add(function () {
-            player.level += 1;
             createLevel(player.level);
         });
     }   
@@ -363,6 +364,7 @@ function completeLevel() {
 
 function createLevel(level) {
     clearLevel();
+
     if (player.level > lastLevel) {
         gameOver('YOU WIN');
     } else {
