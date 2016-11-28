@@ -266,7 +266,7 @@ function update() {
 
         // This is a quick way to test any function by mapping it to the hack key
         // if (wasd.hackKey.isDown) {
-        //     clearLevel();
+        //     elevator.close();
         // }
         updateHUD();
 
@@ -277,19 +277,20 @@ function update() {
         game.physics.arcade.collide(obstacles, obstacles);
         game.physics.arcade.collide(enemies, enemies);
         game.physics.arcade.overlap(player, items, collectItem);
-        //game.physics.arcade.collide(player, obstacles, showHelpText);
         game.physics.arcade.collide(player.weapon.bullets, enemies, damageEnemy);
         game.physics.arcade.collide(player, enemies, player.takeDamage);
         // TODO: enemies still go through obstacles
         game.physics.arcade.collide(enemies, obstacles);
         game.physics.arcade.collide(enemies, walls);
         game.physics.arcade.overlap(player.weapon.bullets, obstacles, killBullet);
-        // TODO: LOLOL this kills printer
-        // game.physics.arcade.overlap(player.weapon.bullets, printer, killBullet);
-
+        
         game.physics.arcade.collide(player, printer);
 
-
+        // On new levels, open the elevator, and wait for the player to exit to close it
+        // TODO: put this somewhere better
+        if (player.level > 1 && player.body.y > 32 && elevator.starting) {
+            elevator.close();
+        }
         
         obstacles.sort('y', Phaser.Group.SORT_ASCENDING);
         enemies.sort('y', Phaser.Group.SORT_ASCENDING);
@@ -349,21 +350,15 @@ function clearLevel() {
 }
 
 function completeLevel() {
-    if (elevator.canProceed) {
+    if (elevator.isOpen && elevator.canProceed) {
         elevator.canProceed = false;
         player.canMove = false;
         game.camera.fade('#000000');
         game.camera.onFadeComplete.add(function () {
-                player.level += 1;
-                createLevel(player.level);
+            player.level += 1;
+            createLevel(player.level);
         });
     }   
-    
-    
-    
-    // fadeComplete: function () {
-    //     this.state.start('Game'); 
-    // }
 }
 
 function createLevel(level) {
@@ -372,10 +367,21 @@ function createLevel(level) {
         gameOver('YOU WIN');
     } else {
         drawLevel();
+        // start with the elevator open
+        if (level > 1) {
+            elevator.body.setSize(32, 12, 0, 0);
+            elevator.frame = 16;
+            elevator.isOpen = true;
+            elevator.starting = true;
+        }
+
+        // fade in from black and unlock player movement
         game.camera.flash('#000000');
         game.camera.onFlashComplete.add(function () {
             player.canMove = true;
         });
+
+        // TODO: Move this into levels JS
         var currentLevel = levels[player.level];
         var currentLevelEnemies = currentLevel['enemies'];
         var currentLevelObstacles = currentLevel['obstacles'];
@@ -408,9 +414,6 @@ function createLevel(level) {
             }
         }
     }
-
-
-
 }
 
 function updateHUD() {

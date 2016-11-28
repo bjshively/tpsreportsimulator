@@ -86,36 +86,36 @@ function drawLevel(inclusions) {
         [6, o, o, o, o, o, o, o, o, o, 7],
         [2, 8, 8, 8, 8, 8, 8, 8, 8, 8, 3],
     ];
-        // var currentLevel = levels[player.level];
-        // var currentLevelEnemies = currentLevel['enemies'];
-        // var currentLevelObstacles = currentLevel['obstacles'];
-        // player.makeInvincible();
+    // var currentLevel = levels[player.level];
+    // var currentLevelEnemies = currentLevel['enemies'];
+    // var currentLevelObstacles = currentLevel['obstacles'];
+    // player.makeInvincible();
 
-        // for (var i = 0; i < currentLevelEnemies[1]; i++) {
-        //     createEnemy('1', 2, 1);
-        // }
-        // for (var i = 0; i < currentLevelEnemies[2]; i++) {
-        //     createEnemy('2', 3, 1);
-        // }
-        // for (var i = 0; i < currentLevelEnemies[3]; i++) {
-        //     createEnemy('3', 4, 2);
-        // }
-        // for (var i = 0; i < currentLevelEnemies[4]; i++) {
-        //     createEnemy('4', 5, 3);
-        // }
-        // for (var i = 0; i < currentLevelEnemies[5]; i++) {
-        //     createEnemy('5', 6, 4);
-        // }
+    // for (var i = 0; i < currentLevelEnemies[1]; i++) {
+    //     createEnemy('1', 2, 1);
+    // }
+    // for (var i = 0; i < currentLevelEnemies[2]; i++) {
+    //     createEnemy('2', 3, 1);
+    // }
+    // for (var i = 0; i < currentLevelEnemies[3]; i++) {
+    //     createEnemy('3', 4, 2);
+    // }
+    // for (var i = 0; i < currentLevelEnemies[4]; i++) {
+    //     createEnemy('4', 5, 3);
+    // }
+    // for (var i = 0; i < currentLevelEnemies[5]; i++) {
+    //     createEnemy('5', 6, 4);
+    // }
 
-        // for (obstacle in currentLevelObstacles) {
-        //     for (var i = 0; i < currentLevelObstacles[obstacle]; i++) {
-        //         createObstacle(
-        //             obstacle,
-        //             game.rnd.integerInRange(64, 288),
-        //             game.rnd.integerInRange(64, 200)
-        //         );
-        //     }
-        // }
+    // for (obstacle in currentLevelObstacles) {
+    //     for (var i = 0; i < currentLevelObstacles[obstacle]; i++) {
+    //         createObstacle(
+    //             obstacle,
+    //             game.rnd.integerInRange(64, 288),
+    //             game.rnd.integerInRange(64, 200)
+    //         );
+    //     }
+    // }
 
     var x = 0;
     var y = 0;
@@ -174,7 +174,8 @@ function drawLevel(inclusions) {
 
     elevator = walls.create(160, 0, 'walls');
     elevator.frame = 10;
-    elevator.ready = false;
+    elevator.starting = false;
+    elevator.isOpen = false;
     elevator.canProceed = false;
     elevator.animations.add(
         'ready', Phaser.Animation.generateFrameNames('walls ', 11, 11, '.ase'), 1, false);
@@ -183,8 +184,8 @@ function drawLevel(inclusions) {
     elevator.animations.add(
         'close', Phaser.Animation.generateFrameNames('walls ', 10, 16, '.ase').reverse(), 7, false);
     elevator.open = function () {
-        if (!elevator.ready) {
-            elevator.ready = true;
+        if (!elevator.isOpen) {
+            elevator.isOpen = true;
             this.animations.play('ready');
             this.animations.currentAnim.onComplete.add(function() {
                 this.animations.play('open');
@@ -195,19 +196,12 @@ function drawLevel(inclusions) {
             }, this);
         }
     }
-    // function iceCubeCollision(body1, body2) {
-    //   if (!body1.hasCollided) {
-    //    // check to see if the 'hasCollided' property is not 'truthy' (i.e. not set, or set to false or null or 0 or something)
-    //       console.log("Ice cube collision")
-    //          body1.hasCollided = true;
-    //           // set it to true so if the collision happens again, everything inside this if statement will be skipped   ... 
-    //            }}
-
-    // elevator.interact = function() {
-    //     completeLevel();
-    // }
 
     elevator.close = function() {
+        elevator.isOpen = false;
+        elevator.starting = false;
+        elevator.body.setSize(32, 32, 0, 0);
+        console.log('closed')
         this.animations.play('close');
     }
 
