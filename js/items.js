@@ -34,6 +34,36 @@ function createItems() {
 }
 
 function createObstacle(type, whereX, whereY) {
+    // create regular desk
+    if (type == 'desk') {
+        // Create regular desks
+        var desk = obstacles.create(whereX, whereY, type);
+        desk.body.setSize(32, 18, 0, 12);
+        desk.complete = false;
+        desk.interact = function() {
+        	if (!this.complete) {
+	            if (wasd.hackKey.isDown) {
+	                this.animations.play('hacking');
+	                this.animations.currentAnim.onComplete.add(function() {
+	                    this.animations.play('done');
+	                    this.complete = true;
+	                }, this);
+	            }
+        	}
+        }
+        desk.animations.add(
+        	'flicker', Phaser.Animation.generateFrameNames('desk ', 0, 15, '.ase'), 30, true);
+        desk.animations.add(
+        	'hacking', Phaser.Animation.generateFrameNames('desk ', 16, 59, '.ase'), 30, false);
+        desk.animations.add(
+        	'done', Phaser.Animation.generateFrameNames('desk ', 60, 61, '.ase'), 30, true);
+	    desk.animations.play('flicker', 30, true);
+
+	    // Setup desk physics
+	    desk.body.collideWorldBounds = true;
+	    desk.body.immovable = true;
+    }
+
     // Create desk that controls printer
     if (type == 'deskWithPrinter') {
         var desk = obstacles.create(whereX, whereY, type);
@@ -75,11 +105,11 @@ function createObstacle(type, whereX, whereY) {
         printer.animations.add(
             'standing', Phaser.Animation.generateFrameNames('printer ', 0, 0, '.ase'), 30, false);
         printer.animations.add(
-            'printing', Phaser.Animation.generateFrameNames('printer ', 1, 197, '.ase'), 30, false);
+            'printing', Phaser.Animation.generateFrameNames('printer ', 1, 141, '.ase'), 30, false);
         printer.animations.add(
-            'eject', Phaser.Animation.generateFrameNames('printer ', 198, 212, '.ase'), 30, false);
+            'eject', Phaser.Animation.generateFrameNames('printer ', 142, 156, '.ase'), 30, false);
         printer.animations.add(
-            'done', Phaser.Animation.generateFrameNames('printer ', 213, 213, '.ase'), 30, false);
+            'done', Phaser.Animation.generateFrameNames('printer ', 157, 157, '.ase'), 30, false);
         printer.frame = 0;
         printer.interact = function() {
         	if (!this.complete) {
@@ -89,6 +119,7 @@ function createObstacle(type, whereX, whereY) {
 	                this.animations.currentAnim.onComplete.add(function() {
 	                    this.animations.play('done');
 	                    this.complete = true;
+	                    printItem();
 	                }, this);
 	            }, this);
         	}
@@ -96,39 +127,11 @@ function createObstacle(type, whereX, whereY) {
 
         printer.body.collideWorldBounds = true;
         printer.body.immovable = true;
-    } 
-
-    // create regular desk
-    if (type == 'desk') {
-        // Create regular desks
-        var desk = obstacles.create(whereX, whereY, type);
-        desk.body.setSize(32, 18, 0, 12);
-        desk.complete = false;
-        desk.interact = function() {
-        	if (!this.complete) {
-	            if (wasd.hackKey.isDown) {
-	                this.animations.play('hacking');
-	                this.animations.currentAnim.onComplete.add(function() {
-	                    this.animations.play('done');
-	                    this.complete = true;
-	                }, this);
-	            }
-        	}
-        }
-        desk.animations.add(
-        	'flicker', Phaser.Animation.generateFrameNames('desk ', 0, 15, '.ase'), 30, true);
-        desk.animations.add(
-        	'hacking', Phaser.Animation.generateFrameNames('desk ', 16, 59, '.ase'), 30, false);
-        desk.animations.add(
-        	'done', Phaser.Animation.generateFrameNames('desk ', 60, 61, '.ase'), 30, true);
-	    desk.animations.play('flicker', 30, true);
-
-	    // Setup desk physics
-	    desk.body.collideWorldBounds = true;
-	    desk.body.immovable = true;
     }
+}
 
-
+function printItem() {
+	// TODO: Add item ejection logic here
 }
 
 function createWeapons() {

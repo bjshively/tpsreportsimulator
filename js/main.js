@@ -1,5 +1,6 @@
 // TODO: Add leveling (keep same logic for now)
 // TODO: more pick ups
+// TODO: Add layer sorting
 
 var game = new Phaser.Game(320, 240, Phaser.AUTO, 'game', {
     preload: preload,
@@ -10,19 +11,16 @@ var game = new Phaser.Game(320, 240, Phaser.AUTO, 'game', {
 });
 
 WebFontConfig = {
-
-    //  'active' means all requested fonts have finished loading
-    //  We set a 1 second delay before calling 'createText'.
-    //  For some reason if we don't the browser cannot render the text the first time it's created.
-
     // TODO: not sure what the fuck this line is for
+    // 'active' means all requested fonts have finished loading
+    // Set a 1 second delay before calling 'createText'.
+    // For some reason if we don't the browser cannot render the text the first time it's created.
     // active: function() { game.time.events.add(Phaser.Timer.SECOND, showHelpText, this); },
 
-    //  The Google Fonts we want to load (specify as many as you like in the array)
+    //  Load fonts into the array
     google: {
         families: ['VT323']
     }
-
 };
 
 var gameStarted = false;
@@ -68,26 +66,33 @@ function preload() {
     game.load.script('levels', 'js/levels.js');
     game.load.script('webfont', '//ajax.googleapis.com/ajax/libs/webfont/1.4.7/webfont.js');
 
-    // Load sprites
-    game.load.image('background', 'assets/background.png');
-    game.load.atlas('desk', 'assets/desk.png', 'assets/desk.json');
-    game.load.atlas('deskWithPrinter', 'assets/deskWithPrinter.png', 'assets/deskWithPrinter.json');
-    game.load.atlas('printer', 'assets/printer.png', 'assets/printer.json');
-    game.load.atlas('walls', 'assets/walls.png', 'assets/walls.json');
+    // Level sprites
+    game.load.image('background', 'assets/level/background.png');
+    game.load.atlas('desk', 'assets/level/desk.png', 'assets/level/desk.json');
+    game.load.atlas('deskWithPrinter', 'assets/level/deskWithPrinter.png',
+        'assets/level/deskWithPrinter.json');
+    game.load.atlas('printer', 'assets/level/printer.png', 'assets/level/printer.json');
+    game.load.atlas('walls', 'assets/level/walls.png', 'assets/level/walls.json');
 
+    // player sprites
     game.load.atlas('player', 'assets/player/player.png', 'assets/player/player.json');
     game.load.image('reticle', 'assets/player/reticle.png');
-    game.load.spritesheet('stapler', 'assets/player/weapon/staplerPickup.png', 16, 16);
-    game.load.image('staple', 'assets/player/weapon/staplerAmmo.png');
-    game.load.spritesheet('cd', 'assets/player/weapon/cd.png', 11, 11);
-    game.load.image('cutter', 'assets/player/weapon/cutter.png');
+    game.load.spritesheet('heart', 'assets/player/health.png', 23, 23);
+    
+    // item sprites
+    game.load.spritesheet('stapler', 'assets/weapons/staplerPickup.png', 16, 16);
+    game.load.image('staple', 'assets/weapons/staplerAmmo.png');
+    game.load.spritesheet('cd', 'assets/weapons/cd.png', 11, 11);
+    game.load.image('cutter', 'assets/weapons/cutter.png');
+    game.load.spritesheet('shoes', 'assets/items/shoes.png', 16, 16)
 
+    // enemy sprites
     game.load.spritesheet('enemy1', 'assets/enemies/enemy1.png', 15, 31);
     game.load.spritesheet('enemy2', 'assets/enemies/enemy2.png', 15, 31);
     game.load.spritesheet('enemy3', 'assets/enemies/enemy3.png', 15, 31);
     game.load.spritesheet('enemy4', 'assets/enemies/enemy4.png', 15, 31);
     game.load.spritesheet('enemy5', 'assets/enemies/enemy5.png', 15, 31);
-    game.load.image('blood', 'assets/blood.png');
+    game.load.image('blood', 'assets/enemies/blood.png');
 
     // Enable pixel-perfect game sscaling
     this.game.scale.scaleMode = Phaser.ScaleManager.USER_SCALE;
@@ -132,16 +137,16 @@ function create() {
     // HUD
     game.camera.follow(player, Phaser.Camera.FOLLOW_LOCKON, 0.1, 0.1);
 
-    healthText = game.add.text(0, 0, '', {
-        font: '14px VT323',
-        fill: '#FFF'
-    });
-    healthText.stroke = '#000';
-    healthText.strokeThickness = 3;
-    // alight left
-    healthText.anchor.setTo(0, 0);
-    healthText.position.setTo(5, 5);
-    healthText.fixedToCamera = true;
+    // healthText = game.add.text(0, 0, '', {
+    //     font: '14px VT323',
+    //     fill: '#FFF'
+    // });
+    // healthText.stroke = '#000';
+    // healthText.strokeThickness = 3;
+    // // alight left
+    // healthText.anchor.setTo(0, 0);
+    // healthText.position.setTo(5, 5);
+    // healthText.fixedToCamera = true;
 
     levelText = game.add.text(0, 0, '', {
         font: '14px VT323',
@@ -253,7 +258,11 @@ function update() {
         obstacles.visible = false;
         reticle.visible = false;
         player.visible = false;
-        showHelpText('Kill the enemies.\nPress \'E\' to hack terminals.\nDon\'t die.\nPress SPACE to start.\n\n',100000)
+        showHelpText('Kill the enemies.\n' +
+            'Press \'E\' to hack terminals.\n' +
+            'Don\'t die.\n' + 
+            'Press SPACE to start.\n\n',
+            100000)
         // Display menu/instructions
 
         //Start game
@@ -350,11 +359,11 @@ function bloodSplatter(where) {
 // Display gameover message
 function gameOver(message) {
     game.camera.follow(null, Phaser.Camera.FOLLOW_LOCKON, 0.1, 0.1);
-    player.kill();
     reticle.kill();
-    healthText.kill();
+    // healthText.kill();
     levelText.kill();
     gameOverText.text = message;
+    player.kill();
 }
 
 // function selectWeapon(weapon) {
@@ -415,7 +424,7 @@ function createLevel(level) {
 }
 
 function updateHUD() {
-    healthText.text = 'Health: ' + player.health;
+    // healthText.text = 'Health: ' + player.health;
     levelText.text = 'Level: ' + player.level;
     scoreText.text = 'Score: ' + player.score;
     currentWeapon.loadTexture(player.weapon.icon);
@@ -437,8 +446,10 @@ function render() {
         // game.debug.cameraInfo(game.camera, 5, 15);
         // game.debug.spriteCoords(player, 5, 90);
         // game.debug.text(
-        //     'Seconds: ' + Math.round(game.time.totalElapsedSeconds() * 100) / 100, 5, 140);
+            // 'Seconds: ' + Math.round(
+            // game.time.totalElapsedSeconds() * 100) / 100, 5, 140);
         // game.debug.text(
-        //     'Mouse angle: ' + game.math.radToDeg(game.physics.arcade.angleToPointer(player)), 5, 160)
+        //     'Mouse angle: ' + game.math.radToDeg(
+        //     game.physics.arcade.angleToPointer(player)), 5, 160)
     }
 }

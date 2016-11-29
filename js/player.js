@@ -9,8 +9,15 @@ function createPlayer() {
     player.body.setSize(player.width, player.height / 2, 0, player.height / 2);
     game.camera.follow(player);
 
-
+    // player health
     player.health = 3;
+    player.heart = game.add.sprite(5, 5, 'heart');
+    player.heart.fixedToCamera = true;
+    player.heart.animations.add('healthy', [0, 1, 2, 3], 5, true);
+    player.heart.animations.add('hurt', [4, 5, 6, 7], 10, true);
+    player.heart.animations.add('danger', [8, 9, 10, 11], 15, true);
+    player.heart.animations.add('dead', [12], 7, true);
+
     player.score = 0;
     player.level = 1;
     player.maxSpeed = 100;
@@ -144,5 +151,13 @@ function updatePlayer() {
         if (wasd.pointer.isDown || wasd.space.isDown) {
             player.attack();
         }
+    }
+
+    // update heart texture with health
+    switch (player.health) {
+        case 2: player.heart.animations.play('hurt'); break;
+        case 1: player.heart.animations.play('danger'); break;
+        case 0: player.heart.animations.play('dead'); break;
+        default: player.heart.animations.play('healthy'); break;
     }
 }

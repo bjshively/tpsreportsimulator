@@ -1,5 +1,6 @@
-{ "frames": {
-   "printer 0.ase": {
+{ "frames": [
+   {
+    "filename": "printer 0.ase",
     "frame": { "x": 0, "y": 0, "w": 39, "h": 28 },
     "rotated": false,
     "trimmed": false,
@@ -7,7 +8,8 @@
     "sourceSize": { "w": 39, "h": 28 },
     "duration": 100
    },
-   "printer 1.ase": {
+   {
+    "filename": "printer 1.ase",
     "frame": { "x": 39, "y": 0, "w": 39, "h": 28 },
     "rotated": false,
     "trimmed": false,
@@ -15,7 +17,8 @@
     "sourceSize": { "w": 39, "h": 28 },
     "duration": 100
    },
-   "printer 2.ase": {
+   {
+    "filename": "printer 2.ase",
     "frame": { "x": 78, "y": 0, "w": 39, "h": 28 },
     "rotated": false,
     "trimmed": false,
@@ -23,7 +26,8 @@
     "sourceSize": { "w": 39, "h": 28 },
     "duration": 100
    },
-   "printer 3.ase": {
+   {
+    "filename": "printer 3.ase",
     "frame": { "x": 117, "y": 0, "w": 39, "h": 28 },
     "rotated": false,
     "trimmed": false,
@@ -31,7 +35,8 @@
     "sourceSize": { "w": 39, "h": 28 },
     "duration": 100
    },
-   "printer 4.ase": {
+   {
+    "filename": "printer 4.ase",
     "frame": { "x": 156, "y": 0, "w": 39, "h": 28 },
     "rotated": false,
     "trimmed": false,
@@ -39,7 +44,8 @@
     "sourceSize": { "w": 39, "h": 28 },
     "duration": 100
    },
-   "printer 5.ase": {
+   {
+    "filename": "printer 5.ase",
     "frame": { "x": 195, "y": 0, "w": 39, "h": 28 },
     "rotated": false,
     "trimmed": false,
@@ -47,7 +53,8 @@
     "sourceSize": { "w": 39, "h": 28 },
     "duration": 100
    },
-   "printer 6.ase": {
+   {
+    "filename": "printer 6.ase",
     "frame": { "x": 234, "y": 0, "w": 39, "h": 28 },
     "rotated": false,
     "trimmed": false,
@@ -55,7 +62,8 @@
     "sourceSize": { "w": 39, "h": 28 },
     "duration": 100
    },
-   "printer 7.ase": {
+   {
+    "filename": "printer 7.ase",
     "frame": { "x": 273, "y": 0, "w": 39, "h": 28 },
     "rotated": false,
     "trimmed": false,
@@ -63,7 +71,8 @@
     "sourceSize": { "w": 39, "h": 28 },
     "duration": 100
    },
-   "printer 8.ase": {
+   {
+    "filename": "printer 8.ase",
     "frame": { "x": 312, "y": 0, "w": 39, "h": 28 },
     "rotated": false,
     "trimmed": false,
@@ -71,7 +80,8 @@
     "sourceSize": { "w": 39, "h": 28 },
     "duration": 100
    },
-   "printer 9.ase": {
+   {
+    "filename": "printer 9.ase",
     "frame": { "x": 351, "y": 0, "w": 39, "h": 28 },
     "rotated": false,
     "trimmed": false,
@@ -79,7 +89,8 @@
     "sourceSize": { "w": 39, "h": 28 },
     "duration": 100
    },
-   "printer 10.ase": {
+   {
+    "filename": "printer 10.ase",
     "frame": { "x": 390, "y": 0, "w": 39, "h": 28 },
     "rotated": false,
     "trimmed": false,
@@ -87,79 +98,8 @@
     "sourceSize": { "w": 39, "h": 28 },
     "duration": 100
    },
-   "printer 11.ase": {
-    "frame": { "x": 429, "y": 0, "w": 39, "h": 28 },
-    "rotated": false,
-    "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 39, "h": 28 },
-    "sourceSize": { "w": 39, "h": 28 },
-    "duration": 100
-   },
-   "printer 12.ase": {
-    "frame": { "x": 468, "y": 0, "w": 39, "h": 28 },
-    "rotated": false,
-    "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 39, "h": 28 },
-    "sourceSize": { "w": 39, "h": 28 },
-    "duration": 100
-   },
-   "printer 13.ase": {
-    "frame": { "x": 507, "y": 0, "w": 39, "h": 28 },
-    "rotated": false,
-    "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 39, "h": 28 },
-    "sourceSize": { "w": 39, "h": 28 },
-    "duration": 100
-   },
-   "printer 14.ase": {
-    "frame": { "x": 546, "y": 0, "w": 39, "h": 28 },
-    "rotated": false,
-    "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 39, "h": 28 },
-    "sourceSize": { "w": 39, "h": 28 },
-    "duration": 100
-   },
-   "printer 15.ase": {
-    "frame": { "x": 585, "y": 0, "w": 39, "h": 28 },
-    "rotated": false,
-    "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 39, "h": 28 },
-    "sourceSize": { "w": 39, "h": 28 },
-    "duration": 100
-   },
-   "printer 16.ase": {
-    "frame": { "x": 624, "y": 0, "w": 39, "h": 28 },
-    "rotated": false,
-    "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 39, "h": 28 },
-    "sourceSize": { "w": 39, "h": 28 },
-    "duration": 100
-   },
-   "printer 17.ase": {
-    "frame": { "x": 663, "y": 0, "w": 39, "h": 28 },
-    "rotated": false,
-    "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 39, "h": 28 },
-    "sourceSize": { "w": 39, "h": 28 },
-    "duration": 100
-   },
-   "printer 18.ase": {
-    "frame": { "x": 702, "y": 0, "w": 39, "h": 28 },
-    "rotated": false,
-    "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 39, "h": 28 },
-    "sourceSize": { "w": 39, "h": 28 },
-    "duration": 100
-   },
-   "printer 19.ase": {
-    "frame": { "x": 741, "y": 0, "w": 39, "h": 28 },
-    "rotated": false,
-    "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 39, "h": 28 },
-    "sourceSize": { "w": 39, "h": 28 },
-    "duration": 100
-   },
-   "printer 20.ase": {
+   {
+    "filename": "printer 11.ase",
     "frame": { "x": 0, "y": 28, "w": 39, "h": 28 },
     "rotated": false,
     "trimmed": false,
@@ -167,7 +107,8 @@
     "sourceSize": { "w": 39, "h": 28 },
     "duration": 100
    },
-   "printer 21.ase": {
+   {
+    "filename": "printer 12.ase",
     "frame": { "x": 39, "y": 28, "w": 39, "h": 28 },
     "rotated": false,
     "trimmed": false,
@@ -175,7 +116,8 @@
     "sourceSize": { "w": 39, "h": 28 },
     "duration": 100
    },
-   "printer 22.ase": {
+   {
+    "filename": "printer 13.ase",
     "frame": { "x": 78, "y": 28, "w": 39, "h": 28 },
     "rotated": false,
     "trimmed": false,
@@ -183,7 +125,8 @@
     "sourceSize": { "w": 39, "h": 28 },
     "duration": 100
    },
-   "printer 23.ase": {
+   {
+    "filename": "printer 14.ase",
     "frame": { "x": 117, "y": 28, "w": 39, "h": 28 },
     "rotated": false,
     "trimmed": false,
@@ -191,7 +134,8 @@
     "sourceSize": { "w": 39, "h": 28 },
     "duration": 100
    },
-   "printer 24.ase": {
+   {
+    "filename": "printer 15.ase",
     "frame": { "x": 156, "y": 28, "w": 39, "h": 28 },
     "rotated": false,
     "trimmed": false,
@@ -199,7 +143,8 @@
     "sourceSize": { "w": 39, "h": 28 },
     "duration": 100
    },
-   "printer 25.ase": {
+   {
+    "filename": "printer 16.ase",
     "frame": { "x": 195, "y": 28, "w": 39, "h": 28 },
     "rotated": false,
     "trimmed": false,
@@ -207,7 +152,8 @@
     "sourceSize": { "w": 39, "h": 28 },
     "duration": 100
    },
-   "printer 26.ase": {
+   {
+    "filename": "printer 17.ase",
     "frame": { "x": 234, "y": 28, "w": 39, "h": 28 },
     "rotated": false,
     "trimmed": false,
@@ -215,7 +161,8 @@
     "sourceSize": { "w": 39, "h": 28 },
     "duration": 100
    },
-   "printer 27.ase": {
+   {
+    "filename": "printer 18.ase",
     "frame": { "x": 273, "y": 28, "w": 39, "h": 28 },
     "rotated": false,
     "trimmed": false,
@@ -223,7 +170,8 @@
     "sourceSize": { "w": 39, "h": 28 },
     "duration": 100
    },
-   "printer 28.ase": {
+   {
+    "filename": "printer 19.ase",
     "frame": { "x": 312, "y": 28, "w": 39, "h": 28 },
     "rotated": false,
     "trimmed": false,
@@ -231,7 +179,8 @@
     "sourceSize": { "w": 39, "h": 28 },
     "duration": 100
    },
-   "printer 29.ase": {
+   {
+    "filename": "printer 20.ase",
     "frame": { "x": 351, "y": 28, "w": 39, "h": 28 },
     "rotated": false,
     "trimmed": false,
@@ -239,7 +188,8 @@
     "sourceSize": { "w": 39, "h": 28 },
     "duration": 100
    },
-   "printer 30.ase": {
+   {
+    "filename": "printer 21.ase",
     "frame": { "x": 390, "y": 28, "w": 39, "h": 28 },
     "rotated": false,
     "trimmed": false,
@@ -247,79 +197,8 @@
     "sourceSize": { "w": 39, "h": 28 },
     "duration": 100
    },
-   "printer 31.ase": {
-    "frame": { "x": 429, "y": 28, "w": 39, "h": 28 },
-    "rotated": false,
-    "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 39, "h": 28 },
-    "sourceSize": { "w": 39, "h": 28 },
-    "duration": 100
-   },
-   "printer 32.ase": {
-    "frame": { "x": 468, "y": 28, "w": 39, "h": 28 },
-    "rotated": false,
-    "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 39, "h": 28 },
-    "sourceSize": { "w": 39, "h": 28 },
-    "duration": 100
-   },
-   "printer 33.ase": {
-    "frame": { "x": 507, "y": 28, "w": 39, "h": 28 },
-    "rotated": false,
-    "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 39, "h": 28 },
-    "sourceSize": { "w": 39, "h": 28 },
-    "duration": 100
-   },
-   "printer 34.ase": {
-    "frame": { "x": 546, "y": 28, "w": 39, "h": 28 },
-    "rotated": false,
-    "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 39, "h": 28 },
-    "sourceSize": { "w": 39, "h": 28 },
-    "duration": 100
-   },
-   "printer 35.ase": {
-    "frame": { "x": 585, "y": 28, "w": 39, "h": 28 },
-    "rotated": false,
-    "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 39, "h": 28 },
-    "sourceSize": { "w": 39, "h": 28 },
-    "duration": 100
-   },
-   "printer 36.ase": {
-    "frame": { "x": 624, "y": 28, "w": 39, "h": 28 },
-    "rotated": false,
-    "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 39, "h": 28 },
-    "sourceSize": { "w": 39, "h": 28 },
-    "duration": 100
-   },
-   "printer 37.ase": {
-    "frame": { "x": 663, "y": 28, "w": 39, "h": 28 },
-    "rotated": false,
-    "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 39, "h": 28 },
-    "sourceSize": { "w": 39, "h": 28 },
-    "duration": 100
-   },
-   "printer 38.ase": {
-    "frame": { "x": 702, "y": 28, "w": 39, "h": 28 },
-    "rotated": false,
-    "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 39, "h": 28 },
-    "sourceSize": { "w": 39, "h": 28 },
-    "duration": 100
-   },
-   "printer 39.ase": {
-    "frame": { "x": 741, "y": 28, "w": 39, "h": 28 },
-    "rotated": false,
-    "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 39, "h": 28 },
-    "sourceSize": { "w": 39, "h": 28 },
-    "duration": 100
-   },
-   "printer 40.ase": {
+   {
+    "filename": "printer 22.ase",
     "frame": { "x": 0, "y": 56, "w": 39, "h": 28 },
     "rotated": false,
     "trimmed": false,
@@ -327,7 +206,8 @@
     "sourceSize": { "w": 39, "h": 28 },
     "duration": 100
    },
-   "printer 41.ase": {
+   {
+    "filename": "printer 23.ase",
     "frame": { "x": 39, "y": 56, "w": 39, "h": 28 },
     "rotated": false,
     "trimmed": false,
@@ -335,7 +215,8 @@
     "sourceSize": { "w": 39, "h": 28 },
     "duration": 100
    },
-   "printer 42.ase": {
+   {
+    "filename": "printer 24.ase",
     "frame": { "x": 78, "y": 56, "w": 39, "h": 28 },
     "rotated": false,
     "trimmed": false,
@@ -343,7 +224,8 @@
     "sourceSize": { "w": 39, "h": 28 },
     "duration": 100
    },
-   "printer 43.ase": {
+   {
+    "filename": "printer 25.ase",
     "frame": { "x": 117, "y": 56, "w": 39, "h": 28 },
     "rotated": false,
     "trimmed": false,
@@ -351,7 +233,8 @@
     "sourceSize": { "w": 39, "h": 28 },
     "duration": 100
    },
-   "printer 44.ase": {
+   {
+    "filename": "printer 26.ase",
     "frame": { "x": 156, "y": 56, "w": 39, "h": 28 },
     "rotated": false,
     "trimmed": false,
@@ -359,7 +242,8 @@
     "sourceSize": { "w": 39, "h": 28 },
     "duration": 100
    },
-   "printer 45.ase": {
+   {
+    "filename": "printer 27.ase",
     "frame": { "x": 195, "y": 56, "w": 39, "h": 28 },
     "rotated": false,
     "trimmed": false,
@@ -367,7 +251,8 @@
     "sourceSize": { "w": 39, "h": 28 },
     "duration": 100
    },
-   "printer 46.ase": {
+   {
+    "filename": "printer 28.ase",
     "frame": { "x": 234, "y": 56, "w": 39, "h": 28 },
     "rotated": false,
     "trimmed": false,
@@ -375,7 +260,8 @@
     "sourceSize": { "w": 39, "h": 28 },
     "duration": 100
    },
-   "printer 47.ase": {
+   {
+    "filename": "printer 29.ase",
     "frame": { "x": 273, "y": 56, "w": 39, "h": 28 },
     "rotated": false,
     "trimmed": false,
@@ -383,7 +269,8 @@
     "sourceSize": { "w": 39, "h": 28 },
     "duration": 100
    },
-   "printer 48.ase": {
+   {
+    "filename": "printer 30.ase",
     "frame": { "x": 312, "y": 56, "w": 39, "h": 28 },
     "rotated": false,
     "trimmed": false,
@@ -391,7 +278,8 @@
     "sourceSize": { "w": 39, "h": 28 },
     "duration": 100
    },
-   "printer 49.ase": {
+   {
+    "filename": "printer 31.ase",
     "frame": { "x": 351, "y": 56, "w": 39, "h": 28 },
     "rotated": false,
     "trimmed": false,
@@ -399,7 +287,8 @@
     "sourceSize": { "w": 39, "h": 28 },
     "duration": 100
    },
-   "printer 50.ase": {
+   {
+    "filename": "printer 32.ase",
     "frame": { "x": 390, "y": 56, "w": 39, "h": 28 },
     "rotated": false,
     "trimmed": false,
@@ -407,79 +296,8 @@
     "sourceSize": { "w": 39, "h": 28 },
     "duration": 100
    },
-   "printer 51.ase": {
-    "frame": { "x": 429, "y": 56, "w": 39, "h": 28 },
-    "rotated": false,
-    "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 39, "h": 28 },
-    "sourceSize": { "w": 39, "h": 28 },
-    "duration": 100
-   },
-   "printer 52.ase": {
-    "frame": { "x": 468, "y": 56, "w": 39, "h": 28 },
-    "rotated": false,
-    "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 39, "h": 28 },
-    "sourceSize": { "w": 39, "h": 28 },
-    "duration": 100
-   },
-   "printer 53.ase": {
-    "frame": { "x": 507, "y": 56, "w": 39, "h": 28 },
-    "rotated": false,
-    "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 39, "h": 28 },
-    "sourceSize": { "w": 39, "h": 28 },
-    "duration": 100
-   },
-   "printer 54.ase": {
-    "frame": { "x": 546, "y": 56, "w": 39, "h": 28 },
-    "rotated": false,
-    "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 39, "h": 28 },
-    "sourceSize": { "w": 39, "h": 28 },
-    "duration": 100
-   },
-   "printer 55.ase": {
-    "frame": { "x": 585, "y": 56, "w": 39, "h": 28 },
-    "rotated": false,
-    "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 39, "h": 28 },
-    "sourceSize": { "w": 39, "h": 28 },
-    "duration": 100
-   },
-   "printer 56.ase": {
-    "frame": { "x": 624, "y": 56, "w": 39, "h": 28 },
-    "rotated": false,
-    "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 39, "h": 28 },
-    "sourceSize": { "w": 39, "h": 28 },
-    "duration": 100
-   },
-   "printer 57.ase": {
-    "frame": { "x": 663, "y": 56, "w": 39, "h": 28 },
-    "rotated": false,
-    "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 39, "h": 28 },
-    "sourceSize": { "w": 39, "h": 28 },
-    "duration": 100
-   },
-   "printer 58.ase": {
-    "frame": { "x": 702, "y": 56, "w": 39, "h": 28 },
-    "rotated": false,
-    "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 39, "h": 28 },
-    "sourceSize": { "w": 39, "h": 28 },
-    "duration": 100
-   },
-   "printer 59.ase": {
-    "frame": { "x": 741, "y": 56, "w": 39, "h": 28 },
-    "rotated": false,
-    "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 39, "h": 28 },
-    "sourceSize": { "w": 39, "h": 28 },
-    "duration": 100
-   },
-   "printer 60.ase": {
+   {
+    "filename": "printer 33.ase",
     "frame": { "x": 0, "y": 84, "w": 39, "h": 28 },
     "rotated": false,
     "trimmed": false,
@@ -487,7 +305,8 @@
     "sourceSize": { "w": 39, "h": 28 },
     "duration": 100
    },
-   "printer 61.ase": {
+   {
+    "filename": "printer 34.ase",
     "frame": { "x": 39, "y": 84, "w": 39, "h": 28 },
     "rotated": false,
     "trimmed": false,
@@ -495,7 +314,8 @@
     "sourceSize": { "w": 39, "h": 28 },
     "duration": 100
    },
-   "printer 62.ase": {
+   {
+    "filename": "printer 35.ase",
     "frame": { "x": 78, "y": 84, "w": 39, "h": 28 },
     "rotated": false,
     "trimmed": false,
@@ -503,7 +323,8 @@
     "sourceSize": { "w": 39, "h": 28 },
     "duration": 100
    },
-   "printer 63.ase": {
+   {
+    "filename": "printer 36.ase",
     "frame": { "x": 117, "y": 84, "w": 39, "h": 28 },
     "rotated": false,
     "trimmed": false,
@@ -511,7 +332,8 @@
     "sourceSize": { "w": 39, "h": 28 },
     "duration": 100
    },
-   "printer 64.ase": {
+   {
+    "filename": "printer 37.ase",
     "frame": { "x": 156, "y": 84, "w": 39, "h": 28 },
     "rotated": false,
     "trimmed": false,
@@ -519,7 +341,8 @@
     "sourceSize": { "w": 39, "h": 28 },
     "duration": 100
    },
-   "printer 65.ase": {
+   {
+    "filename": "printer 38.ase",
     "frame": { "x": 195, "y": 84, "w": 39, "h": 28 },
     "rotated": false,
     "trimmed": false,
@@ -527,7 +350,8 @@
     "sourceSize": { "w": 39, "h": 28 },
     "duration": 100
    },
-   "printer 66.ase": {
+   {
+    "filename": "printer 39.ase",
     "frame": { "x": 234, "y": 84, "w": 39, "h": 28 },
     "rotated": false,
     "trimmed": false,
@@ -535,7 +359,8 @@
     "sourceSize": { "w": 39, "h": 28 },
     "duration": 100
    },
-   "printer 67.ase": {
+   {
+    "filename": "printer 40.ase",
     "frame": { "x": 273, "y": 84, "w": 39, "h": 28 },
     "rotated": false,
     "trimmed": false,
@@ -543,7 +368,8 @@
     "sourceSize": { "w": 39, "h": 28 },
     "duration": 100
    },
-   "printer 68.ase": {
+   {
+    "filename": "printer 41.ase",
     "frame": { "x": 312, "y": 84, "w": 39, "h": 28 },
     "rotated": false,
     "trimmed": false,
@@ -551,7 +377,8 @@
     "sourceSize": { "w": 39, "h": 28 },
     "duration": 100
    },
-   "printer 69.ase": {
+   {
+    "filename": "printer 42.ase",
     "frame": { "x": 351, "y": 84, "w": 39, "h": 28 },
     "rotated": false,
     "trimmed": false,
@@ -559,7 +386,8 @@
     "sourceSize": { "w": 39, "h": 28 },
     "duration": 100
    },
-   "printer 70.ase": {
+   {
+    "filename": "printer 43.ase",
     "frame": { "x": 390, "y": 84, "w": 39, "h": 28 },
     "rotated": false,
     "trimmed": false,
@@ -567,79 +395,8 @@
     "sourceSize": { "w": 39, "h": 28 },
     "duration": 100
    },
-   "printer 71.ase": {
-    "frame": { "x": 429, "y": 84, "w": 39, "h": 28 },
-    "rotated": false,
-    "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 39, "h": 28 },
-    "sourceSize": { "w": 39, "h": 28 },
-    "duration": 100
-   },
-   "printer 72.ase": {
-    "frame": { "x": 468, "y": 84, "w": 39, "h": 28 },
-    "rotated": false,
-    "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 39, "h": 28 },
-    "sourceSize": { "w": 39, "h": 28 },
-    "duration": 100
-   },
-   "printer 73.ase": {
-    "frame": { "x": 507, "y": 84, "w": 39, "h": 28 },
-    "rotated": false,
-    "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 39, "h": 28 },
-    "sourceSize": { "w": 39, "h": 28 },
-    "duration": 100
-   },
-   "printer 74.ase": {
-    "frame": { "x": 546, "y": 84, "w": 39, "h": 28 },
-    "rotated": false,
-    "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 39, "h": 28 },
-    "sourceSize": { "w": 39, "h": 28 },
-    "duration": 100
-   },
-   "printer 75.ase": {
-    "frame": { "x": 585, "y": 84, "w": 39, "h": 28 },
-    "rotated": false,
-    "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 39, "h": 28 },
-    "sourceSize": { "w": 39, "h": 28 },
-    "duration": 100
-   },
-   "printer 76.ase": {
-    "frame": { "x": 624, "y": 84, "w": 39, "h": 28 },
-    "rotated": false,
-    "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 39, "h": 28 },
-    "sourceSize": { "w": 39, "h": 28 },
-    "duration": 100
-   },
-   "printer 77.ase": {
-    "frame": { "x": 663, "y": 84, "w": 39, "h": 28 },
-    "rotated": false,
-    "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 39, "h": 28 },
-    "sourceSize": { "w": 39, "h": 28 },
-    "duration": 100
-   },
-   "printer 78.ase": {
-    "frame": { "x": 702, "y": 84, "w": 39, "h": 28 },
-    "rotated": false,
-    "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 39, "h": 28 },
-    "sourceSize": { "w": 39, "h": 28 },
-    "duration": 100
-   },
-   "printer 79.ase": {
-    "frame": { "x": 741, "y": 84, "w": 39, "h": 28 },
-    "rotated": false,
-    "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 39, "h": 28 },
-    "sourceSize": { "w": 39, "h": 28 },
-    "duration": 100
-   },
-   "printer 80.ase": {
+   {
+    "filename": "printer 44.ase",
     "frame": { "x": 0, "y": 112, "w": 39, "h": 28 },
     "rotated": false,
     "trimmed": false,
@@ -647,7 +404,8 @@
     "sourceSize": { "w": 39, "h": 28 },
     "duration": 100
    },
-   "printer 81.ase": {
+   {
+    "filename": "printer 45.ase",
     "frame": { "x": 39, "y": 112, "w": 39, "h": 28 },
     "rotated": false,
     "trimmed": false,
@@ -655,7 +413,8 @@
     "sourceSize": { "w": 39, "h": 28 },
     "duration": 100
    },
-   "printer 82.ase": {
+   {
+    "filename": "printer 46.ase",
     "frame": { "x": 78, "y": 112, "w": 39, "h": 28 },
     "rotated": false,
     "trimmed": false,
@@ -663,7 +422,8 @@
     "sourceSize": { "w": 39, "h": 28 },
     "duration": 100
    },
-   "printer 83.ase": {
+   {
+    "filename": "printer 47.ase",
     "frame": { "x": 117, "y": 112, "w": 39, "h": 28 },
     "rotated": false,
     "trimmed": false,
@@ -671,7 +431,8 @@
     "sourceSize": { "w": 39, "h": 28 },
     "duration": 100
    },
-   "printer 84.ase": {
+   {
+    "filename": "printer 48.ase",
     "frame": { "x": 156, "y": 112, "w": 39, "h": 28 },
     "rotated": false,
     "trimmed": false,
@@ -679,7 +440,8 @@
     "sourceSize": { "w": 39, "h": 28 },
     "duration": 100
    },
-   "printer 85.ase": {
+   {
+    "filename": "printer 49.ase",
     "frame": { "x": 195, "y": 112, "w": 39, "h": 28 },
     "rotated": false,
     "trimmed": false,
@@ -687,7 +449,8 @@
     "sourceSize": { "w": 39, "h": 28 },
     "duration": 100
    },
-   "printer 86.ase": {
+   {
+    "filename": "printer 50.ase",
     "frame": { "x": 234, "y": 112, "w": 39, "h": 28 },
     "rotated": false,
     "trimmed": false,
@@ -695,7 +458,8 @@
     "sourceSize": { "w": 39, "h": 28 },
     "duration": 100
    },
-   "printer 87.ase": {
+   {
+    "filename": "printer 51.ase",
     "frame": { "x": 273, "y": 112, "w": 39, "h": 28 },
     "rotated": false,
     "trimmed": false,
@@ -703,7 +467,8 @@
     "sourceSize": { "w": 39, "h": 28 },
     "duration": 100
    },
-   "printer 88.ase": {
+   {
+    "filename": "printer 52.ase",
     "frame": { "x": 312, "y": 112, "w": 39, "h": 28 },
     "rotated": false,
     "trimmed": false,
@@ -711,7 +476,8 @@
     "sourceSize": { "w": 39, "h": 28 },
     "duration": 100
    },
-   "printer 89.ase": {
+   {
+    "filename": "printer 53.ase",
     "frame": { "x": 351, "y": 112, "w": 39, "h": 28 },
     "rotated": false,
     "trimmed": false,
@@ -719,7 +485,8 @@
     "sourceSize": { "w": 39, "h": 28 },
     "duration": 100
    },
-   "printer 90.ase": {
+   {
+    "filename": "printer 54.ase",
     "frame": { "x": 390, "y": 112, "w": 39, "h": 28 },
     "rotated": false,
     "trimmed": false,
@@ -727,79 +494,8 @@
     "sourceSize": { "w": 39, "h": 28 },
     "duration": 100
    },
-   "printer 91.ase": {
-    "frame": { "x": 429, "y": 112, "w": 39, "h": 28 },
-    "rotated": false,
-    "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 39, "h": 28 },
-    "sourceSize": { "w": 39, "h": 28 },
-    "duration": 100
-   },
-   "printer 92.ase": {
-    "frame": { "x": 468, "y": 112, "w": 39, "h": 28 },
-    "rotated": false,
-    "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 39, "h": 28 },
-    "sourceSize": { "w": 39, "h": 28 },
-    "duration": 100
-   },
-   "printer 93.ase": {
-    "frame": { "x": 507, "y": 112, "w": 39, "h": 28 },
-    "rotated": false,
-    "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 39, "h": 28 },
-    "sourceSize": { "w": 39, "h": 28 },
-    "duration": 100
-   },
-   "printer 94.ase": {
-    "frame": { "x": 546, "y": 112, "w": 39, "h": 28 },
-    "rotated": false,
-    "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 39, "h": 28 },
-    "sourceSize": { "w": 39, "h": 28 },
-    "duration": 100
-   },
-   "printer 95.ase": {
-    "frame": { "x": 585, "y": 112, "w": 39, "h": 28 },
-    "rotated": false,
-    "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 39, "h": 28 },
-    "sourceSize": { "w": 39, "h": 28 },
-    "duration": 100
-   },
-   "printer 96.ase": {
-    "frame": { "x": 624, "y": 112, "w": 39, "h": 28 },
-    "rotated": false,
-    "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 39, "h": 28 },
-    "sourceSize": { "w": 39, "h": 28 },
-    "duration": 100
-   },
-   "printer 97.ase": {
-    "frame": { "x": 663, "y": 112, "w": 39, "h": 28 },
-    "rotated": false,
-    "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 39, "h": 28 },
-    "sourceSize": { "w": 39, "h": 28 },
-    "duration": 100
-   },
-   "printer 98.ase": {
-    "frame": { "x": 702, "y": 112, "w": 39, "h": 28 },
-    "rotated": false,
-    "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 39, "h": 28 },
-    "sourceSize": { "w": 39, "h": 28 },
-    "duration": 100
-   },
-   "printer 99.ase": {
-    "frame": { "x": 741, "y": 112, "w": 39, "h": 28 },
-    "rotated": false,
-    "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 39, "h": 28 },
-    "sourceSize": { "w": 39, "h": 28 },
-    "duration": 100
-   },
-   "printer 100.ase": {
+   {
+    "filename": "printer 55.ase",
     "frame": { "x": 0, "y": 140, "w": 39, "h": 28 },
     "rotated": false,
     "trimmed": false,
@@ -807,7 +503,8 @@
     "sourceSize": { "w": 39, "h": 28 },
     "duration": 100
    },
-   "printer 101.ase": {
+   {
+    "filename": "printer 56.ase",
     "frame": { "x": 39, "y": 140, "w": 39, "h": 28 },
     "rotated": false,
     "trimmed": false,
@@ -815,7 +512,8 @@
     "sourceSize": { "w": 39, "h": 28 },
     "duration": 100
    },
-   "printer 102.ase": {
+   {
+    "filename": "printer 57.ase",
     "frame": { "x": 78, "y": 140, "w": 39, "h": 28 },
     "rotated": false,
     "trimmed": false,
@@ -823,7 +521,8 @@
     "sourceSize": { "w": 39, "h": 28 },
     "duration": 100
    },
-   "printer 103.ase": {
+   {
+    "filename": "printer 58.ase",
     "frame": { "x": 117, "y": 140, "w": 39, "h": 28 },
     "rotated": false,
     "trimmed": false,
@@ -831,7 +530,8 @@
     "sourceSize": { "w": 39, "h": 28 },
     "duration": 100
    },
-   "printer 104.ase": {
+   {
+    "filename": "printer 59.ase",
     "frame": { "x": 156, "y": 140, "w": 39, "h": 28 },
     "rotated": false,
     "trimmed": false,
@@ -839,7 +539,8 @@
     "sourceSize": { "w": 39, "h": 28 },
     "duration": 100
    },
-   "printer 105.ase": {
+   {
+    "filename": "printer 60.ase",
     "frame": { "x": 195, "y": 140, "w": 39, "h": 28 },
     "rotated": false,
     "trimmed": false,
@@ -847,7 +548,8 @@
     "sourceSize": { "w": 39, "h": 28 },
     "duration": 100
    },
-   "printer 106.ase": {
+   {
+    "filename": "printer 61.ase",
     "frame": { "x": 234, "y": 140, "w": 39, "h": 28 },
     "rotated": false,
     "trimmed": false,
@@ -855,7 +557,8 @@
     "sourceSize": { "w": 39, "h": 28 },
     "duration": 100
    },
-   "printer 107.ase": {
+   {
+    "filename": "printer 62.ase",
     "frame": { "x": 273, "y": 140, "w": 39, "h": 28 },
     "rotated": false,
     "trimmed": false,
@@ -863,7 +566,8 @@
     "sourceSize": { "w": 39, "h": 28 },
     "duration": 100
    },
-   "printer 108.ase": {
+   {
+    "filename": "printer 63.ase",
     "frame": { "x": 312, "y": 140, "w": 39, "h": 28 },
     "rotated": false,
     "trimmed": false,
@@ -871,7 +575,8 @@
     "sourceSize": { "w": 39, "h": 28 },
     "duration": 100
    },
-   "printer 109.ase": {
+   {
+    "filename": "printer 64.ase",
     "frame": { "x": 351, "y": 140, "w": 39, "h": 28 },
     "rotated": false,
     "trimmed": false,
@@ -879,7 +584,8 @@
     "sourceSize": { "w": 39, "h": 28 },
     "duration": 100
    },
-   "printer 110.ase": {
+   {
+    "filename": "printer 65.ase",
     "frame": { "x": 390, "y": 140, "w": 39, "h": 28 },
     "rotated": false,
     "trimmed": false,
@@ -887,79 +593,8 @@
     "sourceSize": { "w": 39, "h": 28 },
     "duration": 100
    },
-   "printer 111.ase": {
-    "frame": { "x": 429, "y": 140, "w": 39, "h": 28 },
-    "rotated": false,
-    "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 39, "h": 28 },
-    "sourceSize": { "w": 39, "h": 28 },
-    "duration": 100
-   },
-   "printer 112.ase": {
-    "frame": { "x": 468, "y": 140, "w": 39, "h": 28 },
-    "rotated": false,
-    "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 39, "h": 28 },
-    "sourceSize": { "w": 39, "h": 28 },
-    "duration": 100
-   },
-   "printer 113.ase": {
-    "frame": { "x": 507, "y": 140, "w": 39, "h": 28 },
-    "rotated": false,
-    "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 39, "h": 28 },
-    "sourceSize": { "w": 39, "h": 28 },
-    "duration": 100
-   },
-   "printer 114.ase": {
-    "frame": { "x": 546, "y": 140, "w": 39, "h": 28 },
-    "rotated": false,
-    "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 39, "h": 28 },
-    "sourceSize": { "w": 39, "h": 28 },
-    "duration": 100
-   },
-   "printer 115.ase": {
-    "frame": { "x": 585, "y": 140, "w": 39, "h": 28 },
-    "rotated": false,
-    "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 39, "h": 28 },
-    "sourceSize": { "w": 39, "h": 28 },
-    "duration": 100
-   },
-   "printer 116.ase": {
-    "frame": { "x": 624, "y": 140, "w": 39, "h": 28 },
-    "rotated": false,
-    "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 39, "h": 28 },
-    "sourceSize": { "w": 39, "h": 28 },
-    "duration": 100
-   },
-   "printer 117.ase": {
-    "frame": { "x": 663, "y": 140, "w": 39, "h": 28 },
-    "rotated": false,
-    "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 39, "h": 28 },
-    "sourceSize": { "w": 39, "h": 28 },
-    "duration": 100
-   },
-   "printer 118.ase": {
-    "frame": { "x": 702, "y": 140, "w": 39, "h": 28 },
-    "rotated": false,
-    "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 39, "h": 28 },
-    "sourceSize": { "w": 39, "h": 28 },
-    "duration": 100
-   },
-   "printer 119.ase": {
-    "frame": { "x": 741, "y": 140, "w": 39, "h": 28 },
-    "rotated": false,
-    "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 39, "h": 28 },
-    "sourceSize": { "w": 39, "h": 28 },
-    "duration": 100
-   },
-   "printer 120.ase": {
+   {
+    "filename": "printer 66.ase",
     "frame": { "x": 0, "y": 168, "w": 39, "h": 28 },
     "rotated": false,
     "trimmed": false,
@@ -967,7 +602,8 @@
     "sourceSize": { "w": 39, "h": 28 },
     "duration": 100
    },
-   "printer 121.ase": {
+   {
+    "filename": "printer 67.ase",
     "frame": { "x": 39, "y": 168, "w": 39, "h": 28 },
     "rotated": false,
     "trimmed": false,
@@ -975,7 +611,8 @@
     "sourceSize": { "w": 39, "h": 28 },
     "duration": 100
    },
-   "printer 122.ase": {
+   {
+    "filename": "printer 68.ase",
     "frame": { "x": 78, "y": 168, "w": 39, "h": 28 },
     "rotated": false,
     "trimmed": false,
@@ -983,7 +620,8 @@
     "sourceSize": { "w": 39, "h": 28 },
     "duration": 100
    },
-   "printer 123.ase": {
+   {
+    "filename": "printer 69.ase",
     "frame": { "x": 117, "y": 168, "w": 39, "h": 28 },
     "rotated": false,
     "trimmed": false,
@@ -991,7 +629,8 @@
     "sourceSize": { "w": 39, "h": 28 },
     "duration": 100
    },
-   "printer 124.ase": {
+   {
+    "filename": "printer 70.ase",
     "frame": { "x": 156, "y": 168, "w": 39, "h": 28 },
     "rotated": false,
     "trimmed": false,
@@ -999,7 +638,8 @@
     "sourceSize": { "w": 39, "h": 28 },
     "duration": 100
    },
-   "printer 125.ase": {
+   {
+    "filename": "printer 71.ase",
     "frame": { "x": 195, "y": 168, "w": 39, "h": 28 },
     "rotated": false,
     "trimmed": false,
@@ -1007,7 +647,8 @@
     "sourceSize": { "w": 39, "h": 28 },
     "duration": 100
    },
-   "printer 126.ase": {
+   {
+    "filename": "printer 72.ase",
     "frame": { "x": 234, "y": 168, "w": 39, "h": 28 },
     "rotated": false,
     "trimmed": false,
@@ -1015,7 +656,8 @@
     "sourceSize": { "w": 39, "h": 28 },
     "duration": 100
    },
-   "printer 127.ase": {
+   {
+    "filename": "printer 73.ase",
     "frame": { "x": 273, "y": 168, "w": 39, "h": 28 },
     "rotated": false,
     "trimmed": false,
@@ -1023,7 +665,8 @@
     "sourceSize": { "w": 39, "h": 28 },
     "duration": 100
    },
-   "printer 128.ase": {
+   {
+    "filename": "printer 74.ase",
     "frame": { "x": 312, "y": 168, "w": 39, "h": 28 },
     "rotated": false,
     "trimmed": false,
@@ -1031,7 +674,8 @@
     "sourceSize": { "w": 39, "h": 28 },
     "duration": 100
    },
-   "printer 129.ase": {
+   {
+    "filename": "printer 75.ase",
     "frame": { "x": 351, "y": 168, "w": 39, "h": 28 },
     "rotated": false,
     "trimmed": false,
@@ -1039,7 +683,8 @@
     "sourceSize": { "w": 39, "h": 28 },
     "duration": 100
    },
-   "printer 130.ase": {
+   {
+    "filename": "printer 76.ase",
     "frame": { "x": 390, "y": 168, "w": 39, "h": 28 },
     "rotated": false,
     "trimmed": false,
@@ -1047,79 +692,8 @@
     "sourceSize": { "w": 39, "h": 28 },
     "duration": 100
    },
-   "printer 131.ase": {
-    "frame": { "x": 429, "y": 168, "w": 39, "h": 28 },
-    "rotated": false,
-    "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 39, "h": 28 },
-    "sourceSize": { "w": 39, "h": 28 },
-    "duration": 100
-   },
-   "printer 132.ase": {
-    "frame": { "x": 468, "y": 168, "w": 39, "h": 28 },
-    "rotated": false,
-    "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 39, "h": 28 },
-    "sourceSize": { "w": 39, "h": 28 },
-    "duration": 100
-   },
-   "printer 133.ase": {
-    "frame": { "x": 507, "y": 168, "w": 39, "h": 28 },
-    "rotated": false,
-    "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 39, "h": 28 },
-    "sourceSize": { "w": 39, "h": 28 },
-    "duration": 100
-   },
-   "printer 134.ase": {
-    "frame": { "x": 546, "y": 168, "w": 39, "h": 28 },
-    "rotated": false,
-    "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 39, "h": 28 },
-    "sourceSize": { "w": 39, "h": 28 },
-    "duration": 100
-   },
-   "printer 135.ase": {
-    "frame": { "x": 585, "y": 168, "w": 39, "h": 28 },
-    "rotated": false,
-    "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 39, "h": 28 },
-    "sourceSize": { "w": 39, "h": 28 },
-    "duration": 100
-   },
-   "printer 136.ase": {
-    "frame": { "x": 624, "y": 168, "w": 39, "h": 28 },
-    "rotated": false,
-    "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 39, "h": 28 },
-    "sourceSize": { "w": 39, "h": 28 },
-    "duration": 100
-   },
-   "printer 137.ase": {
-    "frame": { "x": 663, "y": 168, "w": 39, "h": 28 },
-    "rotated": false,
-    "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 39, "h": 28 },
-    "sourceSize": { "w": 39, "h": 28 },
-    "duration": 100
-   },
-   "printer 138.ase": {
-    "frame": { "x": 702, "y": 168, "w": 39, "h": 28 },
-    "rotated": false,
-    "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 39, "h": 28 },
-    "sourceSize": { "w": 39, "h": 28 },
-    "duration": 100
-   },
-   "printer 139.ase": {
-    "frame": { "x": 741, "y": 168, "w": 39, "h": 28 },
-    "rotated": false,
-    "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 39, "h": 28 },
-    "sourceSize": { "w": 39, "h": 28 },
-    "duration": 100
-   },
-   "printer 140.ase": {
+   {
+    "filename": "printer 77.ase",
     "frame": { "x": 0, "y": 196, "w": 39, "h": 28 },
     "rotated": false,
     "trimmed": false,
@@ -1127,7 +701,8 @@
     "sourceSize": { "w": 39, "h": 28 },
     "duration": 100
    },
-   "printer 141.ase": {
+   {
+    "filename": "printer 78.ase",
     "frame": { "x": 39, "y": 196, "w": 39, "h": 28 },
     "rotated": false,
     "trimmed": false,
@@ -1135,7 +710,8 @@
     "sourceSize": { "w": 39, "h": 28 },
     "duration": 100
    },
-   "printer 142.ase": {
+   {
+    "filename": "printer 79.ase",
     "frame": { "x": 78, "y": 196, "w": 39, "h": 28 },
     "rotated": false,
     "trimmed": false,
@@ -1143,7 +719,8 @@
     "sourceSize": { "w": 39, "h": 28 },
     "duration": 100
    },
-   "printer 143.ase": {
+   {
+    "filename": "printer 80.ase",
     "frame": { "x": 117, "y": 196, "w": 39, "h": 28 },
     "rotated": false,
     "trimmed": false,
@@ -1151,7 +728,8 @@
     "sourceSize": { "w": 39, "h": 28 },
     "duration": 100
    },
-   "printer 144.ase": {
+   {
+    "filename": "printer 81.ase",
     "frame": { "x": 156, "y": 196, "w": 39, "h": 28 },
     "rotated": false,
     "trimmed": false,
@@ -1159,7 +737,8 @@
     "sourceSize": { "w": 39, "h": 28 },
     "duration": 100
    },
-   "printer 145.ase": {
+   {
+    "filename": "printer 82.ase",
     "frame": { "x": 195, "y": 196, "w": 39, "h": 28 },
     "rotated": false,
     "trimmed": false,
@@ -1167,7 +746,8 @@
     "sourceSize": { "w": 39, "h": 28 },
     "duration": 100
    },
-   "printer 146.ase": {
+   {
+    "filename": "printer 83.ase",
     "frame": { "x": 234, "y": 196, "w": 39, "h": 28 },
     "rotated": false,
     "trimmed": false,
@@ -1175,7 +755,8 @@
     "sourceSize": { "w": 39, "h": 28 },
     "duration": 100
    },
-   "printer 147.ase": {
+   {
+    "filename": "printer 84.ase",
     "frame": { "x": 273, "y": 196, "w": 39, "h": 28 },
     "rotated": false,
     "trimmed": false,
@@ -1183,7 +764,8 @@
     "sourceSize": { "w": 39, "h": 28 },
     "duration": 100
    },
-   "printer 148.ase": {
+   {
+    "filename": "printer 85.ase",
     "frame": { "x": 312, "y": 196, "w": 39, "h": 28 },
     "rotated": false,
     "trimmed": false,
@@ -1191,7 +773,8 @@
     "sourceSize": { "w": 39, "h": 28 },
     "duration": 100
    },
-   "printer 149.ase": {
+   {
+    "filename": "printer 86.ase",
     "frame": { "x": 351, "y": 196, "w": 39, "h": 28 },
     "rotated": false,
     "trimmed": false,
@@ -1199,7 +782,8 @@
     "sourceSize": { "w": 39, "h": 28 },
     "duration": 100
    },
-   "printer 150.ase": {
+   {
+    "filename": "printer 87.ase",
     "frame": { "x": 390, "y": 196, "w": 39, "h": 28 },
     "rotated": false,
     "trimmed": false,
@@ -1207,79 +791,8 @@
     "sourceSize": { "w": 39, "h": 28 },
     "duration": 100
    },
-   "printer 151.ase": {
-    "frame": { "x": 429, "y": 196, "w": 39, "h": 28 },
-    "rotated": false,
-    "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 39, "h": 28 },
-    "sourceSize": { "w": 39, "h": 28 },
-    "duration": 100
-   },
-   "printer 152.ase": {
-    "frame": { "x": 468, "y": 196, "w": 39, "h": 28 },
-    "rotated": false,
-    "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 39, "h": 28 },
-    "sourceSize": { "w": 39, "h": 28 },
-    "duration": 100
-   },
-   "printer 153.ase": {
-    "frame": { "x": 507, "y": 196, "w": 39, "h": 28 },
-    "rotated": false,
-    "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 39, "h": 28 },
-    "sourceSize": { "w": 39, "h": 28 },
-    "duration": 100
-   },
-   "printer 154.ase": {
-    "frame": { "x": 546, "y": 196, "w": 39, "h": 28 },
-    "rotated": false,
-    "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 39, "h": 28 },
-    "sourceSize": { "w": 39, "h": 28 },
-    "duration": 100
-   },
-   "printer 155.ase": {
-    "frame": { "x": 585, "y": 196, "w": 39, "h": 28 },
-    "rotated": false,
-    "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 39, "h": 28 },
-    "sourceSize": { "w": 39, "h": 28 },
-    "duration": 100
-   },
-   "printer 156.ase": {
-    "frame": { "x": 624, "y": 196, "w": 39, "h": 28 },
-    "rotated": false,
-    "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 39, "h": 28 },
-    "sourceSize": { "w": 39, "h": 28 },
-    "duration": 100
-   },
-   "printer 157.ase": {
-    "frame": { "x": 663, "y": 196, "w": 39, "h": 28 },
-    "rotated": false,
-    "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 39, "h": 28 },
-    "sourceSize": { "w": 39, "h": 28 },
-    "duration": 100
-   },
-   "printer 158.ase": {
-    "frame": { "x": 702, "y": 196, "w": 39, "h": 28 },
-    "rotated": false,
-    "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 39, "h": 28 },
-    "sourceSize": { "w": 39, "h": 28 },
-    "duration": 100
-   },
-   "printer 159.ase": {
-    "frame": { "x": 741, "y": 196, "w": 39, "h": 28 },
-    "rotated": false,
-    "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 39, "h": 28 },
-    "sourceSize": { "w": 39, "h": 28 },
-    "duration": 100
-   },
-   "printer 160.ase": {
+   {
+    "filename": "printer 88.ase",
     "frame": { "x": 0, "y": 224, "w": 39, "h": 28 },
     "rotated": false,
     "trimmed": false,
@@ -1287,7 +800,8 @@
     "sourceSize": { "w": 39, "h": 28 },
     "duration": 100
    },
-   "printer 161.ase": {
+   {
+    "filename": "printer 89.ase",
     "frame": { "x": 39, "y": 224, "w": 39, "h": 28 },
     "rotated": false,
     "trimmed": false,
@@ -1295,7 +809,8 @@
     "sourceSize": { "w": 39, "h": 28 },
     "duration": 100
    },
-   "printer 162.ase": {
+   {
+    "filename": "printer 90.ase",
     "frame": { "x": 78, "y": 224, "w": 39, "h": 28 },
     "rotated": false,
     "trimmed": false,
@@ -1303,7 +818,8 @@
     "sourceSize": { "w": 39, "h": 28 },
     "duration": 100
    },
-   "printer 163.ase": {
+   {
+    "filename": "printer 91.ase",
     "frame": { "x": 117, "y": 224, "w": 39, "h": 28 },
     "rotated": false,
     "trimmed": false,
@@ -1311,7 +827,8 @@
     "sourceSize": { "w": 39, "h": 28 },
     "duration": 100
    },
-   "printer 164.ase": {
+   {
+    "filename": "printer 92.ase",
     "frame": { "x": 156, "y": 224, "w": 39, "h": 28 },
     "rotated": false,
     "trimmed": false,
@@ -1319,7 +836,8 @@
     "sourceSize": { "w": 39, "h": 28 },
     "duration": 100
    },
-   "printer 165.ase": {
+   {
+    "filename": "printer 93.ase",
     "frame": { "x": 195, "y": 224, "w": 39, "h": 28 },
     "rotated": false,
     "trimmed": false,
@@ -1327,7 +845,8 @@
     "sourceSize": { "w": 39, "h": 28 },
     "duration": 100
    },
-   "printer 166.ase": {
+   {
+    "filename": "printer 94.ase",
     "frame": { "x": 234, "y": 224, "w": 39, "h": 28 },
     "rotated": false,
     "trimmed": false,
@@ -1335,7 +854,8 @@
     "sourceSize": { "w": 39, "h": 28 },
     "duration": 100
    },
-   "printer 167.ase": {
+   {
+    "filename": "printer 95.ase",
     "frame": { "x": 273, "y": 224, "w": 39, "h": 28 },
     "rotated": false,
     "trimmed": false,
@@ -1343,7 +863,8 @@
     "sourceSize": { "w": 39, "h": 28 },
     "duration": 100
    },
-   "printer 168.ase": {
+   {
+    "filename": "printer 96.ase",
     "frame": { "x": 312, "y": 224, "w": 39, "h": 28 },
     "rotated": false,
     "trimmed": false,
@@ -1351,7 +872,8 @@
     "sourceSize": { "w": 39, "h": 28 },
     "duration": 100
    },
-   "printer 169.ase": {
+   {
+    "filename": "printer 97.ase",
     "frame": { "x": 351, "y": 224, "w": 39, "h": 28 },
     "rotated": false,
     "trimmed": false,
@@ -1359,7 +881,8 @@
     "sourceSize": { "w": 39, "h": 28 },
     "duration": 100
    },
-   "printer 170.ase": {
+   {
+    "filename": "printer 98.ase",
     "frame": { "x": 390, "y": 224, "w": 39, "h": 28 },
     "rotated": false,
     "trimmed": false,
@@ -1367,79 +890,8 @@
     "sourceSize": { "w": 39, "h": 28 },
     "duration": 100
    },
-   "printer 171.ase": {
-    "frame": { "x": 429, "y": 224, "w": 39, "h": 28 },
-    "rotated": false,
-    "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 39, "h": 28 },
-    "sourceSize": { "w": 39, "h": 28 },
-    "duration": 100
-   },
-   "printer 172.ase": {
-    "frame": { "x": 468, "y": 224, "w": 39, "h": 28 },
-    "rotated": false,
-    "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 39, "h": 28 },
-    "sourceSize": { "w": 39, "h": 28 },
-    "duration": 100
-   },
-   "printer 173.ase": {
-    "frame": { "x": 507, "y": 224, "w": 39, "h": 28 },
-    "rotated": false,
-    "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 39, "h": 28 },
-    "sourceSize": { "w": 39, "h": 28 },
-    "duration": 100
-   },
-   "printer 174.ase": {
-    "frame": { "x": 546, "y": 224, "w": 39, "h": 28 },
-    "rotated": false,
-    "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 39, "h": 28 },
-    "sourceSize": { "w": 39, "h": 28 },
-    "duration": 100
-   },
-   "printer 175.ase": {
-    "frame": { "x": 585, "y": 224, "w": 39, "h": 28 },
-    "rotated": false,
-    "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 39, "h": 28 },
-    "sourceSize": { "w": 39, "h": 28 },
-    "duration": 100
-   },
-   "printer 176.ase": {
-    "frame": { "x": 624, "y": 224, "w": 39, "h": 28 },
-    "rotated": false,
-    "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 39, "h": 28 },
-    "sourceSize": { "w": 39, "h": 28 },
-    "duration": 100
-   },
-   "printer 177.ase": {
-    "frame": { "x": 663, "y": 224, "w": 39, "h": 28 },
-    "rotated": false,
-    "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 39, "h": 28 },
-    "sourceSize": { "w": 39, "h": 28 },
-    "duration": 100
-   },
-   "printer 178.ase": {
-    "frame": { "x": 702, "y": 224, "w": 39, "h": 28 },
-    "rotated": false,
-    "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 39, "h": 28 },
-    "sourceSize": { "w": 39, "h": 28 },
-    "duration": 100
-   },
-   "printer 179.ase": {
-    "frame": { "x": 741, "y": 224, "w": 39, "h": 28 },
-    "rotated": false,
-    "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 39, "h": 28 },
-    "sourceSize": { "w": 39, "h": 28 },
-    "duration": 100
-   },
-   "printer 180.ase": {
+   {
+    "filename": "printer 99.ase",
     "frame": { "x": 0, "y": 252, "w": 39, "h": 28 },
     "rotated": false,
     "trimmed": false,
@@ -1447,7 +899,8 @@
     "sourceSize": { "w": 39, "h": 28 },
     "duration": 100
    },
-   "printer 181.ase": {
+   {
+    "filename": "printer 100.ase",
     "frame": { "x": 39, "y": 252, "w": 39, "h": 28 },
     "rotated": false,
     "trimmed": false,
@@ -1455,7 +908,8 @@
     "sourceSize": { "w": 39, "h": 28 },
     "duration": 100
    },
-   "printer 182.ase": {
+   {
+    "filename": "printer 101.ase",
     "frame": { "x": 78, "y": 252, "w": 39, "h": 28 },
     "rotated": false,
     "trimmed": false,
@@ -1463,7 +917,8 @@
     "sourceSize": { "w": 39, "h": 28 },
     "duration": 100
    },
-   "printer 183.ase": {
+   {
+    "filename": "printer 102.ase",
     "frame": { "x": 117, "y": 252, "w": 39, "h": 28 },
     "rotated": false,
     "trimmed": false,
@@ -1471,7 +926,8 @@
     "sourceSize": { "w": 39, "h": 28 },
     "duration": 100
    },
-   "printer 184.ase": {
+   {
+    "filename": "printer 103.ase",
     "frame": { "x": 156, "y": 252, "w": 39, "h": 28 },
     "rotated": false,
     "trimmed": false,
@@ -1479,7 +935,8 @@
     "sourceSize": { "w": 39, "h": 28 },
     "duration": 100
    },
-   "printer 185.ase": {
+   {
+    "filename": "printer 104.ase",
     "frame": { "x": 195, "y": 252, "w": 39, "h": 28 },
     "rotated": false,
     "trimmed": false,
@@ -1487,7 +944,8 @@
     "sourceSize": { "w": 39, "h": 28 },
     "duration": 100
    },
-   "printer 186.ase": {
+   {
+    "filename": "printer 105.ase",
     "frame": { "x": 234, "y": 252, "w": 39, "h": 28 },
     "rotated": false,
     "trimmed": false,
@@ -1495,7 +953,8 @@
     "sourceSize": { "w": 39, "h": 28 },
     "duration": 100
    },
-   "printer 187.ase": {
+   {
+    "filename": "printer 106.ase",
     "frame": { "x": 273, "y": 252, "w": 39, "h": 28 },
     "rotated": false,
     "trimmed": false,
@@ -1503,7 +962,8 @@
     "sourceSize": { "w": 39, "h": 28 },
     "duration": 100
    },
-   "printer 188.ase": {
+   {
+    "filename": "printer 107.ase",
     "frame": { "x": 312, "y": 252, "w": 39, "h": 28 },
     "rotated": false,
     "trimmed": false,
@@ -1511,7 +971,8 @@
     "sourceSize": { "w": 39, "h": 28 },
     "duration": 100
    },
-   "printer 189.ase": {
+   {
+    "filename": "printer 108.ase",
     "frame": { "x": 351, "y": 252, "w": 39, "h": 28 },
     "rotated": false,
     "trimmed": false,
@@ -1519,7 +980,8 @@
     "sourceSize": { "w": 39, "h": 28 },
     "duration": 100
    },
-   "printer 190.ase": {
+   {
+    "filename": "printer 109.ase",
     "frame": { "x": 390, "y": 252, "w": 39, "h": 28 },
     "rotated": false,
     "trimmed": false,
@@ -1527,79 +989,8 @@
     "sourceSize": { "w": 39, "h": 28 },
     "duration": 100
    },
-   "printer 191.ase": {
-    "frame": { "x": 429, "y": 252, "w": 39, "h": 28 },
-    "rotated": false,
-    "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 39, "h": 28 },
-    "sourceSize": { "w": 39, "h": 28 },
-    "duration": 100
-   },
-   "printer 192.ase": {
-    "frame": { "x": 468, "y": 252, "w": 39, "h": 28 },
-    "rotated": false,
-    "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 39, "h": 28 },
-    "sourceSize": { "w": 39, "h": 28 },
-    "duration": 100
-   },
-   "printer 193.ase": {
-    "frame": { "x": 507, "y": 252, "w": 39, "h": 28 },
-    "rotated": false,
-    "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 39, "h": 28 },
-    "sourceSize": { "w": 39, "h": 28 },
-    "duration": 100
-   },
-   "printer 194.ase": {
-    "frame": { "x": 546, "y": 252, "w": 39, "h": 28 },
-    "rotated": false,
-    "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 39, "h": 28 },
-    "sourceSize": { "w": 39, "h": 28 },
-    "duration": 100
-   },
-   "printer 195.ase": {
-    "frame": { "x": 585, "y": 252, "w": 39, "h": 28 },
-    "rotated": false,
-    "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 39, "h": 28 },
-    "sourceSize": { "w": 39, "h": 28 },
-    "duration": 100
-   },
-   "printer 196.ase": {
-    "frame": { "x": 624, "y": 252, "w": 39, "h": 28 },
-    "rotated": false,
-    "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 39, "h": 28 },
-    "sourceSize": { "w": 39, "h": 28 },
-    "duration": 100
-   },
-   "printer 197.ase": {
-    "frame": { "x": 663, "y": 252, "w": 39, "h": 28 },
-    "rotated": false,
-    "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 39, "h": 28 },
-    "sourceSize": { "w": 39, "h": 28 },
-    "duration": 100
-   },
-   "printer 198.ase": {
-    "frame": { "x": 702, "y": 252, "w": 39, "h": 28 },
-    "rotated": false,
-    "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 39, "h": 28 },
-    "sourceSize": { "w": 39, "h": 28 },
-    "duration": 100
-   },
-   "printer 199.ase": {
-    "frame": { "x": 741, "y": 252, "w": 39, "h": 28 },
-    "rotated": false,
-    "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 39, "h": 28 },
-    "sourceSize": { "w": 39, "h": 28 },
-    "duration": 100
-   },
-   "printer 200.ase": {
+   {
+    "filename": "printer 110.ase",
     "frame": { "x": 0, "y": 280, "w": 39, "h": 28 },
     "rotated": false,
     "trimmed": false,
@@ -1607,7 +998,8 @@
     "sourceSize": { "w": 39, "h": 28 },
     "duration": 100
    },
-   "printer 201.ase": {
+   {
+    "filename": "printer 111.ase",
     "frame": { "x": 39, "y": 280, "w": 39, "h": 28 },
     "rotated": false,
     "trimmed": false,
@@ -1615,7 +1007,8 @@
     "sourceSize": { "w": 39, "h": 28 },
     "duration": 100
    },
-   "printer 202.ase": {
+   {
+    "filename": "printer 112.ase",
     "frame": { "x": 78, "y": 280, "w": 39, "h": 28 },
     "rotated": false,
     "trimmed": false,
@@ -1623,7 +1016,8 @@
     "sourceSize": { "w": 39, "h": 28 },
     "duration": 100
    },
-   "printer 203.ase": {
+   {
+    "filename": "printer 113.ase",
     "frame": { "x": 117, "y": 280, "w": 39, "h": 28 },
     "rotated": false,
     "trimmed": false,
@@ -1631,7 +1025,8 @@
     "sourceSize": { "w": 39, "h": 28 },
     "duration": 100
    },
-   "printer 204.ase": {
+   {
+    "filename": "printer 114.ase",
     "frame": { "x": 156, "y": 280, "w": 39, "h": 28 },
     "rotated": false,
     "trimmed": false,
@@ -1639,7 +1034,8 @@
     "sourceSize": { "w": 39, "h": 28 },
     "duration": 100
    },
-   "printer 205.ase": {
+   {
+    "filename": "printer 115.ase",
     "frame": { "x": 195, "y": 280, "w": 39, "h": 28 },
     "rotated": false,
     "trimmed": false,
@@ -1647,7 +1043,8 @@
     "sourceSize": { "w": 39, "h": 28 },
     "duration": 100
    },
-   "printer 206.ase": {
+   {
+    "filename": "printer 116.ase",
     "frame": { "x": 234, "y": 280, "w": 39, "h": 28 },
     "rotated": false,
     "trimmed": false,
@@ -1655,7 +1052,8 @@
     "sourceSize": { "w": 39, "h": 28 },
     "duration": 100
    },
-   "printer 207.ase": {
+   {
+    "filename": "printer 117.ase",
     "frame": { "x": 273, "y": 280, "w": 39, "h": 28 },
     "rotated": false,
     "trimmed": false,
@@ -1663,7 +1061,8 @@
     "sourceSize": { "w": 39, "h": 28 },
     "duration": 100
    },
-   "printer 208.ase": {
+   {
+    "filename": "printer 118.ase",
     "frame": { "x": 312, "y": 280, "w": 39, "h": 28 },
     "rotated": false,
     "trimmed": false,
@@ -1671,7 +1070,8 @@
     "sourceSize": { "w": 39, "h": 28 },
     "duration": 100
    },
-   "printer 209.ase": {
+   {
+    "filename": "printer 119.ase",
     "frame": { "x": 351, "y": 280, "w": 39, "h": 28 },
     "rotated": false,
     "trimmed": false,
@@ -1679,7 +1079,8 @@
     "sourceSize": { "w": 39, "h": 28 },
     "duration": 100
    },
-   "printer 210.ase": {
+   {
+    "filename": "printer 120.ase",
     "frame": { "x": 390, "y": 280, "w": 39, "h": 28 },
     "rotated": false,
     "trimmed": false,
@@ -1687,43 +1088,346 @@
     "sourceSize": { "w": 39, "h": 28 },
     "duration": 100
    },
-   "printer 211.ase": {
-    "frame": { "x": 429, "y": 280, "w": 39, "h": 28 },
+   {
+    "filename": "printer 121.ase",
+    "frame": { "x": 0, "y": 308, "w": 39, "h": 28 },
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 39, "h": 28 },
     "sourceSize": { "w": 39, "h": 28 },
     "duration": 100
    },
-   "printer 212.ase": {
-    "frame": { "x": 468, "y": 280, "w": 39, "h": 28 },
+   {
+    "filename": "printer 122.ase",
+    "frame": { "x": 39, "y": 308, "w": 39, "h": 28 },
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 39, "h": 28 },
     "sourceSize": { "w": 39, "h": 28 },
     "duration": 100
    },
-   "printer 213.ase": {
-    "frame": { "x": 507, "y": 280, "w": 39, "h": 28 },
+   {
+    "filename": "printer 123.ase",
+    "frame": { "x": 78, "y": 308, "w": 39, "h": 28 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 39, "h": 28 },
+    "sourceSize": { "w": 39, "h": 28 },
+    "duration": 100
+   },
+   {
+    "filename": "printer 124.ase",
+    "frame": { "x": 117, "y": 308, "w": 39, "h": 28 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 39, "h": 28 },
+    "sourceSize": { "w": 39, "h": 28 },
+    "duration": 100
+   },
+   {
+    "filename": "printer 125.ase",
+    "frame": { "x": 156, "y": 308, "w": 39, "h": 28 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 39, "h": 28 },
+    "sourceSize": { "w": 39, "h": 28 },
+    "duration": 100
+   },
+   {
+    "filename": "printer 126.ase",
+    "frame": { "x": 195, "y": 308, "w": 39, "h": 28 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 39, "h": 28 },
+    "sourceSize": { "w": 39, "h": 28 },
+    "duration": 100
+   },
+   {
+    "filename": "printer 127.ase",
+    "frame": { "x": 234, "y": 308, "w": 39, "h": 28 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 39, "h": 28 },
+    "sourceSize": { "w": 39, "h": 28 },
+    "duration": 100
+   },
+   {
+    "filename": "printer 128.ase",
+    "frame": { "x": 273, "y": 308, "w": 39, "h": 28 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 39, "h": 28 },
+    "sourceSize": { "w": 39, "h": 28 },
+    "duration": 100
+   },
+   {
+    "filename": "printer 129.ase",
+    "frame": { "x": 312, "y": 308, "w": 39, "h": 28 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 39, "h": 28 },
+    "sourceSize": { "w": 39, "h": 28 },
+    "duration": 100
+   },
+   {
+    "filename": "printer 130.ase",
+    "frame": { "x": 351, "y": 308, "w": 39, "h": 28 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 39, "h": 28 },
+    "sourceSize": { "w": 39, "h": 28 },
+    "duration": 100
+   },
+   {
+    "filename": "printer 131.ase",
+    "frame": { "x": 390, "y": 308, "w": 39, "h": 28 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 39, "h": 28 },
+    "sourceSize": { "w": 39, "h": 28 },
+    "duration": 100
+   },
+   {
+    "filename": "printer 132.ase",
+    "frame": { "x": 0, "y": 336, "w": 39, "h": 28 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 39, "h": 28 },
+    "sourceSize": { "w": 39, "h": 28 },
+    "duration": 100
+   },
+   {
+    "filename": "printer 133.ase",
+    "frame": { "x": 39, "y": 336, "w": 39, "h": 28 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 39, "h": 28 },
+    "sourceSize": { "w": 39, "h": 28 },
+    "duration": 100
+   },
+   {
+    "filename": "printer 134.ase",
+    "frame": { "x": 78, "y": 336, "w": 39, "h": 28 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 39, "h": 28 },
+    "sourceSize": { "w": 39, "h": 28 },
+    "duration": 100
+   },
+   {
+    "filename": "printer 135.ase",
+    "frame": { "x": 117, "y": 336, "w": 39, "h": 28 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 39, "h": 28 },
+    "sourceSize": { "w": 39, "h": 28 },
+    "duration": 100
+   },
+   {
+    "filename": "printer 136.ase",
+    "frame": { "x": 156, "y": 336, "w": 39, "h": 28 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 39, "h": 28 },
+    "sourceSize": { "w": 39, "h": 28 },
+    "duration": 100
+   },
+   {
+    "filename": "printer 137.ase",
+    "frame": { "x": 195, "y": 336, "w": 39, "h": 28 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 39, "h": 28 },
+    "sourceSize": { "w": 39, "h": 28 },
+    "duration": 100
+   },
+   {
+    "filename": "printer 138.ase",
+    "frame": { "x": 234, "y": 336, "w": 39, "h": 28 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 39, "h": 28 },
+    "sourceSize": { "w": 39, "h": 28 },
+    "duration": 100
+   },
+   {
+    "filename": "printer 139.ase",
+    "frame": { "x": 273, "y": 336, "w": 39, "h": 28 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 39, "h": 28 },
+    "sourceSize": { "w": 39, "h": 28 },
+    "duration": 100
+   },
+   {
+    "filename": "printer 140.ase",
+    "frame": { "x": 312, "y": 336, "w": 39, "h": 28 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 39, "h": 28 },
+    "sourceSize": { "w": 39, "h": 28 },
+    "duration": 100
+   },
+   {
+    "filename": "printer 141.ase",
+    "frame": { "x": 351, "y": 336, "w": 39, "h": 28 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 39, "h": 28 },
+    "sourceSize": { "w": 39, "h": 28 },
+    "duration": 100
+   },
+   {
+    "filename": "printer 142.ase",
+    "frame": { "x": 390, "y": 336, "w": 39, "h": 28 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 39, "h": 28 },
+    "sourceSize": { "w": 39, "h": 28 },
+    "duration": 100
+   },
+   {
+    "filename": "printer 143.ase",
+    "frame": { "x": 0, "y": 364, "w": 39, "h": 28 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 39, "h": 28 },
+    "sourceSize": { "w": 39, "h": 28 },
+    "duration": 100
+   },
+   {
+    "filename": "printer 144.ase",
+    "frame": { "x": 39, "y": 364, "w": 39, "h": 28 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 39, "h": 28 },
+    "sourceSize": { "w": 39, "h": 28 },
+    "duration": 100
+   },
+   {
+    "filename": "printer 145.ase",
+    "frame": { "x": 78, "y": 364, "w": 39, "h": 28 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 39, "h": 28 },
+    "sourceSize": { "w": 39, "h": 28 },
+    "duration": 100
+   },
+   {
+    "filename": "printer 146.ase",
+    "frame": { "x": 117, "y": 364, "w": 39, "h": 28 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 39, "h": 28 },
+    "sourceSize": { "w": 39, "h": 28 },
+    "duration": 100
+   },
+   {
+    "filename": "printer 147.ase",
+    "frame": { "x": 156, "y": 364, "w": 39, "h": 28 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 39, "h": 28 },
+    "sourceSize": { "w": 39, "h": 28 },
+    "duration": 100
+   },
+   {
+    "filename": "printer 148.ase",
+    "frame": { "x": 195, "y": 364, "w": 39, "h": 28 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 39, "h": 28 },
+    "sourceSize": { "w": 39, "h": 28 },
+    "duration": 100
+   },
+   {
+    "filename": "printer 149.ase",
+    "frame": { "x": 234, "y": 364, "w": 39, "h": 28 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 39, "h": 28 },
+    "sourceSize": { "w": 39, "h": 28 },
+    "duration": 100
+   },
+   {
+    "filename": "printer 150.ase",
+    "frame": { "x": 273, "y": 364, "w": 39, "h": 28 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 39, "h": 28 },
+    "sourceSize": { "w": 39, "h": 28 },
+    "duration": 100
+   },
+   {
+    "filename": "printer 151.ase",
+    "frame": { "x": 312, "y": 364, "w": 39, "h": 28 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 39, "h": 28 },
+    "sourceSize": { "w": 39, "h": 28 },
+    "duration": 100
+   },
+   {
+    "filename": "printer 152.ase",
+    "frame": { "x": 351, "y": 364, "w": 39, "h": 28 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 39, "h": 28 },
+    "sourceSize": { "w": 39, "h": 28 },
+    "duration": 100
+   },
+   {
+    "filename": "printer 153.ase",
+    "frame": { "x": 390, "y": 364, "w": 39, "h": 28 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 39, "h": 28 },
+    "sourceSize": { "w": 39, "h": 28 },
+    "duration": 100
+   },
+   {
+    "filename": "printer 154.ase",
+    "frame": { "x": 0, "y": 392, "w": 39, "h": 28 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 39, "h": 28 },
+    "sourceSize": { "w": 39, "h": 28 },
+    "duration": 100
+   },
+   {
+    "filename": "printer 155.ase",
+    "frame": { "x": 39, "y": 392, "w": 39, "h": 28 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 39, "h": 28 },
+    "sourceSize": { "w": 39, "h": 28 },
+    "duration": 100
+   },
+   {
+    "filename": "printer 156.ase",
+    "frame": { "x": 78, "y": 392, "w": 39, "h": 28 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 39, "h": 28 },
+    "sourceSize": { "w": 39, "h": 28 },
+    "duration": 100
+   },
+   {
+    "filename": "printer 157.ase",
+    "frame": { "x": 117, "y": 392, "w": 39, "h": 28 },
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 39, "h": 28 },
     "sourceSize": { "w": 39, "h": 28 },
     "duration": 100
    }
- },
+ ],
  "meta": {
   "app": "http://www.aseprite.org/",
   "version": "1.1.9",
   "image": "/Users/eric/Google Drive/GameShiz/mamp-serve/game-off-2016/assets/printer.png",
   "format": "RGBA8888",
-  "size": { "w": 780, "h": 308 },
-  "scale": "1",
-  "frameTags": [
-   { "name": "standing", "from": 0, "to": 0, "direction": "forward" },
-   { "name": "printing", "from": 1, "to": 197, "direction": "forward" },
-   { "name": "eject", "from": 198, "to": 212, "direction": "forward" },
-   { "name": "done", "from": 213, "to": 213, "direction": "forward" }
-  ]
+  "size": { "w": 429, "h": 420 },
+  "scale": "1"
  }
 }
