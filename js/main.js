@@ -388,37 +388,37 @@ function createLevel(level) {
         });
 
         // TODO: Move this into levels JS
-        var currentLevel = levels[player.level];
-        var currentLevelEnemies = currentLevel['enemies'];
-        var currentLevelObstacles = currentLevel['obstacles'];
-        player.makeInvincible();
+        // var currentLevel = levels[player.level];
+        // var currentLevelEnemies = currentLevel['enemies'];
+        // var currentLevelObstacles = currentLevel['obstacles'];
+        // player.makeInvincible();
         
 
-        for (var i = 0; i < currentLevelEnemies[1]; i++) {
-            createEnemy('1', 2, 1);
-        }
-        for (var i = 0; i < currentLevelEnemies[2]; i++) {
-            createEnemy('2', 3, 1);
-        }
-        for (var i = 0; i < currentLevelEnemies[3]; i++) {
-            createEnemy('3', 4, 2);
-        }
-        for (var i = 0; i < currentLevelEnemies[4]; i++) {
-            createEnemy('4', 5, 3);
-        }
-        for (var i = 0; i < currentLevelEnemies[5]; i++) {
-            createEnemy('5', 6, 4);
-        }
+        // for (var i = 0; i < currentLevelEnemies[1]; i++) {
+        //     createEnemy('1', 2, 1);
+        // }
+        // for (var i = 0; i < currentLevelEnemies[2]; i++) {
+        //     createEnemy('2', 3, 1);
+        // }
+        // for (var i = 0; i < currentLevelEnemies[3]; i++) {
+        //     createEnemy('3', 4, 2);
+        // }
+        // for (var i = 0; i < currentLevelEnemies[4]; i++) {
+        //     createEnemy('4', 5, 3);
+        // }
+        // for (var i = 0; i < currentLevelEnemies[5]; i++) {
+        //     createEnemy('5', 6, 4);
+        // }
 
-        for (obstacle in currentLevelObstacles) {
-            for (var i = 0; i < currentLevelObstacles[obstacle]; i++) {
-                createObstacle(
-                    obstacle,
-                    game.rnd.integerInRange(64, 288),
-                    game.rnd.integerInRange(64, 200)
-                );
-            }
-        }
+        // for (obstacle in currentLevelObstacles) {
+        //     for (var i = 0; i < currentLevelObstacles[obstacle]; i++) {
+        //         createObstacle(
+        //             obstacle,
+        //             game.rnd.integerInRange(64, 288),
+        //             game.rnd.integerInRange(64, 200)
+        //         );
+        //     }
+        // }
     }
 }
 

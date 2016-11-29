@@ -15,12 +15,12 @@ var levels = {
             1: 1
         },
         'obstacles': {
-            'desk': 1
+            'desk': 2,
         }
     },
     2: {
         'enemies': {
-            1: 1
+            1: 2
         },
         'obstacles': {
             'desk': 1
@@ -74,7 +74,7 @@ function drawLevel(inclusions) {
     // walls.enableBody = true;
 
     var o = null;
-    var T = 'taken';
+    var T = 'reserved';
     var wallsArray = [
         [0, 4, 9, 9, 5, o, 5, 9, 9, 4, 1],
         [6, o, o, o, o, o, o, o, o, o, 7],
@@ -86,86 +86,101 @@ function drawLevel(inclusions) {
         [6, o, o, o, o, o, o, o, o, o, 7],
         [2, 8, 8, 8, 8, 8, 8, 8, 8, 8, 3],
     ];
-    // var currentLevel = levels[player.level];
-    // var currentLevelEnemies = currentLevel['enemies'];
-    // var currentLevelObstacles = currentLevel['obstacles'];
+
+    var deskLayout = {
+        0: {'available': true, 'x': null, 'y': null},
+        1: {'available': true, 'x': null, 'y': null},
+        2: {'available': true, 'x': null, 'y': null},
+        3: {'available': true, 'x': null, 'y': null},
+        4: {'available': true, 'x': null, 'y': null},
+        5: {'available': true, 'x': null, 'y': null},
+        6: {'available': true, 'x': null, 'y': null},
+        7: {'available': true, 'x': null, 'y': null},
+        8: {'available': true, 'x': null, 'y': null},
+        9: {'available': true, 'x': null, 'y': null},
+        10: {'available': true, 'x': null, 'y': null},
+        11: {'available': true, 'x': null, 'y': null},
+        12: {'available': true, 'x': null, 'y': null},
+        13: {'available': true, 'x': null, 'y': null},
+        14: {'available': true, 'x': null, 'y': null},
+        15: {'available': true, 'x': null, 'y': null},
+        16: {'available': true, 'x': null, 'y': null},
+        17: {'available': true, 'x': null, 'y': null},
+    };
+
     // player.makeInvincible();
+    var currentLevel = levels[player.level];
+    
+    var currentLevelObstacles = currentLevel['obstacles'];
+    var deskLayoutArray = [ , , , , , , , , , , , , , , , , , ];
+    var lengthCheck = 0;
 
-    // for (var i = 0; i < currentLevelEnemies[1]; i++) {
-    //     createEnemy('1', 2, 1);
-    // }
-    // for (var i = 0; i < currentLevelEnemies[2]; i++) {
-    //     createEnemy('2', 3, 1);
-    // }
-    // for (var i = 0; i < currentLevelEnemies[3]; i++) {
-    //     createEnemy('3', 4, 2);
-    // }
-    // for (var i = 0; i < currentLevelEnemies[4]; i++) {
-    //     createEnemy('4', 5, 3);
-    // }
-    // for (var i = 0; i < currentLevelEnemies[5]; i++) {
-    //     createEnemy('5', 6, 4);
-    // }
+    for (type in currentLevelObstacles) {
+        for (var item = 0; item < currentLevelObstacles[type]; item++) {
+            // 18 spaces, pick a random one
+            var rand = game.rnd.integerInRange(0, 17);
+            if (deskLayoutArray[rand] == undefined) {
+                // assign the space and iterate
+                deskLayoutArray[rand] = type;
+                lengthCheck++;
+            } else {
+                // decrement to avoid running out of spaces or items
+                item--;
+            }
 
-    // for (obstacle in currentLevelObstacles) {
-    //     for (var i = 0; i < currentLevelObstacles[obstacle]; i++) {
-    //         createObstacle(
-    //             obstacle,
-    //             game.rnd.integerInRange(64, 288),
-    //             game.rnd.integerInRange(64, 200)
-    //         );
-    //     }
-    // }
+            // reset the length check after everything in the group is assigned
+            lengthCheck = 0;
+        }
+    }
 
+    var currentOpening = 0;
     var x = 0;
     var y = 0;
-    for (var i = 0; i < wallsArray.length; i++) {
-        y = i * 32;
 
-        for (var j = 0; j < wallsArray[i].length; j++) {
-            x = j * 32;
-            if (wallsArray[i][j] == T) {
-                // var element = game.rnd.integerInRange(1, 5);
-                // switch (element) {
-                //     case 1: 
-                //         createObstacle('desk', x, y); 
-                //         break;
-                //     case 2:
-                //         createObstacle('printer', x, y); 
-                //         break;
-                //     case 3: 
-                //         createObstacle('deskWithPrinter', x, y);
-                //         break;
-                //     case 4: 
-                //         createEnemy(2, 1);
-                //         break;                    
-                // }
-            } else if (wallsArray[i][j] != null) {
+    for (var row = 0; row < wallsArray.length; row++) {
+        y = row * 32;
+
+        for (var column = 0; column < wallsArray[row].length; column++) {
+            x = column * 32;
+            var gridSpot = wallsArray[row][column];
+
+            // place an obstacle in a reserved spot
+            if (gridSpot == T) {
+                if (deskLayoutArray[currentOpening]) {
+                    createObstacle(
+                        deskLayoutArray[currentOpening], x, y
+                    );
+                }
+                // iterate the current opening to keep in line with the deskLayoutArray
+                currentOpening++;
+            // replace the numbers with the appropriate wall
+            } else if (gridSpot != null) {
                 bgtile = walls.create(x, y, 'walls');
-                bgtile.frame = wallsArray[i][j];
+                // use the number to grab the frame from the spritesheet
+                bgtile.frame = gridSpot;
 
-                // accommodate colliders for corners
-                if (wallsArray[i][j] == 2) {
+                // change textures & colliders for corners
+                if (gridSpot == 2) {
                     bgtile.body.setSize(11, 32, 0, 0);
                     bgtile = walls.create(x, y, 'walls');
-                    bgtile.frame = wallsArray[i][j];
+                    bgtile.frame = gridSpot;
                     bgtile.body.setSize(32, 11, 0, 21);
                 }
-                if (wallsArray[i][j] == 3) {
+                if (gridSpot == 3) {
                     bgtile.body.setSize(32, 11, 21, 0);
                     bgtile = walls.create(x, y, 'walls');
-                    bgtile.frame = wallsArray[i][j];
+                    bgtile.frame = gridSpot;
                     bgtile.body.setSize(11, 32, 0, 21);
                 }
 
-                // accommodate colliders for side and bottom
-                if (wallsArray[i][j] == 6) {
+                // change textures & colliders for side and bottom
+                if (gridSpot == 6) {
                     bgtile.body.setSize(11, 32, 0, 0);
                 }
-                if (wallsArray[i][j] == 7) {
+                if (gridSpot == 7) {
                     bgtile.body.setSize(11, 32, 21, 0);
                 }
-                if (wallsArray[i][j] == 8) {
+                if (gridSpot == 8) {
                     bgtile.body.setSize(32, 11, 0, 21);
                 }
             }
@@ -196,13 +211,18 @@ function drawLevel(inclusions) {
             }, this);
         }
     }
-
     elevator.close = function() {
         elevator.isOpen = false;
         elevator.starting = false;
         elevator.body.setSize(32, 32, 0, 0);
         this.animations.play('close');
     }
-
     walls.setAll('body.immovable', true);
+
+    var currentLevelEnemies = currentLevel['enemies'];
+    for (type in currentLevelEnemies){
+        for (var i = 0; i < currentLevelEnemies[type]; i++) {
+            createEnemy(type, 2, 1);
+        }
+    }
 }
