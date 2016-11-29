@@ -13,6 +13,7 @@ function createPlayer() {
     player.health = 3;
     player.heart = game.add.sprite(5, 5, 'heart');
     player.heart.fixedToCamera = true;
+    player.heart.visible = false;
     player.heart.animations.add('healthy', [0, 1, 2, 3], 5, true);
     player.heart.animations.add('hurt', [4, 5, 6, 7], 10, true);
     player.heart.animations.add('danger', [8, 9, 10, 11], 15, true);
@@ -71,6 +72,7 @@ function createPlayer() {
 
             // Check to see if this hit kills the player
             if (player.health <= 0) {
+                player.heart.animations.play('dead');
                 gameOver('GAME ERVER');
 
                 // If not, trigger temporary invincibility
@@ -154,6 +156,7 @@ function updatePlayer() {
     }
 
     // update heart texture with health
+    player.heart.visible = true;
     switch (player.health) {
         case 2: player.heart.animations.play('hurt'); break;
         case 1: player.heart.animations.play('danger'); break;
