@@ -82,14 +82,16 @@ function createObstacle(type, whereX, whereY) {
             'done', Phaser.Animation.generateFrameNames('printer ', 213, 213, '.ase'), 30, false);
         printer.frame = 0;
         printer.interact = function() {
-            this.animations.play('printing');
-            this.animations.currentAnim.onComplete.add(function() {
-                this.animations.play('eject');
-                this.animations.currentAnim.onComplete.add(function() {
-                    this.animations.play('done');
-                    this.complete = true;
-                }, this);
-            }, this);
+        	if (!this.complete) {
+	            this.animations.play('printing');
+	            this.animations.currentAnim.onComplete.add(function() {
+	                this.animations.play('eject');
+	                this.animations.currentAnim.onComplete.add(function() {
+	                    this.animations.play('done');
+	                    this.complete = true;
+	                }, this);
+	            }, this);
+        	}
         }
 
         printer.body.collideWorldBounds = true;
@@ -103,13 +105,15 @@ function createObstacle(type, whereX, whereY) {
         desk.body.setSize(32, 18, 0, 12);
         desk.complete = false;
         desk.interact = function() {
-            if (wasd.hackKey.isDown) {
-                this.animations.play('hacking');
-                this.animations.currentAnim.onComplete.add(function() {
-                    this.animations.play('done');
-                    this.complete = true;
-                }, this);
-            }
+        	if (!this.complete) {
+	            if (wasd.hackKey.isDown) {
+	                this.animations.play('hacking');
+	                this.animations.currentAnim.onComplete.add(function() {
+	                    this.animations.play('done');
+	                    this.complete = true;
+	                }, this);
+	            }
+        	}
         }
         desk.animations.add(
         	'flicker', Phaser.Animation.generateFrameNames('desk ', 0, 15, '.ase'), 30, true);

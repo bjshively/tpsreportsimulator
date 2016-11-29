@@ -16,7 +16,7 @@ WebFontConfig = {
     //  For some reason if we don't the browser cannot render the text the first time it's created.
 
     // TODO: not sure what the fuck this line is for
-    //    active: function() { game.time.events.add(Phaser.Timer.SECOND, null, this); },
+    // active: function() { game.time.events.add(Phaser.Timer.SECOND, showHelpText, this); },
 
     //  The Google Fonts we want to load (specify as many as you like in the array)
     google: {
@@ -24,9 +24,6 @@ WebFontConfig = {
     }
 
 };
-
-//Toggle debug information
-var run_debug = false;
 
 var gameStarted = false;
 var timeCounter = 0;
@@ -37,6 +34,7 @@ var player;
 var enemies;
 var items;
 var walls;
+var masterGroup;
 
 var printer;
 var wasd;
@@ -122,7 +120,6 @@ function create() {
     walls.enableBody = true;
     enemies.sort();
     obstacles.sort();
-    
 
     // create all the things
     createControls();
@@ -192,6 +189,17 @@ function create() {
     helpText.fixedToCamera = true;
     helpText.visible = false;
 
+    gameOverText = game.add.text(0, 0, '', {
+        font: '30px VT323',
+        fill: '#fff'
+    });
+    gameOverText.stroke = '#000';
+    gameOverText.strokeThickness = 6;
+    // align center
+    gameOverText.anchor.setTo(0.5, 0.5);
+    gameOverText.position.setTo(game.camera.width / 2, game.camera.height / 2);
+    gameOverText.fixedToCamera = true;
+
     // show current weapon
     currentWeapon = game.add.sprite(50, 50, player.weapon.icon);
     currentWeapon.anchor.setTo(1, 1);
@@ -229,7 +237,11 @@ function create() {
     // draw a rectangle
     // graphics.drawRect(0, 0, game.world.bounds.x, game.world.bounds.y);
     // graphics.beginFill(0x00000, 1);
-    
+
+
+
+    masterGroup = game.add.group();
+
     game.camera.flash('#000000');
 }
 
@@ -292,9 +304,18 @@ function update() {
             elevator.close();
         }
         
-        obstacles.sort('y', Phaser.Group.SORT_ASCENDING);
-        enemies.sort('y', Phaser.Group.SORT_ASCENDING);
+        // obstacles.sort('y', Phaser.Group.SORT_ASCENDING);
+        // enemies.sort('y', Phaser.Group.SORT_ASCENDING);
+        // masterGroup.add(enemies);
+        // masterGroup.add(items);
+        // masterGroup.add(obstacles);
+        // masterGroup.add(walls);
+        // masterGroup.add(player);
+        //masterGroup.sort();
+
+        // masterGroup.sort('y', Phaser.Group.SORT_ASCENDING);
     }
+
 }
 
 //*********************************
@@ -305,9 +326,9 @@ function killBullet(bullet) {
 }
 
 function interactWithObstacle(player, obstacle) {
-    if (obstacle.complete == false) {
+    // if (obstacle.complete == false) {
         obstacle.interact();
-    }
+    // }
 }
 
 function collectItem(player, item) {
@@ -348,6 +369,7 @@ function clearLevel() {
     items.removeAll();
     // walls.removeAll();
     game.camera.onFadeComplete.removeAll();
+    game.camera.onFlashComplete.removeAll();
 }
 
 function completeLevel() {
@@ -387,38 +409,8 @@ function createLevel(level) {
             player.canMove = true;
         });
 
-        // TODO: Move this into levels JS
-        // var currentLevel = levels[player.level];
-        // var currentLevelEnemies = currentLevel['enemies'];
-        // var currentLevelObstacles = currentLevel['obstacles'];
-        // player.makeInvincible();
-        
-
-        // for (var i = 0; i < currentLevelEnemies[1]; i++) {
-        //     createEnemy('1', 2, 1);
-        // }
-        // for (var i = 0; i < currentLevelEnemies[2]; i++) {
-        //     createEnemy('2', 3, 1);
-        // }
-        // for (var i = 0; i < currentLevelEnemies[3]; i++) {
-        //     createEnemy('3', 4, 2);
-        // }
-        // for (var i = 0; i < currentLevelEnemies[4]; i++) {
-        //     createEnemy('4', 5, 3);
-        // }
-        // for (var i = 0; i < currentLevelEnemies[5]; i++) {
-        //     createEnemy('5', 6, 4);
-        // }
-
-        // for (obstacle in currentLevelObstacles) {
-        //     for (var i = 0; i < currentLevelObstacles[obstacle]; i++) {
-        //         createObstacle(
-        //             obstacle,
-        //             game.rnd.integerInRange(64, 288),
-        //             game.rnd.integerInRange(64, 200)
-        //         );
-        //     }
-        // }
+        // keep player safe on new levels
+        player.makeInvincible();
     }
 }
 
@@ -435,14 +427,18 @@ function showHelpText(message, duration) {
     helpText.text = message;
 }
 
+//Toggle debug information
+var run_debug = false;
+
 function render() {
     if (run_debug) {
-        game.debug.text(player.invincible, 5, 15);
-        game.debug.cameraInfo(game.camera, 5, 15);
-        game.debug.spriteCoords(player, 5, 90);
-        game.debug.text(
-            'Seconds: ' + Math.round(game.time.totalElapsedSeconds() * 100) / 100, 5, 140);
-        game.debug.text(
-            'Mouse angle: ' + game.math.radToDeg(game.physics.arcade.angleToPointer(player)), 5, 160)
+        game.debug.text('Sprite z-depth: ' + player.z, 10, 20);
+        // game.debug.text(player.invincible, 5, 15);
+        // game.debug.cameraInfo(game.camera, 5, 15);
+        // game.debug.spriteCoords(player, 5, 90);
+        // game.debug.text(
+        //     'Seconds: ' + Math.round(game.time.totalElapsedSeconds() * 100) / 100, 5, 140);
+        // game.debug.text(
+        //     'Mouse angle: ' + game.math.radToDeg(game.physics.arcade.angleToPointer(player)), 5, 160)
     }
 }

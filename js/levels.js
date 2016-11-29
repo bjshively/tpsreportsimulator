@@ -12,7 +12,7 @@
 var levels = {
     1: {
         'enemies': {
-            1: 1
+            1: 3
         },
         'obstacles': {
             'desk': 2,
@@ -20,10 +20,10 @@ var levels = {
     },
     2: {
         'enemies': {
-            1: 2
+            1: 3
         },
         'obstacles': {
-            'desk': 1
+            'desk': 3
         }
     },
     3: {
@@ -114,6 +114,15 @@ function drawLevel(inclusions) {
     var currentLevelObstacles = currentLevel['obstacles'];
     var deskLayoutArray = [ , , , , , , , , , , , , , , , , , ];
     var lengthCheck = 0;
+    // for (obstacle in currentLevelObstacles) {
+    //     for (var i = 0; i < currentLevelObstacles[obstacle]; i++) {
+    //         createObstacle(
+    //             obstacle,
+    //             game.rnd.integerInRange(64, 288),
+    //             game.rnd.integerInRange(64, 200)
+    //         );
+    //     }
+    // }
 
     for (type in currentLevelObstacles) {
         for (var item = 0; item < currentLevelObstacles[type]; item++) {
@@ -155,21 +164,19 @@ function drawLevel(inclusions) {
                 currentOpening++;
             // replace the numbers with the appropriate wall
             } else if (gridSpot != null) {
-                bgtile = walls.create(x, y, 'walls');
                 // use the number to grab the frame from the spritesheet
-                bgtile.frame = gridSpot;
-
+                bgtile = walls.create(x, y, 'walls', gridSpot);
+                
                 // change textures & colliders for corners
+                // add another instance to have two colliders
                 if (gridSpot == 2) {
                     bgtile.body.setSize(11, 32, 0, 0);
-                    bgtile = walls.create(x, y, 'walls');
-                    bgtile.frame = gridSpot;
+                    bgtile = walls.create(x, y, 'walls', gridSpot);
                     bgtile.body.setSize(32, 11, 0, 21);
                 }
                 if (gridSpot == 3) {
                     bgtile.body.setSize(32, 11, 21, 0);
-                    bgtile = walls.create(x, y, 'walls');
-                    bgtile.frame = gridSpot;
+                    bgtile = walls.create(x, y, 'walls', gridSpot);
                     bgtile.body.setSize(11, 32, 0, 21);
                 }
 

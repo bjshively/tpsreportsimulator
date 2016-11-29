@@ -130,7 +130,7 @@ function createEnemy(enemyClass, health, damage) {
     enemy.health = health;
     enemy.damage = damage;
     enemy.maxSpeed = 50;
-    enemy.detection = 10;
+    enemy.detection = 100;
     //enemy.movement = game.rnd.integerInRange(100, 300);
     enemy.moveCounter = 0;
     enemy.xSpeed = game.rnd.integerInRange(-100, 100);
