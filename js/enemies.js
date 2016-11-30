@@ -147,27 +147,32 @@ var enemy = {
     1: {
         'health': 2,
         'damage': 1,
-        'sprite': 1
+        'sprite': 1,
+        'weapon': null
     },
     2: {
         'health': 3,
         'damage': 1,
-        'sprite': 2
+        'sprite': 2,
+        'weapon': null
     },
     3: {
         'health': 4,
         'damage': 2,
-        'sprite': 3
+        'sprite': 3,
+        'weapon': null
     },
     4: {
         'health': 5,
         'damage': 3,
-        'sprite': 4
+        'sprite': 4,
+        'weapon': null
     },
     5: {
         'health': 6,
         'damage': 4,
-        'sprite': 5
+        'sprite': 5,
+        'weapon': null
     }
 }
 

@@ -19,9 +19,12 @@ function createPlayer() {
     player.heart.animations.add('danger', [8, 9, 10, 11], 15, true);
     player.heart.animations.add('dead', [12], 7, true);
 
+    player.armor = 0;
+    // TODO: add logic to decrement this with takeDamage if > 0
+
     player.score = 0;
     player.level = 1;
-    player.maxSpeed = 100;
+    player.maxSpeed = 75;
     player.invincible = false;
     player.invincibleTime;
     player.lookAngle;
@@ -74,6 +77,7 @@ function createPlayer() {
             if (player.health <= 0) {
                 player.heart.animations.play('dead');
                 gameOver('GAME ERVER');
+                shoeHelpText('You died!', 1000000);
 
                 // If not, trigger temporary invincibility
             } else {

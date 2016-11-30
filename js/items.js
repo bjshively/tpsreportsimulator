@@ -2,6 +2,9 @@ function Weapon() {
 
 }
 
+var vest;
+var shoes;
+
 function createItems() {
     // Create an items group
     // Each item should have a collect function that defines what happens when it is collected
@@ -31,6 +34,29 @@ function createItems() {
         player.score += 10;
         this.kill();
     }
+
+    vest = items.create(250, 250, 'vest');
+    // TODO: this sprite is way too big
+    vest.animations.add('flicker');
+    vest.animations.play('flicker', 10, true);
+    vest.collect = function() {
+        player.armor += 3;
+        player.score += 20;
+        showHelpText('Picked up a flak jacket!', 3000);
+        this.kill();
+    }
+
+    shoes = items.create(100, 100, 'shoes');
+    shoes.animations.add('flicker');
+    shoes.animations.play('flicker', 10, true);
+    shoes.collect = function() {
+        player.maxSpeed += 50;
+        player.score += 20;
+        showHelpText('Picked up some sweet kicks!', 3000);
+        this.kill();
+    }
+
+    // TODO: add code to make collected items appear in relevant spots as player collects them
 }
 
 function createObstacle(type, whereX, whereY) {

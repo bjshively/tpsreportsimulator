@@ -85,6 +85,7 @@ function preload() {
     game.load.spritesheet('cd', 'assets/weapons/cd.png', 11, 11);
     game.load.image('cutter', 'assets/weapons/cutter.png');
     game.load.spritesheet('shoes', 'assets/items/shoes.png', 16, 16)
+    game.load.spritesheet('vest', 'assets/items/vest.png', 24, 30)
 
     // enemy sprites
     game.load.spritesheet('enemy1', 'assets/enemies/enemy1.png', 15, 31);
@@ -131,6 +132,7 @@ function create() {
     createPlayer();
     createWeapons();
     createLevel(player.level);
+    createItems();
 
     player.weapon = weaponStapler;
     ////////////////////////
@@ -291,6 +293,8 @@ function update() {
         // }
         updateHUD();
 
+        // TODO: touching the printer sets it off, but only if getting hurt??
+        game.physics.arcade.collide(player, printer);
         game.physics.arcade.collide(player, obstacles, interactWithObstacle);
         game.physics.arcade.collide(player, elevator, completeLevel);
         game.physics.arcade.collide(player, walls);
@@ -305,10 +309,9 @@ function update() {
         game.physics.arcade.collide(enemies, walls);
         game.physics.arcade.overlap(player.weapon.bullets, obstacles, killBullet);
         
-        game.physics.arcade.collide(player, printer);
 
         // On new levels, open the elevator, and wait for the player to exit to close it
-        // TODO: put this somewhere better
+        // TODO: put this somewhere better?
         if (player.level > 1 && player.body.y > 32 && elevator.starting) {
             elevator.close();
         }
@@ -376,7 +379,7 @@ function clearLevel() {
     // Clear obstacles and items
     obstacles.removeAll();
     items.removeAll();
-    // walls.removeAll();
+    walls.removeAll();
     game.camera.onFadeComplete.removeAll();
     game.camera.onFlashComplete.removeAll();
 }
@@ -389,9 +392,8 @@ function completeLevel() {
 
         // fade to black then advance the level
         game.camera.fade('#000000');
-        player.level += 1;
-        console.log(player.level);
         game.camera.onFadeComplete.add(function () {
+            player.level += 1;
             createLevel(player.level);
         });
     }   
@@ -399,6 +401,8 @@ function completeLevel() {
 
 function createLevel(level) {
     clearLevel();
+
+    // TODO: Add "space to restart"
 
     if (player.level > lastLevel) {
         gameOver('YOU WIN');
@@ -432,8 +436,8 @@ function updateHUD() {
 }
 
 function showHelpText(message, duration) {
-    helpText.visible = true;
     helpText.text = message;
+    helpText.visible = true;
 }
 
 //Toggle debug information
