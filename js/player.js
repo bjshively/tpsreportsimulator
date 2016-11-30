@@ -77,7 +77,7 @@ function createPlayer() {
             if (player.health <= 0) {
                 player.heart.animations.play('dead');
                 gameOver('GAME ERVER');
-                shoeHelpText('You died!', 1000000);
+                showHelpText('You died!', 1000000);
 
                 // If not, trigger temporary invincibility
             } else {
