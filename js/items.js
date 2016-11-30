@@ -46,16 +46,6 @@ function createItems() {
         this.kill();
     }
 
-    shoes = items.create(100, 100, 'shoes');
-    shoes.animations.add('flicker');
-    shoes.animations.play('flicker', 10, true);
-    shoes.collect = function() {
-        player.maxSpeed += 50;
-        player.score += 20;
-        showHelpText('Picked up some sweet kicks!', 3000);
-        this.kill();
-    }
-
     // TODO: add code to make collected items appear in relevant spots as player collects them
 }
 
@@ -67,27 +57,27 @@ function createObstacle(type, whereX, whereY) {
         desk.body.setSize(32, 18, 0, 12);
         desk.complete = false;
         desk.interact = function() {
-        	if (!this.complete) {
-	            if (wasd.hackKey.isDown) {
-	                this.animations.play('hacking');
-	                this.animations.currentAnim.onComplete.add(function() {
-	                    this.animations.play('done');
-	                    this.complete = true;
-	                }, this);
-	            }
-        	}
+            if (!this.complete) {
+                if (wasd.hackKey.isDown) {
+                    this.animations.play('hacking');
+                    this.animations.currentAnim.onComplete.add(function() {
+                        this.animations.play('done');
+                        this.complete = true;
+                    }, this);
+                }
+            }
         }
         desk.animations.add(
-        	'flicker', Phaser.Animation.generateFrameNames('desk ', 0, 15, '.ase'), 30, true);
+            'flicker', Phaser.Animation.generateFrameNames('desk ', 0, 15, '.ase'), 30, true);
         desk.animations.add(
-        	'hacking', Phaser.Animation.generateFrameNames('desk ', 16, 59, '.ase'), 30, false);
+            'hacking', Phaser.Animation.generateFrameNames('desk ', 16, 59, '.ase'), 30, false);
         desk.animations.add(
-        	'done', Phaser.Animation.generateFrameNames('desk ', 60, 61, '.ase'), 30, true);
-	    desk.animations.play('flicker', 30, true);
+            'done', Phaser.Animation.generateFrameNames('desk ', 60, 61, '.ase'), 30, true);
+        desk.animations.play('flicker', 30, true);
 
-	    // Setup desk physics
-	    desk.body.collideWorldBounds = true;
-	    desk.body.immovable = true;
+        // Setup desk physics
+        desk.body.collideWorldBounds = true;
+        desk.body.immovable = true;
     }
 
     // Create desk that controls printer
@@ -108,16 +98,16 @@ function createObstacle(type, whereX, whereY) {
             }
         }
         desk.animations.add(
-        	'flicker', Phaser.Animation.generateFrameNames('deskWithPrinter ', 0, 15, '.ase'), 30, true);
+            'flicker', Phaser.Animation.generateFrameNames('deskWithPrinter ', 0, 15, '.ase'), 30, true);
         desk.animations.add(
-        	'hacking', Phaser.Animation.generateFrameNames('deskWithPrinter ', 16, 59, '.ase'), 30, false);
+            'hacking', Phaser.Animation.generateFrameNames('deskWithPrinter ', 16, 59, '.ase'), 30, false);
         desk.animations.add(
-        	'done', Phaser.Animation.generateFrameNames('deskWithPrinter ', 60, 61, '.ase'), 30, true);
+            'done', Phaser.Animation.generateFrameNames('deskWithPrinter ', 60, 61, '.ase'), 30, true);
         desk.animations.play('flicker');
-	    
-	    // Setup desk physics
-	    desk.body.collideWorldBounds = true;
-	    desk.body.immovable = true;
+
+        // Setup desk physics
+        desk.body.collideWorldBounds = true;
+        desk.body.immovable = true;
     }
 
     // create printer
@@ -138,17 +128,17 @@ function createObstacle(type, whereX, whereY) {
             'done', Phaser.Animation.generateFrameNames('printer ', 157, 157, '.ase'), 30, false);
         printer.frame = 0;
         printer.interact = function() {
-        	if (!this.complete) {
-	            this.animations.play('printing');
-	            this.animations.currentAnim.onComplete.add(function() {
-	                this.animations.play('eject');
-	                this.animations.currentAnim.onComplete.add(function() {
-	                    this.animations.play('done');
-	                    this.complete = true;
-	                    printItem();
-	                }, this);
-	            }, this);
-        	}
+            if (!this.complete) {
+                this.animations.play('printing');
+                this.animations.currentAnim.onComplete.add(function() {
+                    this.animations.play('eject');
+                    this.animations.currentAnim.onComplete.add(function() {
+                        this.animations.play('done');
+                        this.complete = true;
+                        printItem();
+                    }, this);
+                }, this);
+            }
         }
 
         printer.body.collideWorldBounds = true;
@@ -157,7 +147,19 @@ function createObstacle(type, whereX, whereY) {
 }
 
 function printItem() {
-	// TODO: Add item ejection logic here
+    makeShoes(printer.x + 10, printer.y + printer.height - 5);
+}
+
+function makeShoes(x, y) {
+    shoes = items.create(x, y, 'shoes');
+    shoes.animations.add('flicker');
+    shoes.animations.play('flicker', 10, true);
+    shoes.collect = function() {
+        player.maxSpeed += 50;
+        player.score += 20;
+        showHelpText('Picked up some sweet kicks!', 3000);
+        this.kill();
+    }
 }
 
 function createWeapons() {
