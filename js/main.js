@@ -283,6 +283,11 @@ function update() {
             updateControls();
             updatePlayer();
             updateEnemies();
+
+            // Make help text disappear after expiration
+            if(game.time.now > helpText.expiration) {
+                helpText.visible = false;
+            }
             //      console.log(obstacles);
             //        console.log(obstacles.checkAll('complete', 'true'));
         }
@@ -438,6 +443,7 @@ function updateHUD() {
 function showHelpText(message, duration) {
     helpText.text = message;
     helpText.visible = true;
+    helpText.expiration = game.time.now + duration;
 }
 
 //Toggle debug information
