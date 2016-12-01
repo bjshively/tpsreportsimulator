@@ -95,6 +95,10 @@ function preload() {
     game.load.spritesheet('enemy5', 'assets/enemies/enemy5.png', 15, 31);
     game.load.image('blood', 'assets/enemies/blood.png');
 
+    // sound effects
+    // game.load.spritesheet('enemy1', 'assets/enemies/enemy1.png', 15, 31);
+    // game.load.spritesheet('enemy2', 'assets/enemies/enemy2.png', 15, 31);
+
     // Enable pixel-perfect game sscaling
     this.game.scale.scaleMode = Phaser.ScaleManager.USER_SCALE;
     this.game.scale.setUserScale(3, 3);

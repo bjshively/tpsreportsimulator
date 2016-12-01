@@ -142,7 +142,7 @@ function createEnemy(enemyClass, health, damage) {
     enemy.animations.play('down');
 }
 
-var enemy = {
+var enemyTypeAttributes = {
     // create each class
     1: {
         'health': 2,
