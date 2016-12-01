@@ -12,10 +12,12 @@
 var levels = {
     1: {
         'enemies': {
-            1: 3
+            5: 3,
         },
         'obstacles': {
             'desk': 2,
+            'deskWithPrinter': 1,
+            'printer': 1
         }
     },
     2: {

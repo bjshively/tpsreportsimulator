@@ -129,14 +129,14 @@ function create() {
     bgtile = game.add.tileSprite(0, 0, game.world.bounds.width, game.world.height, 'background');
 
     // Create object groups
-    enemies = game.add.group();
-    items = game.add.group();
-    obstacles = game.add.group();
     walls = game.add.group();
-    enemies.enableBody = true;
-    items.enableBody = true;
-    obstacles.enableBody = true;
+    obstacles = game.add.group();
+    items = game.add.group();
+    enemies = game.add.group();
     walls.enableBody = true;
+    obstacles.enableBody = true;
+    items.enableBody = true;
+    enemies.enableBody = true;
     enemies.sort();
     obstacles.sort();
 

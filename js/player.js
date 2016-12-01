@@ -20,6 +20,13 @@ function createPlayer() {
     player.heart.animations.add('dead', [12], 7, true);
 
     player.armor = 0;
+    player.vest = game.add.sprite(54, 5, 'vest');
+    player.vest.fixedToCamera = true;
+    player.vest.visible = false;
+    player.vest.animations.add('healthy', [2], 5, true);
+    player.vest.animations.add('hurt', [3], 10, true);
+    player.vest.animations.add('danger', [4], 15, true);
+    
     // TODO: add logic to decrement this with takeDamage if > 0
 
     player.lives = 3;
@@ -77,12 +84,19 @@ function createPlayer() {
 
     player.takeDamage = function(player, danger) {
         if (!player.invincible) {
-            player.health -= danger.damage;
+            if (player.armor > 0) {
+                player.armor -= danger.damage;
+                if (player.armor < 0) {
+                    player.health += player.armor;
+                    player.armor = 0;
+                }
+            } else {
+                player.health -= danger.damage;
+            }
             bloodSplatter(player);
             // Check to see if this hit kills the player
             if (player.health <= 0) {
                 player.heart.animations.play('dead');
-                showHelpText('You died!', 3000);
                 gameOver('GAME ERVER');
                 showHelpText('You died!', 1000000);
                 // TODO: play hit sound
@@ -176,5 +190,17 @@ function updatePlayer() {
         case 1: player.heart.animations.play('danger'); break;
         case 0: player.heart.animations.play('dead'); break;
         default: player.heart.animations.play('healthy'); break;
+    }
+
+        // update heart texture with health
+    if (player.armor > 0) {
+        player.vest.visible = true;
+        switch (player.armor) {
+            case 2: player.vest.frame = 2; break;
+            case 1: player.vest.frame = 3; break;
+            default: player.vest.frame = 0; break;
+        }
+    } else {
+        player.vest.visible = false;
     }
 }

@@ -132,17 +132,16 @@ function createObstacle(type, whereX, whereY) {
         printer.frame = 0;
         printer.interact = function() {};
         printer.activate = function() {
-           // if (!this.complete) {
-                this.animations.play('printing');
+            this.animations.play('printing');
+            this.animations.currentAnim.onComplete.add(function() {
+                this.animations.play('eject');
                 this.animations.currentAnim.onComplete.add(function() {
-                    this.animations.play('eject');
-                    this.animations.currentAnim.onComplete.add(function() {
-                        this.animations.play('done');
-                        printItem();
-                    }, this);
+                    this.animations.currentAnim.onComplete.removeAll();
+                    this.animations.play('done');
+                    printItem();
                 }, this);
-            }
-      //  }
+            }, this);
+        }
 
         printer.body.collideWorldBounds = true;
         printer.body.immovable = true;
@@ -150,50 +149,41 @@ function createObstacle(type, whereX, whereY) {
 
     // create cubicles
     if (type == 'cubicle') {
-    	console.log('a');
     	// TODO: needed?
         // game.physics.arcade.enable(cubicle);
         var rand = game.rnd.integerInRange(1, 10);
-            console.log(rand);
 
         switch (rand) {
             case 1: 
                 // full cube
-                var cubicle = obstacles.create(whereX + 2, whereY, 'cubewallhorizontal');
+                var cubicle = walls.create(whereX + 2, whereY, 'cubewallhorizontal');
                 cubicle.body.setSize(32, 1, 0, 15);
 		        cubicle.body.immovable = true;
-		        cubicle.interact = function() {}
-                cubicle = obstacles.create(whereX - 4, whereY + 4, 'cubewallvertical');
-                cubicle.body.setSize(4, 30, 0, 10);
+		        cubicle = walls.create(whereX - 4, whereY + 4, 'cubewallvertical');
+                cubicle.body.setSize(4, 20, 0, 10);
 		        cubicle.body.immovable = true;
-		        cubicle.interact = function() {}
-                cubicle = obstacles.create(whereX + 32, whereY + 4, 'cubewallvertical'); 
-                cubicle.body.setSize(4, 30, 0, 10);
+		        cubicle = walls.create(whereX + 32, whereY + 4, 'cubewallvertical'); 
+                cubicle.body.setSize(4, 20, 0, 10);
 		        cubicle.body.immovable = true;
-		        cubicle.interact = function() {}
-                break;
+		        break;
             case 2: 
                 // half cube left wall
-                var cubicle = obstacles.create(whereX + 2, whereY, 'cubewallhorizontal');
+                var cubicle = walls.create(whereX + 2, whereY, 'cubewallhorizontal');
                 cubicle.body.setSize(32, 1, 0, 15);
 		        cubicle.body.immovable = true;
-		        cubicle.interact = function() {}
-                cubicle = obstacles.create(whereX - 4, whereY + 4, 'cubewallvertical'); 
-                cubicle.body.setSize(4, 30, 0, 10);
+		        cubicle = walls.create(whereX - 4, whereY + 4, 'cubewallvertical'); 
+                cubicle.body.setSize(4, 20, 0, 10);
 		        cubicle.body.immovable = true;
-		        cubicle.interact = function() {}
-                break;
+		        break;
             case 3: 
                 // half cube right wall
-                var cubicle = obstacles.create(whereX + 2, whereY, 'cubewallhorizontal');
-                cubicle.body.setSize(32, 1, 0, 30);
+                var cubicle = walls.create(whereX + 2, whereY, 'cubewallhorizontal');
+                cubicle.body.setSize(32, 1, 0, 15);
 		        cubicle.body.immovable = true;
-		        cubicle.interact = function() {}
-                cubicle = obstacles.create(whereX + 32, whereY + 4, 'cubewallvertical'); 
-                cubicle.body.setSize(4, 30, 0, 10);
+		        cubicle = walls.create(whereX + 32, whereY + 4, 'cubewallvertical'); 
+                cubicle.body.setSize(4, 20, 0, 10);
 		        cubicle.body.immovable = true;
-		        cubicle.interact = function() {}
-                break;
+		        break;
             default:
             	break;
         }
@@ -204,6 +194,7 @@ function createObstacle(type, whereX, whereY) {
 }
 
 function printItem() {
+	makeVest(printer.x + 10, printer.y + printer.height - 5);
 	switch(game.rnd.integerInRange(1, 3)) {
 		case 1: makeStopwatch(printer.x + 10, printer.y + printer.height - 5); break;
 		case 2: makeShoes(printer.x + 10, printer.y + printer.height - 5); break;
