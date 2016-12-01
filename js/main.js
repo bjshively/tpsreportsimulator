@@ -341,6 +341,7 @@ function update() {
         });
 
         game.physics.arcade.overlap(player.weapon.bullets, obstacles, killBullet);
+        game.physics.arcade.overlap(player.weapon.bullets, walls, killBullet);
 
 
         // On new levels, open the elevator, and wait for the player to exit to close it
