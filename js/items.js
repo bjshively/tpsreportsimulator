@@ -194,7 +194,6 @@ function createObstacle(type, whereX, whereY) {
 }
 
 function printItem() {
-	makeVest(printer.x + 10, printer.y + printer.height - 5);
 	switch(game.rnd.integerInRange(1, 3)) {
 		case 1: makeStopwatch(printer.x + 10, printer.y + printer.height - 5); break;
 		case 2: makeShoes(printer.x + 10, printer.y + printer.height - 5); break;

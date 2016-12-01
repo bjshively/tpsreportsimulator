@@ -97,8 +97,7 @@ function createPlayer() {
             // Check to see if this hit kills the player
             if (player.health <= 0) {
                 player.heart.animations.play('dead');
-                gameOver('GAME ERVER');
-                showHelpText('You died!', 1000000);
+                showHelpText('You died!', 3000);
                 // TODO: play hit sound
 
                 // If not, trigger temporary invincibility
