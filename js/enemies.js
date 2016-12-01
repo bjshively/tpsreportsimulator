@@ -36,7 +36,6 @@ function moveEnemy(enemy) {
 
 function damageEnemy(bullet, enemy) {
     bloodSplatter(enemy);
-
     enemy.health -= player.weapon.damage;
     if (player.weapon == weaponCD) {
         weaponCD.destroy(bullet);
@@ -51,12 +50,18 @@ function damageEnemy(bullet, enemy) {
 }
 
 // Spawn an enemy
-function createEnemy(enemyClass, health, damage) {
+function createEnemy(enemyClass) {
     var enemy = enemies.create(
         game.rnd.integerInRange(32, 300),
         game.rnd.integerInRange(32, 250),
         'enemy' + enemyClass
     );
+
+    // Populate enemy stats based on enemy class type
+    enemyStats = enemyTypeAttributes[enemyClass];
+    for (var k in enemyStats) {
+        enemy[k] = enemyStats[k];
+    }
 
     enemy.moveRandomly = function () {
     if (this.moveCounter == 0) {
@@ -130,8 +135,6 @@ function createEnemy(enemyClass, health, damage) {
     // enemy.body.setSize(enemy.width, enemy.height / 2, 0, enemy.height / 2);
     enemy.anchor.setTo(0.5, 0.5);
     enemy.speed = 1; //game.rnd.integerInRange(50, 100);
-    enemy.health = health;
-    enemy.damage = damage;
     enemy.maxSpeed = 50;
     enemy.detection = 100;
     //enemy.movement = game.rnd.integerInRange(100, 300);

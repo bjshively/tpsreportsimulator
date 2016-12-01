@@ -16,8 +16,6 @@ var levels = {
         },
         'obstacles': {
             'desk': 2,
-            'deskWithPrinter': 1,
-            'printer': 1
         }
     },
     2: {
