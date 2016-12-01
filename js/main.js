@@ -74,7 +74,9 @@ function preload() {
         'assets/level/deskWithPrinter.json');
     game.load.atlas('printer', 'assets/level/printer.png', 'assets/level/printer.json');
     game.load.atlas('walls', 'assets/level/walls.png', 'assets/level/walls.json');
-
+    game.load.image('cubewallhorizontal', 'assets/level/cubewallhorizontal.png');
+    game.load.image('cubewallvertical', 'assets/level/cubewallvertical.png');
+    
     // player sprites
     game.load.atlas('player', 'assets/player/player.png', 'assets/player/player.json');
     game.load.image('reticle', 'assets/player/reticle.png');
@@ -85,14 +87,14 @@ function preload() {
     game.load.image('staple', 'assets/weapons/staplerAmmo.png');
     game.load.spritesheet('cd', 'assets/weapons/cd.png', 11, 11);
     game.load.image('cutter', 'assets/weapons/cutter.png');
-    game.load.spritesheet('nerfgun', 'assets/weapons/nerfgun.png');
+    game.load.spritesheet('nerfgun', 'assets/weapons/nerfgun.png', 19, 21);
     game.load.image('nerfammo', 'assets/weapons/nerfammo.png');
 
     // item sprites
     game.load.spritesheet('shoes', 'assets/items/shoes.png', 16, 16);
     game.load.spritesheet('vest', 'assets/items/vest.png', 16, 20);
     game.load.spritesheet('stopwatch', 'assets/items/stopwatch.png', 15, 17);
-    game.load.spritesheet('redbull', 'assets/items/redbull.png', 15, 17);
+    game.load.spritesheet('redbull', 'assets/items/redbull.png', 8, 16);
 
     // enemy sprites
     game.load.spritesheet('enemy1', 'assets/enemies/enemy1.png', 15, 31);
@@ -103,8 +105,8 @@ function preload() {
     game.load.image('blood', 'assets/enemies/blood.png');
 
     // sound effects
-    // game.load.spritesheet('enemy1', 'assets/enemies/enemy1.png', 15, 31);
-    // game.load.spritesheet('enemy2', 'assets/enemies/enemy2.png', 15, 31);
+    game.load.audio('damage', 'assets/sfx/damage.wav');
+    game.load.audio('hit', 'assets/sfx/hit.wav');
 
     // Enable pixel-perfect game sscaling
     this.game.scale.scaleMode = Phaser.ScaleManager.USER_SCALE;

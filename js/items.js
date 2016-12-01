@@ -5,6 +5,7 @@ function Weapon() {
 var vest;
 var shoes;
 var stopwatch;
+//var cubicle;
 
 function createItems() {
     // Create an items group
@@ -84,7 +85,7 @@ function createObstacle(type, whereX, whereY) {
     // Create desk that controls printer
     if (type == 'deskWithPrinter') {
         var desk = obstacles.create(whereX, whereY, type);
-        desk.body.setSize(33, 29, 0, 3);
+        desk.body.setSize(32, 29, 0, 3);
         desk.complete = false;
         desk.interact = function() {
             if (!this.complete) {
@@ -145,6 +146,60 @@ function createObstacle(type, whereX, whereY) {
 
         printer.body.collideWorldBounds = true;
         printer.body.immovable = true;
+    }
+
+    // create cubicles
+    if (type == 'cubicle') {
+    	console.log('a');
+    	// TODO: needed?
+        // game.physics.arcade.enable(cubicle);
+        var rand = game.rnd.integerInRange(1, 10);
+            console.log(rand);
+
+        switch (rand) {
+            case 1: 
+                // full cube
+                var cubicle = obstacles.create(whereX + 2, whereY, 'cubewallhorizontal');
+                cubicle.body.setSize(32, 1, 0, 15);
+		        cubicle.body.immovable = true;
+		        cubicle.interact = function() {}
+                cubicle = obstacles.create(whereX - 4, whereY + 4, 'cubewallvertical');
+                cubicle.body.setSize(4, 30, 0, 10);
+		        cubicle.body.immovable = true;
+		        cubicle.interact = function() {}
+                cubicle = obstacles.create(whereX + 32, whereY + 4, 'cubewallvertical'); 
+                cubicle.body.setSize(4, 30, 0, 10);
+		        cubicle.body.immovable = true;
+		        cubicle.interact = function() {}
+                break;
+            case 2: 
+                // half cube left wall
+                var cubicle = obstacles.create(whereX + 2, whereY, 'cubewallhorizontal');
+                cubicle.body.setSize(32, 1, 0, 15);
+		        cubicle.body.immovable = true;
+		        cubicle.interact = function() {}
+                cubicle = obstacles.create(whereX - 4, whereY + 4, 'cubewallvertical'); 
+                cubicle.body.setSize(4, 30, 0, 10);
+		        cubicle.body.immovable = true;
+		        cubicle.interact = function() {}
+                break;
+            case 3: 
+                // half cube right wall
+                var cubicle = obstacles.create(whereX + 2, whereY, 'cubewallhorizontal');
+                cubicle.body.setSize(32, 1, 0, 30);
+		        cubicle.body.immovable = true;
+		        cubicle.interact = function() {}
+                cubicle = obstacles.create(whereX + 32, whereY + 4, 'cubewallvertical'); 
+                cubicle.body.setSize(4, 30, 0, 10);
+		        cubicle.body.immovable = true;
+		        cubicle.interact = function() {}
+                break;
+            default:
+            	break;
+        }
+
+        // cubicle.body.immovable = true;
+        // cubicle.interact = function() {}
     }
 }
 

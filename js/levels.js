@@ -153,6 +153,8 @@ function drawLevel(inclusions) {
 
             // place an obstacle in a reserved spot
             if (gridSpot == T) {
+                createObstacle('cubicle', x, y);
+
                 if (deskLayoutArray[currentOpening]) {
                     createObstacle(
                         deskLayoutArray[currentOpening], x, y

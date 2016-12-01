@@ -66,7 +66,7 @@ function createPlayer() {
 
     player.attack = function () {
         // TODO: animation is stuck on mouse down
-        player.animations.play('attack' + player.lookDirection);
+        // player.animations.play('attack' + player.lookDirection);
         player.weapon.fire(
             null,
             game.input.activePointer.worldX - reticle.width / 2,
@@ -83,6 +83,9 @@ function createPlayer() {
             if (player.health <= 0) {
                 player.heart.animations.play('dead');
                 showHelpText('You died!', 3000);
+                gameOver('GAME ERVER');
+                showHelpText('You died!', 1000000);
+                // TODO: play hit sound
 
                 // If not, trigger temporary invincibility
             } else {
