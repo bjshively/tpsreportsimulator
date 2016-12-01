@@ -289,11 +289,9 @@ function update() {
             updateEnemies();
 
             // Make help text disappear after expiration
-            if (game.time.now > helpText.expiration) {
+            if (game.time.now > helpText.expirationTime) {
                 helpText.visible = false;
             }
-            //      console.log(obstacles);
-            //        console.log(obstacles.checkAll('complete', 'true'));
         }
 
         // This is a quick way to test any function by mapping it to the hack key
