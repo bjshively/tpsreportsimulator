@@ -94,7 +94,7 @@ function createObstacle(type, whereX, whereY) {
                         this.animations.play('done');
                         this.complete = true;
                         printer.complete = true;
-                        printer.interact();
+                        printer.activate();
                     }, this);
                 }
             }
@@ -129,7 +129,8 @@ function createObstacle(type, whereX, whereY) {
         printer.animations.add(
             'done', Phaser.Animation.generateFrameNames('printer ', 157, 157, '.ase'), 30, false);
         printer.frame = 0;
-        printer.interact = function() {
+        printer.interact = function() {};
+        printer.activate = function() {
            // if (!this.complete) {
                 this.animations.play('printing');
                 this.animations.currentAnim.onComplete.add(function() {
