@@ -4,6 +4,8 @@
 
 Escape the soul crushing corporate world. Use staplers, paper cutter blades, a collection of dusty America Online CDs, and whatever else you can find to fight your way through middle management. Kill your foes, hack the terminals, and ride the elevator to victory.
 
+![TPS Report Simulator](https://github.com/bjshively/game-off-2016/blob/master/assets/tpssimulator.png)
+
 Play the most current version [here](http://ericandbradgame.herokuapp.com).
 
 ## Controls
