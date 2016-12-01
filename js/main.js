@@ -78,7 +78,7 @@ function preload() {
     game.load.atlas('player', 'assets/player/player.png', 'assets/player/player.json');
     game.load.image('reticle', 'assets/player/reticle.png');
     game.load.spritesheet('heart', 'assets/player/health.png', 23, 23);
-    
+
     // item sprites
     game.load.spritesheet('stapler', 'assets/weapons/staplerPickup.png', 16, 16);
     game.load.image('staple', 'assets/weapons/staplerAmmo.png');
@@ -261,11 +261,11 @@ function update() {
         reticle.visible = false;
         player.visible = false;
         showHelpText('Kill the enemies.\n' +
-            'Press \'E\' to hack terminals.\n' +
-            'Don\'t die.\n' + 
-            'Press SPACE to start.\n\n',
-            100000)
-        // Display menu/instructions
+                'Press \'E\' to hack terminals.\n' +
+                'Don\'t die.\n' +
+                'Press SPACE to start.\n\n',
+                100000)
+            // Display menu/instructions
 
         //Start game
         if (wasd.space.isDown) {
@@ -285,7 +285,7 @@ function update() {
             updateEnemies();
 
             // Make help text disappear after expiration
-            if(game.time.now > helpText.expiration) {
+            if (game.time.now > helpText.expiration) {
                 helpText.visible = false;
             }
             //      console.log(obstacles);
@@ -313,14 +313,14 @@ function update() {
         game.physics.arcade.collide(enemies, obstacles);
         game.physics.arcade.collide(enemies, walls);
         game.physics.arcade.overlap(player.weapon.bullets, obstacles, killBullet);
-        
+
 
         // On new levels, open the elevator, and wait for the player to exit to close it
         // TODO: put this somewhere better?
         if (player.level > 1 && player.body.y > 32 && elevator.starting) {
             elevator.close();
         }
-        
+
         // obstacles.sort('y', Phaser.Group.SORT_ASCENDING);
         // enemies.sort('y', Phaser.Group.SORT_ASCENDING);
         // masterGroup.add(enemies);
@@ -344,7 +344,7 @@ function killBullet(bullet) {
 
 function interactWithObstacle(player, obstacle) {
     // if (obstacle.complete == false) {
-        obstacle.interact();
+    obstacle.interact();
     // }
 }
 
@@ -397,11 +397,11 @@ function completeLevel() {
 
         // fade to black then advance the level
         game.camera.fade('#000000');
-        game.camera.onFadeComplete.add(function () {
+        game.camera.onFadeComplete.add(function() {
             player.level += 1;
             createLevel(player.level);
         });
-    }   
+    }
 }
 
 function createLevel(level) {
@@ -410,6 +410,7 @@ function createLevel(level) {
     // TODO: Add "space to restart"
 
     if (player.level > lastLevel) {
+        game.camera.flash('#000000');
         gameOver('YOU WIN');
     } else {
         drawLevel();
@@ -423,7 +424,7 @@ function createLevel(level) {
 
         // fade in from black and unlock player movement
         game.camera.flash('#000000');
-        game.camera.onFlashComplete.add(function () {
+        game.camera.onFlashComplete.add(function() {
             player.canMove = true;
         });
 
@@ -443,7 +444,7 @@ function updateHUD() {
 function showHelpText(message, duration) {
     helpText.text = message;
     helpText.visible = true;
-    helpText.expiration = game.time.now + duration;
+    helpText.expirationTime = game.time.now + duration;
 }
 
 //Toggle debug information
@@ -456,8 +457,8 @@ function render() {
         // game.debug.cameraInfo(game.camera, 5, 15);
         // game.debug.spriteCoords(player, 5, 90);
         // game.debug.text(
-            // 'Seconds: ' + Math.round(
-            // game.time.totalElapsedSeconds() * 100) / 100, 5, 140);
+        // 'Seconds: ' + Math.round(
+        // game.time.totalElapsedSeconds() * 100) / 100, 5, 140);
         // game.debug.text(
         //     'Mouse angle: ' + game.math.radToDeg(
         //     game.physics.arcade.angleToPointer(player)), 5, 160)
