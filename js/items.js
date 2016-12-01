@@ -156,7 +156,7 @@ function makeShoes(x, y) {
     shoes.animations.add('flicker');
     shoes.animations.play('flicker', 10, true);
     shoes.collect = function() {
-        player.maxSpeed += 50;
+        player.speedMultiplier = 2;
         player.score += 20;
         showHelpText('Picked up some sweet kicks!', 3000);
         this.kill();

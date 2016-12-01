@@ -24,7 +24,12 @@ function createPlayer() {
 
     player.score = 0;
     player.level = 1;
-    player.maxSpeed = 75;
+
+    // Player move speed
+    player.speed = 75;
+    player.speedMultiplier = 1;
+    player.currentSpeed = player.speed * player.speedMultiplier;
+
     player.invincible = false;
     player.invincibleTime;
     player.lookAngle;
@@ -108,6 +113,8 @@ function updatePlayer() {
 
     ///////////////////////////////////
     // BEGIN PLAYER MOVEMENT
+
+    player.currentSpeed = player.speed * player.speedMultiplier;
     player.body.velocity.y = 0;
     player.body.velocity.x = 0;
 
@@ -138,16 +145,16 @@ function updatePlayer() {
 
         // Move the player
         if (wasd.up.isDown) {
-            player.body.velocity.y = -(player.maxSpeed);
+            player.body.velocity.y = -(player.currentSpeed);
         }
         if (wasd.down.isDown) {
-            player.body.velocity.y = player.maxSpeed;
+            player.body.velocity.y = player.currentSpeed;
         }
         if (wasd.left.isDown) {
-            player.body.velocity.x = -(player.maxSpeed);
+            player.body.velocity.x = -(player.currentSpeed);
         }
         if (wasd.right.isDown) {
-            player.body.velocity.x = player.maxSpeed;
+            player.body.velocity.x = player.currentSpeed;
         }
         // END PLAYER MOVEMENT
         ///////////////////////////////////
