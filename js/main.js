@@ -87,6 +87,7 @@ function preload() {
     game.load.spritesheet('shoes', 'assets/items/shoes.png', 16, 16);
     game.load.spritesheet('vest', 'assets/items/vest.png', 16, 20);
     game.load.spritesheet('stopwatch', 'assets/items/stopwatch.png', 15, 17);
+    game.load.spritesheet('redbull', 'assets/items/redbull.png', 15, 17);
 
     // enemy sprites
     game.load.spritesheet('enemy1', 'assets/enemies/enemy1.png', 15, 31);
