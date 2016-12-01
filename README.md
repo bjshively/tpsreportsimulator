@@ -19,7 +19,7 @@ Kill the evil corporate oppressors. Hack the computers. Don't die.
 
 ## Technology
 
-TPS Report Simulator built using JavaScript (poorly) and [Phaser v2.6.2](http://www.phaser.io).
+TPS Report Simulator was built using JavaScript (poorly) and [Phaser v2.6.2](http://www.phaser.io).
 
 ## Credits
 
