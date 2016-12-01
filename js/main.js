@@ -85,7 +85,7 @@ function preload() {
     game.load.spritesheet('cd', 'assets/weapons/cd.png', 11, 11);
     game.load.image('cutter', 'assets/weapons/cutter.png');
     game.load.spritesheet('shoes', 'assets/items/shoes.png', 16, 16)
-    game.load.spritesheet('vest', 'assets/items/vest.png', 24, 30)
+    game.load.spritesheet('vest', 'assets/items/vest.png', 16, 20)
 
     // enemy sprites
     game.load.spritesheet('enemy1', 'assets/enemies/enemy1.png', 15, 31);
