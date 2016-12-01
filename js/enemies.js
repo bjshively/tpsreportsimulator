@@ -24,65 +24,14 @@ function updateEnemies() {
     if (enemies.countLiving() == 0 && obstacles.checkAll('complete', true)) {
         // If all enemies are dead and obstacles are hacked, complete the level
         elevator.open();
-        
+
     } else {
-        enemies.forEachAlive(moveEnemy, this, true);
+        enemies.forEachAlive(moveEnemy, this);
     }
 }
 
 function moveEnemy(enemy) {
-
-    // Enemies will follow the player if he gets too close
-    if (game.physics.arcade.distanceToXY(enemy, player.x, player.y) < enemy.detection) {
-        enemy.following = true;
-    } else {
-        // If the enemy was previously following the player,
-        // give the enemy new movement instructions
-        if (enemy.following == true) {
-
-        }
-        enemy.following = false;
-    }
-
-    // If player is within 100px, follow the player
-    // And play the appropriate facing animation
-    if (enemy.following) {
-        game.physics.arcade.moveToObject(enemy, player, enemy.maxSpeed);
-        var xDiff = player.x - enemy.x;
-        var yDiff = player.y - enemy.y;
-        if (Math.abs(xDiff) > Math.abs(yDiff)) {
-            if (xDiff >= 0) {
-                enemy.animations.play('right');
-            } else {
-                enemy.animations.play('left');
-            }
-        } else {
-            if (yDiff >= 0) {
-                enemy.animations.play('down');
-            } else {
-                enemy.animations.play('up');
-            }
-        }
-    }
-
-    if (!enemy.following) {
-        moveRandomly(enemy);
-
-        // Animations
-        if (Math.abs(enemy.ySpeed) > Math.abs(enemy.xSpeed)) {
-            if (enemy.ySpeed < 0) {
-                enemy.animations.play('up');
-            } else {
-                enemy.animations.play('down');
-            }
-        } else {
-            if (enemy.xSpeed < 0) {
-                enemy.animations.play('left');
-            } else {
-                enemy.animations.play('right');
-            }
-        }
-    }
+    enemy.move();
 }
 
 function damageEnemy(bullet, enemy) {
@@ -101,19 +50,6 @@ function damageEnemy(bullet, enemy) {
     }
 }
 
-function moveRandomly(enemy) {
-    if (enemy.moveCounter == 0) {
-        enemy.xSpeed = game.rnd.integerInRange(-1, 1) * enemy.maxSpeed;
-        enemy.ySpeed = game.rnd.integerInRange(-1, 1) * enemy.maxSpeed;
-        enemy.moveCounter = game.rnd.integerInRange(100, 300);
-    }
-
-    // Move enemy based on direction value and reduce moveCounter
-    enemy.body.velocity.x = enemy.xSpeed;
-    enemy.body.velocity.y = enemy.ySpeed;
-    enemy.moveCounter -= 1;
-}
-
 // Spawn an enemy
 function createEnemy(enemyClass, health, damage) {
     var enemy = enemies.create(
@@ -121,6 +57,73 @@ function createEnemy(enemyClass, health, damage) {
         game.rnd.integerInRange(32, 250),
         'enemy' + enemyClass
     );
+
+    enemy.moveRandomly = function () {
+    if (this.moveCounter == 0) {
+        this.xSpeed = game.rnd.integerInRange(-1, 1) * this.maxSpeed;
+        this.ySpeed = game.rnd.integerInRange(-1, 1) * this.maxSpeed;
+        this.moveCounter = game.rnd.integerInRange(100, 300);
+    }
+
+    // Move this based on direction value and reduce moveCounter
+    this.body.velocity.x = this.xSpeed;
+    this.body.velocity.y = this.ySpeed;
+    this.moveCounter -= 1;
+}
+    enemy.move = function() {
+        // Enemies will follow the player if he gets too close
+        if (game.physics.arcade.distanceToXY(this, player.x, player.y) < this.detection) {
+            this.following = true;
+        } else {
+            // If the this was previously following the player,
+            // give the this new movement instructions
+            if (this.following == true) {
+
+            }
+            this.following = false;
+        }
+
+        // If player is within 100px, follow the player
+        // And play the appropriate facing animation
+        if (this.following) {
+            game.physics.arcade.moveToObject(this, player, this.maxSpeed);
+            var xDiff = player.x - this.x;
+            var yDiff = player.y - this.y;
+            if (Math.abs(xDiff) > Math.abs(yDiff)) {
+                if (xDiff >= 0) {
+                    this.animations.play('right');
+                } else {
+                    this.animations.play('left');
+                }
+            } else {
+                if (yDiff >= 0) {
+                    this.animations.play('down');
+                } else {
+                    this.animations.play('up');
+                }
+            }
+        }
+
+        if (!this.following) {
+            this.moveRandomly();
+
+            // Animations
+            if (Math.abs(this.ySpeed) > Math.abs(this.xSpeed)) {
+                if (this.ySpeed < 0) {
+                    this.animations.play('up');
+                } else {
+                    this.animations.play('down');
+                }
+            } else {
+                if (this.xSpeed < 0) {
+                    this.animations.play('left');
+                } else {
+                    this.animations.play('right');
+                }
+            }
+        }
+    }
+
     game.physics.arcade.enable(enemy);
     enemy.body.mass = -50;
     enemy.body.collideWorldBounds = true;

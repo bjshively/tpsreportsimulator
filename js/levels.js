@@ -71,9 +71,7 @@ var elevator;
 
 function drawLevel(inclusions) {
     // bgtile = game.add.tileSprite(0, 0, game.world.bounds.width, game.world.height, 'background');
-
-    // walls = game.add.group();
-    // walls.enableBody = true;
+    walls.enableBody = true;
 
     var o = null;
     var T = 'reserved';

@@ -306,6 +306,7 @@ function update() {
         game.physics.arcade.collide(player, obstacles, interactWithObstacle);
         game.physics.arcade.collide(player, elevator, completeLevel);
         game.physics.arcade.collide(player, walls);
+        //game.physics.arcade.collide(enemies, walls, bounce);
 
         game.physics.arcade.collide(obstacles, obstacles);
         game.physics.arcade.collide(enemies, enemies);
@@ -314,7 +315,7 @@ function update() {
         game.physics.arcade.collide(player, enemies, player.takeDamage);
         // TODO: enemies still go through obstacles
         game.physics.arcade.collide(enemies, obstacles);
-        game.physics.arcade.collide(enemies, walls);
+        
         game.physics.arcade.overlap(player.weapon.bullets, obstacles, killBullet);
 
 
