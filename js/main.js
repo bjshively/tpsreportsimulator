@@ -79,11 +79,15 @@ function preload() {
     game.load.image('reticle', 'assets/player/reticle.png');
     game.load.spritesheet('heart', 'assets/player/health.png', 23, 23);
 
-    // item sprites
+    // weapon sprites
     game.load.spritesheet('stapler', 'assets/weapons/staplerPickup.png', 16, 16);
     game.load.image('staple', 'assets/weapons/staplerAmmo.png');
     game.load.spritesheet('cd', 'assets/weapons/cd.png', 11, 11);
     game.load.image('cutter', 'assets/weapons/cutter.png');
+    game.load.spritesheet('nerfgun', 'assets/weapons/nerfgun.png');
+    game.load.image('nerfammo', 'assets/weapons/nerfammo.png');
+
+    // item sprites
     game.load.spritesheet('shoes', 'assets/items/shoes.png', 16, 16);
     game.load.spritesheet('vest', 'assets/items/vest.png', 16, 20);
     game.load.spritesheet('stopwatch', 'assets/items/stopwatch.png', 15, 17);
