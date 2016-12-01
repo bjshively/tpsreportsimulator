@@ -77,7 +77,7 @@ function createPlayer() {
     player.takeDamage = function(player, danger) {
         if (!player.invincible) {
             player.health -= danger.damage;
-
+            bloodSplatter(player);
             // Check to see if this hit kills the player
             if (player.health <= 0) {
                 player.heart.animations.play('dead');

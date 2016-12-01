@@ -4,6 +4,7 @@ function Weapon() {
 
 var vest;
 var shoes;
+var stopwatch;
 
 function createItems() {
     // Create an items group
@@ -35,16 +36,16 @@ function createItems() {
         this.kill();
     }
 
-    vest = items.create(250, 250, 'vest');
-    // TODO: this sprite is way too big
-    vest.animations.add('flicker');
-    vest.animations.play('flicker', 10, true);
-    vest.collect = function() {
-        player.armor += 3;
-        player.score += 20;
-        showHelpText('Picked up a flak jacket!', 3000);
-        this.kill();
-    }
+    // vest = items.create(250, 250, 'vest');
+    // // TODO: this sprite is way too big
+    // vest.animations.add('flicker', [0, 1], 10, true);
+    // vest.animations.play('flicker');
+    // vest.collect = function() {
+    //     player.armor += 3;
+    //     player.score += 20;
+    //     showHelpText('Picked up a flak jacket!', 3000);
+    //     this.kill();
+    // }
 
     // TODO: add code to make collected items appear in relevant spots as player collects them
 }
@@ -135,7 +136,6 @@ function createObstacle(type, whereX, whereY) {
                     this.animations.play('eject');
                     this.animations.currentAnim.onComplete.add(function() {
                         this.animations.play('done');
-                        this.complete = true;
                         printItem();
                     }, this);
                 }, this);
@@ -148,17 +148,43 @@ function createObstacle(type, whereX, whereY) {
 }
 
 function printItem() {
-    makeShoes(printer.x + 10, printer.y + printer.height - 5);
+	switch(game.rnd.integerInRange(1, 3)) {
+		case 1: makeStopwatch(printer.x + 10, printer.y + printer.height - 5); break;
+		case 2: makeShoes(printer.x + 10, printer.y + printer.height - 5); break;
+		case 3: makeVest(printer.x + 10, printer.y + printer.height - 5); break;
+	}
 }
 
+function makeStopwatch(x, y) {
+    stopwatch = items.create(x, y, 'stopwatch');
+    stopwatch.animations.add('flicker', [0, 1], 10, true);
+    stopwatch.animations.play('flicker');
+    stopwatch.collect = function() {
+        // player.speedMultiplier = 2;
+        // player.score += 20;
+        showHelpText('Slowin\' down time...', 3000);
+        this.kill();
+    }
+}
 function makeShoes(x, y) {
     shoes = items.create(x, y, 'shoes');
-    shoes.animations.add('flicker');
-    shoes.animations.play('flicker', 10, true);
+    shoes.animations.add('flicker', [0, 1], 10, true);
+    shoes.animations.play('flicker');
     shoes.collect = function() {
         player.speedMultiplier = 2;
         player.score += 20;
         showHelpText('Picked up some sweet kicks!', 3000);
+        this.kill();
+    }
+}
+function makeVest(x, y) {
+    vest = items.create(x, y, 'vest');
+    vest.animations.add('flicker', [0, 1], 10, true);
+    vest.animations.play('flicker');
+    vest.collect = function() {
+        player.score += 20;
+        player.armor += 3;
+        showHelpText('Picked up a flacket!', 3000);
         this.kill();
     }
 }
