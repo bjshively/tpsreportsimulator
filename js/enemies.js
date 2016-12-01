@@ -129,6 +129,10 @@ function createEnemy(enemyClass) {
         }
     }
 
+    enemy.turnAround = function () {
+        this.moveCounter = 0;
+    }
+
     game.physics.arcade.enable(enemy);
     enemy.body.mass = -50;
     enemy.body.collideWorldBounds = true;
