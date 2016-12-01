@@ -40,6 +40,7 @@ var reticle;
 
 var lastLevel;
 
+var livesText;
 var scoreText;
 var healthText;
 var levelText;
@@ -182,6 +183,15 @@ function create() {
     scoreText.position.setTo(game.camera.width - 5, 5);
     scoreText.fixedToCamera = true;
 
+    livesText = game.add.text(23, 5, '', {
+        font: '14px VT323',
+        fill: '#FFF'
+    });
+    livesText.stroke = '#000';
+    livesText.strokeThickness = 3;
+    livesText.fixedToCamera = true;
+
+
     gameOverText = game.add.text(0, 0, '', {
         font: '30px VT323',
         fill: '#fff'
@@ -222,6 +232,9 @@ function create() {
     currentWeapon.anchor.setTo(1, 1);
     currentWeapon.position.setTo(game.camera.width - 5, game.camera.height - 5);
     currentWeapon.fixedToCamera = true;
+
+
+    // show lives
 
     // TODO: WTF Y NO WORK
     // levelText = createHUDtext('FUCK YOU', '14px', 3);
@@ -311,7 +324,9 @@ function update() {
         game.physics.arcade.collide(player, obstacles, interactWithObstacle);
         game.physics.arcade.collide(player, elevator, completeLevel);
         game.physics.arcade.collide(player, walls);
-        game.physics.arcade.collide(enemies, walls, function(enemy) { enemy.turnAround();});
+        game.physics.arcade.collide(enemies, walls, function(enemy) {
+            enemy.turnAround();
+        });
 
         game.physics.arcade.collide(obstacles, obstacles);
         game.physics.arcade.collide(enemies, enemies);
@@ -319,8 +334,10 @@ function update() {
         game.physics.arcade.collide(player.weapon.bullets, enemies, damageEnemy);
         game.physics.arcade.collide(player, enemies, player.takeDamage);
         // TODO: enemies still go through obstacles
-        game.physics.arcade.collide(enemies, obstacles, function(enemy) { enemy.turnAround();});
-        
+        game.physics.arcade.collide(enemies, obstacles, function(enemy) {
+            enemy.turnAround();
+        });
+
         game.physics.arcade.overlap(player.weapon.bullets, obstacles, killBullet);
 
 
@@ -328,6 +345,17 @@ function update() {
         // TODO: put this somewhere better?
         if (player.level > 1 && player.body.y > 32 && elevator.starting) {
             elevator.close();
+        }
+
+        if (player.health <= 0 && player.lives > 0) {
+            enemies.removeAll();
+            createLevel();
+            player.health = 3;
+            player.lives--;
+        }
+
+        if (player.lives == 0) {
+            gameOver('GAME ERVER');
         }
 
         // obstacles.sort('y', Phaser.Group.SORT_ASCENDING);
@@ -446,7 +474,9 @@ function updateHUD() {
     // healthText.text = 'Health: ' + player.health;
     levelText.text = 'Level: ' + player.level;
     scoreText.text = 'Score: ' + player.score;
+    livesText.text = 'x ' + player.lives;
     currentWeapon.loadTexture(player.weapon.icon);
+
 
 }
 

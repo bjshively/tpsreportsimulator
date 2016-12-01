@@ -22,6 +22,7 @@ function createPlayer() {
     player.armor = 0;
     // TODO: add logic to decrement this with takeDamage if > 0
 
+    player.lives = 3;
     player.score = 0;
     player.level = 1;
 
@@ -81,8 +82,7 @@ function createPlayer() {
             // Check to see if this hit kills the player
             if (player.health <= 0) {
                 player.heart.animations.play('dead');
-                gameOver('GAME ERVER');
-                showHelpText('You died!', 1000000);
+                showHelpText('You died!', 3000);
 
                 // If not, trigger temporary invincibility
             } else {
