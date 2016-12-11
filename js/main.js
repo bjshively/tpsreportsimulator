@@ -48,6 +48,7 @@ var gameOverText;
 var helpText;
 
 var pickupStapler;
+var pickupNerfGun;
 var pickupCD;
 var bgtile;
 
@@ -55,6 +56,7 @@ var bgtile;
 var weaponCutter;
 var weaponCD;
 var weaponStapler;
+var weaponNerfGun;
 var currentWeapon;
 var blood;
 

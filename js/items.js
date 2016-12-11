@@ -25,6 +25,18 @@ function createItems() {
         this.kill();
     }
 
+    pickupNerfGun = items.create(
+        Math.abs(Math.random() * game.world.width - 44),
+        Math.abs(Math.random() * game.world.height - 39),
+        'nerfgun');
+    pickupNerfGun.animations.add('bounce');
+    pickupNerfGun.animations.play('bounce', 30, true);
+    pickupNerfGun.collect = function() {
+        player.weapon = weaponNerfGun;
+        player.score += 20;
+        this.kill();
+    }
+
     pickupCD = items.create(
         Math.abs(Math.random() * game.world.width - 44),
         Math.abs(Math.random() * game.world.height - 39),
@@ -281,4 +293,13 @@ function createWeapons() {
     weaponStapler.damage = 1;
     weaponStapler.bulletSpeed = 300;
     weaponStapler.trackedSprite = player;
+
+    weaponNerfGun = game.add.weapon(10, 'nerfammo');
+    weaponNerfGun.icon = 'nerfgun';
+    weaponNerfGun.fireRate = 200;
+    weaponNerfGun.bulletKillType = Phaser.Weapon.KILL_CAMERA_BOUNDS;
+    weaponNerfGun.bulletAngleOffset = 90;
+    weaponNerfGun.damage = 1;
+    weaponNerfGun.bulletSpeed = 300;
+    weaponNerfGun.trackedSprite = player;
 }
