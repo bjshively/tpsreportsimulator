@@ -7,14 +7,6 @@
 // enemy1 has 2 health, enemy2 has 3 health, +
 // new enemies appear once every 5th wave, quantity increases with wave
 
-// function createEnemies(level) {
-
-//     // Spawn a random number of enemies
-//     for (var i = 0; i < game.rnd.integerInRange(3, 10); i++) {
-//         createEnemy(2, 1);
-//     }
-// }
-
 function updateEnemies() {
     // Check to see if all enemies are dead
 
@@ -167,19 +159,19 @@ var enemyTypeAttributes = {
         'weapon': null
     },
     3: {
-        'health': 4,
+        'health': 5,
         'damage': 2,
         'sprite': 3,
         'weapon': null
     },
     4: {
-        'health': 5,
+        'health': 7,
         'damage': 3,
         'sprite': 4,
         'weapon': null
     },
     5: {
-        'health': 6,
+        'health': 10,
         'damage': 4,
         'sprite': 5,
         'weapon': null

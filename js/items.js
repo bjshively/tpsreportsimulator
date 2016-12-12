@@ -49,17 +49,6 @@ function createItems() {
         this.kill();
     }
 
-    // vest = items.create(250, 250, 'vest');
-    // // TODO: this sprite is way too big
-    // vest.animations.add('flicker', [0, 1], 10, true);
-    // vest.animations.play('flicker');
-    // vest.collect = function() {
-    //     player.armor += 3;
-    //     player.score += 20;
-    //     showHelpText('Picked up a flak jacket!', 3000);
-    //     this.kill();
-    // }
-
     // TODO: add code to make collected items appear in relevant spots as player collects them
 }
 
@@ -165,39 +154,37 @@ function createObstacle(type, whereX, whereY) {
         // game.physics.arcade.enable(cubicle);
         var rand = game.rnd.integerInRange(1, 10);
 
-        switch (rand) {
-            case 1: 
-                // full cube
-                var cubicle = walls.create(whereX + 2, whereY, 'cubewallhorizontal');
-                cubicle.body.setSize(32, 1, 0, 15);
-		        cubicle.body.immovable = true;
-		        cubicle = walls.create(whereX - 4, whereY + 4, 'cubewallvertical');
-                cubicle.body.setSize(4, 20, 0, 10);
-		        cubicle.body.immovable = true;
-		        cubicle = walls.create(whereX + 32, whereY + 4, 'cubewallvertical'); 
-                cubicle.body.setSize(4, 20, 0, 10);
-		        cubicle.body.immovable = true;
-		        break;
-            case 2: 
-                // half cube left wall
-                var cubicle = walls.create(whereX + 2, whereY, 'cubewallhorizontal');
-                cubicle.body.setSize(32, 1, 0, 15);
-		        cubicle.body.immovable = true;
-		        cubicle = walls.create(whereX - 4, whereY + 4, 'cubewallvertical'); 
-                cubicle.body.setSize(4, 20, 0, 10);
-		        cubicle.body.immovable = true;
-		        break;
-            case 3: 
-                // half cube right wall
-                var cubicle = walls.create(whereX + 2, whereY, 'cubewallhorizontal');
-                cubicle.body.setSize(32, 1, 0, 15);
-		        cubicle.body.immovable = true;
-		        cubicle = walls.create(whereX + 32, whereY + 4, 'cubewallvertical'); 
-                cubicle.body.setSize(4, 20, 0, 10);
-		        cubicle.body.immovable = true;
-		        break;
-            default:
-            	break;
+        // full cube
+        if (rand == 1) {
+            var cubicle = walls.create(whereX + 2, whereY, 'cubewallhorizontal');
+            cubicle.body.setSize(32, 1, 0, 20);
+            cubicle.body.immovable = true;
+            cubicle = walls.create(whereX - 4, whereY + 4, 'cubewallvertical');
+            cubicle.body.setSize(4, 10, 0, 20);
+            cubicle.body.immovable = true;
+            cubicle = walls.create(whereX + 32, whereY + 4, 'cubewallvertical'); 
+            cubicle.body.setSize(4, 10, 0, 20);
+            cubicle.body.immovable = true;
+        }
+
+        // half cube left wall
+        if (rand == 2) {
+            var cubicle = walls.create(whereX + 2, whereY, 'cubewallhorizontal');
+            cubicle.body.setSize(32, 1, 0, 20);
+            cubicle.body.immovable = true;
+            cubicle = walls.create(whereX - 4, whereY + 4, 'cubewallvertical'); 
+            cubicle.body.setSize(4, 10, 0, 20);
+            cubicle.body.immovable = true;
+        }
+
+        // half cube right wall
+        if (rand == 3) {
+            var cubicle = walls.create(whereX + 2, whereY, 'cubewallhorizontal');
+            cubicle.body.setSize(32, 1, 0, 20);
+            cubicle.body.immovable = true;
+            cubicle = walls.create(whereX + 32, whereY + 4, 'cubewallvertical'); 
+            cubicle.body.setSize(4, 10, 0, 20);
+            cubicle.body.immovable = true;
         }
 
         // cubicle.body.immovable = true;
@@ -206,6 +193,7 @@ function createObstacle(type, whereX, whereY) {
 }
 
 function printItem() {
+    makeShoes(printer.x + 10, printer.y + printer.height - 5);
 	switch(game.rnd.integerInRange(1, 3)) {
 		case 1: makeStopwatch(printer.x + 10, printer.y + printer.height - 5); break;
 		case 2: makeShoes(printer.x + 10, printer.y + printer.height - 5); break;

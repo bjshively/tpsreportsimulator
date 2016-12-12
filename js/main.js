@@ -303,6 +303,19 @@ function update() {
             player.visible = true;
             helpText.visible = false;
         }
+    } else if (player.alive == false) {
+        showHelpText('U ded.\n' +
+                'Press \'SPACE\' to restart!\n\n',
+                100000);
+        if (wasd.space.isDown) {
+            enemies.removeAll();
+            createLevel();
+            player.health = 3;
+            player.lives--;
+            player.alive = true;
+            player.visible = true;
+            helpText.visible = false;
+        }
     } else {
 
         // Only perform player actions if the player is alive
@@ -353,10 +366,10 @@ function update() {
         }
 
         if (player.health <= 0 && player.lives > 0) {
-            enemies.removeAll();
-            createLevel();
-            player.health = 3;
-            player.lives--;
+            //game.camera.fade(0xff0000);
+            player.heart.animations.play('dead');
+            player.alive = false;
+            player.visible = false;
         }
 
         if (player.lives == 0) {
@@ -406,8 +419,8 @@ function bloodSplatter(where) {
     }
 }
 
-// Display gameover message
 function gameOver(message) {
+    // Display gameover message
     game.camera.follow(null, Phaser.Camera.FOLLOW_LOCKON, 0.1, 0.1);
     reticle.kill();
     // healthText.kill();
@@ -415,12 +428,6 @@ function gameOver(message) {
     gameOverText.text = message;
     player.kill();
 }
-
-// function selectWeapon(weapon) {
-//     selectedWeapon.kill();
-//     selectedWeapon = game.add.sprite(game.camera.width - 20, game.camera.height - 20, weapon);
-//     selectedWeapon.fixedToCamera = true;
-// }
 
 function clearLevel() {
     // Clear obstacles and items
@@ -481,8 +488,6 @@ function updateHUD() {
     scoreText.text = 'Score: ' + player.score;
     livesText.text = 'x ' + player.lives;
     currentWeapon.loadTexture(player.weapon.icon);
-
-
 }
 
 function showHelpText(message, duration) {

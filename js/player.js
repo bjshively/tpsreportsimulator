@@ -30,6 +30,7 @@ function createPlayer() {
     // TODO: add logic to decrement this with takeDamage if > 0
 
     player.lives = 3;
+    player.alive = true;
     player.score = 0;
     player.level = 1;
 
@@ -37,6 +38,11 @@ function createPlayer() {
     player.speed = 75;
     player.speedMultiplier = 1;
     player.currentSpeed = player.speed * player.speedMultiplier;
+    
+    player.shoes = game.add.sprite(5, 35, 'shoes');
+    player.shoes.fixedToCamera = true;
+    player.shoes.visible = false;
+    player.shoes.frame = 0;
 
     player.invincible = false;
     player.invincibleTime;
@@ -55,11 +61,12 @@ function createPlayer() {
     player.animations.add(
         'left', Phaser.Animation.generateFrameNames('player ', 15, 18, '.ase'), 7, true);
     // Define the standing frame for each direction the player can face
-    player.standingFrames = {};
-    player.standingFrames['up'] = 0;
-    player.standingFrames['right'] = 5;
-    player.standingFrames['down'] = 10;
-    player.standingFrames['left'] = 15;
+    player.standingFrames = {
+        'up': 0,
+        'right': 5,
+        'down': 10,
+        'left': 15
+    }
 
     // add the attack animations
     player.animations.add(
@@ -96,11 +103,10 @@ function createPlayer() {
             bloodSplatter(player);
             // Check to see if this hit kills the player
             if (player.health <= 0) {
-                player.heart.animations.play('dead');
-                showHelpText('You died!', 3000);
+                //showHelpText('You died!', 3000);
                 // TODO: play hit sound
 
-                // If not, trigger temporary invincibility
+            // If not, trigger temporary invincibility
             } else {
                 player.makeInvincible();
             }
@@ -177,7 +183,7 @@ function updatePlayer() {
 
         // SHOOTEMUP
         // game.input.onDown.add(fireBullet)
-        if (wasd.pointer.isDown || wasd.space.isDown) {
+        if (wasd.pointer.isDown) {
             player.attack();
         }
     }
@@ -191,7 +197,7 @@ function updatePlayer() {
         default: player.heart.animations.play('healthy'); break;
     }
 
-        // update heart texture with health
+    // update armor texture
     if (player.armor > 0) {
         player.vest.visible = true;
         switch (player.armor) {
@@ -201,5 +207,12 @@ function updatePlayer() {
         }
     } else {
         player.vest.visible = false;
+    }
+
+    // update shoe texture
+    if (player.speedMultiplier > 1) {
+        player.shoes.visible = true;
+    } else {
+        player.shoes.visible = false;
     }
 }
