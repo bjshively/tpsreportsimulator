@@ -1,69 +1,47 @@
-// LEVEL LAYOUT
-// base levels are x1 - 3
-// all base levels have at least 3 computers
-// levels x4 and x5 have 4 and 5 computers
-// a random computer in each level is a desk with/and printer
-// levels have enemies starting with 1
-// new enemies are introduced every 5 levels
-// levels 1 - 3 have 2 enemies
-// base levels have 3 level 1 enemies
-// 4 and 5 have 3 and 4 enemies, plus leveled enemies from previous levels
+// CREATE CONTENTS FOR EACH LEVEL
+var levels = {};
 
-var levels = {
-    1: {
+// create 10 levels
+for (var level = 1; level <= 10; level++) {
+    levels[level] = {
         'enemies': {
-            1: 3,
+            1: 0,
+            2: 0,
+            3: 0,
+            4: 0,
+            5: 0
         },
         'obstacles': {
-            'desk': 2,
-            'deskWithPrinter': 1,
-            'printer': 1
+            'desk': 0,
+            'deskWithPrinter': 0,
+            'printer': 0
         }
-    },
-    2: {
-        'enemies': {
-            1: 3
-        },
-        'obstacles': {
-            'desk': 3
-        }
-    },
-    3: {
-        'enemies': {
-            1: 3
-        },
-        'obstacles': {
-            'desk': 2,
-            'deskWithPrinter': 1,
-            'printer': 1
-        }
-    },
-    4: {
-        'enemies': {
-            1: 4
-        },
-        'obstacles': {
-            'desk': 4
-        }
-    },
-    5: {
-        'enemies': {
-            1: 5
-        },
-        'obstacles': {
-            'desk': 4,
-            'deskWithPrinter': 1,
-            'printer': 1
-        }
-    },
-    6: {
-        'enemies': {
-            1: 3,
-            2: 1
-        },
-        'obstacles': {
-            'desk': 3
-        }
+    }
+
+    // random number of desks possibly increasing with level
+    levels[level]['obstacles']['desk'] = game.rnd.integerInRange(2, 2 + level);
+
+    // one in four chance of a printer showing up
+    if (game.rnd.integerInRange(1, 4) == 1) {
+        levels[level]['obstacles']['deskWithPrinter'] = 1;
+        levels[level]['obstacles']['printer'] = 1;
+    }
+
+    // always have 3+ base enemies
+    levels[level]['enemies']['1'] = game.rnd.integerInRange(3, 5);
+    
+    // levels 3, 5, 7, 9 have new enemy types
+    if (level >= 3) {
+        levels[level]['enemies']['2'] = game.rnd.integerInRange(2, 5);
+    }
+    if (level >= 5) {
+        levels[level]['enemies']['3'] = game.rnd.integerInRange(2, 5);
+    }
+    if (level >= 7) {
+        levels[level]['enemies']['4'] = game.rnd.integerInRange(2, 5);
+    }
+    if (level >= 9) {
+        levels[level]['enemies']['5'] = game.rnd.integerInRange(1, 2);
     }
 }
 
@@ -75,8 +53,9 @@ function drawLevel(inclusions) {
 
     var o = null;
     var T = 'reserved';
+    var E = 'elevator';
     var wallsArray = [
-        [0, 4, 9, 9, 5, o, 5, 9, 9, 4, 1],
+        [0, 4, 9, 9, 5, E, 5, 9, 9, 4, 1],
         [6, o, o, o, o, o, o, o, o, o, 7],
         [6, o, T, T, T, o, T, T, T, o, 7],
         [6, o, o, o, o, o, o, o, o, o, 7],
@@ -87,45 +66,15 @@ function drawLevel(inclusions) {
         [2, 8, 8, 8, 8, 8, 8, 8, 8, 8, 3],
     ];
 
-    var deskLayout = {
-        0: {'available': true, 'x': null, 'y': null},
-        1: {'available': true, 'x': null, 'y': null},
-        2: {'available': true, 'x': null, 'y': null},
-        3: {'available': true, 'x': null, 'y': null},
-        4: {'available': true, 'x': null, 'y': null},
-        5: {'available': true, 'x': null, 'y': null},
-        6: {'available': true, 'x': null, 'y': null},
-        7: {'available': true, 'x': null, 'y': null},
-        8: {'available': true, 'x': null, 'y': null},
-        9: {'available': true, 'x': null, 'y': null},
-        10: {'available': true, 'x': null, 'y': null},
-        11: {'available': true, 'x': null, 'y': null},
-        12: {'available': true, 'x': null, 'y': null},
-        13: {'available': true, 'x': null, 'y': null},
-        14: {'available': true, 'x': null, 'y': null},
-        15: {'available': true, 'x': null, 'y': null},
-        16: {'available': true, 'x': null, 'y': null},
-        17: {'available': true, 'x': null, 'y': null},
-    };
-
     // player.makeInvincible();
     var currentLevel = levels[player.level];
     
     var currentLevelObstacles = currentLevel['obstacles'];
     var deskLayoutArray = [ , , , , , , , , , , , , , , , , , ];
     var lengthCheck = 0;
-    // for (obstacle in currentLevelObstacles) {
-    //     for (var i = 0; i < currentLevelObstacles[obstacle]; i++) {
-    //         createObstacle(
-    //             obstacle,
-    //             game.rnd.integerInRange(64, 288),
-    //             game.rnd.integerInRange(64, 200)
-    //         );
-    //     }
-    // }
 
     for (type in currentLevelObstacles) {
-        for (var item = 0; item < currentLevelObstacles[type]; item++) {
+        for (var obstacle = 0; obstacle < currentLevelObstacles[type]; obstacle++) {
             // 18 spaces, pick a random one
             var rand = game.rnd.integerInRange(0, 17);
             if (deskLayoutArray[rand] == undefined) {
@@ -133,8 +82,8 @@ function drawLevel(inclusions) {
                 deskLayoutArray[rand] = type;
                 lengthCheck++;
             } else {
-                // decrement to avoid running out of spaces or items
-                item--;
+                // decrement to avoid running out of spaces or obstacles
+                obstacle--;
             }
 
             // reset the length check after everything in the group is assigned
@@ -164,6 +113,44 @@ function drawLevel(inclusions) {
                 }
                 // iterate the current opening to keep in line with the deskLayoutArray
                 currentOpening++;
+            } else if (gridSpot == E) {
+                elevator = walls.create(160, 0, 'walls');
+                elevator.frame = 10;
+                elevator.starting = false;
+                elevator.isOpen = false;
+                elevator.canProceed = false;
+                elevator.animations.add(
+                    'ready', Phaser.Animation.generateFrameNames(
+                        'walls ', 11, 11, '.ase'),
+                    1, false);
+                elevator.animations.add(
+                    'open', Phaser.Animation.generateFrameNames(
+                        'walls ', 12, 16, '.ase'),
+                    7, false);
+                elevator.animations.add(
+                    'close', Phaser.Animation.generateFrameNames(
+                        'walls ', 10, 16, '.ase').reverse(),
+                    7, false);
+                elevator.open = function () {
+                    if (!elevator.isOpen) {
+                        elevator.isOpen = true;
+                        this.animations.play('ready');
+                        this.animations.currentAnim.onComplete.add(function() {
+                            this.animations.play('open');
+                            this.animations.currentAnim.onComplete.add(function() {
+                                elevator.body.setSize(32, 12, 0, 0);
+                                elevator.canProceed = true;
+                            }, this);
+                        }, this);
+                    }
+                }
+                elevator.close = function() {
+                    elevator.isOpen = false;
+                    elevator.starting = false;
+                    elevator.body.setSize(32, 32, 0, 0);
+                    this.animations.play('close');
+                }
+
             // replace the numbers with the appropriate wall
             } else if (gridSpot != null) {
                 // use the number to grab the frame from the spritesheet
@@ -196,36 +183,6 @@ function drawLevel(inclusions) {
         }
     }
 
-    elevator = walls.create(160, 0, 'walls');
-    elevator.frame = 10;
-    elevator.starting = false;
-    elevator.isOpen = false;
-    elevator.canProceed = false;
-    elevator.animations.add(
-        'ready', Phaser.Animation.generateFrameNames('walls ', 11, 11, '.ase'), 1, false);
-    elevator.animations.add(
-        'open', Phaser.Animation.generateFrameNames('walls ', 12, 16, '.ase'), 7, false);
-    elevator.animations.add(
-        'close', Phaser.Animation.generateFrameNames('walls ', 10, 16, '.ase').reverse(), 7, false);
-    elevator.open = function () {
-        if (!elevator.isOpen) {
-            elevator.isOpen = true;
-            this.animations.play('ready');
-            this.animations.currentAnim.onComplete.add(function() {
-                this.animations.play('open');
-                this.animations.currentAnim.onComplete.add(function() {
-                    elevator.body.setSize(32, 12, 0, 0);
-                    elevator.canProceed = true;
-                }, this);
-            }, this);
-        }
-    }
-    elevator.close = function() {
-        elevator.isOpen = false;
-        elevator.starting = false;
-        elevator.body.setSize(32, 32, 0, 0);
-        this.animations.play('close');
-    }
     walls.setAll('body.immovable', true);
 
     var currentLevelEnemies = currentLevel['enemies'];

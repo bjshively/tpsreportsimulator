@@ -6,7 +6,7 @@ function createControls() {
         left: game.input.keyboard.addKey(Phaser.Keyboard.A),
         right: game.input.keyboard.addKey(Phaser.Keyboard.D),
         space: game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR),
-        hackKey: game.input.keyboard.addKey(Phaser.Keyboard.E),
+        hackKey: game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR),
         pointer: game.input.activePointer,
         weaponCutterKey: game.input.keyboard.addKey(49),
         weaponCDKey: game.input.keyboard.addKey(50),

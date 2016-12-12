@@ -288,7 +288,7 @@ function update() {
         reticle.visible = false;
         player.visible = false;
         showHelpText('Kill the enemies.\n' +
-                'Press \'E\' to hack terminals.\n' +
+                'Press \'SPACE\' to hack terminals.\n' +
                 'Don\'t die.\n' +
                 'Press SPACE to start.\n\n',
                 100000)
